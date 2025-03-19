@@ -80,7 +80,6 @@ function initPaint() {
     centerY,
     mouseX = 0,
     mouseY = 0,
-    isMouseDown = false,
     brush,
     gui,
     control,
@@ -89,8 +88,7 @@ function initPaint() {
     guiIsRandColorCtr;
 
   // Event Listeners
-  function resize(e) {
-    canvas.width = window.innerWidth;
+  function resize() {
     canvas.height = window.innerHeight;
     centerX = canvas.width * 0.5;
     centerY = canvas.height * 0.5;
@@ -118,7 +116,7 @@ function initPaint() {
     hideMessage();
   }
 
-  function mouseUp(e) {
+  function mouseUp() {
     brush.endStroke();
   }
 
@@ -149,8 +147,7 @@ function initPaint() {
     hideMessage();
   }
 
-  function touchEnd(e) {
-    touched = false;
+  function touchEnd() {
     brush.endStroke();
   }
 
@@ -168,8 +165,7 @@ function initPaint() {
   control = {
     isRandomColor: true,
     isRandomSize: false,
-    clear: function (e) {
-      context.clearRect(0, 0, canvas.width, canvas.height);
+    clear: function () {
       brush.dispose();
     },
   };
@@ -214,7 +210,6 @@ function initPaint() {
 // Start Update
 var loop = function () {
   brush.render(context, mouseX, mouseY);
-  requestAnimationFrame(loop);
 };
 loop();
 
@@ -225,9 +220,6 @@ window.requestAnimationFrame = (function () {
   return (
     window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
     function (callback) {
       window.setTimeout(callback, 1000 / 60);
     }
@@ -247,8 +239,6 @@ var Brush = (function () {
     this.y = y || 0;
     if (color !== undefined) this.color = color;
     if (size !== undefined) this.size = size;
-    if (inkAmount !== undefined) this.inkAmount = inkAmount;
-
     this._drops = [];
     this._resetTip();
   }
@@ -338,7 +328,6 @@ var Brush = (function () {
           dist;
 
         dx = this.x - this._latestPos.x;
-        dy = this.y - this._latestPos.y;
         dist = Math.sqrt(dx * dx + dy * dy);
 
         if (this.splashing && dist > this._SPLASHING_BRUSH_SPEED) {
@@ -439,7 +428,6 @@ var Brush = (function () {
     this.y = y || 0;
     this.inkAmount = inkAmount;
     this.color = color;
-
     this._latestPos = { x: this.x, y: this.y };
   }
 
@@ -482,7 +470,6 @@ var Brush = (function () {
     this.size = size;
     this.color = color;
     this.strokeId = strokeId;
-
     this.life = this.size * 1.5;
     this._latestPos = { x: this.x, y: this.y };
   }
@@ -520,159 +507,8 @@ var Brush = (function () {
       ctx.lineTo(this.x, this.y);
       ctx.stroke();
       ctx.restore();
-      ctx.restore();
     },
   };
 
   return Brush;
-})();
-
-// Initialize
-
-(function () {
-  // Vars
-
-  var canvas,
-    context,
-    centerX,
-    centerY,
-    mouseX = 0,
-    mouseY = 0,
-    isMouseDown = false,
-    brush,
-    gui,
-    control,
-    guiColorCtr,
-    guiSizeCtr,
-    guiIsRandColorCtr;
-
-  // Event Listeners
-
-  function resize(e) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    centerX = canvas.width * 0.5;
-    centerY = canvas.height * 0.5;
-    context = canvas.getContext("2d");
-    control.clear();
-  }
-
-  function mouseMove(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  }
-
-  function mouseDown(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if (control.isRandomColor) {
-      brush.color = randomColor();
-      guiColorCtr.updateDisplay();
-    }
-    if (control.isRandomSize) {
-      brush.size = random(51, 5) | 0;
-      guiSizeCtr.updateDisplay();
-    }
-    brush.startStroke(mouseX, mouseY);
-  }
-
-  function mouseUp(e) {
-    brush.endStroke();
-  }
-
-  var touched = false;
-
-  function touchMove(e) {
-    var t = e.touches[0];
-    mouseX = t.clientX;
-    mouseY = t.clientY;
-  }
-
-  function touchStart(e) {
-    if (touched) return;
-    touched = true;
-
-    var t = e.touches[0];
-    mouseX = t.clientX;
-    mouseY = t.clientY;
-    if (control.isRandomColor) {
-      brush.color = randomColor();
-      guiColorCtr.updateDisplay();
-    }
-    if (control.isRandomSize) {
-      brush.size = random(51, 5) | 0;
-      guiSizeCtr.updateDisplay();
-    }
-    brush.startStroke(mouseX, mouseY);
-  }
-
-  function touchEnd(e) {
-    touched = false;
-    brush.endStroke();
-  }
-
-  // Helpers
-
-  function randomColor() {
-    const palette = palettes[Math.floor(Math.random() * palettes.length)];
-    return palette[Math.floor(Math.random() * palette.length)];
-  }
-
-  function random(max, min) {
-    if (typeof max !== "number") {
-      return Math.random();
-    } else if (typeof min !== "number") {
-      min = 0;
-    }
-    return Math.random() * (max - min) + min;
-  }
-
-  // GUI Control
-
-  control = {
-    isRandomColor: true,
-    isRandomSize: false,
-    clear: function (e) {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      brush.dispose();
-    },
-  };
-
-  // Init
-
-  canvas = document.getElementById("c");
-
-  brush = new Brush(centerX, centerY, randomColor());
-
-  window.addEventListener("resize", resize, false);
-  resize(null);
-
-  canvas.addEventListener("mousemove", mouseMove, false);
-  canvas.addEventListener("mousedown", mouseDown, false);
-  canvas.addEventListener("mouseout", mouseUp, false);
-  canvas.addEventListener("mouseup", mouseUp, false);
-
-  canvas.addEventListener("touchmove", touchMove, false);
-  canvas.addEventListener("touchstart", touchStart, false);
-  canvas.addEventListener("touchcancel", touchEnd, false);
-  canvas.addEventListener("touchend", touchEnd, false);
-
-  // GUI
-
-  gui = new dat.GUI();
-  guiColorCtr = gui
-    .addColor(brush, "color")
-    .name("Color")
-    .onChange(function () {
-      control.isRandomColor = false;
-      guiIsRandColorCtr.updateDisplay();
-    });
-  guiSizeCtr = gui.add(brush, "size", 5, 50).name("Size");
-  gui.add(brush, "inkAmount", 1, 30).name("Ink Amount");
-  gui.add(brush, "splashing").name("Splashing");
-  gui.add(brush, "dripping").name("Dripping");
-  guiIsRandColorCtr = gui.add(control, "isRandomColor").name("Random Color");
-  gui.add(control, "isRandomSize").name("Random Size");
-  gui.add(control, "clear").name("Clear");
-  gui.close();
 })();

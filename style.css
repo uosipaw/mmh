@@ -23,6 +23,12 @@
   src: url('./fonts/FrederickatheGreat-Regular.ttf') format("truetype");
 }
 
+body>.home-page {
+  background-color: #f8f9fa;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 #background-video {
   position: fixed;
   top: 0;
