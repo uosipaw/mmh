@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.getElementById("background-video");
+  video.src = "D:\\mmh\\images\\landing.mp4"; // Set the source
+  video.load(); // Start loading the video
+});
+
 // Initialize paint functionality if we're on the paint page
 if (document.querySelector(".paint")) {
   // Paint is initialized via the self-executing function at the bottom of the script

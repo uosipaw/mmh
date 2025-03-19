@@ -23,6 +23,17 @@
   src: url('./fonts/FrederickatheGreat-Regular.ttf') format("truetype");
 }
 
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Cover the entire viewport */
+  z-index: -1;
+  /* Place behind other content */
+}
 
 .paint {
   font-family: 'chewy', sans-serif;
