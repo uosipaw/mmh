@@ -1,0 +1,150 @@
+@font-face {
+  font-family: "waiting-for-the-sunrise";
+  src: url("./fonts/WaitingfortheSunrise-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "dynapuff";
+  src: url("./fonts/DynaPuff-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "gamjaflower";
+  src: url("./fonts/GamjaFlower-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "kranky";
+  src: url("./fonts/Kranky-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "fredrickathegreat";
+  src: url('./fonts/FrederickatheGreat-Regular.ttf') format("truetype");
+}
+
+
+.paint {
+  font-family: 'chewy', sans-serif;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 100vh;
+  /* Ensure the body takes the full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.paintbutton {
+  z-index: 100;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+}
+
+canvas {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 1;
+}
+
+.message {
+  color: #878782;
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px auto;
+  text-align: center;
+  letter-spacing: 2px;
+  position: relative;
+  top: 50%;
+  left: 45%;
+  z-index: 0;
+  width: 100%;
+  text-shadow: 0 -1px 0 #d3d3d1;
+}
+
+.dg.ac {
+  height: 100px;
+  z-index: 3;
+  font-size: larger;
+}
+
+.fade-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #878782;
+  text-align: center;
+  animation: fadeInOut 9.6s infinite;
+  /* 20% slower - original was 8s */
+}
+
+
+.folklore-page {
+  background-color: #ede7f6;
+  background-image: url("./images/cloudsbg.png");
+  animation: floatingClouds 72s ease infinite;
+  /* 20% slower - original was 60s */
+  background-attachment: fixed;
+  background-size: 120% 120%;
+}
+
+/* 🌀 Floating Clouds Animation */
+@keyframes floatingClouds {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Slow down the fadeInOut animation by 20% */
+@keyframes fadeInOut {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 📱 Mobile Adjustments */
+@media screen and (max-width: 768px) {
+  .paint .navbar {
+    display: none;
+  }
+
+  .navbar {
+    width: 35px;
+  }
+
+  .navbar:hover {
+    width: 70px;
+  }
+
+  /* 🌿 Reduce Motion for Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
