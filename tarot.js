@@ -23,6 +23,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let tarotData = null;
 
+// Define the array of tarot card names
+const tarotCardNames = [
+  // Major Arcana
+  "fool",
+  "magician",
+  "highpriestess",
+  "empress",
+  "emperor",
+  "hierophant",
+  "lovers",
+  "chariot",
+  "strength",
+  "hermit",
+  "wheel",
+  "justice",
+  "hangedman",
+  "death",
+  "temperance",
+  "devil",
+  "tower",
+  "star",
+  "moon",
+  "sun",
+  "judgement",
+  "world",
+
+  // Cups
+  "acup",
+  "2cup",
+  "3cup",
+  "4cup",
+  "5cup",
+  "6cup",
+  "7cup",
+  "8cup",
+  "9cup",
+  "10cup",
+  "pcup",
+  "ncup",
+  "qcup",
+  "kcup",
+
+  // Wands
+  "awand",
+  "2wand",
+  "3wand",
+  "4wand",
+  "5wand",
+  "6wand",
+  "7wand",
+  "8wand",
+  "9wand",
+  "10wand",
+  "pwand",
+  "nwand",
+  "qwand",
+  "kwand",
+
+  // Swords
+  "aswd",
+  "2swd",
+  "3swd",
+  "4swd",
+  "5swd",
+  "6swd",
+  "7swd",
+  "8swd",
+  "9swd",
+  "10swd",
+  "pswd",
+  "nswd",
+  "qswd",
+  "kswd",
+
+  // Pentacles
+  "apent",
+  "2pent",
+  "3pent",
+  "4pent",
+  "5pent",
+  "6pent",
+  "7pent",
+  "8pent",
+  "9pent",
+  "10pent",
+  "ppent",
+  "npent",
+  "qpent",
+  "kpent",
+];
+
 async function initTarot() {
   // Load the tarot card data first - improved error handling
   try {
@@ -52,196 +143,145 @@ function initTarotInterface() {
   const cardName = document.getElementById("card-name");
   const cardOrientation = document.getElementById("card-orientation");
   const cardText = document.getElementById("card-text");
+  const cardContainer = document.querySelector(".card-container");
 
   // Check if necessary elements exist
-  if (!deck || !drawnCards || !cardFocus || !overlay || !closeButton) {
+  if (
+    !deck ||
+    !drawnCards ||
+    !cardFocus ||
+    !overlay ||
+    !closeButton ||
+    !cardImage ||
+    !cardName ||
+    !cardOrientation ||
+    !cardText
+  ) {
     console.error("Required tarot elements not found in the document");
     return;
   }
 
-  const numberOfCards = 78; // Total number of cards
-  let drawnCardNumbers = [];
-  let cardDescriptionVisible = false;
+  const numberOfCards = tarotCardNames.length; // Total number of cards
+  let drawnCardNames = []; // Track cards by name instead of number
 
+  // Add event listeners
   deck.addEventListener("click", drawCard);
   closeButton.addEventListener("click", closeCardFocus);
 
-  // Modify the click handler to maintain orientation when sliding
-  if (cardImage) {
-    cardImage.addEventListener("click", () => {
-      if (!cardDescriptionVisible) {
-        const isReversed = cardImage.dataset.reversed === "true";
+  // Track drawn cards and positions
+  let currentPosition = 0; // Will continue to increment for each card
+  let cardPositions = []; // Will store information about each card
 
-        // Apply the slide class
-        cardImage.classList.add("slide");
-
-        // No need to manually set transform here - handled by CSS now
-
-        cardFocus.classList.add("description-visible");
-        cardFocus.classList.add("show-bg");
-        cardDescriptionVisible = true;
+  // Handle card flip in focus mode
+  if (cardContainer) {
+    cardContainer.addEventListener("click", function (e) {
+      if (!e.target.closest("#close-button")) {
+        this.classList.toggle("flipped");
+        e.stopPropagation();
       }
     });
   }
 
-  // Optimize for mobile: Adjust card positioning for smaller screens
-  function getRandomCardPosition() {
-    const container = document.querySelector(".drawncontainer");
-    const containerRect = container.getBoundingClientRect();
-    const isMobile = window.innerWidth <= 768;
-
-    // Calculate safe positioning area
-    const cardWidth = 200; // Width of card in pixels
-    const cardHeight = 320; // Height of card in pixels
-    const containerWidth = containerRect.width;
-    const containerHeight = containerRect.height;
-
-    // Calculate safe margins to keep cards fully visible
-    const safeMarginX = (cardWidth / containerWidth) * 100; // Convert to percentage
-    const safeMarginY = (cardHeight / containerHeight) * 100; // Convert to percentage
-
-    // Define positioning limits that ensure full visibility
-    let xMin, xMax, yMin, yMax, rotationRange;
-
-    if (isMobile) {
-      xMin = 5;
-      xMax = 70 - safeMarginX; // Ensure right side of card is visible
-      yMin = -25; // From center
-      yMax = 25; // From center
-      rotationRange = 15; // Less rotation on mobile
-    } else {
-      xMin = 5;
-      xMax = 75 - safeMarginX; // Ensure right side of card is visible
-      yMin = -35; // From center
-      yMax = 35; // From center
-      rotationRange = 20;
-    }
-
-    // Calculate random position with safety limits
-    const randomX = Math.min(Math.max(xMin, Math.random() * xMax), xMax);
-    const randomY = Math.min(
-      Math.max(yMin, Math.random() * (yMax - yMin) + yMin),
-      yMax
-    );
-    const randomRotation = Math.random() * rotationRange * 2 - rotationRange;
-
-    return { x: randomX, y: randomY, rotation: randomRotation };
-  }
-
   function drawCard() {
-    if (drawnCardNumbers.length === numberOfCards) {
+    if (drawnCardNames.length === numberOfCards) {
       alert("The deck is empty!");
       return;
     }
 
-    let randomNumber;
+    // Select a random card that hasn't been drawn yet
+    let randomName;
     do {
-      randomNumber = Math.floor(Math.random() * numberOfCards);
-    } while (drawnCardNumbers.includes(randomNumber));
+      const randomIndex = Math.floor(Math.random() * numberOfCards);
+      randomName = tarotCardNames[randomIndex];
+    } while (drawnCardNames.includes(randomName));
 
-    drawnCardNumbers.push(randomNumber);
-
+    drawnCardNames.push(randomName);
     const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
-    // Darken existing cards before adding new ones
-    updateCardStackDepth();
-
+    // Create card element
     const cardDiv = document.createElement("div");
-    cardDiv.classList.add("card");
-    cardDiv.dataset.stackIndex = drawnCardNumbers.length - 1; // Add stack index for darkening effect
+    cardDiv.classList.add("card", "deck"); // Initial state: in deck
 
-    // Create front and back faces with correct positions
-    const frontFace = document.createElement("div");
-    frontFace.classList.add("front");
+    // Create card image element (shown when drawn)
+    const cardImageElement = document.createElement("div");
+    cardImageElement.classList.add("card-image");
 
-    const backFace = document.createElement("div");
-    backFace.classList.add("back");
-    backFace.style.backgroundImage = `url('./images/${randomNumber}.png')`;
+    // Set the background image directly instead of using a class
+    cardImageElement.style.backgroundImage = `url('./images/tarot/${randomName}.png')`;
 
-    cardDiv.appendChild(frontFace);
-    cardDiv.appendChild(backFace);
-
-    // Add to DOM first before applying animations
-    drawnCards.appendChild(cardDiv);
-
-    // Position the card with improved positioning for full visibility
-    const position = getRandomCardPosition();
-
-    // Center the card vertically with offset and use absolute positioning
-    cardDiv.style.left = `${position.x}%`;
-    cardDiv.style.top = `${50 + position.y * 0.7}%`; // Scale down Y offset for better visibility
-
-    // Remove the margin-based positioning and use transform for rotation only
-    cardDiv.style.marginTop = "0"; // Don't use margin for positioning
-    cardDiv.style.transform = `translate(0, -50%) rotate(${position.rotation}deg)`;
-
-    // Store card data
-    cardDiv.dataset.cardNumber = randomNumber;
-    cardDiv.dataset.reversed = isReversed;
-    cardDiv.dataset.rotation = position.rotation; // Store rotation angle for reference
-    cardDiv.addEventListener("click", focusCard);
-
-    // Apply the flipped class immediately to show the front of the card
-    cardDiv.classList.add("flipped");
-
-    // If the card is reversed, apply additional rotation
+    // Apply reversed class for rotation
     if (isReversed) {
-      backFace.style.transform = "rotateY(180deg) rotateZ(180deg)";
-    } else {
-      backFace.style.transform = "rotateY(180deg)";
+      cardImageElement.classList.add("reversed");
     }
 
-    // Set z-index based on card order - HIGHER index for NEWER cards
-    cardDiv.style.zIndex = 50 + drawnCardNumbers.length; // Start at 50 to ensure newer cards are on top
-  }
+    cardDiv.appendChild(cardImageElement);
+    drawnCards.appendChild(cardDiv);
 
-  // Function to update darkness of cards based on their position in the stack
-  function updateCardStackDepth() {
-    const allCards = document.querySelectorAll("#drawn-cards .card");
-    const totalCards = allCards.length;
+    // Store card information in data attributes
+    cardDiv.dataset.cardName = randomName;
+    cardDiv.dataset.reversed = isReversed;
+    cardDiv.dataset.position = currentPosition;
+    cardDiv.dataset.row = Math.floor(currentPosition / 5);
+    cardDiv.dataset.positionInRow = currentPosition % 5;
 
-    if (totalCards > 0) {
-      allCards.forEach((card) => {
-        // Get the stack index and calculate darkness (newer cards are brighter)
-        const stackIndex = parseInt(card.dataset.stackIndex) || 0;
-        // Calculate a brightness percentage (100% for newest, down to 60% for oldest)
-        const brightness = Math.max(60, 100 - stackIndex * 5);
-        // Apply a filter with varying brightness and slight blur for depth
-        card.style.filter = `brightness(${brightness}%) contrast(${brightness}%)`;
-        // Also adjust the z-index to ensure stacking order (newer cards on top)
-        card.style.zIndex = 50 + stackIndex; // Higher z-index for newer cards
-      });
+    // Add position classes based on row and position
+    cardDiv.classList.add(`row-${Math.floor(currentPosition / 5)}`);
+    cardDiv.classList.add(`position-${currentPosition % 5}`);
+
+    // Add drawn class to start animation
+    setTimeout(() => {
+      cardDiv.classList.remove("deck");
+      cardDiv.classList.add("drawn");
+    }, 50);
+
+    // Add click handler after card is drawn
+    cardDiv.addEventListener("click", focusCard);
+
+    // Store the card in its position
+    cardPositions[currentPosition] = {
+      name: randomName,
+      element: cardDiv,
+      isReversed: isReversed,
+    };
+
+    // Move to next position
+    currentPosition++;
+
+    // Always show the reset button after drawing the first card
+    if (currentPosition === 1) {
+      addResetButton();
     }
   }
 
   function focusCard(event) {
     const card = event.currentTarget;
-    const cardNumber = parseInt(card.dataset.cardNumber);
+    const cardNameValue = card.dataset.cardName;
     const isReversed = card.dataset.reversed === "true";
 
-    // Reset modal state
-    cardImage.classList.remove("slide");
-    cardFocus.classList.remove("description-visible");
-    cardDescriptionVisible = false;
+    // Set the background image directly
+    cardImage.style.backgroundImage = `url('./images/tarot/${cardNameValue}.png')`;
 
-    // Set the card image
-    cardImage.style.backgroundImage = `url('./images/${cardNumber}.png')`;
+    // Use class for reversed state
+    if (isReversed) {
+      cardImage.classList.add("reversed");
+    } else {
+      cardImage.classList.remove("reversed");
+    }
 
-    // Set data attribute for CSS to handle rotation
-    cardImage.dataset.reversed = isReversed ? "true" : "false";
+    // Ensure the card description text doesn't follow the card orientation
+    cardImage.dataset.reversed = null; // Remove the data attribute completely
 
-    // Clear any inline transforms that might interfere with CSS rules
-    cardImage.style.transform = "";
+    // Ensure the card container is in the initial state
+    if (cardContainer) {
+      cardContainer.classList.remove("flipped");
+    }
 
-    // Update text content using the loaded card data
-    updateCardContent(cardNumber, isReversed);
+    // Update text content
+    updateCardContent(cardNameValue, isReversed);
 
     // Show modal
     cardFocus.classList.remove("hidden");
     overlay.classList.remove("hidden");
-
-    // Add animation to make the card pulse while maintaining orientation
-    cardImage.style.animation = "cardGlow 5s infinite";
 
     // Add background color with slight delay for a nice fade-in effect
     setTimeout(() => {
@@ -249,56 +289,152 @@ function initTarotInterface() {
     }, 100);
   }
 
-  // Separate function to update card content based on tarot data
-  function updateCardContent(cardNumber, isReversed) {
-    // Find the card in our JSON data
-    const foundCard =
-      tarotData && tarotData.cards
-        ? tarotData.cards.find((card) => card.id === cardNumber)
-        : null;
+  function updateCardContent(cardNameValue, isReversed) {
+    // Find card data
+    const foundCard = findCardData(cardNameValue);
 
     if (foundCard) {
-      cardName.textContent = foundCard.name;
-      cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
-
-      // Display appropriate meaning based on card orientation
-      const orientation = isReversed ? "reversed" : "upright";
-      const orientationText = foundCard.description[orientation];
-
-      // Full description combining general meaning and orientation-specific meaning
-      cardText.textContent = `${
-        foundCard.meaning
-      }\n\n${orientation.toUpperCase()}: ${orientationText}`;
+      displayCardData(foundCard, isReversed);
     } else {
-      // Fallback if card data isn't available
-      cardName.textContent = `Card #${cardNumber}`;
-      cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
-      cardText.textContent = `Description for card #${cardNumber} goes here. This would typically include the card's meaning, symbolism, and interpretation both when upright and reversed.`;
+      displayFallbackCardData(cardNameValue, isReversed);
     }
+  }
+
+  function findCardData(cardNameValue) {
+    if (!tarotData || !tarotData.cards) return null;
+
+    // First try to find by exact name match
+    let foundCard = tarotData.cards.find(
+      (card) =>
+        card.filename === cardNameValue ||
+        card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
+    );
+
+    // If not found, try to find by card index
+    if (!foundCard) {
+      const cardIndex = tarotCardNames.indexOf(cardNameValue);
+      if (cardIndex !== -1) {
+        foundCard = tarotData.cards.find((card) => card.id === cardIndex);
+      }
+    }
+
+    // Final attempt - try to find by keyword matches in name
+    if (!foundCard) {
+      foundCard = tarotData.cards.find((card) => {
+        const simpleName = card.name.toLowerCase();
+        return (
+          cardNameValue.includes(simpleName) ||
+          simpleName.includes(cardNameValue)
+        );
+      });
+    }
+
+    return foundCard;
+  }
+
+  function displayCardData(foundCard, isReversed) {
+    // Set card name and orientation normally
+    cardName.textContent = foundCard.name;
+    cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
+
+    // Include appropriate meaning based on orientation without changing text style
+    const orientation = isReversed ? "reversed" : "upright";
+
+    // Prepare card text content
+    let displayText = "";
+
+    // Add general meaning if available
+    if (foundCard.meaning) {
+      displayText += foundCard.meaning;
+    }
+
+    // Add orientation-specific meaning in a normal text style
+    if (foundCard.description && foundCard.description[orientation]) {
+      if (displayText) displayText += "\n\n"; // Add spacing if there's already content
+      displayText += `${orientation.toUpperCase()} MEANING: ${
+        foundCard.description[orientation]
+      }`;
+    }
+
+    // Set the text content with normal styling
+    cardText.textContent =
+      displayText ||
+      `This is the ${foundCard.name}. The interpretation will depend on the card's position and surrounding cards.`;
+
+    // Ensure text remains in normal style regardless of card orientation
+    cardText.style.fontStyle = "normal";
+    cardText.style.textOrientation = "normal";
+    cardText.style.writingMode = "horizontal-tb";
+  }
+
+  function displayFallbackCardData(cardNameValue, isReversed) {
+    const displayName = formatCardName(cardNameValue);
+
+    cardName.textContent = displayName;
+    cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
+    cardText.textContent = `Description for ${displayName} goes here. This would typically include the card's meaning, symbolism, and interpretation both when upright and reversed.`;
+  }
+
+  // Helper function to format card names for display
+  function formatCardName(cardName) {
+    // Format names like "acup" to "Ace of Cups"
+    if (cardName.includes("cup")) {
+      const rank = cardName.replace("cup", "").trim();
+      return formatRank(rank) + " of Cups";
+    } else if (cardName.includes("wand")) {
+      const rank = cardName.replace("wand", "").trim();
+      return formatRank(rank) + " of Wands";
+    } else if (cardName.includes("swd")) {
+      const rank = cardName.replace("swd", "").trim();
+      return formatRank(rank) + " of Swords";
+    } else if (cardName.includes("pent")) {
+      const rank = cardName.replace("pent", "").trim();
+      return formatRank(rank) + " of Pentacles";
+    } else {
+      // Major Arcana - just capitalize first letter of each word
+      return cardName
+        .replace(/([A-Z])/g, " $1") // Add space before capitals
+        .split(/\s+/) // Split by whitespace
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        ) // Capitalize each word
+        .join(" ") // Join with spaces
+        .trim(); // Remove any extra spaces
+    }
+  }
+
+  // Helper function to format rank (a, 2, 3, etc. to Ace, Two, Three, etc.)
+  function formatRank(rank) {
+    if (rank === "a") return "Ace";
+    if (rank === "2") return "Two";
+    if (rank === "3") return "Three";
+    if (rank === "4") return "Four";
+    if (rank === "5") return "Five";
+    if (rank === "6") return "Six";
+    if (rank === "7") return "Seven";
+    if (rank === "8") return "Eight";
+    if (rank === "9") return "Nine";
+    if (rank === "10") return "Ten";
+    if (rank === "p") return "Page";
+    if (rank === "n") return "Knight";
+    if (rank === "q") return "Queen";
+    if (rank === "k") return "King";
+    return rank.charAt(0).toUpperCase() + rank.slice(1); // Default capitalization
   }
 
   function closeCardFocus() {
     // Add a fade-out effect
-    cardFocus.classList.remove("description-visible", "show-bg");
+    cardFocus.classList.remove("show-bg");
 
-    // Remove the slide class but keep the reversed data attribute
-    cardImage.classList.remove("slide");
-
-    // Reset transform based on orientation
-    const isReversed = cardImage.dataset.reversed === "true";
-
-    if (isReversed) {
-      cardImage.style.transform = "translate(-50%, -50%) rotateZ(180deg)";
-    } else {
-      cardImage.style.transform = "translate(-50%, -50%)";
+    // Reset card container if needed
+    if (cardContainer) {
+      cardContainer.classList.remove("flipped");
     }
 
-    // Wait for the animation to complete before hiding
+    // Wait for animation to complete before hiding
     setTimeout(() => {
       cardFocus.classList.add("hidden");
       overlay.classList.add("hidden");
-      cardImage.style.animation = "";
-      cardDescriptionVisible = false;
     }, 500);
   }
 
@@ -309,35 +445,17 @@ function initTarotInterface() {
 
   // Optimize modal interaction for touch devices
   if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    // Improve touch target size for mobile
-    if (cardImage) {
-      cardImage.style.minWidth = "44px";
-      cardImage.style.minHeight = "44px";
-    }
+    // ...existing code...
 
-    // Add swipe down to close functionality
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    cardFocus.addEventListener(
-      "touchstart",
-      function (e) {
-        touchStartY = e.changedTouches[0].screenY;
-      },
-      false
-    );
-
-    cardFocus.addEventListener(
-      "touchend",
-      function (e) {
-        touchEndY = e.changedTouches[0].screenY;
-        if (touchEndY - touchStartY > 100) {
-          // Swipe down of at least 100px
-          closeCardFocus();
+    // Add tap to flip for mobile
+    if (cardContainer) {
+      cardContainer.addEventListener("touchend", function (e) {
+        if (!e.target.closest("#close-button")) {
+          this.classList.toggle("flipped");
+          e.preventDefault();
         }
-      },
-      false
-    );
+      });
+    }
   }
 
   // Log initialization success

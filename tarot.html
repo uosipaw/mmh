@@ -18,11 +18,35 @@
             font-family: "waiting-for-the-sunrise", "laquer", "bagelfatone", "chelaone", "chewy", "combo", "dynapuff", "gamjaflower", "kranky", "fredrickathegreat", "agudisplay", cursive, sans-serif;
         }
     </style>
+    <!-- Add preload for commonly used tarot card images -->
+    <link rel="preload" href="./images/tarot/fool.png" as="image">
+    <link rel="preload" href="./images/tarot/magician.png" as="image">
+    <link rel="preload" href="./images/tarot/highpriestess.png" as="image">
 </head>
 
 <body class="tarot-page">
     <div class="bgimage"></div>
 
+    <div class="introtext">
+        <textarea class="custom-font" readonly>
+        Since the 1400s, tarot has evolved from a simple playing card game, to a conduit between future and past, to a
+        divination and occult staple, and now, 600 years later, is viewed as a course of study and self improvement
+        tool,
+        extending beyond spirituality and into science, psychology and wellness.
+
+        As a mirror that reflects our truest selves, Tarot reading encourages growth through self examination and
+        introspection
+        for skeptics and psychics alike. It is no longer tethered to an identity confined within spirituality. The way
+        you relate your reading to your life is a personal journey, and the cards are a tool to help you navigate it.
+        There is no right or wrong way to interpret the cards, and the meanings are as unique as the people who read
+        them.
+        
+
+        Read about interpreting the cards here
+
+        Examine the anatomy of the deck here
+    </textarea>
+    </div>
 
     <div class="deckcontainer">
         <!-- Deck of Cards -->
@@ -33,15 +57,18 @@
         <div id="drawn-cards"></div>
     </div>
 
-    <!-- Card Focus Modal - updated structure -->
+    <!-- Card Focus Modal - simplified structure -->
     <div id="card-focus" class="hidden">
         <div class="card-focus-inner">
-            <div class="card-image"></div>
-            <div class="card-description">
-                <h2 id="card-name"></h2>
-                <h3 id="card-orientation"></h3>
-                <p id="card-text"></p>
-                <p class="tip">Click the card to see its description</p>
+            <div class="card-container">
+                <div class="card-image"></div>
+                <div class="card-back">
+                    <div class="card-description">
+                        <h2 id="card-name"></h2>
+                        <h3 id="card-orientation"></h3>
+                        <p id="card-text"></p>
+                    </div>
+                </div>
             </div>
         </div>
         <button id="close-button">X</button>
