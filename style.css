@@ -142,8 +142,10 @@ canvas {
 @media screen and (max-width: 768px) {
 
   body {
-    background-image: url("/images/homebgmobile.mp4");
+    background-image: url("/images/homebgmobile.mp4") autoplay loop;
     background-size: cover;
+    width: 100vw;
+    height: 100vh;
   }
 
   .paint .navbar {
