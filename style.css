@@ -181,6 +181,10 @@ canvas {
 
   #background-videomobile {
     display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+
   }
 
   .paint .navbar {

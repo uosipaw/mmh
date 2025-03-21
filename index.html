@@ -23,15 +23,21 @@
 </head>
 
 <body class="home-page">
-    <video autoplay loop muted playsinline id="background-video">
-        <source src="./images/homebg.mp4" type="video/mp4">
-    </video>
-    <video autoplay loop muted playsinline id="background-videomobile">
-        <source src="./images/homebgmobile.mp4" type="video/mp4">
+    <video autoplay loop muted playsinline id="background-videos">
+        <source class="background-video" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
+        <source class="background-videomobile" src="./images/homebgmobile.mp4" type="video/mp4"
+            media="(max-width: 768px)">
     </video>
 
+    <script>
+        document.getElementById('play-button').addEventListener('click', function () {
+            document.getElementById('background-video').play();
+            document.getElementById('background-videomobile').play();
+        });
+    </script>
 
     <script src="script.js" defer></script>
+
 </body>
 
 </html>
