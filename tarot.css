@@ -110,7 +110,7 @@ body.tarot-page {
 /* Card in deck state */
 .card.deck {
     background-image: url('./images/tarot/back.png');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     left: 50%;
     /* Center at deck position */
@@ -306,12 +306,12 @@ body.tarot-page {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     backface-visibility: hidden;
 }
 
@@ -329,7 +329,7 @@ body.tarot-page {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 15px;

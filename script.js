@@ -15,11 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // Handle background video
+  const video = document.getElementById("bgvideo");
+  if (video) {
+    // Force play the video (helps with some browsers)
+    video.play().catch((error) => {
+      console.log("Auto-play was prevented:", error);
+      // Try muting the video and playing again (common workaround)
+      video.muted = true;
+      video.play();
+    });
+  }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const video = document.getElementById("background-video");
-  video.src = "D:\\mmh\\images\\landing.mp4"; // Set the source
+  const video = document.getElementById("bgvideo");
+  video.src = "/images/homebg.mp4"; // Set the source
   video.load(); // Start loading the video
 });
 
