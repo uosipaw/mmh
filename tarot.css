@@ -185,12 +185,10 @@ body.tarot-page {
 
 /* Reversed card image */
 .card-image.reversed {
+    transition: transform 0.3s ease;
     transform: rotateZ(180deg);
 }
 
-.card[data-reversed="true"] .card-image {
-    transform: rotateZ(180deg);
-}
 
 /* Card image styling */
 .card .card-image {
@@ -311,7 +309,7 @@ body.tarot-page {
     background-position: center;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
     backface-visibility: hidden;
 }
 
@@ -351,6 +349,7 @@ body.tarot-page {
     display: flex;
     flex-direction: column;
     transform: none !important;
+    transition: 0.3s ease;
     /* Never transform the description */
 }
 

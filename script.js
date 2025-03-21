@@ -2,20 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const isTouchDevice =
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-  if (isTouchDevice) {
-    const navLinks = document.querySelectorAll(".navbar a");
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (!this.classList.contains("tapped")) {
-          e.preventDefault();
-          navLinks.forEach((l) => l.classList.remove("tapped"));
-          this.classList.add("tapped");
-        }
-      });
-    });
-  }
-
   // Handle background video
   const video = document.getElementById("bgvideo");
   if (video) {

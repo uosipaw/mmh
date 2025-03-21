@@ -25,33 +25,18 @@
 
 body>.home-page {
   background-color: #f8f9fa;
-  background-attachment: fixed;
+  background-attachment: absolute;
   background-size: cover;
-}
-
-.bgvideo {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
+  height: 100vh;
 
-#bgvideo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: none;
-  pointer-events: inherit;
-  /* Prevents interaction with the video */
+  .bgvideo {
+    position: absolute;
+    size: cover;
+    z-index: -1;
+    overflow: hidden;
+    border: none;
+  }
 }
 
 .paint {
@@ -157,7 +142,7 @@ canvas {
 @media screen and (max-width: 768px) {
 
   body {
-    background-image: url("https://www.canva.com/design/DAGiYWsb6z0/65fhwPHfS5-QvtUsA4Os2Q/watch");
+    background-image: url("/images/homebgmobile.mp4");
     background-size: cover;
   }
 
