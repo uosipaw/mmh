@@ -23,20 +23,36 @@
   src: url('./fonts/FrederickatheGreat-Regular.ttf') format("truetype");
 }
 
-body>.home-page {
-  background-color: #f8f9fa;
-  background-attachment: absolute;
-  background-size: cover;
-  width: 100%;
-  height: 100vh;
+body {
+  font-family: 'kranky', sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
-  .bgvideo {
-    position: absolute;
-    size: cover;
-    z-index: -1;
-    overflow: hidden;
-    border: none;
-  }
+#background-video {
+  position: fixed;
+  z-index: -1;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#background-videomobile {
+  position: fixed;
+  z-index: -1;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: none;
+  /* Initially hide the mobile video */
 }
 
 .paint {
@@ -142,10 +158,19 @@ canvas {
 @media screen and (max-width: 768px) {
 
   body {
-    background-image: url("/images/homebgmobile.mp4") autoplay loop;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+
+  #background-video {
+    display: none;
+  }
+
+  #background-videomobile {
+    display: block;
   }
 
   .paint .navbar {
