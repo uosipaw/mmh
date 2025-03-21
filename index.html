@@ -15,29 +15,34 @@
         (function () {
             window.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
                 || (window.innerWidth <= 768);
-
-            // Apply class to html element for CSS targeting
             document.documentElement.className = window.isMobile ? 'mobile-device' : 'desktop-device';
         })();
     </script>
 </head>
 
 <body class="home-page">
-    <video autoplay loop muted playsinline id="background-videos">
-        <source class="background-video" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
-        <source class="background-videomobile" src="./images/homebgmobile.mp4" type="video/mp4"
-            media="(max-width: 768px)">
+    <!-- Single video element with multiple sources -->
+    <video id="background-video" autoplay muted loop playsinline>
+        <source class="desktop-source" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
+        <source class="mobile-source" src="./images/homebgmobile.mp4" type="video/mp4" media="(max-width: 768px)">
     </video>
 
     <script>
-        document.getElementById('play-button').addEventListener('click', function () {
-            document.getElementById('background-video').play();
-            document.getElementById('background-videomobile').play();
+        // Force video to play as soon as possible
+        document.addEventListener('DOMContentLoaded', function () {
+            var video = document.getElementById('background-video');
+            if (video) {
+                video.play().catch(function (error) {
+                    console.log('Autoplay prevented:', error);
+                    // Most browsers require muted videos for autoplay
+                    video.muted = true;
+                    video.play();
+                });
+            }
         });
     </script>
 
     <script src="script.js" defer></script>
-
 </body>
 
 </html>

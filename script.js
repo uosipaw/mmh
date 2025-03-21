@@ -1,17 +1,31 @@
-// Make sure videos play properly regardless of when script loads
+// Simple video autoplay handler that works regardless of when it loads
 (function () {
   function ensureVideoPlayback() {
-    const filename = "example"; // Replace with the actual filename or a variable containing the filename
-    const mobileVideo = document.getElementById(`${filename}mobile.mp4`);
+    const video = document.getElementById("background-video");
 
-    if (mobileVideo) {
-      // Do something with the mobileVideo element, like playing it
-      mobileVideo.play().catch((error) => {
-        // Handle autoplay errors, if any
-        console.error("Autoplay prevented:", error);
+    if (video) {
+      // Need to explicitly set the source based on device if media attribute not working
+      if (window.isMobile) {
+        // Make sure the mobile source is being used
+        const mobileSrc = video.querySelector(".mobile-source");
+        if (mobileSrc && mobileSrc.getAttribute("src")) {
+          video.src = mobileSrc.getAttribute("src");
+        }
+      } else {
+        // Make sure the desktop source is being used
+        const desktopSrc = video.querySelector(".desktop-source");
+        if (desktopSrc && desktopSrc.getAttribute("src")) {
+          video.src = desktopSrc.getAttribute("src");
+        }
+      }
+
+      // Force play the video with fallback
+      video.load();
+      video.play().catch((error) => {
+        console.log("Auto-play was prevented:", error);
+        video.muted = true;
+        video.play();
       });
-    } else {
-      console.warn(`Video element with id '${filename}mobile.mp4' not found.`);
     }
   }
 
@@ -22,33 +36,9 @@
   ) {
     ensureVideoPlayback();
   } else {
-    // Otherwise wait for DOMContentLoaded
     document.addEventListener("DOMContentLoaded", ensureVideoPlayback);
   }
 })();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const isTouchDevice =
-    "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-  // Handle background video
-  const video = document.getElementById("bgvideo");
-  if (video) {
-    // Force play the video (helps with some browsers)
-    video.play().catch((error) => {
-      console.log("Auto-play was prevented:", error);
-      // Try muting the video and playing again (common workaround)
-      video.muted = true;
-      video.play();
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const video = document.getElementById("bgvideo");
-  video.src = "/images/homebg.mp4"; // Set the source
-  video.load(); // Start loading the video
-});
 
 // Initialize paint functionality if we're on the paint page
 if (document.querySelector(".paint")) {
