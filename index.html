@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="hover.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+    <!-- Early device detection script -->
+    <script>
+        (function () {
+            window.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                || (window.innerWidth <= 768);
+
+            // Apply class to html element for CSS targeting
+            document.documentElement.className = window.isMobile ? 'mobile-device' : 'desktop-device';
+        })();
+    </script>
 </head>
 
 <body class="home-page">

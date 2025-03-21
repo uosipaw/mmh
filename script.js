@@ -1,3 +1,32 @@
+// Make sure videos play properly regardless of when script loads
+(function () {
+  function ensureVideoPlayback() {
+    const filename = "example"; // Replace with the actual filename or a variable containing the filename
+    const mobileVideo = document.getElementById(`${filename}mobile.mp4`);
+
+    if (mobileVideo) {
+      // Do something with the mobileVideo element, like playing it
+      mobileVideo.play().catch((error) => {
+        // Handle autoplay errors, if any
+        console.error("Autoplay prevented:", error);
+      });
+    } else {
+      console.warn(`Video element with id '${filename}mobile.mp4' not found.`);
+    }
+  }
+
+  // Run immediately if document already loaded
+  if (
+    document.readyState === "complete" ||
+    document.readyState === "interactive"
+  ) {
+    ensureVideoPlayback();
+  } else {
+    // Otherwise wait for DOMContentLoaded
+    document.addEventListener("DOMContentLoaded", ensureVideoPlayback);
+  }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   const isTouchDevice =
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
