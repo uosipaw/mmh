@@ -33,6 +33,16 @@ body {
   width: 100vw;
 }
 
+.image-map {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+}
+
 #background-video {
   position: fixed;
   z-index: -1;
@@ -178,6 +188,29 @@ canvas {
   border-radius: 10px;
 }
 
+/* Image map container styling */
+#image-map-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  /* Above the video but below the touch-to-play overlay */
+  pointer-events: auto;
+  /* Ensure clicks are registered */
+  display: block;
+  /* Visible by default (for desktop) */
+}
+
+#image-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.01;
+  /* Nearly invisible but still present for the map */
+}
+
 /* 📱 Mobile Adjustments */
 @media screen and (max-width: 768px) {
 
@@ -206,6 +239,11 @@ canvas {
 
   .navbar:hover {
     width: 70px;
+  }
+
+  /* Mobile image map adjustments */
+  #image-map-container {
+    display: none;
   }
 
   /* 🌿 Reduce Motion for Accessibility */

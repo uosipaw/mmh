@@ -13,6 +13,18 @@
         }
       }
 
+      // Handle mobile devices differently - no looping
+      if (window.isMobile) {
+        // Listen for the end of the video
+        video.addEventListener("ended", function () {
+          console.log("Mobile video playback ended");
+          // You can show an alternative content or message here if needed
+
+          // Optionally, you can add a poster image for when the video ends
+          video.poster = "./images/homebgmobile-poster.jpg";
+        });
+      }
+
       // For iOS devices
       if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         // Try to play when page is visible
@@ -41,6 +53,68 @@
         { once: true }
       );
     }
+  });
+})();
+
+// Add responsive image map handling only for desktop
+(function () {
+  // Skip image map processing on mobile devices
+  if (window.isMobile) {
+    console.log("Image map disabled on mobile devices");
+    return;
+  }
+
+  window.addEventListener("load", function () {
+    // Function to make image map responsive
+    function makeImageMapResponsive() {
+      const imageMap = document.getElementById("image-map");
+      const image = document.getElementById("image-map-img");
+
+      if (!imageMap || !image) return;
+
+      // Original dimensions the map was created for
+      const originalWidth = 1920;
+      const originalHeight = 1080;
+
+      // Current dimensions
+      const currentWidth = image.clientWidth;
+      const currentHeight = image.clientHeight;
+
+      // Scale factors
+      const widthScale = currentWidth / originalWidth;
+      const heightScale = currentHeight / originalHeight;
+
+      // Adjust all area coordinates
+      const areas = imageMap.getElementsByTagName("area");
+      for (let i = 0; i < areas.length; i++) {
+        const area = areas[i];
+        const coords = area.getAttribute("coords").split(",");
+
+        // For rectangles (x1,y1,x2,y2)
+        if (area.getAttribute("shape") === "rect") {
+          const scaledCoords = [
+            Math.round(coords[0] * widthScale),
+            Math.round(coords[1] * heightScale),
+            Math.round(coords[2] * widthScale),
+            Math.round(coords[3] * heightScale),
+          ];
+          area.setAttribute("coords", scaledCoords.join(","));
+        }
+        // For circles (x,y,radius)
+        else if (area.getAttribute("shape") === "circle") {
+          const scaledCoords = [
+            Math.round(coords[0] * widthScale),
+            Math.round(coords[1] * heightScale),
+            Math.round(coords[2] * Math.min(widthScale, heightScale)), // Scale radius proportionally
+          ];
+          area.setAttribute("coords", scaledCoords.join(","));
+        }
+      }
+    }
+
+    // Run on load and resize
+    makeImageMapResponsive();
+    window.addEventListener("resize", makeImageMapResponsive);
   });
 })();
 

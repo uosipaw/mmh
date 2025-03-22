@@ -21,12 +21,43 @@
 </head>
 
 <body class="home-page">
-    <!-- Video element with mobile-friendly attributes -->
-    <video id="background-video" muted playsinline autoplay loop disableRemotePlayback disablePictureInPicture>
+    <!-- Video element with proper image map -->
+    <video id="background-video" muted playsinline autoplay disableRemotePlayback disablePictureInPicture>
         <source class="desktop-source" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
         <source class="mobile-source" src="./images/homebgmobile.mp4" type="video/mp4" media="(max-width: 768px)">
         Your browser does not support the video tag.
     </video>
+
+    <!-- Image map container - only rendered for desktop -->
+    <div id="image-map-container">
+        <img src="./images/map-overlay.png" id="image-map-img" usemap="#image-map" alt="" style="opacity: 0;">
+        <map name="image-map" id="image-map">
+            <area target="" alt="Tarot" title="Tarot" href="https://uosipaw.lol/tarot" coords="652,507,124"
+                shape="circle">
+            <area target="" alt="Dinosaurs" title="Dinosaurs" href="https://uosipaw.lol/dinosaurs"
+                coords="1171,536,1052,371" shape="rect">
+            <area target="" alt="Zoo" title="Zoo" href="https://uosipaw.lol/zoo" coords="1836,653,1504,931"
+                shape="rect">
+            <area target="" alt="Help" title="Help" href="https://uosipaw.lol/help" coords="1232,622,1346,957"
+                shape="rect">
+            <area target="" alt="About" title="About" href="https://uosipaw.lol/about" coords="299,407,67"
+                shape="circle">
+            <area target="" alt="Words" title="Words" href="https://uosipaw.lol/words" coords="608,831,114"
+                shape="circle">
+            <area target="" alt="Art" title="Art" href="https://uosipaw.lol/art" coords="1200,397,1320,565"
+                shape="rect">
+            <area target="" alt="Bugs" title="Bugs" href="https://uosipaw.lol/bugs" coords="920,424,1012,550"
+                shape="rect">
+            <area target="" alt="Myth" title="Myth" href="https://uosipaw.lol/myth" coords="778,368,893,494"
+                shape="rect">
+            <area target="" alt="Tips" title="Tips" href="https://uosipaw.lol/tips" coords="82,115,213,188"
+                shape="rect">
+            <area target="" alt="Paint" title="Paint" href="https://uosipaw.lol/paint" coords="396,380,535,561"
+                shape="rect">
+            <area target="" alt="Trivia" title="Trivia" href="https://uosipaw.lol/trivia" coords="1342,388,1504,526"
+                shape="rect">
+        </map>
+    </div>
 
     <!-- Overlay to capture touch events for iOS autoplay -->
     <div id="touch-to-play">
@@ -38,6 +69,11 @@
         (function () {
             var video = document.getElementById('background-video');
             var touchToPlay = document.getElementById('touch-to-play');
+
+            // Only add loop attribute for desktop devices
+            if (!window.isMobile) {
+                video.setAttribute('loop', '');
+            }
 
             // Check if files exist
             function checkFile(url, callback) {
@@ -101,6 +137,14 @@
 
             // Try once more after a delay (helps with some browsers)
             setTimeout(attemptPlay, 1000);
+
+            // Completely remove image map on mobile to avoid any conflicts
+            if (window.isMobile) {
+                const imageMapContainer = document.getElementById('image-map-container');
+                if (imageMapContainer) {
+                    imageMapContainer.remove();
+                }
+            }
         })();
     </script>
 
