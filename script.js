@@ -1,35 +1,42 @@
-// Simple video autoplay handler that works regardless of when it loads
+// Improved video playback handler that works on mobile
 (function () {
   function ensureVideoPlayback() {
     const video = document.getElementById("background-video");
 
     if (video) {
-      // Need to explicitly set the source based on device if media attribute not working
-      if (window.isMobile) {
-        // Make sure the mobile source is being used
-        const mobileSrc = video.querySelector(".mobile-source");
-        if (mobileSrc && mobileSrc.getAttribute("src")) {
-          video.src = mobileSrc.getAttribute("src");
-        }
-      } else {
-        // Make sure the desktop source is being used
-        const desktopSrc = video.querySelector(".desktop-source");
-        if (desktopSrc && desktopSrc.getAttribute("src")) {
-          video.src = desktopSrc.getAttribute("src");
-        }
+      // Select the appropriate source based on device
+      const sourcePath = window.isMobile
+        ? "./images/homebgmobile.mp4"
+        : "./images/homebg.mp4";
+
+      // For iOS devices, sometimes we need a direct src attribute
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        video.src = sourcePath;
       }
 
-      // Force play the video with fallback
+      // Force load and play
       video.load();
+
+      // Many mobile browsers require user interaction before autoplay
+      // We'll try to play anyway with fallbacks
       video.play().catch((error) => {
         console.log("Auto-play was prevented:", error);
+
+        // Ensure video is muted (required for autoplay on most mobile browsers)
         video.muted = true;
-        video.play();
+        video.setAttribute("playsinline", ""); // Important for iOS
+        video.setAttribute("webkit-playsinline", ""); // For older iOS versions
+
+        // Try playing again
+        video.play().catch((err) => {
+          console.log("Still cannot autoplay:", err);
+          // At this point, we may need user interaction on some devices
+        });
       });
     }
   }
 
-  // Run immediately if document already loaded
+  // Run immediately and also after window loads (belt and suspenders approach)
   if (
     document.readyState === "complete" ||
     document.readyState === "interactive"
@@ -38,6 +45,9 @@
   } else {
     document.addEventListener("DOMContentLoaded", ensureVideoPlayback);
   }
+
+  // Also try one more time after everything has loaded
+  window.addEventListener("load", ensureVideoPlayback);
 })();
 
 // Initialize paint functionality if we're on the paint page

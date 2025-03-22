@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="uosipaw.lol - A collection of fun and interesting content">
     <title>hiiiiiiii</title>
     <link rel="stylesheet" href="style.css">
@@ -21,25 +21,36 @@
 </head>
 
 <body class="home-page">
-    <!-- Single video element with multiple sources -->
-    <video id="background-video" autoplay muted loop playsinline>
+    <!-- Single video element with proper attributes for mobile -->
+    <video id="background-video" autoplay muted playsinline preload="auto">
         <source class="desktop-source" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
         <source class="mobile-source" src="./images/homebgmobile.mp4" type="video/mp4" media="(max-width: 768px)">
     </video>
 
     <script>
-        // Force video to play as soon as possible
-        document.addEventListener('DOMContentLoaded', function () {
+        // Force video to play immediately on page load
+        (function () {
             var video = document.getElementById('background-video');
             if (video) {
-                video.play().catch(function (error) {
-                    console.log('Autoplay prevented:', error);
-                    // Most browsers require muted videos for autoplay
-                    video.muted = true;
-                    video.play();
-                });
+                // Set poster image as fallback
+                video.poster = window.isMobile ? './images/homebgmobile-poster.jpg' : './images/homebg-poster.jpg';
+
+                // Play as soon as possible
+                function playVideo() {
+                    video.play().catch(function (error) {
+                        console.log('Autoplay prevented:', error);
+                        video.muted = true;
+                        video.play();
+                    });
+                }
+
+                if (document.readyState === 'complete') {
+                    playVideo();
+                } else {
+                    window.addEventListener('load', playVideo);
+                }
             }
-        });
+        })();
     </script>
 
     <script src="script.js" defer></script>
