@@ -1,53 +1,47 @@
-// Improved video playback handler that works on mobile
+// Video playback handler with better mobile support
 (function () {
-  function ensureVideoPlayback() {
+  window.addEventListener("load", function () {
     const video = document.getElementById("background-video");
 
     if (video) {
-      // Select the appropriate source based on device
-      const sourcePath = window.isMobile
-        ? "./images/homebgmobile.mp4"
-        : "./images/homebg.mp4";
-
-      // For iOS devices, sometimes we need a direct src attribute
-      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        video.src = sourcePath;
+      // For browsers that ignore autoplay
+      function startPlayback() {
+        if (video.paused) {
+          video.play().catch(function (error) {
+            console.log("Still cannot autoplay:", error);
+          });
+        }
       }
 
-      // Force load and play
-      video.load();
-
-      // Many mobile browsers require user interaction before autoplay
-      // We'll try to play anyway with fallbacks
-      video.play().catch((error) => {
-        console.log("Auto-play was prevented:", error);
-
-        // Ensure video is muted (required for autoplay on most mobile browsers)
-        video.muted = true;
-        video.setAttribute("playsinline", ""); // Important for iOS
-        video.setAttribute("webkit-playsinline", ""); // For older iOS versions
-
-        // Try playing again
-        video.play().catch((err) => {
-          console.log("Still cannot autoplay:", err);
-          // At this point, we may need user interaction on some devices
+      // For iOS devices
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // Try to play when page is visible
+        document.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "visible") {
+            startPlayback();
+          }
         });
-      });
+
+        // Some versions of iOS require user interaction
+        window.addEventListener(
+          "touchend",
+          function () {
+            startPlayback();
+          },
+          { once: true }
+        );
+      }
+
+      // Also try scroll events
+      window.addEventListener(
+        "scroll",
+        function () {
+          startPlayback();
+        },
+        { once: true }
+      );
     }
-  }
-
-  // Run immediately and also after window loads (belt and suspenders approach)
-  if (
-    document.readyState === "complete" ||
-    document.readyState === "interactive"
-  ) {
-    ensureVideoPlayback();
-  } else {
-    document.addEventListener("DOMContentLoaded", ensureVideoPlayback);
-  }
-
-  // Also try one more time after everything has loaded
-  window.addEventListener("load", ensureVideoPlayback);
+  });
 })();
 
 // Initialize paint functionality if we're on the paint page

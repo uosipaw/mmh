@@ -21,35 +21,86 @@
 </head>
 
 <body class="home-page">
-    <!-- Single video element with proper attributes for mobile -->
-    <video id="background-video" autoplay muted playsinline preload="auto">
+    <!-- Video element with mobile-friendly attributes -->
+    <video id="background-video" muted playsinline autoplay loop disableRemotePlayback disablePictureInPicture>
         <source class="desktop-source" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
         <source class="mobile-source" src="./images/homebgmobile.mp4" type="video/mp4" media="(max-width: 768px)">
+        Your browser does not support the video tag.
     </video>
 
+    <!-- Overlay to capture touch events for iOS autoplay -->
+    <div id="touch-to-play">
+        <span>Tap to play</span>
+    </div>
+
     <script>
-        // Force video to play immediately on page load
+        // Handle video playback
         (function () {
             var video = document.getElementById('background-video');
-            if (video) {
-                // Set poster image as fallback
-                video.poster = window.isMobile ? './images/homebgmobile-poster.jpg' : './images/homebg-poster.jpg';
+            var touchToPlay = document.getElementById('touch-to-play');
 
-                // Play as soon as possible
-                function playVideo() {
-                    video.play().catch(function (error) {
-                        console.log('Autoplay prevented:', error);
-                        video.muted = true;
-                        video.play();
-                    });
-                }
-
-                if (document.readyState === 'complete') {
-                    playVideo();
-                } else {
-                    window.addEventListener('load', playVideo);
-                }
+            // Check if files exist
+            function checkFile(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('HEAD', url, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        callback(xhr.status !== 404);
+                    }
+                };
+                xhr.send();
             }
+
+            // Check mobile source first
+            if (window.isMobile) {
+                checkFile('./images/homebgmobile.mp4', function (exists) {
+                    if (!exists) {
+                        console.error('Mobile video file not found!');
+                        // Fallback to desktop version
+                        video.innerHTML = '<source src="./images/homebg.mp4" type="video/mp4">';
+                        video.load();
+                    }
+                });
+            }
+
+            function attemptPlay() {
+                // Remove overlay once we're trying to play
+                if (touchToPlay) {
+                    touchToPlay.style.display = 'none';
+                }
+
+                video.play().catch(function (error) {
+                    console.log('Autoplay failed:', error);
+
+                    // Show the overlay for user interaction
+                    if (touchToPlay) {
+                        touchToPlay.style.display = 'flex';
+                        touchToPlay.addEventListener('click', function () {
+                            video.play();
+                            touchToPlay.style.display = 'none';
+                        });
+                    }
+                });
+            }
+
+            // iOS specific handling
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                video.setAttribute('webkit-playsinline', 'webkit-playsinline');
+                // iOS often requires a user gesture
+                document.body.addEventListener('touchstart', function () {
+                    attemptPlay();
+                }, { once: true });
+            }
+
+            // Handle general play attempts
+            if (document.readyState === 'complete') {
+                attemptPlay();
+            } else {
+                window.addEventListener('load', attemptPlay);
+            }
+
+            // Try once more after a delay (helps with some browsers)
+            setTimeout(attemptPlay, 1000);
         })();
     </script>
 
