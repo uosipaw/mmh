@@ -13,35 +13,35 @@
       "id": "magician",
       "name": "The Magician",
       "description": {
-        "upright": "Manifestation, resourcefulness, power, inspired action",
-        "reversed": "Manipulation, poor planning, untapped talents"
+        "upright": "power - Skill - manifestation - concentration - creation - intention<br> A reminder that intention and perspective can be tools to manifest tangible outcomes. Creating your fate is not only possible but your sole responsibility. Create the world you want to see. Channel your desires. Contemplate dreams and breathe life into them",
+        "reversed": "scattered - directionless - distracted - trickster - illusions - charlatan<br>Healthy ambition can become ruthless manipulation. This can indicate a lack of clarity, or you may be unfocused with no place to devote your energy. Remember the foundations of your desire. Get back in touch with what you want. Consider tasks you can let go of that won't detract from your overall goal."
       },
-      "meaning": "The Magician represents your ability to communicate clearly, to 'sell' yourself and to be innovative. The Magician has all the tools and resources available to manifest his desired outcome."
+      "meaning": "The Magician represents your ability to communicate clearly, to 'sell' yourself and to be innovative. It is the embodiment of willpower, choice and desire. The Magician has all the tools and resources available to manifest his desired outcome."
     },
     {
       "id": "highpriestess",
       "name": "The High Priestess",
       "description": {
-        "upright": "Intuition, sacred knowledge, divine feminine, subconscious mind",
-        "reversed": "Secrets, disconnected from intuition, withdrawal and silence"
+        "upright": "intuition - sacred knowledge - divine feminine - subconscious mind<br>The answers you seek can be found within. A peaceful core knows your inner truth. What does your intuition tell you? Be mindful of your gut. Study your dreams. Listen to your inner voice. Trust your instincts.",
+        "reversed": "secrets - disconnected from intuition - withdrawal - silence - repression - superficiality<br>There may be a lack of understanding or a refusal to listen to your inner voice. You may be ignoring your intuition.. Slow down and devote some time to recharging and introspection. Trust your instincts."
       },
-      "meaning": "The High Priestess signifies spiritual enlightenment, inner illumination, divine knowledge and wisdom. She represents the mysteries of life that are beyond our understanding."
+      "meaning": "The High Priestess signifies spiritual enlightenment, inner illumination, divine knowledge and wisdom. She represents our relationship with our inner selves the mysteries of life that are beyond our understanding."
     },
     {
       "id": "empress",
       "name": "The Empress",
       "description": {
-        "upright": "Femininity, beauty, nature, nurturing, abundance",
-        "reversed": "Creative block, dependence on others, over-nurturing"
+        "upright": "femininity - beauty - nature - nurturing - abundance<br>Show gratitude to the earth, sunshine, and wind. Find beauty, let it inspire you. Nurture your friends. Develop empathy. Ideas are coming more easily now. Venture into nature to feel more firmly rooted in your body.",
+        "reversed": "creative block - neglect - scarcity - codependence - over-nurturing - smothering<br>There may be a lack of creativity or abundance in your life. Alternatively, maybe your acts of love have become meddlesome and controlling. Consider what you can do to nurture yourself. Take time to care for yourself and your needs."
       },
-      "meaning": "The Empress signifies a connection with our femininity. She represents creation, abundance, nurturing, and the strength of the divine feminine. She can represent the creation of life, romance, art, or business."
+      "meaning": "The Empress signifies a connection with our femininity. She represents creation, abundance, nurturing, sunseuality and the strength of the divine feminine. She can represent the creation of life, romance, art, or business."
     },
     {
       "id": "emperor",
       "name": "The Emperor",
       "description": {
-        "upright": "Authority, establishment, structure, father figure",
-        "reversed": "Domination, excessive control, rigidity, inflexibility"
+        "upright": "authority - establishment - structure - father figure - logic - protection - masculine energy<br>It's time to take control of your life. You have the power to shape your future. Be assertive and confident. Set boundaries. Be a leader. Take action in a way that honors logic and reason. Protect what's yours.",
+        "reversed": "tyranny - domination - excessive control - rigidity - inflexibility - ineffective - avoidant<br>This might be a sign that you or someone close may abuse authority and hurt many in the process. Remember to maintain a healthy relationship with power and authority. Avoid becoming a tyrant. Be aware of when you say yes when you really mean no. Establish and guard your boundaries. "
       },
       "meaning": "The Emperor represents a powerful, commanding presence. He creates a solid foundation to build upon. He represents authority, structure, control, stability, and protection."
     },
@@ -49,17 +49,17 @@
       "id": "hierophant",
       "name": "The Hierophant",
       "description": {
-        "upright": "Spiritual wisdom, religious beliefs, conformity, tradition, institutions",
-        "reversed": "Personal beliefs, freedom, challenging the status quo"
+        "upright": "spiritual wisdom - religious beliefs - conformity - establishment - tradition - institutions<br>Being part of a social group can bring security and comfort. Learn from a mentor or take a class. Engage in traditions or rituals that are important to you.",
+        "reversed": "personal beliefs - conformity - challenging the status quo - unconventionality - social pressure - rebellion<br>Blind acceptance of the status quo may turn into the inability to accept change. Structure that normaly brings harmony may become stale. Individualists may draw judgement from those who follow the rules and may be shamed into conformity. Recognize where you feel alienated suppressed or alone. Consider what you can do to honor your own beliefs. Celebrate who you truly are."
       },
-      "meaning": "The Hierophant represents traditional values and institutions. He can represent marriage, alliances, captivity, servitude, mercy and goodness, inspiration, and the man to whom the Querent has recourse."
+      "meaning": "The Hierophant represents traditional values and institutions like schools and church. He can represent marriage, alliances, education, servitude, and the man to whom the Querent has recourse."
     },
     {
       "id": "hermit",
       "name": "The Hermit",
       "description": {
-        "upright": "Soul-searching, introspection, being alone, inner guidance",
-        "reversed": "Isolation, loneliness, withdrawal"
+        "upright": "solitude - contemplation - search for truth - inner guidance - introspection<br>Some answers only come when quiet settles in. Seek solitude. Meditate. Trust your inner voice. Find wisdom in silence. Look for answers within yourself.",
+        "reversed": "isolation - loneliness - withdrawal - lost - self-discovery<br>This may signal avoidance or that you've been led astray by anxiety, fear or projection. You might be unable or unwilling to check in with ones self honestly. Reflections of life may have become tainted or you may have become too withdrawn. Seek advice and actually listen to it. Reconnect with the world."
       },
       "meaning": "The Hermit represents a period of introspection and soul-searching. It signifies the need for solitude and inner guidance."
     },
@@ -67,17 +67,17 @@
       "id": "lovers",
       "name": "The Lovers",
       "description": {
-        "upright": "Love, harmony, relationships, values alignment, choices",
-        "reversed": "Self-love, disharmony, imbalance, misalignment of values"
+        "upright": "love - union - relationships - partnership - alignment - choices - commitment - duality <br>A relationship of trust, affection and balance. Think about the relationships in life that are truly tulfilling. Consider failed relationships and use the knowledge. to assess current situations or find a happy future. It is time to commit. Buckle down and make decisions.",
+        "reversed": "incompatibility - disharmony - imbalance - misalignment of values - selfishness - bad decisions<br>A relationship is no longer in harmony. Points to a lack of choice and reflects difficult decisions. Ask how you can use love to restore balance in yourself and with others. Make sure you are making decisions that are in line with your values."
       },
-      "meaning": "The Lovers represent love and harmony in relationships. It signifies values alignment and important choices."
+      "meaning": "The Lovers represent balance and harmony in relationships. Think outside of the scope of romantic relationships and consider the other relationships in your life that are truly fulfilling."
     },
     {
       "id": "chariot",
       "name": "The Chariot",
       "description": {
-        "upright": "Control, willpower, success, action, determination",
-        "reversed": "Self-discipline, opposition, lack of direction"
+        "upright": "control - willpower - success - action - determination - focus<br>Remain foused, take control of the situation and ensure that goals are reached. Represents Strength in intention and willpower. Hold yourself accountable. Small extra tasks may help keep up the momentum moving you forward towards your goals. Recognize what is distracting you.",
+        "reversed": "lack of control - lack of direction - aggression - obstacles - failure - turbulence<br>you may be experiencing diminished confidence or motivation. This also may represent that there is an easier way or an easier path to take. Pause and consider the journey you are on. Reassess your goals. Ask if your prioritics are shifting. Rethink your approach."
       },
       "meaning": "The Chariot represents control and willpower. It signifies success through determination and action."
     },
@@ -85,8 +85,8 @@
       "id": "strength",
       "name": "Strength",
       "description": {
-        "upright": "Courage, persuasion, influence, compassion",
-        "reversed": "Self-doubt, low energy, raw emotion"
+        "upright": "confidence - inner strength - compassion - courage - patience - self-control<br>Be patient and gentle with yourself. You have the strength to face any challenge. Despite distress, danger and struggle there is resilience and adaptability and confidence from success through life's twists and turns. Call on yourb inner strength regardless of opposing external discouragement. This is a signal to channel animalistic impulses into constructive action. Face your issues head-on.",
+        "reversed": "insecurity - self-doubt - weakness - raw emotion - self-limiting beliefs - lack of courage<br>There may be a lack of confidence or self-belief. This could also be a sign that darker, primal urges are not being kept in check. You may be feeling insecure or vulnerable. This is a time to observe your emotions before acting. Identify self destructive behaviors, anxieties and fears."
       },
       "meaning": "Strength represents courage and compassion. It signifies the power of persuasion and influence."
     },
@@ -94,8 +94,8 @@
       "id": "hangedman",
       "name": "The Hanged Man",
       "description": {
-        "upright": "Pause, surrender, letting go, new perspectives",
-        "reversed": "Delays, resistance, stalling, indecision"
+        "upright": "pause - surrender - acceptance - new perspectives - inactivity - sacrifice - suspension<br>It is time to let go of control. Surrender to the universe. Sacrifice may be necessary to achieve a larger goal. This is also a reminder that when the time is right for something, it will happen. Trust in timing and think of the larger goal. Look inward and focus on the things you have control over. ",
+        "reversed": "stalling - needless sacrifice - delay - resistance - martyrdom - fear of letting go - being stuck<br>There may be a lack of control or a refusal to let go. This could also be a sign that you are resisting change. You may be feeling stuck or stagnant or a recent struggle might have shifted your perspective. This is a time to let go of control and surrender to the universe. Embrace new opportunities and accept the need for change."
       },
       "meaning": "The Hanged Man represents a pause and surrender. It signifies letting go and gaining new perspectives."
     },
@@ -103,8 +103,8 @@
       "id": "judgement",
       "name": "Judgement",
       "description": {
-        "upright": "Judgement, rebirth, inner calling, absolution",
-        "reversed": "Self-doubt, inner critic, ignoring the call"
+        "upright": "judgement - rebirth - inner calling - absolution - self-evaluation - epiphany<br>It is time to evaluate your life and make important decisions. This is a time of rebirth and inner calling. You may be feeling the need to absolve yourself of past mistakes. This is a time to reflect on your past and make amends. Prepare for a rebirth of the soul.",
+        "reversed": "lack of self awareness - self-doubt - refusal of self-evaluation - inner critic<br>There may be a lack of self-awareness or a refusal to evaluate yourself. It may be a sign of ignoring a call to action. Answer the call of your heart. Don't avoid rebirth because of a fear of judgement. Embrace the opportunity to start anew."
       },
       "meaning": "Judgement represents rebirth and inner calling. It signifies the need for self-evaluation and absolution."
     },
@@ -112,25 +112,25 @@
       "id": "temperence",
       "name": "Temperance",
       "description": {
-        "upright": "Balance, moderation, patience, purpose",
-        "reversed": "Imbalance, excess, self-healing, re-alignment"
+        "upright": "patience - caution - thoughtfulness - balance - moderation - purpose<br>It is time to find balance and moderation in your life. This is a time of patience and thoughtfulness. You may be feeling the need to find purpose. This is a time to be cautious and considerate. Embrace the power of the universe.",
+        "reversed": "imbalance - excess - self-healing - re-alignment<br>There may be a lack of balance or moderation in your life. This could also be a sign that you are feeling out of alignment. You may be feeling the need to heal yourself. This is a time to find balance and moderation in your life. Embrace the power of the universe."
       },
-      "meaning": "Temperance represents balance and moderation. It signifies patience and finding purpose."
+      "meaning": "A representative of the concept of alchemy. Temperance represents balance and moderation. It signifies patience and finding purpose."
     },
     {
       "id": "moon",
       "name": "The Moon",
       "description": {
-        "upright": "Illusion, fear, anxiety, subconscious, intuition",
-        "reversed": "Release of fear, repressed emotion, inner confusion"
+        "upright": "imagination - fantasy - unconscious - habits - imagination - speculation<br>The moon is a mirror of our internal. Our perception is affected by our internal narrative. Analyze daydreams and consider how they affect your interactions in reality. Examine your desires and motivations.",
+        "reversed": "confusion - self deprecation - anxiety - misunderstadings - delusion<br>A Sign that it is time to face fears and confront trauma youve been avoiding. A blurry reality. What is real and what is just imagination? Reimagine why people behave the way they do."
       },
-      "meaning": "The Moon represents illusion and fear. It signifies anxiety and the power of the subconscious mind."
+      "meaning": "The Moon represents our dreams and our unconscious desires. It signifies intuition, illusion, and the dark side of our nature."
     },
     {
       "id": "star",
       "name": "The Star",
       "description": {
-        "upright": "Hope, faith, purpose, renewal, spirituality",
+        "upright": "hope - faith - renewal - spirituality - inspiration - serenity<br>It is time to find hope and faith in the universe. Use your light to guide others. This is a sign of healing and the discovery of inner strength. Your inner compass has led you through turmoil and chaos ",
         "reversed": "Lack of faith, despair, self-trust, disconnection"
       },
       "meaning": "The Star represents hope and faith. It signifies renewal and spiritual purpose."
