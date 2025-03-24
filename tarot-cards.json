@@ -229,8 +229,8 @@
       "id": "6cup",
       "name": "6 of Cups",
       "description": {
-        "upright": "revisiting the past - childhood memories - innocence - joy<br>The 6 of Cups represents nostalgia and revisiting happy memories from the past. It encourages you to embrace your inner child and find joy in simple pleasures.",
-        "reversed": "living in the past - forgiveness - lacking playfulness<br>The 6 of Cups reversed suggests living in the past, but also the potential for forgiveness and rediscovering playfulness."
+        "upright": "revisiting the past - childhood memories - innocence - joy - recovery<br>Revisit happy memories from the past. Embrace your inner child and find joy in simple pleasures.",
+        "reversed": "living in the past - forgiveness - lacking playfulness<br>Confront painful memories, but don't allow your focus on the past to take away from the present."
       },
       "meaning": "The 6 of Cups represents nostalgia and revisiting happy memories from the past. It encourages you to embrace your inner child and find joy in simple pleasures."
     },
@@ -238,8 +238,8 @@
       "id": "7cup",
       "name": "7 of Cups",
       "description": {
-        "upright": "opportunities - choices - wishful thinking - illusion<br>The 7 of Cups indicates a time of many options and opportunities. It is important to carefully consider your choices and avoid getting lost in wishful thinking or illusions.",
-        "reversed": "alignment - personal values - overwhelmed by choices<br>The 7 of Cups reversed suggests a need for alignment with personal values, but also the potential for feeling overwhelmed by choices."
+        "upright": "daysreaming - fantasy - illusions - decision<br>This could be a time of many options and opportunities. It is important to carefully consider your choices and avoid getting lost in wishful thinking or illusions.",
+        "reversed": "escapism - too much choice - personal values - overwhelmed<br>There is a need for alignment with personal values, but also the potential for feeling overwhelmed by choices. Are you avoiding a decision? Have you been too focused on a fantasy?"
       },
       "meaning": "The 7 of Cups indicates a time of many options and opportunities. It is important to carefully consider your choices and avoid getting lost in wishful thinking or illusions."
     },
@@ -247,8 +247,8 @@
       "id": "8cup",
       "name": "8 of Cups",
       "description": {
-        "upright": "disappointment - abandonment - withdrawal - escapism<br>The 8 of Cups suggests a need to leave something behind and move on. It represents a journey of self-discovery and the pursuit of deeper meaning and fulfillment.",
-        "reversed": "trying one more time - indecision - aimless drifting<br>The 8 of Cups reversed suggests trying one more time, but also the potential for indecision and aimless drifting."
+        "upright": "walking away - difficult choices - withdrawals - abandonment<br>A delusion has been shattered. It's time to walk away from a situation that no longer serves you.",
+        "reversed": "fear of change - stagnation - avoidance<br>Avoid making a momentous change because of fear of the unknown. It's time to confront your fears and move forward."
       },
       "meaning": "The 8 of Cups suggests a need to leave something behind and move on. It represents a journey of self-discovery and the pursuit of deeper meaning and fulfillment."
     },
@@ -257,52 +257,52 @@
       "name": "9 of Cups",
       "description": {
         "upright": "contentment - satisfaction - gratitude - wish come true<br>The 9 of Cups is a card of contentment and satisfaction. It signifies that your wishes have been fulfilled and encourages you to appreciate the abundance in your life.",
-        "reversed": "inner happiness - materialism - dissatisfaction<br>The 9 of Cups reversed suggests a focus on inner happiness, but also the potential for materialism and dissatisfaction."
+        "reversed": "gloom - disappointment - disillusioned - unfulfilled<br>Your wish may have been granted but all magic comes with a price. What did you sacrifice to get what you wanted? Is this what you really wanted?"
       },
-      "meaning": "The 9 of Cups is a card of contentment and satisfaction. It signifies that your wishes have been fulfilled and encourages you to appreciate the abundance in your life."
+      "meaning": "The 9 of Cups is known as the wish card. As all your needs are met, you are content and satisfied with your life and what you have accomplished. Be proud of yourself. Make a wish!"
     },
     {
       "id": "10cup",
       "name": "10 of Cups",
       "description": {
-        "upright": "divine love - blissful relationships - harmony - alignment<br>The 10 of Cups represents emotional fulfillment and harmonious relationships. It signifies a time of joy, peace, and contentment in your personal life.",
-        "reversed": "disconnection - misaligned values - struggling relationships<br>The 10 of Cups reversed suggests disconnection and misaligned values, but also the potential for struggling relationships."
+        "upright": "home - love - blissful relationships - harmony - family - emotional security<br>Cherish your loved ones and find joy in your home life. This is a time of emotional fulfillment and harmonious relationships.",
+        "reversed": "disconnection - misaligned values - dysfunctional relationships - domestic disputes<br>There's turmoil building in your relationships. It's time to address the issues and find a way to move forward."
       },
-      "meaning": "The 10 of Cups represents emotional fulfillment and harmonious relationships. It signifies a time of joy, peace, and contentment in your personal life."
+      "meaning": "The 10 of Cups represents emotional fulfillment and harmonious relationships. It signifies a time of joy, peace, and contentment in your home life."
     },
     {
       "id": "pcup",
       "name": "Page of Cups",
       "description": {
-        "upright": "creative opportunities - intuitive messages - curiosity - possibility<br>The Page of Cups represents new creative opportunities and intuitive messages. It encourages you to be open to new possibilities and to trust your intuition.",
-        "reversed": "new ideas - doubting intuition - creative blocks - emotional immaturity<br>The Page of Cups reversed suggests new ideas, but also the potential for doubting intuition, creative blocks, and emotional immaturity."
+        "upright": "creative opportunities - intuitive messages - curiosity - possibility - sensitivity - naive - imaginative<br>Create playfully. Listen to what your inner child has to say. Be open to new possibilities and trust your intuition.",
+        "reversed": "insecurity - gullible - rejection - wounded<br>Identify your insecurities and work to overcome them. Be cautious of being too gullible. Find a way to heal from past wounds."
       },
-      "meaning": "The Page of Cups represents new creative opportunities and intuitive messages. It encourages you to be open to new possibilities and to trust your intuition."
+      "meaning": "The Page of Cups represents your inner child. It encourages you to be open to creativity and to trust your intuition."
     },
     {
       "id": "ncup",
       "name": "Knight of Cups",
       "description": {
-        "upright": "romantic - charming - imaginative - idealistic<br>The Knight of Cups signifies a romantic and charming individual. It represents the pursuit of dreams and the expression of emotions.",
-        "reversed": "overly romantic - unrealistic - jealous - moody<br>The Knight of Cups reversed suggests being overly romantic and unrealistic, but also the potential for jealousy and moodiness."
+        "upright": "romantic - charming - imaginative - idealistic - seductive - lover<br>Are you romantic or charming? Express feelings of love. Dress to impress. Appreciate beauty and creativity. Try to think like a poet would.",
+        "reversed": "vain - narcissist - unrealistic - jealous - moody - insecure<br>Beware of taking things too personally. Confront rejection directly without being passive aggressive."
       },
-      "meaning": "The Knight of Cups signifies a romantic and charming individual. It represents the pursuit of dreams and the expression of emotions."
+      "meaning": "The Knight of Cups is romantic and sophisticated, a sign of emotional depth and creativity, and an appreciator of beauty and art."
     },
     {
       "id": "qcup",
       "name": "Queen of Cups",
       "description": {
-        "upright": "compassionate - caring - emotionally stable - intuitive - in flow<br>The Queen of Cups represents compassion, care, and emotional stability. She encourages you to trust your intuition and to be in touch with your emotions.",
-        "reversed": "inner feelings - self-care - co-dependency<br>The Queen of Cups reversed suggests a focus on inner feelings and self-care, but also the potential for co-dependency."
+        "upright": "compassionate - caring - emotionally stable - intuitive - nurturing<br> Wise and comforting, but don't forget to balance caring for others with self-care.",
+        "reversed": "depression - avoidance - co-dependency - needy - self sacrifice<br>Consider the sacrifices you're making and how they are impacting you emotionally. Can you stop yourself from giving too much?"
       },
-      "meaning": "The Queen of Cups represents compassion, care, and emotional stability. She encourages you to trust your intuition and to be in touch with your emotions."
+      "meaning": "The Queen of Cups represents compassion, care, and emotional stability."
     },
     {
       "id": "kcup",
       "name": "King of Cups",
       "description": {
-        "upright": "emotionally balanced - compassionate - diplomatic<br>The King of Cups signifies emotional balance and compassion. He represents a mature and diplomatic approach to emotions and relationships.",
-        "reversed": "emotional manipulation - moodiness - volatility<br>The King of Cups reversed suggests emotional manipulation, moodiness, and volatility."
+        "upright": "emotionally balanced - compassionate - diplomatic - wise<br>Take a calm approach and lead with emotional wisdom. Be a good listener and offer support.",
+        "reversed": "emotional manipulation - moodiness - volatility - repressed - bitter - wounded<br>Cope with your feelings maturely. Find release in a healthy way. Don't let your emotions control you."
       },
       "meaning": "The King of Cups signifies emotional balance and compassion. He represents a mature and diplomatic approach to emotions and relationships."
     },
