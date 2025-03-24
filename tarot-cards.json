@@ -131,7 +131,7 @@
       "name": "The Star",
       "description": {
         "upright": "hope - faith - renewal - spirituality - inspiration - serenity<br>It is time to find hope and faith in the universe. Use your light to guide others. This is a sign of healing and the discovery of inner strength. Your inner compass has led you through turmoil and chaos ",
-        "reversed": "Lack of faith, despair, self-trust, disconnection"
+        "reversed": "lack of faith - despair - self-trust - disconnection - hopelessness<br>There may be a lack of faith or hope in the universe. This could also be a sign that you are feeling disconnected. You may be feeling the need to find inner strength. This is a time to find hope and faith in the universe."
       },
       "meaning": "The Star represents hope and faith. It signifies renewal and spiritual purpose."
     },
@@ -139,8 +139,8 @@
       "id": "sun",
       "name": "The Sun",
       "description": {
-        "upright": "Positivity, fun, warmth, success, vitality",
-        "reversed": "Inner child, feeling down, overly optimistic"
+        "upright": "positivity - optimism - success - vitality - warmth - fun - happiness<br>It is time to find positivity and success in your life. This is a time of warmth and vitality. This is a time to embrace the light and find happiness. Explore giving. Remember there is always light after the dark.",
+        "reversed": "negativity - depression - sadness - lack of enthusiasm <br>There may be a lack of positivity or success in your life. This could also be a sign that you are feeling depressed. You may be feeling the need to find happiness. This is a time to embrace the light and find positivity in your life. Consider new opportunities or a new approach."
       },
       "meaning": "The Sun represents positivity and success. It signifies warmth, fun, and vitality."
     },
@@ -148,8 +148,8 @@
       "id": "tower",
       "name": "The Tower",
       "description": {
-        "upright": "Sudden change, upheaval, chaos, revelation, awakening",
-        "reversed": "Personal transformation, fear of change, averting disaster"
+        "upright": "catastrophe - hubris - sudden change - revelation - awakening<br>A sudden change via violent upheaval is coming. This is a time of chaos and revelation. This is a time to awaken and find new opportunities. Embrace the unknown and find new paths. This change may be painful but it is necessary.",
+        "reversed": "personal transformation - fear of change - averting disaster<br>There may be a fear of change or a refusal to transform. Problems get worse the longer you ignore them. Stop resisting . This is a time to embrace your past crises. Learn from them and remember how you've grown from it."
       },
       "meaning": "The Tower represents sudden change and upheaval. It signifies chaos and revelation leading to awakening."
     },
@@ -157,8 +157,8 @@
       "id": "devil",
       "name": "The Devil",
       "description": {
-        "upright": "Shadow self, attachment, addiction, restriction, sexuality",
-        "reversed": "Releasing limiting beliefs, exploring dark thoughts, detachment"
+        "upright": "shadow self - addiction - indulgence - temptation - materialism - bondage<br>Confront your shadow self. Have you been over indulging or allowing your addictions to control you? Identify the hole your addictions are trying to fill. Accept your imperfections.",
+        "reversed": "release - restoring control - reclaiming power - freedom<br>It is time to release yourself from the bondage of addiction. This is a time to reclaim your power and find freedom. Bring your secrets and shame to light with someone you trust."
       },
       "meaning": "The Devil represents the shadow self and attachment. It signifies addiction, restriction, and exploring dark thoughts."
     },
@@ -166,35 +166,35 @@
       "id": "wheel",
       "name": "The Wheel of Fortune",
       "description": {
-        "upright": "Good luck, karma, life cycles, destiny, a turning point",
-        "reversed": "Bad luck, resistance to change, breaking cycles"
+        "upright": "good luck - karma - life cycles - destiny - a turning point<br>Discover stillness in te chaos. Find serenity and be appreciative of all things that are fleeting. Identify what makes you feel grounded. Pay attention to repeating patterns.",
+        "reversed": "clinging to control - repitition - bad luck - breaking cycles<br>This is a signal to release control and let go before you get hurt. Detach your happiness from external events and praise yourself for external events. Take responsibility for your reaction to outside influence and find your personal power. Recognize what you can't change."
       },
-      "meaning": "The Wheel of Fortune represents good luck and karma. It signifies life cycles and a turning point in destiny."
+      "meaning": "The Wheel of Fortune represents luck, karma and the inevitible. It signifies life cycles and a turning point in destiny."
     },
     {
       "id": "world",
       "name": "The World",
       "description": {
-        "upright": "Completion, integration, accomplishment, travel",
-        "reversed": "Seeking personal closure, short-cuts, delays"
+        "upright": "fulfillment - completion - accomplishment - mastery - attainment<br>A long awaited goal is finally achieved. This is a time of completion and integration. You should celebrate your accomplishments. One journey is complete and leads to the start of another. Savor victory.",
+        "reversed": "incompletion - emptiness - lack of closure - disappointment - short-cuts - delays<br>This may indicate a need for personal closure or a tendency to take shortcuts. It's time to tie up loose ends. Be cautious of delays and reassess your approach to ensure a fulfilling journey. Regain your focus and find completion."
       },
-      "meaning": "The World represents completion and integration. It signifies accomplishment and the potential for travel."
+      "meaning": "The World represents completion and wholeness. It signifies accomplishment and the end of a journey. There is also the potential for travel."
     },
     {
       "id": "acup",
       "name": "Ace of Cups",
       "description": {
-        "upright": "Love, new relationships, compassion, creativity",
-        "reversed": "Self-love, intuition, repressed emotions"
+        "upright": "friendship - compassion - emotional fulfillment<br>A moment of emotional awakening. Fresh emotional energy can form new friendships or love.",
+        "reversed": "drained - represssed - empty - isolated - disconnected<br>An empty cup. Emotional energy has been wasted or unaddressed emotions could overflow and spill out."
       },
-      "meaning": "The Ace of Cups represents love and new relationships. It signifies compassion and creativity."
+      "meaning": "The Ace of Cups represents new love and new relationships. It signifies compassion and creativity."
     },
     {
       "id": "2cup",
       "name": "2 of Cups",
       "description": {
-        "upright": "Unified love, partnership, mutual attraction",
-        "reversed": "Self-love, break-ups, disharmony, distrust"
+        "upright": "attraction - partnership - bonds<br>This is a sign of an equal partnership, romantic or platonic. Things are in harmony.",
+        "reversed": "inequality - imbalance - incompatibility - disharmony - lack of trust<br>A relationship is in disarray. There is a lack of trust and harmony. Find a way to restore balance."
       },
       "meaning": "The 2 of Cups represents unified love and partnership. It signifies mutual attraction and harmony."
     },
@@ -202,17 +202,17 @@
       "id": "3cup",
       "name": "3 of Cups",
       "description": {
-        "upright": "Celebration, friendship, creativity, community",
-        "reversed": "Independence, alone time, hardcore partying, 'three's a crowd'"
+        "upright": "friendship - social circles - party - collaboration - celebration<br>It's time to celebrate. Enjoy the company of friends and family. Gatherings are to be enjoyed. Have fun with the people around you!",
+        "reversed": "'three's a crowd' - isolation - gossip - third wheel - overindulgence<br>There may be a lack of celebration or even too much partying. This could also be a sign that you are feeling isolated. Find a way to reconnect with your peers and rekindle genuine friendships."
       },
-      "meaning": "The 3 of Cups represents celebration and friendship. It signifies creativity and community, encouraging you to enjoy social gatherings and shared joy."
+      "meaning": "This is the Party Card! The 3 of Cups represents celebration and friendship. It signifies creativity and community, encouraging you to enjoy social gatherings and shared joy.<br>(This card is dedicated to my best friend KMC If you see this, I love you and I owe you dinner!)"
     },
     {
       "id": "4cup",
       "name": "4 of Cups",
       "description": {
-        "upright": "Meditation, contemplation, apathy, reevaluation",
-        "reversed": "Retreat, withdrawal, checking in for alignment"
+        "upright": "contemplation - detachment - apathy - reevaluation<br>It's time to take a step back and reevaluate your situation. This is a call to focus on the present.",
+        "reversed": "awareness - new experiences - enthusiasm - motivation<br>It's time to get back in the game. A sudden burst of awareness is on the horizon, keep an eye out for it."
       },
       "meaning": "The 4 of Cups represents a time of introspection and contemplation. You may be feeling disconnected or unmotivated, but this card encourages you to look within and reevaluate your situation."
     },
@@ -220,17 +220,17 @@
       "id": "5cup",
       "name": "5 of Cups",
       "description": {
-        "upright": "Regret, failure, disappointment, pessimism",
-        "reversed": "Personal setbacks, self-forgiveness, moving on"
+        "upright": "regret - failure - disappointment - pessimism<br>You may have feelings of loss, regret, and disappointment. This is a reminder to focus on what can be learned from the experience and to find a way to move forward.",
+        "reversed": "personal setbacks - self-forgiveness - moving on<br>Hardships are a chance to grow. Trust that you are ready to move forward."
       },
-      "meaning": "The 5 of Cups signifies feelings of loss, regret, and disappointment. It is a reminder to focus on what can be learned from the experience and to find a way to move forward."
+      "meaning": "The 5 of Cups is a symbol of loss, regret, and disappointment. It is a reminder to focus on what can be learned from the experience and to find a way to move forward."
     },
     {
       "id": "6cup",
       "name": "6 of Cups",
       "description": {
-        "upright": "Revisiting the past, childhood memories, innocence, joy",
-        "reversed": "Living in the past, forgiveness, lacking playfulness"
+        "upright": "revisiting the past - childhood memories - innocence - joy<br>The 6 of Cups represents nostalgia and revisiting happy memories from the past. It encourages you to embrace your inner child and find joy in simple pleasures.",
+        "reversed": "living in the past - forgiveness - lacking playfulness<br>The 6 of Cups reversed suggests living in the past, but also the potential for forgiveness and rediscovering playfulness."
       },
       "meaning": "The 6 of Cups represents nostalgia and revisiting happy memories from the past. It encourages you to embrace your inner child and find joy in simple pleasures."
     },
@@ -238,8 +238,8 @@
       "id": "7cup",
       "name": "7 of Cups",
       "description": {
-        "upright": "Opportunities, choices, wishful thinking, illusion",
-        "reversed": "Alignment, personal values, overwhelmed by choices"
+        "upright": "opportunities - choices - wishful thinking - illusion<br>The 7 of Cups indicates a time of many options and opportunities. It is important to carefully consider your choices and avoid getting lost in wishful thinking or illusions.",
+        "reversed": "alignment - personal values - overwhelmed by choices<br>The 7 of Cups reversed suggests a need for alignment with personal values, but also the potential for feeling overwhelmed by choices."
       },
       "meaning": "The 7 of Cups indicates a time of many options and opportunities. It is important to carefully consider your choices and avoid getting lost in wishful thinking or illusions."
     },
@@ -247,8 +247,8 @@
       "id": "8cup",
       "name": "8 of Cups",
       "description": {
-        "upright": "Disappointment, abandonment, withdrawal, escapism",
-        "reversed": "Trying one more time, indecision, aimless drifting"
+        "upright": "disappointment - abandonment - withdrawal - escapism<br>The 8 of Cups suggests a need to leave something behind and move on. It represents a journey of self-discovery and the pursuit of deeper meaning and fulfillment.",
+        "reversed": "trying one more time - indecision - aimless drifting<br>The 8 of Cups reversed suggests trying one more time, but also the potential for indecision and aimless drifting."
       },
       "meaning": "The 8 of Cups suggests a need to leave something behind and move on. It represents a journey of self-discovery and the pursuit of deeper meaning and fulfillment."
     },
@@ -256,8 +256,8 @@
       "id": "9cup",
       "name": "9 of Cups",
       "description": {
-        "upright": "Contentment, satisfaction, gratitude, wish come true",
-        "reversed": "Inner happiness, materialism, dissatisfaction"
+        "upright": "contentment - satisfaction - gratitude - wish come true<br>The 9 of Cups is a card of contentment and satisfaction. It signifies that your wishes have been fulfilled and encourages you to appreciate the abundance in your life.",
+        "reversed": "inner happiness - materialism - dissatisfaction<br>The 9 of Cups reversed suggests a focus on inner happiness, but also the potential for materialism and dissatisfaction."
       },
       "meaning": "The 9 of Cups is a card of contentment and satisfaction. It signifies that your wishes have been fulfilled and encourages you to appreciate the abundance in your life."
     },
@@ -265,8 +265,8 @@
       "id": "10cup",
       "name": "10 of Cups",
       "description": {
-        "upright": "Divine love, blissful relationships, harmony, alignment",
-        "reversed": "Disconnection, misaligned values, struggling relationships"
+        "upright": "divine love - blissful relationships - harmony - alignment<br>The 10 of Cups represents emotional fulfillment and harmonious relationships. It signifies a time of joy, peace, and contentment in your personal life.",
+        "reversed": "disconnection - misaligned values - struggling relationships<br>The 10 of Cups reversed suggests disconnection and misaligned values, but also the potential for struggling relationships."
       },
       "meaning": "The 10 of Cups represents emotional fulfillment and harmonious relationships. It signifies a time of joy, peace, and contentment in your personal life."
     },
@@ -274,8 +274,8 @@
       "id": "pcup",
       "name": "Page of Cups",
       "description": {
-        "upright": "Creative opportunities, intuitive messages, curiosity, possibility",
-        "reversed": "New ideas, doubting intuition, creative blocks, emotional immaturity"
+        "upright": "creative opportunities - intuitive messages - curiosity - possibility<br>The Page of Cups represents new creative opportunities and intuitive messages. It encourages you to be open to new possibilities and to trust your intuition.",
+        "reversed": "new ideas - doubting intuition - creative blocks - emotional immaturity<br>The Page of Cups reversed suggests new ideas, but also the potential for doubting intuition, creative blocks, and emotional immaturity."
       },
       "meaning": "The Page of Cups represents new creative opportunities and intuitive messages. It encourages you to be open to new possibilities and to trust your intuition."
     },
@@ -283,8 +283,8 @@
       "id": "ncup",
       "name": "Knight of Cups",
       "description": {
-        "upright": "Romantic, charming, imaginative, idealistic",
-        "reversed": "Overly romantic, unrealistic, jealous, moody"
+        "upright": "romantic - charming - imaginative - idealistic<br>The Knight of Cups signifies a romantic and charming individual. It represents the pursuit of dreams and the expression of emotions.",
+        "reversed": "overly romantic - unrealistic - jealous - moody<br>The Knight of Cups reversed suggests being overly romantic and unrealistic, but also the potential for jealousy and moodiness."
       },
       "meaning": "The Knight of Cups signifies a romantic and charming individual. It represents the pursuit of dreams and the expression of emotions."
     },
@@ -292,8 +292,8 @@
       "id": "qcup",
       "name": "Queen of Cups",
       "description": {
-        "upright": "Compassionate, caring, emotionally stable, intuitive, in flow",
-        "reversed": "Inner feelings, self-care, co-dependency"
+        "upright": "compassionate - caring - emotionally stable - intuitive - in flow<br>The Queen of Cups represents compassion, care, and emotional stability. She encourages you to trust your intuition and to be in touch with your emotions.",
+        "reversed": "inner feelings - self-care - co-dependency<br>The Queen of Cups reversed suggests a focus on inner feelings and self-care, but also the potential for co-dependency."
       },
       "meaning": "The Queen of Cups represents compassion, care, and emotional stability. She encourages you to trust your intuition and to be in touch with your emotions."
     },
@@ -301,8 +301,8 @@
       "id": "kcup",
       "name": "King of Cups",
       "description": {
-        "upright": "Emotionally balanced, compassionate, diplomatic",
-        "reversed": "Emotional manipulation, moodiness, volatility"
+        "upright": "emotionally balanced - compassionate - diplomatic<br>The King of Cups signifies emotional balance and compassion. He represents a mature and diplomatic approach to emotions and relationships.",
+        "reversed": "emotional manipulation - moodiness - volatility<br>The King of Cups reversed suggests emotional manipulation, moodiness, and volatility."
       },
       "meaning": "The King of Cups signifies emotional balance and compassion. He represents a mature and diplomatic approach to emotions and relationships."
     },
@@ -310,8 +310,8 @@
       "id": "kwand",
       "name": "King of Wands",
       "description": {
-        "upright": "Natural-born leader, vision, entrepreneur, honor",
-        "reversed": "Impulsiveness, haste, ruthless, high expectations"
+        "upright": "natural-born leader - vision - entrepreneur - honor<br>The King of Wands represents a natural-born leader with a clear vision and the ability to inspire others. He is entrepreneurial and honorable, but can also be impulsive and have high expectations.",
+        "reversed": "impulsiveness - haste - ruthless - high expectations<br>The King of Wands reversed suggests impulsiveness and haste, but also the potential for being ruthless and having high expectations."
       },
       "meaning": "The King of Wands represents a natural-born leader with a clear vision and the ability to inspire others. He is entrepreneurial and honorable, but can also be impulsive and have high expectations."
     },
@@ -319,8 +319,8 @@
       "id": "qwand",
       "name": "Queen of Wands",
       "description": {
-        "upright": "Courage, confidence, independence, social butterfly, determination",
-        "reversed": "Selfishness, jealousy, insecurities"
+        "upright": "courage - confidence - independence - social butterfly - determination<br>The Queen of Wands signifies courage, confidence, and independence. She is a social butterfly and determined, but can also be selfish and jealous.",
+        "reversed": "selfishness - jealousy - insecurities<br>The Queen of Wands reversed suggests selfishness and jealousy, but also the potential for insecurities."
       },
       "meaning": "The Queen of Wands signifies courage, confidence, and independence. She is a social butterfly and determined, but can also be selfish and jealous."
     },
@@ -328,8 +328,8 @@
       "id": "nwand",
       "name": "Knight of Wands",
       "description": {
-        "upright": "Energy, passion, inspired action, adventure, impulsiveness",
-        "reversed": "Haste, scattered energy, delays, frustration"
+        "upright": "energy - passion - inspired action - adventure - impulsiveness<br>The Knight of Wands represents energy, passion, and inspired action. He is adventurous and impulsive, but can also be hasty and experience delays.",
+        "reversed": "haste - scattered energy - delays - frustration<br>The Knight of Wands reversed suggests haste and scattered energy, but also the potential for delays and frustration."
       },
       "meaning": "The Knight of Wands represents energy, passion, and inspired action. He is adventurous and impulsive, but can also be hasty and experience delays."
     },
@@ -337,8 +337,8 @@
       "id": "pwand",
       "name": "Page of Wands",
       "description": {
-        "upright": "Inspiration, ideas, discovery, limitless potential, free spirit",
-        "reversed": "Newly-formed ideas, redirecting energy, self-limiting beliefs, a spiritual path"
+        "upright": "inspiration - ideas - discovery - limitless potential - free spirit<br>The Page of Wands signifies inspiration, ideas, and discovery. He represents limitless potential and a free spirit, but can also have newly-formed ideas and self-limiting beliefs.",
+        "reversed": "newly-formed ideas - redirecting energy - self-limiting beliefs - a spiritual path<br>The Page of Wands reversed suggests newly-formed ideas and redirecting energy, but also the potential for self-limiting beliefs and embarking on a spiritual path."
       },
       "meaning": "The Page of Wands signifies inspiration, ideas, and discovery. He represents limitless potential and a free spirit, but can also have newly-formed ideas and self-limiting beliefs."
     },
@@ -346,8 +346,8 @@
       "id": "awand",
       "name": "Ace of Wands",
       "description": {
-        "upright": "Inspiration, new opportunities, growth, potential",
-        "reversed": "An emerging idea, lack of direction, distractions, delays"
+        "upright": "inspiration - new opportunities - growth - potential<br>The Ace of Wands represents new beginnings and opportunities. It signifies inspiration, growth, and potential, encouraging you to take action and pursue your passions.",
+        "reversed": "an emerging idea - lack of direction - distractions - delays<br>The Ace of Wands reversed suggests an emerging idea, but also the potential for a lack of direction, distractions, and delays."
       },
       "meaning": "The Ace of Wands represents new beginnings and opportunities. It signifies inspiration, growth, and potential, encouraging you to take action and pursue your passions."
     },
@@ -355,8 +355,8 @@
       "id": "2wand",
       "name": "2 of Wands",
       "description": {
-        "upright": "Future planning, progress, decisions, discovery",
-        "reversed": "Personal goals, inner alignment, fear of unknown, lack of planning"
+        "upright": "future planning - progress - decisions - discovery<br>The 2 of Wands signifies future planning and progress. It encourages you to make decisions and discover new opportunities, while also considering your personal goals and inner alignment.",
+        "reversed": "personal goals - inner alignment - fear of unknown - lack of planning<br>The 2 of Wands reversed suggests a focus on personal goals and inner alignment, but also the potential for fear of the unknown and a lack of planning."
       },
       "meaning": "The 2 of Wands signifies future planning and progress. It encourages you to make decisions and discover new opportunities, while also considering your personal goals and inner alignment."
     },
@@ -364,8 +364,8 @@
       "id": "3wand",
       "name": "3 of Wands",
       "description": {
-        "upright": "Progress, expansion, foresight, overseas opportunities",
-        "reversed": "Playing small, lack of foresight, unexpected delays"
+        "upright": "progress - expansion - foresight - overseas opportunities<br>The 3 of Wands represents progress and expansion. It signifies foresight and the potential for overseas opportunities, encouraging you to look ahead and plan for the future.",
+        "reversed": "playing small - lack of foresight - unexpected delays<br>The 3 of Wands reversed suggests playing small and a lack of foresight, but also the potential for unexpected delays."
       },
       "meaning": "The 3 of Wands represents progress and expansion. It signifies foresight and the potential for overseas opportunities, encouraging you to look ahead and plan for the future."
     },
@@ -373,8 +373,8 @@
       "id": "4wand",
       "name": "4 of Wands",
       "description": {
-        "upright": "Celebration, joy, harmony, relaxation, homecoming",
-        "reversed": "Personal celebration, inner harmony, conflict with others, transition"
+        "upright": "celebration - joy - harmony - relaxation - homecoming<br>The 4 of Wands signifies celebration and joy. It represents harmony and relaxation, often indicating a homecoming or a time of personal celebration and inner harmony.",
+        "reversed": "personal celebration - inner harmony - conflict with others - transition<br>The 4 of Wands reversed suggests a personal celebration and inner harmony, but also the potential for conflict with others and a time of transition."
       },
       "meaning": "The 4 of Wands signifies celebration and joy. It represents harmony and relaxation, often indicating a homecoming or a time of personal celebration and inner harmony."
     },
@@ -382,8 +382,8 @@
       "id": "5wand",
       "name": "5 of Wands",
       "description": {
-        "upright": "Conflict, disagreements, competition, tension, diversity",
-        "reversed": "Inner conflict, conflict resolution, diversity"
+        "upright": "conflict - disagreements - competition - tension - diversity<br>The 5 of Wands represents conflict and competition. It signifies tension and disagreements, but also the potential for conflict resolution and embracing diversity.",
+        "reversed": "inner conflict - conflict resolution - diversity<br>The 5 of Wands reversed suggests inner conflict, but also the potential for conflict resolution and embracing diversity."
       },
       "meaning": "The 5 of Wands represents conflict and competition. It signifies tension and disagreements, but also the potential for conflict resolution and embracing diversity."
     },
@@ -391,8 +391,8 @@
       "id": "6wand",
       "name": "6 of Wands",
       "description": {
-        "upright": "Success, public recognition, progress, self-confidence",
-        "reversed": "Private achievement, insecurity, egotism"
+        "upright": "success - public recognition - progress - self-confidence<br>The 6 of Wands represents success and public recognition. It signifies progress and self-confidence, but can also indicate private achievement and insecurity.",
+        "reversed": "private achievement - insecurity - egotism<br>The 6 of Wands reversed suggests private achievement and insecurity, but also the potential for egotism."
       },
       "meaning": "The 6 of Wands represents success and public recognition. It signifies progress and self-confidence, but can also indicate private achievement and insecurity."
     },
@@ -400,8 +400,8 @@
       "id": "7wand",
       "name": "7 of Wands",
       "description": {
-        "upright": "Challenge, competition, protection, perseverance",
-        "reversed": "Giving up, overwhelmed, defensive, paranoia"
+        "upright": "challenge - competition - protection - perseverance<br>The 7 of Wands represents challenge and competition. It signifies protection and perseverance, but can also indicate feelings of being overwhelmed or defensive.",
+        "reversed": "giving up - overwhelmed - defensive - paranoia<br>The 7 of Wands reversed suggests giving up and feeling overwhelmed, but also the potential for being defensive and experiencing paranoia."
       },
       "meaning": "The 7 of Wands represents challenge and competition. It signifies protection and perseverance, but can also indicate feelings of being overwhelmed or defensive."
     },
@@ -409,8 +409,8 @@
       "id": "8wand",
       "name": "8 of Wands",
       "description": {
-        "upright": "Movement, fast paced change, action, alignment, air travel",
-        "reversed": "Delays, frustration, scattered energy, slowing down"
+        "upright": "movement - fast paced change - action - alignment - air travel<br>The 8 of Wands represents movement and fast-paced change. It signifies action and alignment, but can also indicate delays and frustration.",
+        "reversed": "delays - frustration - scattered energy - slowing down<br>The 8 of Wands reversed suggests delays and frustration, but also the potential for scattered energy and slowing down."
       },
       "meaning": "The 8 of Wands represents movement and fast-paced change. It signifies action and alignment, but can also indicate delays and frustration."
     },
@@ -418,8 +418,8 @@
       "id": "9wand",
       "name": "9 of Wands",
       "description": {
-        "upright": "Resilience, courage, persistence, test of faith, boundaries",
-        "reversed": "Inner resources, struggle, overwhelm, defensive, paranoia"
+        "upright": "resilience - courage - persistence - test of faith - boundaries<br>The 9 of Wands represents resilience and courage. It signifies persistence and boundaries, but can also indicate struggle and feelings of being overwhelmed.",
+        "reversed": "inner resources - struggle - overwhelm - defensive - paranoia<br>The 9 of Wands reversed suggests inner resources and struggle, but also the potential for feeling overwhelmed, defensive, and experiencing paranoia."
       },
       "meaning": "The 9 of Wands represents resilience and courage. It signifies persistence and boundaries, but can also indicate struggle and feelings of being overwhelmed."
     },
@@ -427,8 +427,8 @@
       "id": "10wand",
       "name": "10 of Wands",
       "description": {
-        "upright": "Burden, extra responsibility, hard work, completion",
-        "reversed": "Doing it all, carrying the burden, delegation, release"
+        "upright": "burden - extra responsibility - hard work - completion<br>The 10 of Wands represents burden and extra responsibility. It signifies hard work and completion, but also the need for delegation and release.",
+        "reversed": "doing it all - carrying the burden - delegation - release<br>The 10 of Wands reversed suggests doing it all and carrying the burden, but also the potential for delegation and release."
       },
       "meaning": "The 10 of Wands represents burden and extra responsibility. It signifies hard work and completion, but also the need for delegation and release."
     },
@@ -436,8 +436,8 @@
       "id": "aswd",
       "name": "Ace of Swords",
       "description": {
-        "upright": "Breakthrough, clarity, sharp mind",
-        "reversed": "Confusion, brutality, chaos"
+        "upright": "breakthrough - clarity - sharp mind<br>The Ace of Swords represents a breakthrough or moment of clarity. It signifies a sharp mind and the ability to cut through confusion and chaos.",
+        "reversed": "confusion - brutality - chaos<br>The Ace of Swords reversed suggests confusion, brutality, and chaos."
       },
       "meaning": "The Ace of Swords represents a breakthrough or moment of clarity. It signifies a sharp mind and the ability to cut through confusion and chaos."
     },
@@ -445,8 +445,8 @@
       "id": "2swd",
       "name": "2 of Swords",
       "description": {
-        "upright": "Difficult decisions, weighing up options, an impasse, avoidance",
-        "reversed": "Indecision, confusion, information overload"
+        "upright": "difficult decisions - weighing up options - an impasse - avoidance<br>The 2 of Swords signifies difficult decisions and weighing up options. It represents an impasse or avoidance, and the need to make a choice.",
+        "reversed": "indecision - confusion - information overload<br>The 2 of Swords reversed suggests indecision, confusion, and information overload."
       },
       "meaning": "The 2 of Swords signifies difficult decisions and weighing up options. It represents an impasse or avoidance, and the need to make a choice."
     },
@@ -454,8 +454,8 @@
       "id": "3swd",
       "name": "3 of Swords",
       "description": {
-        "upright": "Heartbreak, emotional pain, sorrow, grief, hurt",
-        "reversed": "Negative self-talk, releasing pain, optimism, forgiveness"
+        "upright": "heartbreak - emotional pain - sorrow - grief - hurt<br>The 3 of Swords signifies heartbreak and emotional pain. It represents sorrow, grief, and hurt, but also the potential for releasing pain and finding forgiveness.",
+        "reversed": "negative self-talk - releasing pain - optimism - forgiveness<br>The 3 of Swords reversed suggests negative self-talk, but also the potential for releasing pain, finding optimism, and forgiveness."
       },
       "meaning": "The 3 of Swords signifies heartbreak and emotional pain. It represents sorrow, grief, and hurt, but also the potential for releasing pain and finding forgiveness."
     },
@@ -463,8 +463,8 @@
       "id": "4swd",
       "name": "4 of Swords",
       "description": {
-        "upright": "Rest, relaxation, meditation, contemplation, recuperation",
-        "reversed": "Exhaustion, burnout, deep contemplation, stagnation"
+        "upright": "rest - relaxation - meditation - contemplation - recuperation<br>The 4 of Swords represents rest and relaxation. It signifies a time for meditation, contemplation, and recuperation.",
+        "reversed": "exhaustion - burnout - deep contemplation - stagnation<br>The 4 of Swords reversed suggests exhaustion and burnout, but also the potential for deep contemplation and stagnation."
       },
       "meaning": "The 4 of Swords represents rest and relaxation. It signifies a time for meditation, contemplation, and recuperation."
     },
@@ -472,8 +472,8 @@
       "id": "5swd",
       "name": "5 of Swords",
       "description": {
-        "upright": "Conflict, disagreements, competition, defeat, winning at all costs",
-        "reversed": "Reconciliation, making amends, past resentment"
+        "upright": "conflict - disagreements - competition - defeat - winning at all costs<br>The 5 of Swords represents conflict and disagreements. It signifies competition, defeat, and the consequences of winning at all costs.",
+        "reversed": "reconciliation - making amends - past resentment<br>The 5 of Swords reversed suggests reconciliation and making amends, but also the potential for past resentment."
       },
       "meaning": "The 5 of Swords represents conflict and disagreements. It signifies competition, defeat, and the consequences of winning at all costs."
     },
@@ -481,8 +481,8 @@
       "id": "6swd",
       "name": "6 of Swords",
       "description": {
-        "upright": "Transition, change, rite of passage, releasing baggage",
-        "reversed": "Personal transition, resistance to change, unfinished business"
+        "upright": "transition - change - rite of passage - releasing baggage<br>The 6 of Swords signifies transition and change. It represents a rite of passage and the release of baggage.",
+        "reversed": "personal transition - resistance to change - unfinished business<br>The 6 of Swords reversed suggests a personal transition, but also the potential for resistance to change and unfinished business."
       },
       "meaning": "The 6 of Swords signifies transition and change. It represents a rite of passage and the release of baggage."
     },
@@ -490,8 +490,8 @@
       "id": "7swd",
       "name": "7 of Swords",
       "description": {
-        "upright": "Betrayal, deception, getting away with something, stealth",
-        "reversed": "Imposter syndrome, self-deceit, keeping secrets"
+        "upright": "betrayal - deception - getting away with something - stealth<br>The 7 of Swords represents betrayal and deception. It signifies getting away with something and the need for stealth.",
+        "reversed": "imposter syndrome - self-deceit - keeping secrets<br>The 7 of Swords reversed suggests imposter syndrome and self-deceit, but also the potential for keeping secrets."
       },
       "meaning": "The 7 of Swords represents betrayal and deception. It signifies getting away with something and the need for stealth."
     },
@@ -499,8 +499,8 @@
       "id": "8swd",
       "name": "8 of Swords",
       "description": {
-        "upright": "Negative thoughts, self-imposed restriction, imprisonment, victim mentality",
-        "reversed": "Self-limiting beliefs, inner critic, releasing negative thoughts, open to new perspectives"
+        "upright": "negative thoughts - self-imposed restriction - imprisonment - victim mentality<br>The 8 of Swords signifies negative thoughts and self-imposed restrictions. It represents imprisonment and a victim mentality, but also the potential for releasing negative thoughts and opening up to new perspectives.",
+        "reversed": "self-limiting beliefs - inner critic - releasing negative thoughts - open to new perspectives<br>The 8 of Swords reversed suggests self-limiting beliefs and an inner critic, but also the potential for releasing negative thoughts and opening up to new perspectives."
       },
       "meaning": "The 8 of Swords signifies negative thoughts and self-imposed restrictions. It represents imprisonment and a victim mentality, but also the potential for releasing negative thoughts and opening up to new perspectives."
     },
@@ -508,8 +508,8 @@
       "id": "9swd",
       "name": "9 of Swords",
       "description": {
-        "upright": "Anxiety, worry, fear, depression, nightmares",
-        "reversed": "Inner turmoil, deep-seated fears, secrets, releasing worry"
+        "upright": "anxiety - worry - fear - depression - nightmares<br>The 9 of Swords represents anxiety and worry. It signifies fear, depression, and nightmares, but also the potential for releasing worry and addressing inner turmoil.",
+        "reversed": "inner turmoil - deep-seated fears - secrets - releasing worry<br>The 9 of Swords reversed suggests inner turmoil and deep-seated fears, but also the potential for releasing worry."
       },
       "meaning": "The 9 of Swords represents anxiety and worry. It signifies fear, depression, and nightmares, but also the potential for releasing worry and addressing inner turmoil."
     },
@@ -517,8 +517,8 @@
       "id": "10swd",
       "name": "10 of Swords",
       "description": {
-        "upright": "Painful endings, deep wounds, betrayal, loss, crisis",
-        "reversed": "Recovery, regeneration, resisting an inevitable end"
+        "upright": "painful endings - deep wounds - betrayal - loss - crisis<br>The 10 of Swords signifies painful endings and deep wounds. It represents betrayal, loss, and crisis, but also the potential for recovery and regeneration.",
+        "reversed": "recovery - regeneration - resisting an inevitable end<br>The 10 of Swords reversed suggests recovery and regeneration, but also the potential for resisting an inevitable end."
       },
       "meaning": "The 10 of Swords signifies painful endings and deep wounds. It represents betrayal, loss, and crisis, but also the potential for recovery and regeneration."
     },
@@ -526,8 +526,8 @@
       "id": "pswd",
       "name": "Page of Swords",
       "description": {
-        "upright": "New ideas, curiosity, thirst for knowledge, new ways of communicating",
-        "reversed": "Self-expression, all talk and no action, haphazard action, haste"
+        "upright": "new ideas - curiosity - thirst for knowledge - new ways of communicating<br>The Page of Swords represents new ideas and curiosity. It signifies a thirst for knowledge and new ways of communicating.",
+        "reversed": "self-expression - all talk and no action - haphazard action - haste<br>The Page of Swords reversed suggests self-expression, but also the potential for all talk and no action, haphazard action, and haste."
       },
       "meaning": "The Page of Swords represents new ideas and curiosity. It signifies a thirst for knowledge and new ways of communicating."
     },
@@ -535,8 +535,8 @@
       "id": "nswd",
       "name": "Knight of Swords",
       "description": {
-        "upright": "Ambitious, action-oriented, driven to succeed, fast-thinking",
-        "reversed": "Restless, unfocused, impulsive, burn-out"
+        "upright": "ambitious - action-oriented - driven to succeed - fast-thinking<br>The Knight of Swords signifies ambition and action. It represents a driven and fast-thinking individual, but also the potential for restlessness and burnout.",
+        "reversed": "restless - unfocused - impulsive - burn-out<br>The Knight of Swords reversed suggests restlessness and being unfocused, but also the potential for being impulsive and experiencing burn-out."
       },
       "meaning": "The Knight of Swords signifies ambition and action. It represents a driven and fast-thinking individual, but also the potential for restlessness and burnout."
     },
@@ -544,8 +544,8 @@
       "id": "qswd",
       "name": "Queen of Swords",
       "description": {
-        "upright": "Independent, unbiased judgment, clear boundaries, direct communication",
-        "reversed": "Overly-emotional, easily influenced, bitchy, cold-hearted"
+        "upright": "independent - unbiased judgment - clear boundaries - direct communication<br>The Queen of Swords represents independence and unbiased judgment. She signifies clear boundaries and direct communication.",
+        "reversed": "overly-emotional - easily influenced - bitchy - cold-hearted<br>The Queen of Swords reversed suggests being overly-emotional and easily influenced, but also the potential for being bitchy and cold-hearted."
       },
       "meaning": "The Queen of Swords represents independence and unbiased judgment. She signifies clear boundaries and direct communication."
     },
@@ -553,8 +553,8 @@
       "id": "kswd",
       "name": "King of Swords",
       "description": {
-        "upright": "Mental clarity, intellectual power, authority, truth",
-        "reversed": "Quiet power, inner truth, misuse of power, manipulation"
+        "upright": "mental clarity - intellectual power - authority - truth<br>The King of Swords signifies mental clarity and intellectual power. He represents authority and truth, but also the potential for misuse of power and manipulation.",
+        "reversed": "quiet power - inner truth - misuse of power - manipulation<br>The King of Swords reversed suggests quiet power and inner truth, but also the potential for misuse of power and manipulation."
       },
       "meaning": "The King of Swords signifies mental clarity and intellectual power. He represents authority and truth, but also the potential for misuse of power and manipulation."
     },
@@ -562,8 +562,8 @@
       "id": "kpent",
       "name": "King of Pentacles",
       "description": {
-        "upright": "Wealth, business, leadership, security, discipline, abundance",
-        "reversed": "Financially inept, obsessed with wealth and status, stubborn"
+        "upright": "wealth - business - leadership - security - discipline - abundance<br>The King of Pentacles represents wealth and business acumen. He signifies leadership, security, and abundance, but can also be financially inept and obsessed with wealth and status.",
+        "reversed": "financially inept - obsessed with wealth and status - stubborn<br>The King of Pentacles reversed suggests being financially inept and obsessed with wealth and status, but also the potential for being stubborn."
       },
       "meaning": "The King of Pentacles represents wealth and business acumen. He signifies leadership, security, and abundance, but can also be financially inept and obsessed with wealth and status."
     },
@@ -571,8 +571,8 @@
       "id": "qpent",
       "name": "Queen of Pentacles",
       "description": {
-        "upright": "Nurturing, practical, providing financially, a working parent",
-        "reversed": "Financial independence, self-care, work-home conflict"
+        "upright": "nurturing - practical - providing financially - a working parent<br>The Queen of Pentacles represents nurturing and practicality. She signifies providing financially and being a working parent, but also the potential for financial independence and work-home conflict.",
+        "reversed": "financial independence - self-care - work-home conflict<br>The Queen of Pentacles reversed suggests financial independence and self-care, but also the potential for work-home conflict."
       },
       "meaning": "The Queen of Pentacles represents nurturing and practicality. She signifies providing financially and being a working parent, but also the potential for financial independence and work-home conflict."
     },
@@ -580,8 +580,8 @@
       "id": "npent",
       "name": "Knight of Pentacles",
       "description": {
-        "upright": "Hard work, productivity, routine, conservatism",
-        "reversed": "Self-discipline, boredom, feeling 'stuck', perfectionism"
+        "upright": "hard work - productivity - routine - conservatism<br>The Knight of Pentacles represents hard work and productivity. He signifies routine and conservatism, but also the potential for self-discipline and feeling 'stuck'.",
+        "reversed": "self-discipline - boredom - feeling 'stuck' - perfectionism<br>The Knight of Pentacles reversed suggests self-discipline, but also the potential for boredom, feeling 'stuck', and perfectionism."
       },
       "meaning": "The Knight of Pentacles represents hard work and productivity. He signifies routine and conservatism, but also the potential for self-discipline and feeling 'stuck'."
     },
@@ -589,8 +589,8 @@
       "id": "ppent",
       "name": "Page of Pentacles",
       "description": {
-        "upright": "Manifestation, financial opportunity, skill development",
-        "reversed": "Lack of progress, procrastination, learn from failure"
+        "upright": "manifestation - financial opportunity - skill development<br>The Page of Pentacles represents manifestation and financial opportunity. He signifies skill development and the potential for progress, but also the need to learn from failure.",
+        "reversed": "lack of progress - procrastination - learn from failure<br>The Page of Pentacles reversed suggests a lack of progress and procrastination, but also the need to learn from failure."
       },
       "meaning": "The Page of Pentacles represents manifestation and financial opportunity. He signifies skill development and the potential for progress, but also the need to learn from failure."
     },
@@ -598,8 +598,8 @@
       "id": "10pent",
       "name": "10 of Pentacles",
       "description": {
-        "upright": "Wealth, financial security, family, long-term success, contribution",
-        "reversed": "The dark side of wealth, financial failure or loss"
+        "upright": "wealth - financial security - family - long-term success - contribution<br>The 10 of Pentacles represents wealth and financial security. It signifies family, long-term success, and contribution, but also the potential for financial failure or loss.",
+        "reversed": "the dark side of wealth - financial failure or loss<br>The 10 of Pentacles reversed suggests the dark side of wealth and the potential for financial failure or loss."
       },
       "meaning": "The 10 of Pentacles represents wealth and financial security. It signifies family, long-term success, and contribution, but also the potential for financial failure or loss."
     },
@@ -607,8 +607,8 @@
       "id": "9pent",
       "name": "9 of Pentacles",
       "description": {
-        "upright": "Abundance, luxury, self-sufficiency, financial independence",
-        "reversed": "Self-worth, over-investment in work, hustling"
+        "upright": "abundance - luxury - self-sufficiency - financial independence<br>The 9 of Pentacles represents abundance and luxury. It signifies self-sufficiency and financial independence, but also the potential for over-investment in work and hustling.",
+        "reversed": "self-worth - over-investment in work - hustling<br>The 9 of Pentacles reversed suggests a focus on self-worth, but also the potential for over-investment in work and hustling."
       },
       "meaning": "The 9 of Pentacles represents abundance and luxury. It signifies self-sufficiency and financial independence, but also the potential for over-investment in work and hustling."
     },
@@ -616,8 +616,8 @@
       "id": "8pent",
       "name": "8 of Pentacles",
       "description": {
-        "upright": "Apprenticeship, repetitive tasks, mastery, skill development",
-        "reversed": "Self-development, perfectionism, misdirected activity"
+        "upright": "apprenticeship - repetitive tasks - mastery - skill development<br>The 8 of Pentacles represents apprenticeship and mastery. It signifies repetitive tasks and skill development, but also the potential for self-development and perfectionism.",
+        "reversed": "self-development - perfectionism - misdirected activity<br>The 8 of Pentacles reversed suggests self-development and perfectionism, but also the potential for misdirected activity."
       },
       "meaning": "The 8 of Pentacles represents apprenticeship and mastery. It signifies repetitive tasks and skill development, but also the potential for self-development and perfectionism."
     },
@@ -625,8 +625,8 @@
       "id": "7pent",
       "name": "7 of Pentacles",
       "description": {
-        "upright": "Long-term view, sustainable results, perseverance, investment",
-        "reversed": "Lack of long-term vision, limited success or reward"
+        "upright": "long-term view - sustainable results - perseverance - investment<br>The 7 of Pentacles represents a long-term view and sustainable results. It signifies perseverance and investment, but also the potential for a lack of long-term vision and limited success.",
+        "reversed": "lack of long-term vision - limited success or reward<br>The 7 of Pentacles reversed suggests a lack of long-term vision, but also the potential for limited success or reward."
       },
       "meaning": "The 7 of Pentacles represents a long-term view and sustainable results. It signifies perseverance and investment, but also the potential for a lack of long-term vision and limited success."
     },
@@ -634,8 +634,8 @@
       "id": "6pent",
       "name": "6 of Pentacles",
       "description": {
-        "upright": "Giving, receiving, sharing wealth, generosity, charity",
-        "reversed": "Self-care, unpaid debts, one-sided charity"
+        "upright": "giving - receiving - sharing wealth - generosity - charity<br>The 6 of Pentacles represents giving and receiving. It signifies sharing wealth, generosity, and charity, but also the potential for self-care and unpaid debts.",
+        "reversed": "self-care - unpaid debts - one-sided charity<br>The 6 of Pentacles reversed suggests a focus on self-care, but also the potential for unpaid debts and one-sided charity."
       },
       "meaning": "The 6 of Pentacles represents giving and receiving. It signifies sharing wealth, generosity, and charity, but also the potential for self-care and unpaid debts."
     },
@@ -643,8 +643,8 @@
       "id": "5pent",
       "name": "5 of Pentacles",
       "description": {
-        "upright": "Financial loss, poverty, lack mindset, isolation, worry",
-        "reversed": "Recovery from financial loss, spiritual poverty"
+        "upright": "financial loss - poverty - lack mindset - isolation - worry<br>The 5 of Pentacles represents financial loss and poverty. It signifies a lack mindset, isolation, and worry, but also the potential for recovery from financial loss and spiritual poverty.",
+        "reversed": "recovery from financial loss - spiritual poverty<br>The 5 of Pentacles reversed suggests recovery from financial loss, but also the potential for spiritual poverty."
       },
       "meaning": "The 5 of Pentacles represents financial loss and poverty. It signifies a lack mindset, isolation, and worry, but also the potential for recovery from financial loss and spiritual poverty."
     },
@@ -652,8 +652,8 @@
       "id": "4pent",
       "name": "4 of Pentacles",
       "description": {
-        "upright": "Saving money, security, conservatism, scarcity, control",
-        "reversed": "Over-spending, greed, self-protection"
+        "upright": "saving money - security - conservatism - scarcity - control<br>The 4 of Pentacles represents saving money and security. It signifies conservatism, scarcity, and control, but also the potential for over-spending and greed.",
+        "reversed": "over-spending - greed - self-protection<br>The 4 of Pentacles reversed suggests over-spending and greed, but also the potential for self-protection."
       },
       "meaning": "The 4 of Pentacles represents saving money and security. It signifies conservatism, scarcity, and control, but also the potential for over-spending and greed."
     },
@@ -661,8 +661,8 @@
       "id": "3pent",
       "name": "3 of Pentacles",
       "description": {
-        "upright": "Teamwork, collaboration, learning, implementation",
-        "reversed": "Disharmony, misalignment, working alone"
+        "upright": "teamwork - collaboration - learning - implementation<br>The 3 of Pentacles represents teamwork and collaboration. It signifies learning and implementation.",
+        "reversed": "disharmony - misalignment - working alone<br>The 3 of Pentacles suggests disharmony and misalignment, potentially leading to working alone."
       },
       "meaning": "The 3 of Pentacles represents teamwork and collaboration. It signifies learning and implementation, but also the potential for disharmony and misalignment."
     },
@@ -670,8 +670,8 @@
       "id": "2pent",
       "name": "2 of Pentacles",
       "description": {
-        "upright": "Multiple priorities, time management, prioritisation, adaptability",
-        "reversed": "Over-committed, disorganisation, reprioritisation"
+        "upright": "multiple priorities - time management - prioritisation - adaptability<br>The 2 of Pentacles represents multiple priorities and time management. It signifies prioritisation and adaptability.",
+        "reversed": "over-committed - disorganisation - reprioritisation<br>The 2 of Pentacles suggests being over-committed and experiencing disorganisation, requiring reprioritisation."
       },
       "meaning": "The 2 of Pentacles represents multiple priorities and time management. It signifies prioritisation and adaptability, but also the potential for over-commitment and disorganisation."
     },
@@ -679,8 +679,8 @@
       "id": "apent",
       "name": "Ace of Pentacles",
       "description": {
-        "upright": "A new financial or career opportunity, manifestation, abundance",
-        "reversed": "Lost opportunity, lack of planning and foresight"
+        "upright": "opportunity - manifestation - abundance<br>Pay attention for a new financial or career opportunity. Recognize the potential for manifestation and abundance.",
+        "reversed": "lost opportunity - lack of planning and foresight<br>This suggests a lost opportunity due to a lack of planning and foresight."
       },
       "meaning": "The Ace of Pentacles represents a new financial or career opportunity. It signifies manifestation and abundance, but also the potential for lost opportunity and lack of planning."
     },
@@ -688,8 +688,8 @@
       "id": "justice",
       "name": "Justice",
       "description": {
-        "upright": "Justice, fairness, truth, cause and effect, law",
-        "reversed": "Unfairness, lack of accountability, dishonesty"
+        "upright": "justice - fairness - truth - cause and effect - law<br>Justice represents fairness and truth. It signifies cause and effect and the importance of law.",
+        "reversed": "unfairness - lack of accountability - dishonesty<br>Justice reversed suggests unfairness, a lack of accountability, and potential dishonesty."
       },
       "meaning": "Justice represents fairness and truth. It signifies cause and effect, law, and the need for accountability."
     },
@@ -697,8 +697,8 @@
       "id": "death",
       "name": "Death",
       "description": {
-        "upright": "Endings, change, transformation, transition",
-        "reversed": "Resistance to change, personal transformation, inner purging"
+        "upright": "endings - change - transformation - transition<br>Death represents endings and change. It signifies transformation and transition.",
+        "reversed": "resistance to change - personal transformation - inner purging<br>Death reversed suggests resistance to change, but also the potential for personal transformation and inner purging."
       },
       "meaning": "Death represents endings and change. It signifies transformation and transition, but also the potential for resistance to change and personal transformation."
     }
