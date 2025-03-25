@@ -358,30 +358,16 @@ function initTarotInterface() {
       // Extract description (after the <br> tag)
       if (parts.length > 1) {
         displayText += parts[1] + "\n\n";
-      } else if (parts.length === 1) {
-        // If no <br> tag but we have content, add a placeholder description
-        displayText +=
-          "This card represents " +
-          foundCard.name.toLowerCase() +
-          " energy.\n\n";
       }
-    } else {
-      // Fallback if no description is available
-      displayText +=
-        "Keywords and description not available for this card.\n\n";
     }
 
     // Add general meaning if available
     if (foundCard.meaning) {
       displayText += foundCard.meaning;
-    } else {
-      displayText += "General meaning information not available for this card.";
     }
 
     // Set the text content with proper formatting
-    cardText.textContent =
-      displayText ||
-      `This is the ${foundCard.name}. The interpretation will depend on the card's position and surrounding cards.`;
+    cardText.textContent = displayText;
 
     // Ensure text remains in normal style
     cardText.style.fontStyle = "normal";
