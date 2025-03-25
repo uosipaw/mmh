@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Variable to store the tarot card data loaded from the JSON file
 let tarotData = null;
 
 // Define the array of tarot card names
