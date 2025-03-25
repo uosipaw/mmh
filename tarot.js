@@ -118,7 +118,7 @@ const tarotCardNames = [
 async function initTarot() {
   try {
     console.log("Attempting to load tarot-cards.json...");
-    const response = await fetch("./tarot-cards.json");
+    const response = await fetch("/tarot-cards.json");
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -172,6 +172,20 @@ function initTarotInterface() {
   ) {
     console.error("Required tarot elements not found in the document");
     return;
+  }
+
+  // Create deck visuals if it's empty
+  if (deck.children.length === 0) {
+    const deckBack = document.createElement('div');
+    deckBack.classList.add('deck-back');
+    deckBack.innerHTML = '<div class="inner">Tarot<br>Deck</div>';
+    deck.appendChild(deckBack);
+    
+    // Add some styling to make it visible
+    deck.style.width = '120px';
+    deck.style.height = '200px';
+    deck.style.cursor = 'pointer';
+    deck.style.margin = '20px auto';
   }
 
   const numberOfCards = tarotCardNames.length; // Total number of cards
