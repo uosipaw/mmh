@@ -303,30 +303,15 @@ function initTarotInterface() {
   function findCardData(cardNameValue) {
     if (!tarotData || !tarotData.cards) return null;
 
-    // First try to find by exact name match
-    let foundCard = tarotData.cards.find(
-      (card) =>
-        card.filename === cardNameValue ||
-        card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
-    );
+    // First try to find by id match
+    let foundCard = tarotData.cards.find((card) => card.id === cardNameValue);
 
-    // If not found, try to find by card index
+    // If not found, try other methods...
     if (!foundCard) {
-      const cardIndex = tarotCardNames.indexOf(cardNameValue);
-      if (cardIndex !== -1) {
-        foundCard = tarotData.cards.find((card) => card.id === cardIndex);
-      }
-    }
-
-    // Final attempt - try to find by keyword matches in name
-    if (!foundCard) {
-      foundCard = tarotData.cards.find((card) => {
-        const simpleName = card.name.toLowerCase();
-        return (
-          cardNameValue.includes(simpleName) ||
-          simpleName.includes(cardNameValue)
-        );
-      });
+      // Try name match
+      foundCard = tarotData.cards.find(
+        (card) => card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
+      );
     }
 
     return foundCard;
@@ -358,18 +343,27 @@ function initTarotInterface() {
       // Extract description (after the <br> tag)
       if (parts.length > 1) {
         displayText += parts[1] + "\n\n";
-      } else {
-        // If no <br> tag, use the whole text as description
-        displayText += foundCard.description[orientation] + "\n\n";
+      } else if (parts.length === 1) {
+        // If no <br> tag but we have content, add a placeholder description
+        displayText +=
+          "This card represents " +
+          foundCard.name.toLowerCase() +
+          " energy.\n\n";
       }
+    } else {
+      // Fallback if no description is available
+      displayText +=
+        "Keywords and description not available for this card.\n\n";
     }
 
     // Add general meaning if available
     if (foundCard.meaning) {
       displayText += foundCard.meaning;
+    } else {
+      displayText += "General meaning information not available for this card.";
     }
 
-    // Set the text content
+    // Set the text content with proper formatting
     cardText.textContent =
       displayText ||
       `This is the ${foundCard.name}. The interpretation will depend on the card's position and surrounding cards.`;

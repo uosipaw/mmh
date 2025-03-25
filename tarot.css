@@ -364,6 +364,8 @@ body.tarot-page {
     /* Ensure correct text orientation */
     writing-mode: horizontal-tb !important;
     /* Ensure horizontal text */
+    white-space: pre-line;
+    /* Preserves line breaks */
 }
 
 /* Card description */
@@ -381,6 +383,8 @@ body.tarot-page {
     margin-bottom: 10px;
     text-align: center;
     color: #271030;
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
 #card-orientation {
@@ -391,6 +395,7 @@ body.tarot-page {
     text-align: center;
     font-style: italic;
     color: #555;
+    margin-bottom: 1.5em;
 }
 
 #card-text {
