@@ -289,12 +289,17 @@ function initTarotInterface() {
   }
 
   function updateCardContent(cardNameValue, isReversed) {
-    // Find card data
+    console.log(
+      `Updating content for: ${cardNameValue}, reversed: ${isReversed}`
+    );
+
     const foundCard = findCardData(cardNameValue);
 
     if (foundCard) {
+      console.log("Found card data:", foundCard);
       displayCardData(foundCard, isReversed);
     } else {
+      console.log("❌ Card not found in data!");
       displayFallbackCardData(cardNameValue, isReversed);
     }
   }
@@ -302,38 +307,29 @@ function initTarotInterface() {
   function findCardData(cardNameValue) {
     if (!tarotData || !tarotData.cards) return null;
 
-    // First try to find by exact name match
-    let foundCard = tarotData.cards.find(
-      (card) =>
-        card.filename === cardNameValue ||
-        card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
+    // First try to find by ID (most reliable method)
+    let foundCard = tarotData.cards.find((card) => card.id === cardNameValue);
+
+    // If not found, try alternate methods
+    if (!foundCard) {
+      foundCard = tarotData.cards.find(
+        (card) =>
+          card.filename === cardNameValue ||
+          card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
+      );
+    }
+
+    // Debug output
+    console.log(
+      `Looking for card: ${cardNameValue}, Found: ${foundCard ? "yes" : "no"}`
     );
-
-    // If not found, try to find by card index
-    if (!foundCard) {
-      const cardIndex = tarotCardNames.indexOf(cardNameValue);
-      if (cardIndex !== -1) {
-        foundCard = tarotData.cards.find((card) => card.id === cardIndex);
-      }
-    }
-
-    // Final attempt - try to find by keyword matches in name
-    if (!foundCard) {
-      foundCard = tarotData.cards.find((card) => {
-        const simpleName = card.name.toLowerCase();
-        return (
-          cardNameValue.includes(simpleName) ||
-          simpleName.includes(cardNameValue)
-        );
-      });
-    }
 
     return foundCard;
   }
 
   function displayCardData(foundCard, isReversed) {
     // Set card name
-    cardName.textContent = foundCard.name;
+    cardName.textContent = foundCard.name || "Unknown Card";
 
     // Set orientation in italics
     cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
@@ -345,7 +341,7 @@ function initTarotInterface() {
     // Prepare card text content
     let displayText = "";
 
-    // Extract and display keywords and description if available
+    // Check if description exists
     if (foundCard.description && foundCard.description[orientation]) {
       const parts = foundCard.description[orientation].split("<br>");
 
@@ -357,15 +353,23 @@ function initTarotInterface() {
       // Extract description (after the <br> tag)
       if (parts.length > 1) {
         displayText += parts[1] + "\n\n";
+      } else {
+        // If no <br> tag, add a simple fallback
+        displayText += "No detailed description available.\n\n";
       }
+    } else {
+      // No description found
+      displayText += "No description available for this orientation.\n\n";
     }
 
     // Add general meaning if available
     if (foundCard.meaning) {
       displayText += foundCard.meaning;
+    } else {
+      displayText += "No general meaning available.";
     }
 
-    // Set the text content with proper formatting
+    // Set the text content
     cardText.textContent = displayText;
 
     // Ensure text remains in normal style
