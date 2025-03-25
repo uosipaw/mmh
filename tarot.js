@@ -141,7 +141,7 @@ function initTarotInterface() {
   const cardImage = document.querySelector("#card-focus .card-image");
   const cardName = document.getElementById("card-name");
   const cardOrientation = document.getElementById("card-orientation");
-  const cardText = document.getElementById("card-text");json"),
+  const cardText = document.getElementById("card-text");
   const cardContainer = document.querySelector(".card-container");
 
   // Check if necessary elements existjson");
@@ -468,20 +468,22 @@ function initTarotInterface() {
   // Function to add reset button to the interface
   function addResetButton() {
     // Implementation for reset button
-    const resetButton = document.getElementById("reset-button") || document.createElement("button");
+    const resetButton =
+      document.getElementById("reset-button") ||
+      document.createElement("button");
     if (!resetButton.id) {
       resetButton.id = "reset-button";
       resetButton.textContent = "Reset";
       resetButton.classList.add("reset-button");
       document.body.appendChild(resetButton);
-      
-      resetButton.addEventListener("click", function() {
+
+      resetButton.addEventListener("click", function () {
         // Reset functionality can be implemented here
         drawnCardNames = [];
         currentPosition = 0;
         cardPositions = [];
         if (drawnCards) {
-          drawnCards.innerHTML = '';
+          drawnCards.innerHTML = "";
         }
         resetButton.style.display = "none";
       });
