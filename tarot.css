@@ -472,6 +472,10 @@ body.tarot-page {
         height: 350px;
     }
 
+    .bgimage {
+        background-image: url('./images/tarotbgmobile.png');
+    }
+
     .card-position-0 {
         bottom: 350px;
         left: calc(50% - 160px);
