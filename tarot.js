@@ -117,16 +117,30 @@ const tarotCardNames = [
 
 async function initTarot() {
   try {
+    console.log("Attempting to load tarot-cards.json...");
     const response = await fetch("./tarot-cards.json");
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    tarotData = await response.json();
-    console.log("Tarot card data loaded successfully", tarotData);
+
+    const text = await response.text(); // Get as text first
+    console.log("Received JSON text:", text.substring(0, 100) + "..."); // Log first 100 chars
+
+    try {
+      tarotData = JSON.parse(text);
+      console.log("Tarot card data loaded successfully", tarotData);
+    } catch (parseError) {
+      console.error("JSON parse error:", parseError);
+      console.error("JSON content that failed to parse:", text);
+      throw parseError;
+    }
 
     initTarotInterface();
   } catch (error) {
     console.error("Error loading tarot card data:", error);
+    // Show error to user
+    alert("Failed to load tarot card data. Check console for details.");
     // Continue with basic functionality even if card data isn't available
     initTarotInterface();
   }
@@ -182,19 +196,36 @@ function initTarotInterface() {
   }
 
   function drawCard() {
-    if (drawnCardNames.length === numberOfCards) {
+    console.log("Drawing card...");
+    console.log("Current drawn cards:", drawnCardNames);
+    
+    if (drawnCardNames.length >= numberOfCards) {
       alert("The deck is empty!");
       return;
     }
-
+  
     // Select a random card that hasn't been drawn yet
     let randomName;
+    let attempts = 0;
+    const maxAttempts = 100; // Prevent infinite loops
+    
     do {
       const randomIndex = Math.floor(Math.random() * numberOfCards);
       randomName = tarotCardNames[randomIndex];
+      attempts++;
+      
+      if (attempts > maxAttempts) {
+        console.error("Failed to find an undrawn card after", maxAttempts, "attempts");
+        alert("Error selecting a card. Please refresh the page.");
+        return;
+      }
     } while (drawnCardNames.includes(randomName));
-
+  
+    console.log("Selected card:", randomName);
     drawnCardNames.push(randomName);
+    
+    // Create card element
+    // Rest of your code...
     const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
     // Create card element
@@ -517,3 +548,16 @@ function initTarotInterface() {
   // Log initialization success
   console.log("Tarot card interface initialized");
 }
+
+<div id="deck"></div>
+<div id="drawn-cards"></div>
+<div id="card-focus" class="hidden">
+  <div class="card-container">
+    <div class="card-image"></div>
+  </div>
+  <button id="close-button">×</button>
+  <h2 id="card-name"></h2>
+  <h3 id="card-orientation"></h3>
+  <p id="card-text"></p>
+</div>
+<div id="overlay" class="hidden"></div>
