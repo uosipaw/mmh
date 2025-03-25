@@ -303,15 +303,30 @@ function initTarotInterface() {
   function findCardData(cardNameValue) {
     if (!tarotData || !tarotData.cards) return null;
 
-    // First try to find by id match
-    let foundCard = tarotData.cards.find((card) => card.id === cardNameValue);
+    // First try to find by exact name match
+    let foundCard = tarotData.cards.find(
+      (card) =>
+        card.filename === cardNameValue ||
+        card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
+    );
 
-    // If not found, try other methods...
+    // If not found, try to find by card index
     if (!foundCard) {
-      // Try name match
-      foundCard = tarotData.cards.find(
-        (card) => card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
-      );
+      const cardIndex = tarotCardNames.indexOf(cardNameValue);
+      if (cardIndex !== -1) {
+        foundCard = tarotData.cards.find((card) => card.id === cardIndex);
+      }
+    }
+
+    // Final attempt - try to find by keyword matches in name
+    if (!foundCard) {
+      foundCard = tarotData.cards.find((card) => {
+        const simpleName = card.name.toLowerCase();
+        return (
+          cardNameValue.includes(simpleName) ||
+          simpleName.includes(cardNameValue)
+        );
+      });
     }
 
     return foundCard;

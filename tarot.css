@@ -342,6 +342,7 @@ body.tarot-page {
 
 /* Make sure card text is always normal */
 .card-description {
+    font-family: "agudisplay";
     height: 100%;
     width: 100%;
     color: #271030;
@@ -353,6 +354,7 @@ body.tarot-page {
 }
 
 #card-text {
+    font-family: "agudisplay";
     line-height: 1.5;
     font-size: 16px;
     color: #333;
