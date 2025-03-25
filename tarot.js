@@ -114,6 +114,7 @@ const tarotCardNames = [
   "qpent",
   "kpent",
 ];
+
 async function initTarot() {
   try {
     const response = await fetch("./tarot-cards.json");
@@ -121,38 +122,29 @@ async function initTarot() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     tarotData = await response.json();
-    tarotData = await response.json();
     console.log("Tarot card data loaded successfully", tarotData);
 
     initTarotInterface();
   } catch (error) {
+    console.error("Error loading tarot card data:", error);
     // Continue with basic functionality even if card data isn't available
     initTarotInterface();
-/**
- * Initializes the tarot card interface by setting up event listeners, 
- * handling card drawing, and managing the display of card details.
- */
-function initTarotInterface() {
-function initTarotInterface() {
+  }
+}
+
 function initTarotInterface() {
   const deck = document.getElementById("deck");
+  const drawnCards = document.getElementById("drawn-cards");
   const cardFocus = document.getElementById("card-focus");
   const overlay = document.getElementById("overlay");
   const closeButton = document.getElementById("close-button");
-  const elements = {
-    cardOrientation: document.getElementById("card-orientation"),
-    cardText: document.getElementById("card-text"),
-    cardContainer: document.querySelector(".card-container"),
-  };
-  const cardText = document.getElementById("card-text");
-  const cardContainer = document.querySelector(".card-container");
-  // Get necessary DOM elements
-  const drawnCards = document.getElementById("drawn-cards");
-  const cardImage = document.getElementById("card-image");
+  const cardImage = document.querySelector("#card-focus .card-image");
   const cardName = document.getElementById("card-name");
   const cardOrientation = document.getElementById("card-orientation");
+  const cardText = document.getElementById("card-text");json"),
+  const cardContainer = document.querySelector(".card-container");
 
-  // Check if necessary elements exist
+  // Check if necessary elements existjson");
   if (
     !deck ||
     !drawnCards ||
@@ -161,43 +153,44 @@ function initTarotInterface() {
     !closeButton ||
     !cardImage ||
     !cardName ||
-    !cardOrientation
+    !cardOrientation ||
+    !cardText
   ) {
-    console.error("Missing required DOM elements");
+    console.error("Required tarot elements not found in the document");
     return;
   }
-  const totalCards = tarotCardNames.length; // Total number of cards
 
-  if (elements.cardContainer) {
-    elements.cardContainer.addEventListener("click", function (e) {
+  const numberOfCards = tarotCardNames.length; // Total number of cards
+  let drawnCardNames = []; // Track cards by name instead of number
+
+  // Add event listeners
+  deck.addEventListener("click", drawCard);
+  closeButton.addEventListener("click", closeCardFocus);
+
+  // Track drawn cards and positions
+  let currentPosition = 0; // Will continue to increment for each card
+  let cardPositions = []; // Will store information about each card
+
+  // Handle card flip in focus mode
+  if (cardContainer) {
+    cardContainer.addEventListener("click", function (e) {
       if (!e.target.closest("#close-button")) {
+        this.classList.toggle("flipped");
         e.stopPropagation();
       }
     });
   }
 
-  /**
-   * Draws a random card from the deck, ensuring no duplicates, and displays it.
-   */
   function drawCard() {
     if (drawnCardNames.length === numberOfCards) {
       alert("The deck is empty!");
-  /**
-   * Draws a random card from the deck, ensuring no duplicates, and displays it.
-   */
-  function drawCard() {
-  /**
-   * Draws a random card from the deck, ensuring no duplicates, and displays it.
-   */
-    if (drawnCardNames.length === tarotCardNames.length) {
-      showNotification("The deck is empty!");
       return;
     }
-    
+
+    // Select a random card that hasn't been drawn yet
     let randomName;
     do {
-      const randomIndex = Math.floor(Math.random() * tarotCardNames.length);
-      randomName = tarotCardNames[randomIndex];
+      const randomIndex = Math.floor(Math.random() * numberOfCards);
       randomName = tarotCardNames[randomIndex];
     } while (drawnCardNames.includes(randomName));
 
@@ -206,10 +199,10 @@ function initTarotInterface() {
 
     // Create card element
     const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card", "deck"); // Initial state: in deck
+
     // Create card image element (shown when drawn)
     const cardImageElement = document.createElement("div");
-    cardImageElement.classList.add("card-image");
-    cardImageElement.style.backgroundImage = `url("./images/tarot/${randomName}.png")`;
     cardImageElement.classList.add("card-image");
 
     // Set the background image directly instead of using a class
@@ -259,12 +252,9 @@ function initTarotInterface() {
     }
   }
 
-  /**
   function focusCard(event) {
     const card = event.currentTarget;
     const cardNameValue = card.dataset.cardName;
-    const isReversed = card.dataset.reversed === "true";
-    cardImage.style.backgroundImage = `url("./images/tarot/${cardNameValue}.png")`;
     const isReversed = card.dataset.reversed === "true";
 
     // Set the background image directly
@@ -279,8 +269,8 @@ function initTarotInterface() {
 
     // Ensure the card description text doesn't follow the card orientation
     cardImage.dataset.reversed = null; // Remove the data attribute completely
-    if (elements.cardContainer) {
-      elements.cardContainer.classList.remove("flipped");
+
+    // Ensure the card container is in the initial state
     if (cardContainer) {
       cardContainer.classList.remove("flipped");
     }
@@ -458,10 +448,15 @@ function initTarotInterface() {
   // Make sure the overlay also closes the modal when clicked
   if (overlay) {
     overlay.addEventListener("click", closeCardFocus);
+  }
+
   // Optimize modal interaction for touch devices
   if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    if (elements.cardContainer) {
-      elements.cardContainer.addEventListener("touchend", function (e) {
+    // ...existing code...
+
+    // Add tap to flip for mobile
+    if (cardContainer) {
+      cardContainer.addEventListener("touchend", function (e) {
         if (!e.target.closest("#close-button")) {
           this.classList.toggle("flipped");
           e.preventDefault();
@@ -516,24 +511,3 @@ function initTarotInterface() {
   // Log initialization success
   console.log("Tarot card interface initialized");
 }
-}
-  // Function to show custom notifications
-  function showNotification(message) {
-    const notification = document.createElement("div");
-    notification.className = "notification";
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-      notification.classList.add("visible");
-    }, 10);
-
-    setTimeout(() => {
-      notification.classList.remove("visible");
-      setTimeout(() => {
-        document.body.removeChild(notification);
-      }, 300);
-    }, 3000);
-  }
-
-  // Log initialization success
