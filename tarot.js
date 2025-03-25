@@ -333,35 +333,48 @@ function initTarotInterface() {
   }
 
   function displayCardData(foundCard, isReversed) {
-    // Set card name and orientation normally
+    // Set card name
     cardName.textContent = foundCard.name;
-    cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
 
-    // Include appropriate meaning based on orientation without changing text style
+    // Set orientation in italics
+    cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
+    cardOrientation.style.fontStyle = "italic";
+
+    // Include appropriate meaning based on orientation
     const orientation = isReversed ? "reversed" : "upright";
 
     // Prepare card text content
     let displayText = "";
+
+    // Extract and display keywords and description if available
+    if (foundCard.description && foundCard.description[orientation]) {
+      const parts = foundCard.description[orientation].split("<br>");
+
+      // Extract keywords (before the <br> tag)
+      if (parts.length > 0) {
+        displayText += parts[0] + "\n\n";
+      }
+
+      // Extract description (after the <br> tag)
+      if (parts.length > 1) {
+        displayText += parts[1] + "\n\n";
+      } else {
+        // If no <br> tag, use the whole text as description
+        displayText += foundCard.description[orientation] + "\n\n";
+      }
+    }
 
     // Add general meaning if available
     if (foundCard.meaning) {
       displayText += foundCard.meaning;
     }
 
-    // Add orientation-specific meaning in a normal text style
-    if (foundCard.description && foundCard.description[orientation]) {
-      if (displayText) displayText += "\n\n"; // Add spacing if there's already content
-      displayText += `${orientation.toUpperCase()} MEANING: ${
-        foundCard.description[orientation]
-      }`;
-    }
-
-    // Set the text content with normal styling
+    // Set the text content
     cardText.textContent =
       displayText ||
       `This is the ${foundCard.name}. The interpretation will depend on the card's position and surrounding cards.`;
 
-    // Ensure text remains in normal style regardless of card orientation
+    // Ensure text remains in normal style
     cardText.style.fontStyle = "normal";
     cardText.style.textOrientation = "normal";
     cardText.style.writingMode = "horizontal-tb";
