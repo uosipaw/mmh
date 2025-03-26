@@ -72,7 +72,6 @@
       "remotePort": 0
     },
     {
-    {
       "type": "java",
       "name": "Attach by Remote Debugging (Legacy)",
       "request": "attach",
