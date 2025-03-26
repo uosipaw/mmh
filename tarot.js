@@ -117,30 +117,17 @@ const tarotCardNames = [
 
 async function initTarot() {
   try {
-    console.log("Attempting to load tarot-cards.json...");
-    const response = await fetch("/tarot-cards.json");
-
+    const response = await fetch("./tarot-cards.json");
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    const text = await response.text(); // Get as text first
-    console.log("Received JSON text:", text.substring(0, 100) + "..."); // Log first 100 chars
-
-    try {
-      tarotData = JSON.parse(text);
-      console.log("Tarot card data loaded successfully", tarotData);
-    } catch (parseError) {
-      console.error("JSON parse error:", parseError);
-      console.error("JSON content that failed to parse:", text);
-      throw parseError;
-    }
+    tarotData = await response.json();
+    console.log("Tarot card data loaded successfully", tarotData);
 
     initTarotInterface();
+    showNotification("Tarot cards ready!");
   } catch (error) {
     console.error("Error loading tarot card data:", error);
-    // Show error to user
-    alert("Failed to load tarot card data. Check console for details.");
     // Continue with basic functionality even if card data isn't available
     initTarotInterface();
   }
@@ -158,7 +145,7 @@ function initTarotInterface() {
   const cardText = document.getElementById("card-text");
   const cardContainer = document.querySelector(".card-container");
 
-  // Check if necessary elements existjson");
+  // Check if necessary elements exist
   if (
     !deck ||
     !drawnCards ||
@@ -172,20 +159,6 @@ function initTarotInterface() {
   ) {
     console.error("Required tarot elements not found in the document");
     return;
-  }
-
-  // Create deck visuals if it's empty
-  if (deck.children.length === 0) {
-    const deckBack = document.createElement('div');
-    deckBack.classList.add('deck-back');
-    deckBack.innerHTML = '<div class="inner">Tarot<br>Deck</div>';
-    deck.appendChild(deckBack);
-    
-    // Add some styling to make it visible
-    deck.style.width = '120px';
-    deck.style.height = '200px';
-    deck.style.cursor = 'pointer';
-    deck.style.margin = '20px auto';
   }
 
   const numberOfCards = tarotCardNames.length; // Total number of cards
@@ -210,36 +183,19 @@ function initTarotInterface() {
   }
 
   function drawCard() {
-    console.log("Drawing card...");
-    console.log("Current drawn cards:", drawnCardNames);
-    
-    if (drawnCardNames.length >= numberOfCards) {
-      alert("The deck is empty!");
+    if (drawnCardNames.length === numberOfCards) {
+      showNotification("The deck is empty!");
       return;
     }
-  
+
     // Select a random card that hasn't been drawn yet
     let randomName;
-    let attempts = 0;
-    const maxAttempts = 100; // Prevent infinite loops
-    
     do {
       const randomIndex = Math.floor(Math.random() * numberOfCards);
       randomName = tarotCardNames[randomIndex];
-      attempts++;
-      
-      if (attempts > maxAttempts) {
-        console.error("Failed to find an undrawn card after", maxAttempts, "attempts");
-        alert("Error selecting a card. Please refresh the page.");
-        return;
-      }
     } while (drawnCardNames.includes(randomName));
-  
-    console.log("Selected card:", randomName);
+
     drawnCardNames.push(randomName);
-    
-    // Create card element
-    // Rest of your code...
     const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
     // Create card element
@@ -302,8 +258,16 @@ function initTarotInterface() {
     const cardNameValue = card.dataset.cardName;
     const isReversed = card.dataset.reversed === "true";
 
-    // Set the background image directly
+    // Set the background image with error handling
     cardImage.style.backgroundImage = `url('./images/tarot/${cardNameValue}.png')`;
+
+    // Add error handling for image loading
+    const tempImg = new Image();
+    tempImg.onerror = function () {
+      cardImage.style.backgroundImage = `url('./images/tarot/card-back.png')`; // Fallback image
+      showNotification("Card image couldn't be loaded");
+    };
+    tempImg.src = `./images/tarot/${cardNameValue}.png`;
 
     // Use class for reversed state
     if (isReversed) {
@@ -313,7 +277,7 @@ function initTarotInterface() {
     }
 
     // Ensure the card description text doesn't follow the card orientation
-    cardImage.dataset.reversed = null; // Remove the data attribute completely
+    delete cardImage.dataset.reversed;
 
     // Ensure the card container is in the initial state
     if (cardContainer) {
@@ -334,17 +298,12 @@ function initTarotInterface() {
   }
 
   function updateCardContent(cardNameValue, isReversed) {
-    console.log(
-      `Updating content for: ${cardNameValue}, reversed: ${isReversed}`
-    );
-
+    // Find card data
     const foundCard = findCardData(cardNameValue);
 
     if (foundCard) {
-      console.log("Found card data:", foundCard);
       displayCardData(foundCard, isReversed);
     } else {
-      console.log("❌ Card not found in data!");
       displayFallbackCardData(cardNameValue, isReversed);
     }
   }
@@ -352,29 +311,38 @@ function initTarotInterface() {
   function findCardData(cardNameValue) {
     if (!tarotData || !tarotData.cards) return null;
 
-    // First try to find by ID (most reliable method)
-    let foundCard = tarotData.cards.find((card) => card.id === cardNameValue);
+    // First try to find by exact name match
+    let foundCard = tarotData.cards.find(
+      (card) =>
+        card.filename === cardNameValue ||
+        card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
+    );
 
-    // If not found, try alternate methods
+    // If not found, try to find by card index
     if (!foundCard) {
-      foundCard = tarotData.cards.find(
-        (card) =>
-          card.filename === cardNameValue ||
-          card.name.toLowerCase().replace(/\s+/g, "") === cardNameValue
-      );
+      const cardIndex = tarotCardNames.indexOf(cardNameValue);
+      if (cardIndex !== -1) {
+        foundCard = tarotData.cards.find((card) => card.id === cardIndex);
+      }
     }
 
-    // Debug output
-    console.log(
-      `Looking for card: ${cardNameValue}, Found: ${foundCard ? "yes" : "no"}`
-    );
+    // Final attempt - try to find by keyword matches in name
+    if (!foundCard) {
+      foundCard = tarotData.cards.find((card) => {
+        const simpleName = card.name.toLowerCase();
+        return (
+          cardNameValue.includes(simpleName) ||
+          simpleName.includes(cardNameValue)
+        );
+      });
+    }
 
     return foundCard;
   }
 
   function displayCardData(foundCard, isReversed) {
     // Set card name
-    cardName.textContent = foundCard.name || "Unknown Card";
+    cardName.textContent = foundCard.name;
 
     // Set orientation in italics
     cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
@@ -386,7 +354,7 @@ function initTarotInterface() {
     // Prepare card text content
     let displayText = "";
 
-    // Check if description exists
+    // Extract and display keywords and description if available
     if (foundCard.description && foundCard.description[orientation]) {
       const parts = foundCard.description[orientation].split("<br>");
 
@@ -398,23 +366,15 @@ function initTarotInterface() {
       // Extract description (after the <br> tag)
       if (parts.length > 1) {
         displayText += parts[1] + "\n\n";
-      } else {
-        // If no <br> tag, add a simple fallback
-        displayText += "No detailed description available.\n\n";
       }
-    } else {
-      // No description found
-      displayText += "No description available for this orientation.\n\n";
     }
 
     // Add general meaning if available
     if (foundCard.meaning) {
       displayText += foundCard.meaning;
-    } else {
-      displayText += "No general meaning available.";
     }
 
-    // Set the text content
+    // Set the text content with proper formatting
     cardText.textContent = displayText;
 
     // Ensure text remains in normal style
@@ -501,9 +461,10 @@ function initTarotInterface() {
 
   // Optimize modal interaction for touch devices
   if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    // ...existing code...
+    // Add touch-specific classes
+    document.body.classList.add("touch-device");
 
-    // Add tap to flip for mobile
+    // Existing tap to flip code
     if (cardContainer) {
       cardContainer.addEventListener("touchend", function (e) {
         if (!e.target.closest("#close-button")) {
@@ -516,7 +477,6 @@ function initTarotInterface() {
 
   // Function to add reset button to the interface
   function addResetButton() {
-    // Implementation for reset button
     const resetButton =
       document.getElementById("reset-button") ||
       document.createElement("button");
@@ -524,14 +484,21 @@ function initTarotInterface() {
       resetButton.id = "reset-button";
       resetButton.textContent = "Reset";
       resetButton.classList.add("reset-button");
+      resetButton.style.display = "none"; // Hide initially
       document.body.appendChild(resetButton);
 
       resetButton.addEventListener("click", function () {
-        // Reset functionality can be implemented here
+        // Reset functionality
         drawnCardNames = [];
         currentPosition = 0;
         cardPositions = [];
+
+        // Remove event listeners before clearing
         if (drawnCards) {
+          const cards = drawnCards.querySelectorAll(".card");
+          cards.forEach((card) => {
+            card.removeEventListener("click", focusCard);
+          });
           drawnCards.innerHTML = "";
         }
         resetButton.style.display = "none";
@@ -562,16 +529,3 @@ function initTarotInterface() {
   // Log initialization success
   console.log("Tarot card interface initialized");
 }
-
-<div id="deck"></div>
-<div id="drawn-cards"></div>
-<div id="card-focus" class="hidden">
-  <div class="card-container">
-    <div class="card-image"></div>
-  </div>
-  <button id="close-button">×</button>
-  <h2 id="card-name"></h2>
-  <h3 id="card-orientation"></h3>
-  <p id="card-text"></p>
-</div>
-<div id="overlay" class="hidden"></div>

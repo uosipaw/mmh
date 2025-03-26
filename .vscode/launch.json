@@ -5,11 +5,80 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
+      "type": "java",
+      "name": "Launch Current File",
       "request": "launch",
-      "name": "Launch Chrome against localhost",
-      "url": "http://localhost:8080",
-      "webRoot": "${workspaceFolder}"
+      "mainClass": "${file}"
+    },
+
+    {
+      "type": "java",
+      "name": "Launch App",
+      "request": "launch",
+      "mainClass": "com.example.demo.DemoApplication",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Launch External Terminal",
+      "request": "launch",
+      "console": "externalTerminal",
+      "mainClass": ""
+    },
+    {
+      "type": "java",
+      "name": "Launch Console",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "mainClass": ""
+    },
+    {
+      "type": "java",
+      "name": "Attach to Process",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0
+    },
+    {
+      "type": "java",
+      "name": "Attach by ID",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0,
+      "processId": "${command:PickJavaProcess}"
+    },
+    {
+      "type": "java",
+      "name": "Attach by Name",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0,
+      "processName": "java"
+    },
+    {
+      "type": "java",
+      "name": "Attach by Project Name",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0,
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Attach by Remote Debugging",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0,
+      "remotePort": 0
+    },
+    {
+    {
+      "type": "java",
+      "name": "Attach by Remote Debugging (Legacy)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 0,
+      "remotePort": 0,
+      "legacyMode": true
     }
-  ]
 }
