@@ -3,8 +3,10 @@ window.addEventListener("DOMContentLoaded", () => {
   initTarot();
 
   // Detect touch device for navbar functionality
-  const isTouchDevice =
-    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  function isTouchDevice() {
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  }
+  const isTouchDevice = isTouchDevice();
 
   if (isTouchDevice) {
     const navLinks = document.querySelectorAll(".navbar a");
@@ -115,7 +117,8 @@ const tarotCardNames = [
   "kpent",
 ];
 
-async function initTarot() {
+    const tarotJsonPath = window.TAROT_JSON_PATH || "./tarot-cards.json";
+    const response = await fetch(tarotJsonPath);
   try {
     const response = await fetch("./tarot-cards.json");
     if (!response.ok) {
@@ -145,7 +148,6 @@ function initTarotInterface() {
   const cardText = document.getElementById("card-text");
   const cardContainer = document.querySelector(".card-container");
 
-  // Check if necessary elements exist
   if (
     !deck ||
     !drawnCards ||
@@ -155,13 +157,17 @@ function initTarotInterface() {
     !cardImage ||
     !cardName ||
     !cardOrientation ||
-    !cardText
+    !cardText ||
+    !cardContainer
   ) {
     console.error("Required tarot elements not found in the document");
     return;
   }
+  }
 
-  const numberOfCards = tarotCardNames.length; // Total number of cards
+  let shuffledDeck = [...tarotCardNames]; // Create a copy of the deck
+  shuffledDeck = shuffledDeck.sort(() => Math.random() - 0.5); // Shuffle the deck
+  let currentCardIndex = 0; // Track the current card index
   let drawnCardNames = []; // Track cards by name instead of number
 
   // Add event listeners
@@ -187,14 +193,13 @@ function initTarotInterface() {
       showNotification("The deck is empty!");
       return;
     }
-
-    // Select a random card that hasn't been drawn yet
-    let randomName;
-    do {
-      const randomIndex = Math.floor(Math.random() * numberOfCards);
-      randomName = tarotCardNames[randomIndex];
-    } while (drawnCardNames.includes(randomName));
-
+    // Draw the next card from the shuffled deck
+    if (currentCardIndex >= shuffledDeck.length) {
+      showNotification("The deck is empty!");
+      return;
+    }
+    const randomName = shuffledDeck[currentCardIndex];
+    currentCardIndex++;
     drawnCardNames.push(randomName);
     const isReversed = Math.random() < 0.5; // 50% chance of being reversed
 
@@ -202,11 +207,19 @@ function initTarotInterface() {
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card", "deck"); // Initial state: in deck
 
-    // Create card image element (shown when drawn)
     const cardImageElement = document.createElement("div");
     cardImageElement.classList.add("card-image");
 
-    // Set the background image directly instead of using a class
+    // Preload the image to handle errors
+    const tempImg = new Image();
+    tempImg.onload = () => {
+      cardImageElement.style.backgroundImage = `url('./images/tarot/${randomName}.png')`;
+    };
+    tempImg.onerror = () => {
+      cardImageElement.style.backgroundImage = `url('./images/tarot/card-back.png')`; // Fallback image
+      showNotification(`Image for ${randomName} is missing, using fallback.`);
+    };
+    tempImg.src = `./images/tarot/${randomName}.png`;
     cardImageElement.style.backgroundImage = `url('./images/tarot/${randomName}.png')`;
 
     // Apply reversed class for rotation
@@ -255,10 +268,15 @@ function initTarotInterface() {
 
   function focusCard(event) {
     const card = event.currentTarget;
-    const cardNameValue = card.dataset.cardName;
-    const isReversed = card.dataset.reversed === "true";
-
-    // Set the background image with error handling
+    tempImg.onerror = function () {
+      cardImage.style.backgroundImage = `url('./images/tarot/card-back.png')`; // Fallback image
+      const fallbackImg = new Image();
+      fallbackImg.onerror = function () {
+        console.error("Both primary and fallback card images failed to load.");
+        showNotification("Both card images couldn't be loaded");
+      };
+      fallbackImg.src = `./images/tarot/card-back.png`;
+    };
     cardImage.style.backgroundImage = `url('./images/tarot/${cardNameValue}.png')`;
 
     // Add error handling for image loading
@@ -303,15 +321,19 @@ function initTarotInterface() {
 
     if (foundCard) {
       displayCardData(foundCard, isReversed);
-    } else {
-      displayFallbackCardData(cardNameValue, isReversed);
-    }
+  function normalizeCardName(name) {
+    return name.toLowerCase().replace(/\s+/g, "");
   }
 
   function findCardData(cardNameValue) {
-    if (!tarotData || !tarotData.cards) return null;
-
-    // First try to find by exact name match
+      displayFallbackCardData(cardNameValue, isReversed);
+    }
+  }
+    let foundCard = tarotData.cards.find(
+      (card) =>
+        card.filename === cardNameValue ||
+        normalizeCardName(card.name) === cardNameValue
+    );
     let foundCard = tarotData.cards.find(
       (card) =>
         card.filename === cardNameValue ||
@@ -388,32 +410,31 @@ function initTarotInterface() {
 
     cardName.textContent = displayName;
     cardOrientation.textContent = isReversed ? "Reversed" : "Upright";
-    cardText.textContent = `Description for ${displayName} goes here. This would typically include the card's meaning, symbolism, and interpretation both when upright and reversed.`;
-  }
-
-  // Helper function to format card names for display
   function formatCardName(cardName) {
-    // Format names like "acup" to "Ace of Cups"
-    if (cardName.includes("cup")) {
-      const rank = cardName.replace("cup", "").trim();
-      return formatRank(rank) + " of Cups";
-    } else if (cardName.includes("wand")) {
-      const rank = cardName.replace("wand", "").trim();
-      return formatRank(rank) + " of Wands";
-    } else if (cardName.includes("swd")) {
-      const rank = cardName.replace("swd", "").trim();
-      return formatRank(rank) + " of Swords";
-    } else if (cardName.includes("pent")) {
-      const rank = cardName.replace("pent", "").trim();
-      return formatRank(rank) + " of Pentacles";
-    } else {
+      const suits = {
+          cup: "Cups",
+          wand: "Wands",
+          swd: "Swords",
+          pent: "Pentacles",
+      };
+  
+      for (const [key, value] of Object.entries(suits)) {
+          if (cardName.includes(key)) {
+              const rank = cardName.replace(key, "").trim();
+              return `${formatRank(rank)} of ${value}`;
+          }
+      }
+  
       // Major Arcana - just capitalize first letter of each word
       return cardName
-        .replace(/([A-Z])/g, " $1") // Add space before capitals
-        .split(/\s+/) // Split by whitespace
-        .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-        ) // Capitalize each word
+          .replace(/([A-Z])/g, " $1") // Add space before capitals
+          .split(/\s+/) // Split by whitespace
+          .map(
+              (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+          ) // Capitalize each word
+          .join(" ") // Join with spaces
+          .trim(); // Remove any extra spaces
+  }
         .join(" ") // Join with spaces
         .trim(); // Remove any extra spaces
     }
@@ -421,23 +442,25 @@ function initTarotInterface() {
 
   // Helper function to format rank (a, 2, 3, etc. to Ace, Two, Three, etc.)
   function formatRank(rank) {
-    if (rank === "a") return "Ace";
-    if (rank === "2") return "Two";
-    if (rank === "3") return "Three";
-    if (rank === "4") return "Four";
-    if (rank === "5") return "Five";
-    if (rank === "6") return "Six";
-    if (rank === "7") return "Seven";
-    if (rank === "8") return "Eight";
-    if (rank === "9") return "Nine";
-    if (rank === "10") return "Ten";
-    if (rank === "p") return "Page";
-    if (rank === "n") return "Knight";
-    if (rank === "q") return "Queen";
-    if (rank === "k") return "King";
-    return rank.charAt(0).toUpperCase() + rank.slice(1); // Default capitalization
+  function formatRank(rank) {
+    const rankMapping = {
+      a: "Ace",
+      "2": "Two",
+      "3": "Three",
+      "4": "Four",
+      "5": "Five",
+      "6": "Six",
+      "7": "Seven",
+      "8": "Eight",
+      "9": "Nine",
+      "10": "Ten",
+      p: "Page",
+      n: "Knight",
+      q: "Queen",
+      k: "King",
+    };
+    return rankMapping[rank] || rank.charAt(0).toUpperCase() + rank.slice(1); // Default capitalization
   }
-
   function closeCardFocus() {
     // Add a fade-out effect
     cardFocus.classList.remove("show-bg");
@@ -460,7 +483,7 @@ function initTarotInterface() {
   }
 
   // Optimize modal interaction for touch devices
-  if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+  if (isTouchDevice()) {
     // Add touch-specific classes
     document.body.classList.add("touch-device");
 
@@ -499,16 +522,22 @@ function initTarotInterface() {
           cards.forEach((card) => {
             card.removeEventListener("click", focusCard);
           });
-          drawnCards.innerHTML = "";
-        }
-        resetButton.style.display = "none";
+        // Remove the reset button from the DOM
+        resetButton.remove();
       });
     }
     resetButton.style.display = "block";
   }
+    resetButton.style.display = "block";
+  }
 
-  // Function to show custom notifications
   function showNotification(message) {
+    // Remove any existing notifications
+    const existingNotification = document.querySelector(".notification");
+    if (existingNotification) {
+      document.body.removeChild(existingNotification);
+    }
+
     const notification = document.createElement("div");
     notification.className = "notification";
     notification.textContent = message;
@@ -521,9 +550,12 @@ function initTarotInterface() {
     setTimeout(() => {
       notification.classList.remove("visible");
       setTimeout(() => {
-        document.body.removeChild(notification);
+        if (notification.parentNode) {
+          document.body.removeChild(notification);
+        }
       }, 300);
     }, 3000);
+  }
   }
 
   // Log initialization success
