@@ -56,19 +56,13 @@
   });
 })();
 
-// Add responsive image map handling only for desktop
-(function () {
-  // Skip image map processing on mobile devices
-  if (window.isMobile) {
-    console.log("Image map disabled on mobile devices");
-    return;
-  }
+
 
   window.addEventListener("load", function () {
     // Function to make image map responsive
     function makeImageMapResponsive() {
       const imageMap = document.getElementById("image-map");
-      const image = document.getElementById("image-map-img");
+      const image = document.getElementById("image-map");
 
       if (!imageMap || !image) return;
 
