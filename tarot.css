@@ -25,11 +25,15 @@ body.tarot-page {
 }
 
 
-.intro-text {
-    font-family: "agudisplay";
-    font-size: 24px;
-    text-align: center;
-    top: 10%;
+.introtext-container {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 2%;
+    border-radius: 80px;
+    box-shadow: #333 0 0 10px;
+    background-blend-mode: overlay(blur 5px);
+    position: absolute;
+    top: 3%;
+    /* Shift it slightly up */
     right: 5%;
     bottom: 10%;
 }

@@ -26,113 +26,18 @@ window.addEventListener("DOMContentLoaded", () => {
 // Variable to store the tarot card data loaded from the JSON file
 let tarotData = null;
 
-// Array containing the names of all tarot cards, categorized by Major Arcana, Cups, Wands, Swords, and Pentacles
-const tarotCardNames = [
-  // Major Arcana
-  "fool",
-  "magician",
-  "highpriestess",
-  "empress",
-  "emperor",
-  "hierophant",
-  "lovers",
-  "chariot",
-  "strength",
-  "hermit",
-  "wheel",
-  "justice",
-  "hangedman",
-  "death",
-  "temperance",
-  "devil",
-  "tower",
-  "star",
-  "moon",
-  "sun",
-  "judgement",
-  "world",
+async function initTarot() {
+  const tarotJsonPath = "./tarot-cards.json";
 
-  // Cups
-  "acup",
-  "2cup",
-  "3cup",
-  "4cup",
-  "5cup",
-  "6cup",
-  "7cup",
-  "8cup",
-  "9cup",
-  "10cup",
-  "pcup",
-  "ncup",
-  "qcup",
-  "kcup",
-
-  // Wands
-  "awand",
-  "2wand",
-  "3wand",
-  "4wand",
-  "5wand",
-  "6wand",
-  "7wand",
-  "8wand",
-  "9wand",
-  "10wand",
-  "pwand",
-  "nwand",
-  "qwand",
-  "kwand",
-
-  // Swords
-  "aswd",
-  "2swd",
-  "3swd",
-  "4swd",
-  "5swd",
-  "6swd",
-  "7swd",
-  "8swd",
-  "9swd",
-  "10swd",
-  "pswd",
-  "nswd",
-  "qswd",
-  "kswd",
-
-  // Pentacles
-  "apent",
-  "2pent",
-  "3pent",
-  "4pent",
-  "5pent",
-  "6pent",
-  "7pent",
-  "8pent",
-  "9pent",
-  "10pent",
-  "ppent",
-  "npent",
-  "qpent",
-  "kpent",
-];
-
-    const tarotJsonPath = window.TAROT_JSON_PATH || "./tarot-cards.json";
-    const response = await fetch(tarotJsonPath);
   try {
-    const response = await fetch("./tarot-cards.json");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    const response = await fetch(tarotJsonPath);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     tarotData = await response.json();
     console.log("Tarot card data loaded successfully", tarotData);
 
     initTarotInterface();
-    showNotification("Tarot cards ready!");
   } catch (error) {
     console.error("Error loading tarot card data:", error);
-    // Continue with basic functionality even if card data isn't available
-    initTarotInterface();
   }
 }
 
@@ -146,7 +51,7 @@ function initTarotInterface() {
   const cardName = document.getElementById("card-name");
   const cardOrientation = document.getElementById("card-orientation");
   const cardText = document.getElementById("card-text");
-  const cardContainer = document.querySelector(".card-container");
+  const cardImage = document.getElementById("card-image");
 
   if (
     !deck ||
@@ -154,13 +59,9 @@ function initTarotInterface() {
     !cardFocus ||
     !overlay ||
     !closeButton ||
-    !cardImage ||
-    !cardName ||
-    !cardOrientation ||
-    !cardText ||
-    !cardContainer
+    !cardImage
   ) {
-    console.error("Required tarot elements not found in the document");
+    console.error("Required elements not found in the document");
     return;
   }
   }
