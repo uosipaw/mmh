@@ -2,20 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="uosipaw.lol - A collection of fun and interesting content">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="uosipaw.lol - A collection of fun and interesting content" />
     <title>hiiiiiiii</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="hover.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="hover.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
 
     <!-- Early device detection script -->
     <script>
         (function () {
-            window.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-                || (window.innerWidth <= 768);
-            document.documentElement.className = window.isMobile ? 'mobile-device' : 'desktop-device';
+            window.isMobile =
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                    navigator.userAgent
+                ) || window.innerWidth <= 768;
+            document.documentElement.className = window.isMobile
+                ? "mobile-device"
+                : "desktop-device";
         })();
     </script>
 </head>
@@ -23,66 +27,62 @@
 <body class="home-page">
     <!-- Video element with proper image map -->
     <video id="background-video" muted playsinline autoplay disableRemotePlayback disablePictureInPicture>
-        <source class="desktop-source" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)">
-        <source class="mobile-source" src="./images/homebgmobile.mp4" type="video/mp4" media="(max-width: 768px)">
+        <source class="desktop-source" src="./images/homebg.mp4" type="video/mp4" media="(min-width: 769px)" />
+        <source class="mobile-source" src="./images/homebgmobile.mp4" type="video/mp4" media="(max-width: 768px)" />
         Your browser does not support the video tag.
     </video>
-
-    <!-- Image map for mobile background -->
-
-
-    <!-- Image map container for desktop -->
-    <div id="desktop-image-map" style="display: none;">
-        <img src="./images/map-overlay.png" id="desktop-image-map" usemap="#desktop-image-map" alt="Desktop Image Map">
+    <div id="desktop-image-map-container">
+        <img src="./images/map-overlay.png" id="desktop-image-map-img" usemap="#desktop-image-map"
+            alt="Desktop Image Map" />
         <map name="desktop-image-map-map">
             <area target="" alt="Tarot" title="Tarot" href="https://uosipaw.lol/tarot" coords="652,507,124"
-                shape="circle">
+                shape="circle" />
             <area target="" alt="Dinosaurs" title="Dinosaurs" href="https://uosipaw.lol/dinosaurs"
-                coords="1171,536,1052,371" shape="rect">
+                coords="1171,536,1052,371" shape="rect" />
             <area target="" alt="Zoo" title="Zoo" href="https://uosipaw.lol/zoo" coords="1836,653,1504,931"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Help" title="Help" href="https://uosipaw.lol/help" coords="1232,622,1346,957"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="About" title="About" href="https://uosipaw.lol/about" coords="299,407,67"
-                shape="circle">
+                shape="circle" />
             <area target="" alt="Words" title="Words" href="https://uosipaw.lol/words" coords="608,831,114"
-                shape="circle">
+                shape="circle" />
             <area target="" alt="Art" title="Art" href="https://uosipaw.lol/art" coords="1200,397,1320,565"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Bugs" title="Bugs" href="https://uosipaw.lol/bugs" coords="920,424,1012,550"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Myth" title="Myth" href="https://uosipaw.lol/myth" coords="778,368,893,494"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Tips" title="Tips" href="https://uosipaw.lol/tips" coords="82,115,213,188"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Paint" title="Paint" href="https://uosipaw.lol/paint" coords="396,380,535,561"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Trivia" title="Trivia" href="https://uosipaw.lol/trivia" coords="1342,388,1504,526"
-                shape="rect">
+                shape="rect" />
         </map>
     </div>
 
-    <div id="mobile-image-map" style="display: none;">
-        <img src="homebgmobile.png" usemap="#mobile-image-map" alt="Mobile Image Map">
+    <div id="mobile-image-map-container">
+        <img src="homebgmobile.png" id="mobile-image-map-img" usemap="#mobile-image-map" alt="Mobile Image Map" />
         <map name="mobile-image-map">
             <area target="" alt="Tarot" title="Tarot" href="https://uosipaw.lol/tarot" coords="239,500,186"
-                shape="circle">
+                shape="circle" />
             <area target="" alt="Zoo" title="Zoo" href="https://uosipaw.lol/zoo" coords="650,1236,1061,1569"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Words" title="Words" href="https://uosipaw.lol/words" coords="895,303,100"
-                shape="circle">
+                shape="circle" />
             <area target="" alt="Art" title="Art" href="https://uosipaw.lol/art" coords="119,1241,336,1907"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Help" title="Help" href="https://uosipaw.lol/help" coords="649,826,811,1047"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="About" title="About" href="https://uosipaw.lol/about" coords="793,509,1077,648"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Trivia" title="Trivia" href="https://uosipaw.lol/trivia" coords="72,102,219,348"
-                shape="rect">
+                shape="rect" />
             <area target="" alt="Paint" title="Paint" href="https://uosipaw.lol/paint" coords="955,1000,51"
-                shape="circle">
+                shape="circle" />
             <area target="" alt="Trivia" title="Trivia" href="https://uosipaw.lol/trivia" coords="54,818,238,915"
-                shape="rect">
+                shape="rect" />
         </map>
     </div>
 
@@ -94,38 +94,38 @@
     <script>
         // Handle video playback and image map visibility
         (function () {
-            const video = document.getElementById('background-video');
-            const touchToPlay = document.getElementById('touch-to-play');
-            const mobileImageMap = document.getElementById('mobile-image-map');
-            const desktopImageMap = document.getElementById('desktop-image-map');
+            const video = document.getElementById("background-video");
+            const touchToPlay = document.getElementById("touch-to-play");
+            const mobileImageMap = document.getElementById("mobile-image-map");
+            const desktopImageMap = document.getElementById("desktop-image-map");
 
             // Show the appropriate image map based on the device type
             if (window.isMobile) {
                 if (mobileImageMap) {
-                    mobileImageMap.style.display = 'block';
+                    mobileImageMap.style.display = "block";
                 }
             } else {
                 if (desktopImageMap) {
-                    desktopImageMap.style.display = 'block';
+                    desktopImageMap.style.display = "block";
                 }
-                video.setAttribute('loop', '');
+                video.setAttribute("loop", "");
             }
 
             function attemptPlay() {
                 // Remove overlay once we're trying to play
                 if (touchToPlay) {
-                    touchToPlay.style.display = 'none';
+                    touchToPlay.style.display = "none";
                 }
 
                 video.play().catch(function (error) {
-                    console.log('Autoplay failed:', error);
+                    console.log("Autoplay failed:", error);
 
                     // Show the overlay for user interaction
                     if (touchToPlay) {
-                        touchToPlay.style.display = 'flex';
-                        touchToPlay.addEventListener('click', function () {
+                        touchToPlay.style.display = "flex";
+                        touchToPlay.addEventListener("click", function () {
                             video.play();
-                            touchToPlay.style.display = 'none';
+                            touchToPlay.style.display = "none";
                         });
                     }
                 });
@@ -133,21 +133,25 @@
 
             // iOS specific handling
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                video.setAttribute('webkit-playsinline', 'webkit-playsinline');
+                video.setAttribute("webkit-playsinline", "webkit-playsinline");
                 // iOS often requires a user gesture
-                const touchOverlay = document.getElementById('touch-to-play');
+                const touchOverlay = document.getElementById("touch-to-play");
                 if (touchOverlay) {
-                    touchOverlay.addEventListener('touchstart', function () {
-                        attemptPlay();
-                    }, { once: true });
+                    touchOverlay.addEventListener(
+                        "touchstart",
+                        function () {
+                            attemptPlay();
+                        },
+                        { once: true }
+                    );
                 }
             }
 
             // Handle general play attempts
-            if (document.readyState === 'complete') {
+            if (document.readyState === "complete") {
                 attemptPlay();
             } else {
-                window.addEventListener('load', attemptPlay);
+                window.addEventListener("load", attemptPlay);
             }
 
             // Try once more after a delay (helps with some browsers)
