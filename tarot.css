@@ -18,6 +18,75 @@ body {
     color: aliceblue;
     background-blend-mode: multiply;
     filter: hue(linear-gradient(-45deg, #ff9c7e, #e73c7e, #064c68, #23d5ab, ) 0 0 10px);
+}
+
+.background span {
+            width: 20vmin;
+            height: 20vmin;
+            border-radius: 20vmin;
+            backface-visibility: hidden;
+            position: absolute;
+            animation-name: move;
+            animation-duration: 6s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+    
+        .background span:nth-child(1) {
+            color: #583C87;
+            top: 20%;
+            left: 40%;
+            animation-duration: 12s;
+            animation-delay: -5s;
+            transform-origin: 10vw 10vh;
+            box-shadow: 40vmin 0 10vmin currentColor;
+        }
+    
+        .background span:nth-child(2) {
+            color: #E45A84;
+            top: 50%;
+            left: 70%;
+            animation-duration: 15s;
+            animation-delay: -7s;
+            transform-origin: -10vw 20vh;
+            box-shadow: -40vmin 0 10vmin currentColor;
+        }
+    
+        .background span:nth-child(3) {
+            color: #FFACAC;
+            top: 80%;
+            left: 10%;
+            animation-duration: 10s;
+            animation-delay: -2s;
+            transform-origin: 20vw -10vh;
+            box-shadow: 40vmin 0 10vmin currentColor;
+        }
+    
+        .background span:nth-child(4) {
+            color: #583C87;
+            top: 30%;
+            left: 60%;
+            animation-duration: 14s;
+            animation-delay: -4s;
+            transform-origin: -15vw 5vh;
+            box-shadow: -40vmin 0 10vmin currentColor;
+        }
+    
+        .background span:nth-child(5) {
+            color: #E45A84;
+            top: 70%;
+            left: 30%;
+            animation-duration: 11s;
+            animation-delay: -8s;
+            transform-origin: 5vw -15vh;
+            box-shadow: 40vmin 0 10vmin currentColor;
+        }
+    
+        @keyframes move {
+            100% {
+                transform: translate3d(0, 0, 1px) rotate(360deg);
+            }
+        }
 
 }
 
