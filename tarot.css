@@ -21,13 +21,15 @@ body {
 }
 
 .background span {
+    opacity: 0.3;
+    ;
     width: 20vmin;
     height: 20vmin;
     border-radius: 20vmin;
     backface-visibility: hidden;
     position: absolute;
     animation-name: move;
-    animation-duration: 6s;
+    animation-duration: 30s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
