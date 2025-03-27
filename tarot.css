@@ -25,6 +25,34 @@ body.tarot-page {
 }
 
 
+    50% {
+        filter: contrast(1.75) brightness(1.4);
+    }
+
+    100% {
+        filter: contrast(2.5) brightness(2);
+    }
+}
+
+/* Keyframes for the enhanced twinkling effect */
+@keyframes twinkle-move {
+    0% {
+        overlay-position: 0% 0%;
+        filter: brightness(0.8) contrast(1);
+    }
+
+    50% {
+        overlay-position: 100% 0%;]
+        filter: brightness(1.5) contrast(1.5);
+    }
+
+    100% {
+        
+        filter: brightness(0.8) contrast(1);
+    }
+}
+
+/* Intro text container */
 .introtext-container {
     background-color: rgba(255, 255, 255, 0.3);
     padding: 2%;
