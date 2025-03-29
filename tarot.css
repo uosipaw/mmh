@@ -7,25 +7,37 @@
 body {
     font-family: "inkfree", sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* Arrange elements vertically */
+    justify-content: space-between;
+    /* Push deck to bottom */
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    /* Use min-height */
     margin: 0;
-    overflow: hidden;
     background-image: url('./images/tarot.png');
+    /* Ensure this has the rectangle graphic */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     color: aliceblue;
-    background-blend-mode: multiply;
-    filter: hue(linear-gradient(-45deg, #ff9c7e, #e73c7e, #064c68, #23d5ab, ) 0 0 10px);
+    background-color: #d7b8f5;
+    /* Current lighter blend */
+    padding-top: 20px;
+    /* Reduced top padding */
+    padding-bottom: 200px;
+    /* Space for deck */
+    box-sizing: border-box;
+    overflow-x: hidden;
+    /* Hide horizontal scrollbars if text box overflows temporarily */
 }
 
+/* Background Animation */
 .background span {
     opacity: 0.3;
-    ;
     width: 20vmin;
     height: 20vmin;
-    border-radius: 20vmin;
+    border-radius: 50%;
     backface-visibility: hidden;
     position: absolute;
     animation-name: move;
@@ -35,7 +47,7 @@ body {
 }
 
 .background span:nth-child(1) {
-    color: #583C87;
+    color: #d7c8f1;
     top: 20%;
     left: 40%;
     animation-duration: 12s;
@@ -65,7 +77,7 @@ body {
 }
 
 .background span:nth-child(4) {
-    color: #583C87;
+    color: #ffc830;
     top: 30%;
     left: 60%;
     animation-duration: 14s;
@@ -84,80 +96,114 @@ body {
     box-shadow: 40vmin 0 10vmin currentColor;
 }
 
+/* Add more spans if needed */
+
 @keyframes move {
     100% {
         transform: translate3d(0, 0, 1px) rotate(360deg);
     }
 }
 
-/* This class can be removed if not used in your HTML */
-.background-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 0;
-    filter: hue(linear-gradient, #ff9c7e, #e73c7e, #064c68, #23d5ab);
-
-}
-
-@keyframes gradient {
-    0% {
-        overlay: translatex(0%, 10%);
-    }
-
-    50% {
-        overlay: translatey(100% 50%);
-    }
-
-    100% {
-        overlay: translatex(0% 50%);
-    }
-}
-
-/* Intro text container */
+/* Intro text container - Reverted to original scaling + Repositioning */
 .introtext-container {
-    position: absolute;
-    top: 7%;
-    right: 30px;
-    width: 23%;
-    padding: 2%;
+    position: relative;
+    /* --- POSITIONING: Adjust top/right/width to visually align with background rectangle --- */
+    /* These values are ESTIMATES - likely need refinement via dev tools */
+    top: 10%;
+    /* Guess - adjust % */
+    right: 105px;
+    /* Guess - adjust % */
+    width: clamp(250px, 22%, 380px);
+    /* Slightly adjusted clamp range */
+    padding: 15px;
     text-align: center;
-    font-size: 23px;
-    background-color: rgba(0, 0, 10, 0.3);
-    border-radius: 70px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
+    font-size: clamp(23px, 1.4vw, 16px);
+    /* Slightly smaller font? */
+    background-color: rgba(80, 50, 110, 0.5);
+    /* Current Lighter purple, semi-transparent */
+    border-radius: 35px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    /* --- ANIMATION: Add back initial scale and transition --- */
+    transition: transform 0.7s ease, background-color 0.3s ease, opacity 0.4s ease;
+    /* Added opacity */
+    transform-origin: center;
+    /* Origin for scaling */
     transform: scale(.5);
+    /* Start smaller */
+    opacity: 0.8;
+    /* Start slightly faded */
     z-index: 10;
+    max-height: 70%;
+    /* Adjusted max height */
+    overflow-y: auto;
+    backdrop-filter: blur(2px);
+    /* Optional: Add blur */
 }
 
 .introtext-container:hover {
+    background-color: rgba(90, 60, 120, 0.7);
+    /* --- ANIMATION: Scale to full size on hover --- */
     transform: scale(1);
+    opacity: 1;
     z-index: 100;
-    ;
 }
 
-.introtext {
+.intro-text {
     font-family: "inkfree", sans-serif;
-    font-size: 28px;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
     margin: 0;
     line-height: 1.5;
 }
 
-/* Deck container */
-.deckcontainer {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-225%);
-    width: 200px;
-    height: 300px;
+/* Main Content Area */
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    /* Max width for content */
+    flex-grow: 1;
+    /* Allows it to take available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Center vertically too for the arc */
+    padding: 20px;
+    box-sizing: border-box;
+    /* --- LAYOUT PREP: Relative positioning needed for absolute cards --- */
+    position: relative;
+    min-height: 40vh;
+    /* Ensure it has some height for positioning */
 }
 
+/* Drawn cards container */
+#drawn-cards {
+    /* --- LAYOUT PREP: Remove flex, set relative for positioning context --- */
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* gap: 20px; */
+    position: relative;
+    /* Children will be positioned absolutely relative to this */
+    width: 100%;
+    /* Take full width */
+    height: 100%;
+    /* Take full height of parent (.main-content) */
+    /* margin-top: 20px; Removed */
+}
+
+/* Deck Area Container - Centered */
+.deck-area {
+    position: fixed;
+    bottom: 20px;
+    /* --- POSITION CHANGE: Re-center deck --- */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    width: clamp(100px, 15vw, 150px);
+    aspect-ratio: 2 / 3;
+}
+
+/* Deck Style */
 #deck {
     width: 100%;
     height: 100%;
@@ -167,50 +213,42 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     cursor: pointer;
-    transition: transform 0.3s ease;
-    z-index: 10;
-    position: absolute;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #deck:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-5px);
+    /* Lift slightly */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
 }
 
 #deck:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
+    transition-duration: 0.1s;
 }
 
-/* Drawn cards container */
-#drawn-cards {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    left: 150px;
-    position: absolute;
-    justify-content: center;
-    margin-top: 20px;
-    gap: 10px;
-}
-
+/* Drawn Card Style (Modified for Absolute Positioning) */
 .card {
-    width: 150px;
-    height: 225px;
-    border-radius: 10px;
+    width: clamp(90px, 11vw, 120px);
+    /* Slightly smaller for arc? Adjust */
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
     background-size: cover;
     background-position: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    transition: transform 0.3s ease;
-    z-index: 11;
-}
-
-.card:hover {
-    transform: scale(1.1);
-}
-
-.card-image.reversed {
-    transform: rotate(180deg);
+    /* --- LAYOUT PREP: Set absolute positioning --- */
+    position: absolute;
+    /* --- TRANSFORM ORIGIN: Set for rotations in arc --- */
+    transform-origin: center center;
+    transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.5s ease, top 0.5s ease, left 0.5s ease;
+    /* Added more transitions */
+    background-color: #333;
+    /* Placeholder background */
+    overflow: hidden;
+    /* Start cards slightly faded/scaled down */
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 /* Card focus modal */
@@ -218,40 +256,109 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
+    /* Start slightly smaller */
     width: 90%;
-    max-width: 800px;
-    background-color: rgba(20, 10, 30, 0.9);
+    max-width: 600px;
+    /* Adjusted max-width */
+    background-color: rgba(60, 40, 80, 0.95);
+    /* Lighter purple modal */
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     display: none;
+    /* Initially hidden */
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
+    z-index: 101;
+    /* Above everything */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 #card-focus.visible {
     display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    /* Scale to full size */
 }
 
-#card-name {
-    font-size: 24px;
+/* Focused Card Image */
+#focus-card-image {
+    width: clamp(150px, 40%, 200px);
+    /* Responsive image size */
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    /* Ensure image covers the area */
+    transition: transform 0.3s ease;
+}
+
+#focus-card-image.reversed {
+    transform: rotate(180deg);
+    /* Rotate image if card is reversed */
+}
+
+#focus-card-name {
+    font-size: clamp(20px, 4vw, 26px);
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color: #f0e8ff;
+    /* Slightly brighter */
 }
 
-#card-orientation {
-    font-size: 18px;
+#focus-card-orientation {
+    font-size: clamp(16px, 3vw, 20px);
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    color: #f8f0ff;
+    /* Slightly brighter */
 }
 
-#card-text {
-    font-size: 16px;
-    line-height: 1.5;
+/* Container for scrollable text */
+#focus-card-text-container {
+    max-height: 25vh;
+    /* Limit height */
     overflow-y: auto;
-    max-height: 300px;
+    /* Enable scrolling */
+    width: 100%;
+    padding-right: 10px;
+    /* Space for scrollbar */
+    margin-bottom: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 15px;
+}
+
+/* Scrollbar styling (optional, webkit browsers) */
+#focus-card-text-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#focus-card-text-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+#focus-card-text-container::-webkit-scrollbar-thumb {
+    background: rgba(228, 90, 132, 0.7);
+    /* Match theme color */
+    border-radius: 4px;
+}
+
+#focus-card-text-container::-webkit-scrollbar-thumb:hover {
+    background: #E45A84;
+}
+
+#focus-card-text {
+    font-size: clamp(14px, 2.5vw, 16px);
+    line-height: 1.6;
+    text-align: left;
+    /* Left align text for readability */
+    white-space: pre-line;
+    /* Respect line breaks from JSON */
 }
 
 /* Overlay */
@@ -263,11 +370,16 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
+    /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease;
     z-index: 50;
+    /* Below modal, above content */
 }
 
 #overlay.visible {
     display: block;
+    opacity: 1;
 }
 
 /* Close button */
@@ -278,11 +390,143 @@ body {
     background: none;
     border: none;
     color: #fff;
-    font-size: 24px;
+    font-size: 30px;
+    /* Larger */
+    font-weight: bold;
+    line-height: 1;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding: 5px;
+    /* Easier to click */
 }
 
 #close-button:hover {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(90deg);
+    color: #E45A84;
+    /* Highlight color */
+}
+
+/* Media Queries for Responsiveness */
+
+/* Smaller devices (tablets/phones) */
+@media (max-width: 768px) {
+    body {
+        padding-top: 20px;
+        /* Adjusted */
+        padding-bottom: 150px;
+    }
+
+    .introtext-container {
+        /* Adjust position/size for mobile */
+        top: 5%;
+        right: 3%;
+        width: clamp(200px, 40%, 300px);
+        /* Smaller on mobile */
+        font-size: 13px;
+        max-height: 30vh;
+        transform: scale(1);
+        /* Don't start scaled down on mobile */
+        opacity: 1;
+        position: relative;
+        /* Or keep absolute if preferred */
+        margin: 10px auto;
+        /* Center if relative */
+    }
+
+    .introtext-container:hover {
+        transform: scale(1.05);
+        /* Less pronounced hover on mobile */
+    }
+
+
+    .deck-area {
+        /* Deck is now centered by default, just adjust size */
+        width: clamp(90px, 20vw, 120px);
+        bottom: 15px;
+    }
+
+    .card {
+        /* Adjust card size for mobile arc */
+        width: clamp(75px, 18vw, 100px);
+    }
+
+    #drawn-cards {
+        /* No specific changes needed here for arc */
+    }
+
+    #card-focus {
+        width: 95%;
+        padding: 20px;
+    }
+
+    #focus-card-image {
+        width: clamp(120px, 45%, 180px);
+    }
+
+    #focus-card-name {
+        font-size: 20px;
+    }
+
+    #focus-card-orientation {
+        font-size: 16px;
+    }
+
+    #focus-card-text {
+        font-size: 14px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+    body {
+        padding-top: 10px;
+        /* Minimal padding top */
+        padding-bottom: 130px;
+        /* Space for deck */
+    }
+
+    .introtext-container {
+        display: none;
+        /* Hide intro text again on very small screens */
+    }
+
+    .deck-area {
+        width: clamp(80px, 25vw, 100px);
+    }
+
+    .card {
+        /* Adjust card size */
+        width: clamp(70px, 25vw, 90px);
+    }
+
+    #drawn-cards {
+        /* No specific changes needed */
+    }
+
+    #card-focus {
+        padding: 15px;
+    }
+
+    #focus-card-image {
+        width: clamp(100px, 50%, 150px);
+        margin-bottom: 10px;
+    }
+
+    #focus-card-name {
+        font-size: 18px;
+    }
+
+    #focus-card-orientation {
+        font-size: 14px;
+    }
+
+    #focus-card-text {
+        font-size: 13px;
+    }
+
+    #close-button {
+        font-size: 26px;
+        top: 5px;
+        right: 5px;
+    }
 }

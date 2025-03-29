@@ -2,107 +2,79 @@
 <html lang="en">
 
 <head>
-    <title>draw a card</title>
+    <title>Draw a Card</title>
     <link rel="stylesheet" type="text/css" href="tarot.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
-    <meta name="description" content="tarot cards" />
-    <!-- Add theme color for mobile browsers -->
+    <meta name="description" content="Tarot Card Reading Application" />
     <meta name="theme-color" content="#271030" />
-    <!-- Ensure proper text rendering -->
     <meta name="format-detection" content="telephone=no" />
-    <!-- Preload the tarot-cards.json file for faster access -->
     <link rel="preload" href="tarot-cards.json" as="fetch" crossorigin="anonymous">
-    <style>
-        .custom-font {
-            font-family: "waiting-for-the-sunrise", "laquer", "bagelfatone", "chelaone", "chewy", "combo", "dynapuff", "gamjaflower", "kranky", "fredrickathegreat", "agudisplay", "inkjournal", "chelaone", sans-serif;
-        }
-    </style>
-    <!-- Add preload for commonly used tarot card images -->
+    <!-- Optional: Preload card back image -->
+    <link rel="preload" href="./images/tarot/back1.png" as="image">
+    <!-- Optional: Preload common card images -->
     <link rel="preload" href="./images/tarot/fool.png" as="image">
     <link rel="preload" href="./images/tarot/magician.png" as="image">
     <link rel="preload" href="./images/tarot/highpriestess.png" as="image">
+    <!-- Using the font from CSS -->
 </head>
 
-<body class="tarot-page" style="font-family:'inkjournal', sans-serif;">
+<body>
+    <!-- Background Animation -->
     <div class="background">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
     </div>
-    <div id="background-image"></div>
+
+    <!-- Intro Text -->
+    <div class="introtext-container">
+        <div class="intro-text">
+            Since the 1400s, tarot has evolved from a simple playing card game, to a conduit between future and past, to
+            a divination and occult staple, and now, 600 years later, is viewed as a course of study and self
+            improvement tool, extending beyond spirituality and into science, psychology and wellness. As a mirror that
+            reflects our truest selves, Tarot reading encourages growth through self examination and introspection for
+            skeptics and psychics alike. It is no longer tethered to an identity confined within spirituality. The way
+            you relate your reading to your life is a personal journey, and the cards are a tool to help you navigate
+            it. There is no right or wrong way to interpret the cards, and the meanings are as unique as the people who
+            read them.
+            <br><br>
+            When you're ready, set your intention, then click on the deck to draw a card.
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Drawn Cards Area -->
+        <div id="drawn-cards">
+            <!-- Drawn cards will appear here -->
+        </div>
+    </main>
+
+    <!-- Deck Area -->
+    <div class="deck-area">
+        <div id="deck">
+            <!-- This acts as the clickable deck -->
+        </div>
+    </div>
+
+    <!-- Overlay for Modal -->
     <div id="overlay"></div>
-    <div class="introtext">
-        <div class="introtext-container">
-            <div class="intro-text">
-                Since the 1400s, tarot has evolved from a simple playing card game, to a conduit between future and
-                past, to
-                a divination and occult staple, and now, 600 years later, is viewed as a course of study and self
-                improvement tool, extending beyond spirituality and into science, psychology and wellness. As a
-                mirror
-                that
-                reflects our truest selves, Tarot reading encourages growth through self examination and
-                introspection
-                for
-                skeptics and psychics alike. It is no longer tethered to an identity confined within spirituality.
-                The
-                way
-                you relate your reading to your life is a personal journey, and the cards are a tool to help you
-                navigate
-                it. There is no right or wrong way to interpret the cards, and the meanings are as unique as the
-                people
-                who
-                read them.
-                <br><br>
 
-                When you're ready, set your intention, then click on the deck to draw a card.
-            </div>
+    <!-- Card Focus Modal (Simplified and Corrected) -->
+    <div id="card-focus">
+        <button id="close-button">×</button>
+        <img id="focus-card-image" src="" alt="Focused Tarot Card" />
+        <h2 id="focus-card-name">Card Name</h2>
+        <h3 id="focus-card-orientation">Orientation</h3>
+        <div id="focus-card-text-container">
+            <p id="focus-card-text">Card description goes here...</p>
         </div>
     </div>
 
-    <div class="deckcontainer">
-        <!-- Deck of Cards -->
-        <div id="deck"></div>
-    </div>
-
-    <div class="drawncontainer">
-        <div id="drawn-cards"></div>
-    </div>
-
-    <!-- Card Focus Modal - simplified structure -->
-    <div id="card-focus" class="hidden">
-        <div class="card-focus-inner">
-            <div class="card-container">
-                <div class="card-image"></div>
-                <div class="card-back">
-                    <p id="card-description-text"></p>
-                    <h2 id="card-name"></h2>
-                    <h3 id="card-orientation"></h3>
-                    <p id="tarot-cards.json"></p>
-                </div>
-            </div>
-            <div id="overlay" class="hidden"></div>
-            <script src="tarot.js" defer></script>
-        </div>
-
+    <!-- Script at the end of body -->
+    <script src="tarot.js" defer></script>
 </body>
-
 
 </html>
