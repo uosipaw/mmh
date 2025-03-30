@@ -95,13 +95,12 @@ function initTarotInterface() {
 
   // --- Function to Draw AND POSITION a Card ---
   function drawAndPositionCard() {
-    // Check if deck is actually empty based on index, not just array length
     if (currentCardIndex >= shuffledDeck.length) {
       console.warn("Attempted to draw from an empty deck.");
       alert("Deck empty! Please reset the deck.");
       return;
     }
-    const cardData = shuffledDeck[currentCardIndex++]; // Increment index AFTER getting data
+    const cardData = shuffledDeck[currentCardIndex++];
     const isReversed = Math.random() < 0.5;
 
     const cardDiv = document.createElement("div");
@@ -111,17 +110,16 @@ function initTarotInterface() {
       "aria-label",
       `Tarot card: ${cardData.name} ${isReversed ? "(Reversed)" : "(Upright)"}`
     );
-    cardDiv.dataset.isReversed = String(isReversed); // Store as string explicitly
+    cardDiv.dataset.isReversed = String(isReversed);
     cardDiv.dataset.cardId = cardData.id;
     cardDiv.dataset.cardName = cardData.name;
 
     cardDiv.addEventListener("click", () => {
-      // Use find directly on the original tarotData if needed, or retrieve from element
       const cardJsonData = tarotData.cards.find(
         (c) => c.id === cardDiv.dataset.cardId
       );
       if (cardJsonData) {
-        focusCard(cardJsonData, cardDiv.dataset.isReversed === "true"); // Compare string to 'true'
+        focusCard(cardJsonData, cardDiv.dataset.isReversed === "true");
       } else {
         console.error(
           "Could not find card data for focusing:",
@@ -132,31 +130,14 @@ function initTarotInterface() {
 
     const initialRotation = isReversed ? 180 : 0;
     cardDiv.style.opacity = "0";
-    // Set initial position near the deck before animating
-    const deckRect = deckElement.getBoundingClientRect();
-    const containerRect = drawnCardsContainer.getBoundingClientRect();
-    // Adjust initial position calculation to be relative to #drawn-cards
-    const initialLeft =
-      deckRect.left -
-      containerRect.left +
-      deckRect.width / 2 -
-      cardDiv.offsetWidth / 2; // Approximate
-    const initialTop =
-      deckRect.top -
-      containerRect.top +
-      deckRect.height / 2 -
-      cardDiv.offsetHeight / 2; // Approximate
-    //cardDiv.style.left = `${initialLeft}px`; // Optional: Start card pos near deck
-    //cardDiv.style.top = `${initialTop}px`; // Optional: Start card pos near deck
-    cardDiv.style.transform = `scale(0.5) rotate(${initialRotation}deg)`; // Start smaller
+    cardDiv.style.transform = `scale(0.5) rotate(${initialRotation}deg)`;
 
     drawnCardsContainer.appendChild(cardDiv);
-    drawnCardElements.push(cardDiv); // Add element to our array *before* positioning
+    drawnCardElements.push(cardDiv);
 
     requestAnimationFrame(() => {
-      positionCardsInArc(); // Position ALL cards immediately
+      positionCardsInArc();
       requestAnimationFrame(() => {
-        // Trigger animation only on the LAST card added (most recent)
         const lastCard = drawnCardElements[drawnCardElements.length - 1];
         if (lastCard) {
           const finalRotation =
@@ -175,33 +156,26 @@ function initTarotInterface() {
 
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
-    const numCards = drawnCardElements.length; // Use the tracked elements array
+    const numCards = drawnCardElements.length;
 
-    // // Debug log
-    //console.log(`Positioning ${numCards} cards. Container WxH: ${containerWidth}x${containerHeight}`);
-
-    if (numCards === 0 || !containerWidth || !containerHeight) {
-      //console.log("Skipping positioning: No cards or zero container dimensions.");
-      return;
-    }
+    if (numCards === 0 || !containerWidth || !containerHeight) return;
 
     // --- ADJUST ARC PARAMETERS HERE ---
-    const arcRadiusX = containerWidth * 0.45; // << Widen arc slightly?
-    const arcRadiusY = containerHeight * 0.6; // << Make arc less tall/more curved?
-    const centerX = containerWidth / 2;
-    const centerY = containerHeight * 0.4; // << KEY: Move center point HIGHER (lower % = higher)
-    const angleSpread = Math.min(numCards * 18, 170); // << Increase spread slightly? Max angle
-    const startAngle = -90 - angleSpread / 2; // Center the spread around -90 (top)
+    const arcRadiusX = containerWidth * 0.45;
+    const arcRadiusY = containerHeight * 0.6;
+    const centerX = containerWidth / 2; // Center X *within* the container
+    const centerY = containerHeight * 0.55; // <<< ADJUSTED: Higher value = lower arc center
+    const angleSpread = Math.min(numCards * 18, 170);
+    const startAngle = -90 - angleSpread / 2;
 
     drawnCardElements.forEach((card, index) => {
-      if (!card) return; // Skip if card element is missing
+      if (!card) return;
 
       const angleStep = numCards > 1 ? angleSpread / (numCards - 1) : 0;
       const angle = startAngle + index * angleStep;
       const angleRad = angle * (Math.PI / 180);
 
       const computedStyle = getComputedStyle(card);
-      // Provide default estimates if offsetWidth/Height is 0 initially
       const effectiveCardWidth =
         card.offsetWidth || parseFloat(computedStyle.width) || 100;
       const effectiveCardHeight =
@@ -216,35 +190,14 @@ function initTarotInterface() {
       let y =
         centerY + arcRadiusY * Math.sin(angleRad) - effectiveCardHeight / 2;
 
-      // Clamp positions to stay roughly within the container bounds? (Optional advanced)
-      // x = Math.max(0, Math.min(containerWidth - effectiveCardWidth, x));
-      // y = Math.max(0, Math.min(containerHeight - effectiveCardHeight, y));
-
-      // // Debug log per card
-      //console.log(`  Card ${index}: Angle=${angle.toFixed(1)}, Calculated X/Y=(${x.toFixed(1)}, ${y.toFixed(1)})`);
-
       if (isNaN(x) || isNaN(y)) {
-        console.error(
-          `Positioning Error: NaN calculated for card ${index}. Aborting positioning for this card.`
-        );
-        return; // Skip applying NaN
+        console.error(`Positioning Error: NaN calculated for card ${index}.`);
+        return;
       }
 
       card.style.left = `${x}px`;
       card.style.top = `${y}px`;
       card.style.zIndex = index;
-
-      // Ensure correct scale/rotation is maintained or applied *after* positioning
-      // This is mainly handled by the draw function's second rAF now.
-      const currentTransform = card.style.transform;
-      // Make sure it doesn't revert opacity or scale unintentionally if already animated
-      if (!currentTransform.includes("scale(1)")) {
-        // If the card hasn't been animated yet, ensure initial state remains
-        const isReversed = card.dataset.isReversed === "true";
-        const rotation = isReversed ? 180 : 0;
-        // Re-apply initial scale if necessary (shouldn't be needed with current flow)
-        //card.style.transform = `scale(0.8) rotate(${rotation}deg)`;
-      }
     });
   }
 
@@ -286,7 +239,7 @@ function initTarotInterface() {
     focusCardImage.alt = `${cardData.name || "Tarot"} card ${
       isReversed ? "reversed" : "upright"
     }`;
-    focusCardImage.classList.toggle("reversed", isReversed); // Simpler toggle
+    focusCardImage.classList.toggle("reversed", isReversed);
     cardFocusModal.classList.add("visible");
     overlayElement.classList.add("visible");
     const textContainer = document.getElementById("focus-card-text-container");

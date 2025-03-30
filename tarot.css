@@ -1,3 +1,76 @@
+/* --- SNIPPET OF CHANGES --- */
+
+/* Intro text container - Adding hover effect */
+.introtext-container {
+    /* ... other styles ... */
+    transition: transform 0.4s ease;
+    /* Shortened transition time slightly */
+    background-color: 0.3s ease;
+    opacity: 0.4s ease;
+    box-shadow: black 0.3s ease;
+
+    /* Added shadow transition */
+    /* ... other styles ... */
+}
+
+.introtext-container:hover {
+    /* Slightly darker/more opaque */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 1);
+    /* Stronger shadow */
+    transform: scale(1.02);
+    /* Subtle scale up */
+    /* opacity remains the same as base */
+}
+
+/* Drawn Card Style - Increasing Size */
+.card {
+    /* <<< INCREASED SIZE HERE >>> */
+    width: clamp(100px, 12vw, 140px);
+    /* Larger base size and range */
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: absolute;
+    transform-origin: center center;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        /* Shortened duration */
+        opacity 0.5s ease,
+        top 0.6s ease,
+        left 0.6s ease,
+        box-shadow 0.3s ease,
+        /* Added shadow transition */
+        z-index 0s linear 0.3s;
+    /* Delay z-index change until slightly scaled */
+    background-color: #333;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.8);
+    /* <<< BASE z-index determined by JS now >>> */
+}
+
+/* <<< NEW HOVER EFFECT FOR DRAWN CARDS >>> */
+.card:hover {
+    z-index: 100 !important;
+    /* Bring to front immediately (important might be needed to override JS inline z-index) */
+    box-shadow: 0 10px 30px rgba(233, 188, 245, 0.4);
+    /* Lighter, larger glow? */
+    /* The scale is applied ON TOP of the existing JS transform (like rotate) */
+    transform: scale(1.15);
+    /* Scale up */
+    transition-duration: 0.2s;
+    /* Make hover transform faster */
+    transition-timing-function: ease-out;
+    /* Quick ease out */
+}
+
+/* --- END SNIPPET OF CHANGES --- */
+
+
+/* FULL tarot.css */
+
 @font-face {
     font-family: "inkfree";
     src: url("./fonts/inkfree.ttf") format("truetype");
@@ -6,22 +79,13 @@
 /* Basic page setup */
 html {
     height: 100%;
-    /* Ensure HTML takes full height */
     overflow: hidden;
-    /* Prevent scrolling on html/body */
 }
 
 body {
     font-family: "inkfree", sans-serif;
-    display: flex;
-    /* Use flex for main structure */
-    flex-direction: column;
-    /* Remove justify-content and padding that pushed content down */
-    align-items: center;
     min-height: 100%;
-    /* Use min-height for flexibility */
     height: 100vh;
-    /* Force body to viewport height */
     margin: 0;
     background-image: url('./images/tarot.png');
     background-size: cover;
@@ -31,12 +95,10 @@ body {
     background-color: #d7b8f5;
     box-sizing: border-box;
     overflow: hidden;
-    /* Prevent body scrollbars */
     position: relative;
-    /* Needed for absolute positioning of some children */
 }
 
-/* Background Animation (Keep As Is) */
+/* Background Animation */
 .background span {
     opacity: 0.3;
     width: 20vmin;
@@ -50,7 +112,6 @@ body {
     animation-iteration-count: infinite;
 }
 
-/* ... other span styles remain the same ... */
 .background span:nth-child(1) {
     color: #d7c8f1;
     top: 20%;
@@ -107,48 +168,44 @@ body {
     }
 }
 
-/* Intro text container - Adjusted for alignment with BG rectangle */
+/* Intro text container - Adding hover effect */
 .introtext-container {
     position: absolute;
-    /* Use absolute to position relative to body */
-    /* --- POSITIONING: VISUALLY ALIGN WITH BACKGROUND --- */
     top: 12%;
-    /* << ADJUST based on visual testing */
-    right: 4%;
-    /* << ADJUST based on visual testing */
+    right: 5%;
     width: clamp(280px, 20vw, 360px);
-    /* << ADJUST clamp range if needed */
     max-width: 30%;
-    /* Optional constraint */
     max-height: 75vh;
-    /* << Allow more height */
     padding: 20px;
-    /* Increased padding slightly */
     text-align: left;
-    /* Align text left */
     font-size: clamp(14px, 1.1vw, 17px);
-    /* Slightly adjusted font size */
     line-height: 1.6;
-    /* Improved line spacing */
     background-color: rgba(60, 40, 80, 0.6);
-    /* Slightly different purple/alpha? */
     border-radius: 25px;
-    /* Adjusted radius */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    transition: transform 0.5s ease, background-color 0.3s ease, opacity 0.4s ease;
+    /* UPDATED transition */
+    transition: transform 0.4s ease,
+        background-color 0.3s ease,
+        opacity 0.4s ease,
+        box-shadow 0.3s ease;
     transform-origin: center;
     transform: scale(1);
-    /* Start at full size, no hover scaling needed? */
     opacity: 0.9;
-    /* Slightly less opaque */
     z-index: 10;
     overflow-y: auto;
-    /* Scroll if content overflows */
     backdrop-filter: blur(3px);
-    /* More blur */
 }
 
-/* Style scrollbar for intro text */
+/* UPDATED Hover state */
+.introtext-container:hover {
+    background-color: rgba(80, 60, 100, 0.75);
+    /* Slightly darker/more opaque */
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    /* Stronger shadow */
+    transform: scale(1.1);
+    /* Subtle scale up */
+}
+
 .introtext-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -167,82 +224,57 @@ body {
     background: #E45A84;
 }
 
-
 .intro-text {
-    /* Style inherited from container */
     font-family: "inkfree", sans-serif;
-    /* Ensure font */
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
     margin: 0;
 }
 
-/* Main Content Area - DEFINES THE SPACE FOR THE ARC */
+/* Main Content Area (Card Arc) */
 .main-content {
-    width: 90%;
-    /* Use most of the width */
-    max-width: 1200px;
-    /* REMOVE flex-grow, define height explicitly */
+    position: absolute;
+    top: 20vh;
+    left: 33%;
+    transform: translateX(-50%);
+    width: 55vw;
     height: 65vh;
-    /* << KEY: Define a specific height for the card area */
-    /* Make it relative to viewport height */
-    margin-top: 8vh;
-    /* << KEY: Push down from the top */
-    margin-bottom: auto;
-    /* Push down other content (though deck is fixed) */
     display: flex;
-    /* Keep flex for centering drawn-cards */
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    position: relative;
-    /* Context for drawn-cards */
     /* background-color: rgba(0, 255, 0, 0.1); */
-    /* DEBUG: temporary bg */
+    /* DEBUG */
 }
 
-/* Drawn cards container - Stays within main-content */
+/* Drawn cards container */
 #drawn-cards {
     position: relative;
-    /* Context for absolute cards */
     width: 100%;
-    /* Fill main-content width */
     height: 100%;
-    /* Fill main-content height */
     /* background-color: rgba(255, 0, 0, 0.1); */
-    /* DEBUG: temporary bg */
+    /* DEBUG */
 }
 
-/* Controls Area (Deck + Reset Button) - FIXED Position */
+/* Controls Area (Deck + Reset) */
 .controls-area {
     position: fixed;
-    /* << ADJUST vertical position to place between hands */
     bottom: 8%;
-    /* Example: % from bottom */
-    /* or use pixels: bottom: 70px; */
-    left: 50%;
+    left: 33%;
     transform: translateX(-50%);
     z-index: 20;
     display: flex;
     flex-direction: column;
-    /* Stack deck and button */
     align-items: center;
-    /* Center items horizontally */
     gap: 15px;
-    /* Space between deck and reset button */
 }
 
-/* Deck Area Container - Now part of controls-area */
+/* Deck Area Container */
 .deck-area {
-    /* Removed fixed positioning - handled by parent */
-    /* Removed transform - handled by parent */
     width: clamp(100px, 12vw, 140px);
-    /* Adjusted size slightly */
     aspect-ratio: 2 / 3;
     position: relative;
-    /* Allow z-index stacking if needed */
 }
 
-/* Deck Style (Keep As Is) */
 #deck {
     width: 100%;
     height: 100%;
@@ -256,7 +288,7 @@ body {
 }
 
 #deck:hover {
-    transform: scale(1.05) translateY(-5px);
+    transform: scale(1.2) translateY(-5px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
 }
 
@@ -265,23 +297,17 @@ body {
     transition-duration: 0.1s;
 }
 
-
 /* Reset Button Style */
 #reset-button {
     background-color: rgba(228, 90, 132, 0.7);
-    /* Match theme */
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: aliceblue;
     font-family: sans-serif;
-    /* Use a simple font for the symbol */
     font-size: 24px;
-    /* Adjust size */
     font-weight: bold;
     width: 45px;
-    /* Square button */
     height: 45px;
     border-radius: 50%;
-    /* Circle */
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -303,11 +329,10 @@ body {
     transition-duration: 0.1s;
 }
 
-
-/* Drawn Card Style (Mostly the same, ensure it doesn't conflict) */
+/* Drawn Card Style - Increased Size */
 .card {
-    width: clamp(90px, 10vw, 110px);
-    /* Slightly smaller cards for arc */
+    /* <<< INCREASED SIZE HERE >>> */
+    width: clamp(100px, 12vw, 140px);
     aspect-ratio: 2 / 3;
     border-radius: 8px;
     background-size: cover;
@@ -316,19 +341,37 @@ body {
     cursor: pointer;
     position: absolute;
     transform-origin: center center;
-    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-        /* Added custom ease for bounce */
-        opacity 0.5s ease, top 0.6s ease, left 0.6s ease, box-shadow 0.3s ease;
-    /* Increased duration */
+    /* <<< UPDATED TRANSITION HERE >>> */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        opacity 0.5s ease,
+        top 0.6s ease,
+        left 0.6s ease,
+        box-shadow 0.3s ease,
+        z-index 0s linear 0.3s;
+    /* Delay z-index drop slightly on mouse out */
     background-color: #333;
     overflow: hidden;
     opacity: 0;
     transform: scale(0.8);
-    /* Keep initial state */
-    /* NO left/top ! JS sets these */
+    /* z-index set by JS */
 }
 
-/* Card focus modal & Overlay (Keep As Is or minor tweaks if needed) */
+/* <<< NEW HOVER EFFECT FOR DRAWN CARDS >>> */
+.card:hover {
+    z-index: 100 !important;
+    /* Bring hovered card to the very front */
+    box-shadow: 0 8px 25px rgba(233, 188, 245, 0.5);
+    /* Brighter, larger shadow */
+    transform: scale(1.3);
+    /* Scale up significantly */
+    /* Make hover transform faster and smoother */
+    transition-duration: 0.3s;
+    transition-property: transform, box-shadow;
+    /* Only transition these fast */
+    transition-timing-function: ease-out;
+}
+
+/* Card focus modal & Overlay */
 #card-focus {
     position: fixed;
     top: 50%;
@@ -352,7 +395,7 @@ body {
 #card-focus.visible {
     display: flex;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1.5);
 }
 
 #focus-card-image {
@@ -453,75 +496,61 @@ body {
 
 #close-button:hover {
     transform: scale(1.2) rotate(90deg);
-    color: #E45A84;
+    color: #5ae4c1;
 }
 
-/* Media Queries for Responsiveness (Adjustments might be needed based on new layout) */
+/* Media Queries */
 @media (max-width: 768px) {
-
-    /* Example: adjust main content height on smaller screens */
     .main-content {
-        height: 55vh;
-        /* Less height */
-        margin-top: 5vh;
+        left: 50%;
+        width: 80vw;
+        height: 60vh;
+        top: 12vh;
     }
 
-    /* Adjust intro text positioning/size if needed */
     .introtext-container {
         top: 8%;
         right: 3%;
         width: clamp(200px, 35vw, 300px);
         font-size: 13px;
         max-height: 60vh;
-        /* Adjust */
     }
 
-    /* Adjust controls area positioning if needed */
     .controls-area {
+        left: 50%;
         bottom: 5%;
     }
 
-    .deck-area {
-        width: clamp(90px, 18vw, 120px);
-        /* Adjust deck size */
-    }
-
+    /* Card size likely needs adjustment in media queries too if base size changed */
     .card {
-        width: clamp(75px, 15vw, 100px);
-        /* Adjust card size */
+        width: clamp(85px, 16vw, 115px);
     }
 
-    /* Modal styles likely okay */
+    /* Example adjustment */
 }
 
 @media (max-width: 480px) {
-    body {
-        /* May need adjustment if content overflows */
-    }
-
     .main-content {
-        height: 50vh;
-        margin-top: 3vh;
+        width: 90vw;
+        height: 55vh;
+        top: 15vh;
     }
 
     .introtext-container {
-        /* Consider hiding on very small screens again if too cluttered */
-        /* display: none; */
-        top: 5%;
-        right: 2%;
-        width: 96%;
-        /* Or take most width */
+        /*display: none; */
+        position: relative;
+        width: 95%;
+        margin: 10px auto;
+        order: -1;
+        top: unset;
+        right: unset;
+        max-height: 40vh;
         font-size: 12px;
-        max-height: 50vh;
     }
 
     .controls-area {
         bottom: 4%;
         gap: 10px;
-    }
-
-    .deck-area {
-        width: clamp(80px, 22vw, 100px);
     }
 
     #reset-button {
@@ -531,25 +560,8 @@ body {
     }
 
     .card {
-        width: clamp(65px, 20vw, 85px);
+        width: clamp(70px, 18vw, 90px);
     }
 
-    /* Modal styles might need font size adjustments */
-    #focus-card-name {
-        font-size: 18px;
-    }
-
-    #focus-card-orientation {
-        font-size: 14px;
-    }
-
-    #focus-card-text {
-        font-size: 13px;
-    }
-
-    #close-button {
-        font-size: 26px;
-        top: 5px;
-        right: 5px;
-    }
+    /* Example adjustment */
 }
