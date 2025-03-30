@@ -28,7 +28,7 @@
         <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <!-- Intro Text -->
+    <!-- Intro Text (will be positioned via CSS) -->
     <div class="introtext-container">
         <div class="intro-text">
             Since the 1400s, tarot has evolved from a simple playing card game, to a conduit between future and past, to
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Content Area - Where cards will appear -->
     <main class="main-content">
         <!-- Drawn Cards Area -->
         <div id="drawn-cards">
@@ -52,17 +52,22 @@
         </div>
     </main>
 
-    <!-- Deck Area -->
-    <div class="deck-area">
-        <div id="deck">
-            <!-- This acts as the clickable deck -->
+    <!-- Deck Area and Controls -->
+    <div class="controls-area">
+        <div class="deck-area">
+            <div id="deck">
+                <!-- This acts as the clickable deck -->
+            </div>
         </div>
+        <!-- <<< NEW Reset Button >>> -->
+        <button id="reset-button" title="Reset Deck">↻</button>
     </div>
+
 
     <!-- Overlay for Modal -->
     <div id="overlay"></div>
 
-    <!-- Card Focus Modal (Simplified and Corrected) -->
+    <!-- Card Focus Modal -->
     <div id="card-focus">
         <button id="close-button">×</button>
         <img id="focus-card-image" src="" alt="Focused Tarot Card" />
