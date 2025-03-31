@@ -199,10 +199,10 @@ function positionCardsInArc() {
   if (totalDrawnCount === 0 || !containerWidth || !containerHeight) return;
 
   // --- Positioning Parameters ---
-  const horizontalRadiusFactor = 0.35; // Reduced from 0.45 to make arcs narrower
-  const verticalRadiusFactor = 0.6; // Increased from 0.45 for steeper arcs
+  const horizontalRadiusFactor = 0.25; // Reduced from 0.45 to make arcs narrower
+  const verticalRadiusFactor = 0.8; // Increased from 0.45 for steeper arcs
   const bottomRowCenterYFactor = 0.88; // Moved slightly lower (from 0.85)
-  const topRowCenterYFactor = 0.15; // Moved slightly higher (from 0.2)
+  const topRowCenterYFactor = 0.45; // Moved slightly higher (from 0.2)
   const numRows = ARC_STRUCTURE.length;
   const rowSpacing =
     numRows > 1

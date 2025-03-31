@@ -180,6 +180,11 @@ body {
     height: 100%;
 }
 
+.card:hover {
+    transform: scale(1.5);
+
+}
+
 /* Controls Area (Deck + Reset) */
 .controls-area {
     position: fixed;
@@ -267,7 +272,6 @@ body {
     background-color: #333;
     overflow: hidden;
     opacity: 0;
-    transform: scale(0.8);
     /* Initial state */
 
     /* Base transition for initial animation AND returning from hover */
@@ -279,16 +283,16 @@ body {
 }
 
 .card:hover {
-    z-index: 100 !important;
+    z-index: 1000 !important;
     /* Keep important to override JS */
-    box-shadow: 0 8px 25px rgba(233, 188, 245, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     /* Apply hover scale on top of existing transform (e.g., rotation) */
     /* IMPORTANT: This relies on the JS NOT re-setting transform during hover */
-    transform: scale(1.3);
+    transform: scale(1.3) translateY(10px) rotate(10deg);
     /* Specific (faster) transitions ONLY for hover state */
     transition-property: transform, box-shadow;
     /* Only animate these props quickly on hover */
-    transition-duration: 0.2s;
+    transition-duration: 0.3s;
     /* Faster hover */
     transition-timing-function: ease-out;
 }
