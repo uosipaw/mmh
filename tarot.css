@@ -1,75 +1,4 @@
-/* --- SNIPPET OF CHANGES --- */
-
-/* Intro text container - Adding hover effect */
-.introtext-container {
-    /* ... other styles ... */
-    transition: transform 0.4s ease;
-    /* Shortened transition time slightly */
-    background-color: 0.3s ease;
-    opacity: 0.4s ease;
-    box-shadow: black 0.3s ease;
-
-    /* Added shadow transition */
-    /* ... other styles ... */
-}
-
-.introtext-container:hover {
-    /* Slightly darker/more opaque */
-    box-shadow: 0 0 25px rgba(0, 0, 0, 1);
-    /* Stronger shadow */
-    transform: scale(1.02);
-    /* Subtle scale up */
-    /* opacity remains the same as base */
-}
-
-/* Drawn Card Style - Increasing Size */
-.card {
-    /* <<< INCREASED SIZE HERE >>> */
-    width: clamp(100px, 12vw, 140px);
-    /* Larger base size and range */
-    aspect-ratio: 2 / 3;
-    border-radius: 8px;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    position: absolute;
-    transform-origin: center center;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-        /* Shortened duration */
-        opacity 0.5s ease,
-        top 0.6s ease,
-        left 0.6s ease,
-        box-shadow 0.3s ease,
-        /* Added shadow transition */
-        z-index 0s linear 0.3s;
-    /* Delay z-index change until slightly scaled */
-    background-color: #333;
-    overflow: hidden;
-    opacity: 0;
-    transform: scale(0.8);
-    /* <<< BASE z-index determined by JS now >>> */
-}
-
-/* <<< NEW HOVER EFFECT FOR DRAWN CARDS >>> */
-.card:hover {
-    z-index: 100 !important;
-    /* Bring to front immediately (important might be needed to override JS inline z-index) */
-    box-shadow: 0 10px 30px rgba(233, 188, 245, 0.4);
-    /* Lighter, larger glow? */
-    /* The scale is applied ON TOP of the existing JS transform (like rotate) */
-    transform: scale(1.15);
-    /* Scale up */
-    transition-duration: 0.2s;
-    /* Make hover transform faster */
-    transition-timing-function: ease-out;
-    /* Quick ease out */
-}
-
-/* --- END SNIPPET OF CHANGES --- */
-
-
-/* FULL tarot.css */
+/* FULL tarot.css - Updated for Two Arcs & Hover Fix */
 
 @font-face {
     font-family: "inkfree";
@@ -98,7 +27,7 @@ body {
     position: relative;
 }
 
-/* Background Animation */
+/* Background Animation (No changes) */
 .background span {
     opacity: 0.3;
     width: 20vmin;
@@ -168,7 +97,7 @@ body {
     }
 }
 
-/* Intro text container - Adding hover effect */
+/* Intro text container */
 .introtext-container {
     position: absolute;
     top: 12%;
@@ -183,11 +112,7 @@ body {
     background-color: rgba(60, 40, 80, 0.6);
     border-radius: 25px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    /* UPDATED transition */
-    transition: transform 0.4s ease,
-        background-color 0.3s ease,
-        opacity 0.4s ease,
-        box-shadow 0.3s ease;
+    transition: transform 0.4s ease, background-color 0.3s ease, opacity 0.4s ease, box-shadow 0.3s ease;
     transform-origin: center;
     transform: scale(1);
     opacity: 0.9;
@@ -196,14 +121,10 @@ body {
     backdrop-filter: blur(3px);
 }
 
-/* UPDATED Hover state */
 .introtext-container:hover {
     background-color: rgba(80, 60, 100, 0.75);
-    /* Slightly darker/more opaque */
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-    /* Stronger shadow */
     transform: scale(1.1);
-    /* Subtle scale up */
 }
 
 .introtext-container::-webkit-scrollbar {
@@ -233,26 +154,30 @@ body {
 /* Main Content Area (Card Arc) */
 .main-content {
     position: absolute;
-    top: 20vh;
+    top: 5vh;
+    /* Start closer to the top */
     left: 33%;
     transform: translateX(-50%);
     width: 55vw;
-    height: 65vh;
+    height: 85vh;
+    /* <<< SIGNIFICANTLY INCREASED HEIGHT */
+    /* Adjust this based on visual testing! May need 90vh+ */
+    /* Also adjust height in media queries */
     display: flex;
     justify-content: center;
+    /* Align items at the bottom maybe, so arcs build up? */
+    /* align-items: flex-end;  */
     align-items: center;
+    /* Or keep center align */
     box-sizing: border-box;
-    /* background-color: rgba(0, 255, 0, 0.1); */
-    /* DEBUG */
+    /* background-color: rgba(0, 0, 255, 0.1); */
+    /* DEBUG BG */
 }
 
-/* Drawn cards container */
 #drawn-cards {
     position: relative;
     width: 100%;
     height: 100%;
-    /* background-color: rgba(255, 0, 0, 0.1); */
-    /* DEBUG */
 }
 
 /* Controls Area (Deck + Reset) */
@@ -268,7 +193,6 @@ body {
     gap: 15px;
 }
 
-/* Deck Area Container */
 .deck-area {
     width: clamp(100px, 12vw, 140px);
     aspect-ratio: 2 / 3;
@@ -278,8 +202,8 @@ body {
 #deck {
     width: 100%;
     height: 100%;
-    background-image: url('./images/tarot/back1.png');
-    background-size: cover;
+    background-image: url('images/tarot/back1.png');
+    background-size: contain;
     background-position: center;
     border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
@@ -329,9 +253,8 @@ body {
     transition-duration: 0.1s;
 }
 
-/* Drawn Card Style - Increased Size */
+/* Drawn Card Style - HOVER FIX TWEAKS */
 .card {
-    /* <<< INCREASED SIZE HERE >>> */
     width: clamp(100px, 12vw, 140px);
     aspect-ratio: 2 / 3;
     border-radius: 8px;
@@ -341,33 +264,32 @@ body {
     cursor: pointer;
     position: absolute;
     transform-origin: center center;
-    /* <<< UPDATED TRANSITION HERE >>> */
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-        opacity 0.5s ease,
-        top 0.6s ease,
-        left 0.6s ease,
-        box-shadow 0.3s ease,
-        z-index 0s linear 0.3s;
-    /* Delay z-index drop slightly on mouse out */
     background-color: #333;
     overflow: hidden;
     opacity: 0;
     transform: scale(0.8);
-    /* z-index set by JS */
+    /* Initial state */
+
+    /* Base transition for initial animation AND returning from hover */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+        opacity 0.5s ease,
+        top 0.6s ease,
+        left 0.6s ease,
+        box-shadow 0.3s ease;
 }
 
-/* <<< NEW HOVER EFFECT FOR DRAWN CARDS >>> */
 .card:hover {
     z-index: 100 !important;
-    /* Bring hovered card to the very front */
+    /* Keep important to override JS */
     box-shadow: 0 8px 25px rgba(233, 188, 245, 0.5);
-    /* Brighter, larger shadow */
+    /* Apply hover scale on top of existing transform (e.g., rotation) */
+    /* IMPORTANT: This relies on the JS NOT re-setting transform during hover */
     transform: scale(1.3);
-    /* Scale up significantly */
-    /* Make hover transform faster and smoother */
-    transition-duration: 0.3s;
+    /* Specific (faster) transitions ONLY for hover state */
     transition-property: transform, box-shadow;
-    /* Only transition these fast */
+    /* Only animate these props quickly on hover */
+    transition-duration: 0.2s;
+    /* Faster hover */
     transition-timing-function: ease-out;
 }
 
@@ -395,7 +317,7 @@ body {
 #card-focus.visible {
     display: flex;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 #focus-card-image {
@@ -499,57 +421,118 @@ body {
     color: #5ae4c1;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
+
+/* Media Queries (Ensure height of .main-content fits two arcs if needed) */
+@media (max-width: 900px) {
     .main-content {
         left: 50%;
-        width: 80vw;
-        height: 60vh;
-        top: 12vh;
-    }
-
-    .introtext-container {
-        top: 8%;
-        right: 3%;
-        width: clamp(200px, 35vw, 300px);
-        font-size: 13px;
-        max-height: 60vh;
+        width: 75vw;
+        height: 80vh;
+        /* <<< Adjust Media Query Height */
+        top: 8vh;
+        /* Adjust */
     }
 
     .controls-area {
         left: 50%;
-        bottom: 5%;
+        bottom: 6%;
     }
 
-    /* Card size likely needs adjustment in media queries too if base size changed */
+    .introtext-container {
+        right: 3%;
+        width: clamp(240px, 30vw, 320px);
+        max-width: 40%;
+        top: 10%;
+        font-size: clamp(13px, 1.2vw, 16px);
+        max-height: 70vh;
+    }
+
     .card {
-        width: clamp(85px, 16vw, 115px);
+        width: clamp(90px, 13vw, 125px);
     }
 
-    /* Example adjustment */
+    .deck-area {
+        width: clamp(90px, 13vw, 130px);
+    }
+}
+
+@media (max-width: 767px) {
+    .main-content {
+        width: 90vw;
+        height: 75vh;
+        /* <<< Adjust Media Query Height */
+        top: 5vh;
+        /* Adjust if intro text is relative now */
+    }
+
+    /* Readjusted */
+    .introtext-container {
+        position: relative;
+        order: -1;
+        width: 90%;
+        margin: 15px auto;
+        top: unset;
+        right: unset;
+        max-width: 90%;
+        max-height: 30vh;
+        /* Smaller height */
+        font-size: clamp(12px, 2.5vw, 14px);
+    }
+
+    /* body { display: flex; flex-direction: column; align-items: center; } */
+    .controls-area {
+        bottom: 5%;
+        gap: 12px;
+    }
+
+    .deck-area {
+        width: clamp(85px, 18vw, 115px);
+    }
+
+    .card {
+        width: clamp(80px, 15vw, 105px);
+    }
+
+    /* Focus modal adjustments */
+    #card-focus {
+        max-width: 95%;
+        padding: 20px;
+    }
+
+    #focus-card-image {
+        width: clamp(120px, 40%, 180px);
+    }
+
+    #focus-card-name {
+        font-size: clamp(18px, 5vw, 22px);
+    }
+
+    #focus-card-orientation {
+        font-size: clamp(15px, 4vw, 18px);
+    }
+
+    #focus-card-text {
+        font-size: clamp(13px, 3.5vw, 15px);
+    }
 }
 
 @media (max-width: 480px) {
     .main-content {
-        width: 90vw;
-        height: 55vh;
-        top: 15vh;
+        height: 70vh;
+        /* <<< Adjust Media Query Height */
+        top: 5vh;
     }
 
+    /* Ensure enough space */
     .introtext-container {
-        /*display: none; */
-        position: relative;
-        width: 95%;
-        margin: 10px auto;
-        order: -1;
-        top: unset;
-        right: unset;
-        max-height: 40vh;
+        max-height: 25vh;
         font-size: 12px;
+        padding: 15px;
+        margin: 10px auto;
     }
 
     .controls-area {
-        bottom: 4%;
+        bottom: 3%;
         gap: 10px;
     }
 
@@ -559,9 +542,55 @@ body {
         font-size: 20px;
     }
 
-    .card {
-        width: clamp(70px, 18vw, 90px);
+    .deck-area {
+        width: clamp(75px, 20vw, 100px);
     }
 
-    /* Example adjustment */
+    .card {
+        width: clamp(70px, 17vw, 90px);
+    }
+
+    #focus-card-name {
+        font-size: 18px;
+    }
+
+    #focus-card-orientation {
+        font-size: 14px;
+    }
+
+    #focus-card-text {
+        font-size: 13px;
+    }
+
+    #close-button {
+        font-size: 26px;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (hover: none) {
+    .introtext-container:hover {
+        transform: scale(1);
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+        background-color: rgba(80, 60, 100, 0.75);
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        /* Much smaller scale */
+        z-index: 100 !important;
+        box-shadow: 0 8px 25px rgba(233, 188, 245, 0.5);
+    }
+
+    #deck:hover {
+        transform: scale(1.0) translateY(0px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    #reset-button:hover {
+        transform: scale(1) rotate(0);
+        /* Also disable rotation */
+        background-color: #E45A84;
+    }
 }
