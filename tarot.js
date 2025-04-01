@@ -1,14 +1,11 @@
-// START OF tarot.js
-
 window.addEventListener("DOMContentLoaded", () => {
   initTarot();
 });
 
 // --- Configuration ---
 // Define the number of cards per row, starting from the bottom row.
-// Example: [9, 7, 5] for 3 rows, wider at the bottom.
-// Example: [15] for a single large arc.
-const ARC_STRUCTURE = [7, 6, 5, 4, 3, 2, 1]; // Cards per row, bottom-up (Current: 7 rows)
+// >> Using Reversed Structure for inverted physical layout <<
+const ARC_STRUCTURE = [1, 2, 3, 4, 5, 6, 7]; // Cards per row, bottom-up (Now: 1 at bottom, 7 at top)
 const MAX_CARDS = ARC_STRUCTURE.reduce((sum, count) => sum + count, 0); // Total cards based on structure (updates automatically)
 
 let tarotData = null;
@@ -204,11 +201,12 @@ function drawAndPositionCard() {
 
 function getCardRowInfo(overallIndex, structure) {
   let cumulativeCards = 0;
+  // This function works correctly with the reversed structure
   for (let rowIndex = 0; rowIndex < structure.length; rowIndex++) {
     const numCardsInThisRow = structure[rowIndex];
     if (overallIndex < cumulativeCards + numCardsInThisRow) {
       return {
-        rowIndex: rowIndex,
+        rowIndex: rowIndex, // row 0 is now the bottom row (1 card)
         indexInRow: overallIndex - cumulativeCards,
         numCardsInRow: numCardsInThisRow,
       };
@@ -229,11 +227,12 @@ function positionCardsInArc() {
 
   if (totalDrawnCount === 0 || !containerWidth || !containerHeight) return;
 
-  // --- Positioning Parameters (ADJUST THESE) ---
-  const horizontalRadiusFactor = 0.25;
-  const verticalRadiusFactor = 0.8;
-  const bottomRowCenterYFactor = 0.88;
-  const topRowCenterYFactor = 0.45;
+  // --- Positioning Parameters (Using the wider spacing values) ---
+  let horizontalRadiusFactor = 0.35;
+  let verticalRadiusFactor = 0.8;
+  let bottomRowCenterYFactor = 0.88;
+  let topRowCenterYFactor = 0.45;
+  let baseAngleSpread = 22;
   // --- End Positioning Parameters ---
 
   const numRows = ARC_STRUCTURE.length;
@@ -253,17 +252,19 @@ function positionCardsInArc() {
 
     const { rowIndex, indexInRow, numCardsInRow } = rowInfo;
 
+    // targetCenterY calculation correctly positions higher rowIndex values higher on screen
     const targetCenterY =
       containerHeight * (bottomRowCenterYFactor - rowIndex * rowSpacing);
 
-    const angleSpread = Math.min(numCardsInRow * 18, 170);
+    const angleSpread = Math.min(numCardsInRow * baseAngleSpread, 170);
     const startAngle = -90 - angleSpread / 2;
     const angleStep = numCardsInRow > 1 ? angleSpread / (numCardsInRow - 1) : 0;
     let angle = startAngle + indexInRow * angleStep;
 
-    // --- Force Topmost Card Upright and Centered ---
+    // --- Force Topmost Card (which is now row 0) Upright and Centered ---
     if (numCardsInRow === 1) {
-      angle = 0; // Force angle to 0 for single card rows (topmost - horizontal center)
+      // This condition will now apply to the single card at the physical bottom (rowIndex 0)
+      angle = 0;
     }
     // --- End Force Topmost Card ---
 
@@ -300,26 +301,19 @@ function positionCardsInArc() {
     let baseRotation = isReversed ? 180 : 0;
     let tiltAngle = angle + 90;
 
-    // --- Force Topmost Card to be Upright (no tilt) ---
+    // --- Force Topmost Card (physical bottom, row 0) to be Upright (no tilt) ---
     if (numCardsInRow === 1) {
-      tiltAngle = 0; // No tilt for topmost card
+      // This condition now applies to the single card at the physical bottom (rowIndex 0)
+      tiltAngle = 0;
     }
     // --- End Force Topmost Card Upright ---
 
-    const currentScaleMatch = card.style.transform.match(/scale\(([^)]+)\)/);
-    const currentScale = currentScaleMatch
-      ? parseFloat(currentScaleMatch[1])
-      : 1;
+    card.style.transform = `rotate(${tiltAngle}deg) rotate(${baseRotation}deg) scale(1)`; // Final transform
 
-    if (card.style.opacity === "0" || currentScale < 1) {
-      card.style.transform = `rotate(${tiltAngle}deg) rotate(${baseRotation}deg) scale(1)`;
-      card.style.opacity = "1";
-    } else {
-      card.style.transform = `rotate(${tiltAngle}deg) rotate(${baseRotation}deg) scale(1)`;
-      if (card.style.opacity !== "1" && currentScale >= 1) {
-        card.style.opacity = "1";
-      }
-    }
+    // --- Add row-based class for darkening effect ---
+    // rowIndex 0 is the physical bottom row, rowIndex 6 is the physical top row
+    // The CSS will handle making row 0 darkest and row 6 brightest
+    card.className = `card card-row-${rowIndex}`; // Set class name for styling
   });
 }
 
@@ -420,5 +414,3 @@ function closeCardFocus() {
   if (modal) modal.classList.remove("visible");
   if (overlay) overlay.classList.remove("visible");
 }
-
-// END OF tarot.js
