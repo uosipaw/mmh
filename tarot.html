@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Draw a Card</title>
+    <title>work in progress</title>
     <link rel="stylesheet" type="text/css" href="tarot.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
@@ -12,14 +12,13 @@
     <link rel="preload" href="tarot-cards.json" as="fetch" crossorigin="anonymous">
     <!-- Optional: Preload card back image -->
     <link rel="preload" href="./images/tarot/back1.png" as="image">
-    <!-- Optional: Preload common card images -->
-    <link rel="preload" href="./images/tarot/fool.png" as="image">
-    <link rel="preload" href="./images/tarot/magician.png" as="image">
-    <link rel="preload" href="./images/tarot/highpriestess.png" as="image">
+
     <!-- Using the font from CSS -->
 </head>
 
 <body>
+    <img id="wip" src="./images/wip.png" alt="work in progress"
+        style="position: absolute; top: 10px; left: 32%; width: 500px; height: auto; border-radius: 190px 100px; transform: translateX(-50%); box-shadow: 0 16px 18px rgba(0, 0, 0, 0.658); filter: brightness(0.8);" />
     <!-- Background Animation -->
     <div class="background">
         <span></span><span></span><span></span><span></span><span></span>
@@ -39,8 +38,6 @@
             you relate your reading to your life is a personal journey, and the cards are a tool to help you navigate
             it. There is no right or wrong way to interpret the cards, and the meanings are as unique as the people who
             read them.
-            <br><br>
-            When you're ready, set your intention, then click on the deck to draw a card.
         </div>
     </div>
 
@@ -88,7 +85,7 @@
     <div id="card-focus">
         <button id="close-button">×</button>
         <img id="focus-card-image" src="" alt="Focused Tarot Card" />
-        <h2 id="focus-card-name">Card Name</h2>
+        <h1 id="focus-card-name">Card Name</h1>
         <h3 id="focus-card-orientation">Orientation</h3>
         <div id="focus-card-text-container">
             <p id="focus-card-text">Card description goes here...</p>
@@ -97,6 +94,7 @@
 
     <!-- Script at the end of body -->
     <script src="tarot.js" defer></script>
+    <script src="additional-script.js" defer></script>
 </body>
 
 </html>
