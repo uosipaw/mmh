@@ -31,8 +31,403 @@ body {
     /* Needed for absolute positioning of children */
     display: flex;
     /* Use flexbox for layout */
-    flex-direction: column;
+    flex-direction: row;
     /* Stack children vertically */
+}
+
+.container {
+    height: 89vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 2% 1% 1% 1%;
+
+}
+
+.left-container,
+.right-container {
+    width: 25%;
+    /* Slightly smaller side containers */
+    background-color: #f0f0f059;
+}
+
+.middle-container {
+    width: 50%;
+    /* Middle container takes up more space */
+    background-color: #e0e0e059;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center boxes horizontally */
+    justify-content: center;
+    /* Center boxes vertically */
+    gap: 20px;
+    /* Spacing between boxes */
+    padding: 40px;
+    /* More padding for middle container */
+}
+
+.card-box {
+    background-color: #ffffff73;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    /* Rounded corners */
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    /* Smooth transitions */
+    width: 80%;
+    /* Adjust width of boxes */
+    box-shadow: 3px 3px 5px #ccc;
+    /* Subtle shadow */
+    box-sizing: border-box;
+}
+
+.card-box h3 {
+    margin-top: 0;
+}
+
+.card-content {
+    overflow: hidden;
+    max-height: 100px;
+    /* Initial height, adjust as needed */
+    transition: max-height 0.5s ease;
+}
+
+.card-box.expanded .card-content {
+    max-height: 500px;
+    /* Expanded height, adjust as needed */
+}
+
+/* Hand-drawn asymmetry - subtle border-radius variation */
+.card-box {
+    border-radius: 15px 20px 18px 12px;
+    /* Example of varying border radius */
+}
+
+
+/* Top Box Styles */
+.top-box.expanded {
+    position: absolute;
+    /* Take it out of normal flow for expansion */
+    top: 0;
+    left: 25%;
+    /* Align with middle container start */
+    width: 50%;
+    height: auto;
+    /* Expand height based on content */
+    z-index: 10;
+    /* Ensure it's on top */
+    padding: 40px;
+}
+
+.top-box .introtext-container {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    top: 12%;
+    right: 5%;
+    width: clamp(280px, 20vw, 360px);
+    /* Responsive width */
+    max-width: 30%;
+    /* Limit max width */
+    max-height: 75vh;
+    /* Limit max height */
+    padding: 20px;
+    text-align: left;
+    font-size: clamp(14px, 1.1vw, 17px);
+    /* Responsive font size */
+    line-height: 1.6;
+    background-color: rgba(60, 40, 80, 0.6);
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s ease, background-color 0.3s ease, opacity 0.4s ease, box-shadow 0.3s ease;
+    transform-origin: center;
+    transform: scale(1);
+    opacity: 0.9;
+    z-index: 10;
+    /* Above background, below modal */
+    overflow-y: auto;
+    /* Enable scrolling if content exceeds max-height */
+    backdrop-filter: blur(3px);
+    /* Frosted glass effect */
+}
+
+.top-box .introtext-container:hover {
+    background-color: rgba(80, 60, 100, 0.75);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Custom scrollbar for intro text */
+.top-box .introtext-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.top-box .introtext-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.top-box .introtext-container::-webkit-scrollbar-thumb {
+    background: rgba(228, 90, 132, 0.7);
+    border-radius: 4px;
+}
+
+.top-box .introtext-container::-webkit-scrollbar-thumb:hover {
+    background: #E45A84;
+}
+
+.top-box.expanded .card-content {
+    max-height: 1000px;
+
+    .introtext-container {
+        display: block;
+        visibility: visible;
+        position: absolute;
+        top: 12%;
+        /* Show intro text when expanded */
+    }
+
+    /* Adjust expanded content height */
+}
+
+.top-box.expanded .introtext-container {
+    display: block;
+    /* Visible when expanded */
+}
+
+.top-box.expanded~.middle-box,
+.top-box.expanded~.bottom-box {
+    transform: translateY(100vh);
+    /* Push other boxes out of view */
+    opacity: 0;
+    pointer-events: none;
+    /* Make them non-interactive */
+}
+
+
+/* Middle Box Styles */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
+    gap: 10px;
+    width: 80%;
+    max-height: 0;
+    /* Initially hidden */
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.grid-container.show {
+    max-height: 500px;
+    /* Adjust as needed */
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #eeeeee57;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 3px #ddd;
+    min-height: 100px;
+    /* Minimum height for grid items */
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 5px #ccc;
+}
+
+.grid-item.expanded-grid {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 100vh;
+    z-index: 15;
+    overflow-y: auto;
+    /* Allow scrolling if content is long */
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.card-box.hidden,
+.card-box.hidden~.card-box {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.card-box.bounce {
+    animation: bounce-pop 0.8s ease;
+}
+
+@keyframes bounce-pop {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* Bottom Box Styles */
+.bottom-box.expanded {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: auto;
+    z-index: 10;
+    padding: 40px;
+}
+
+.bottom-box.expanded .card-content {
+    max-height: 1000px;
+    /* Adjust expanded content height */
+}
+
+.bottom-box.expanded~.top-box,
+.bottom-box.expanded~.middle-box {
+    transform: translateY(-100vh);
+    /* Push other boxes out of view upwards */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.column-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns */
+    gap: 0;
+    /* No gap between columns */
+    width: 100%;
+    /* Take full width of bottom box */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.column-container.show {
+    max-height: 500px;
+    /* Adjust as needed */
+    padding: 0;
+}
+
+.column-item {
+    background-color: #f8f8f87a;
+    border-right: 1px solid #ddd;
+    /* Separator lines between columns */
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    /* Prevent content overflow */
+    transition: all 0.3s ease;
+    min-height: 150px;
+    /* Minimum height for columns */
+}
+
+.column-item:last-child {
+    border-right: none;
+    /* Remove border on the last column */
+}
+
+.column-item:hover {
+    background-color: #eee;
+    transform: scaleX(1.1);
+    /* Expand width on hover */
+    z-index: 12;
+    /* Ensure hover column is on top */
+}
+
+.column-item.expanded-column {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 100vh;
+    z-index: 20;
+    overflow-y: auto;
+    padding: 50px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    /* Match background color when expanded */
+    border: none;
+    /* Remove borders when expanded */
+}
+
+
+/* Search Bar Styles */
+.search-bar {
+    padding: 20px;
+}
+
+#searchInput {
+    width: calc(100% - 40px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#searchResults {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #ffffff79;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    /* Hidden by default */
+}
+
+#searchResults.show {
+    display: block;
+}
+
+.search-result-item {
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f0f0f0;
+}
+
+.search-result-item img {
+    max-width: 50px;
+    max-height: 70px;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 /* Background Animation (No changes needed) */
@@ -124,71 +519,6 @@ body {
 }
 
 
-/* Intro text container */
-.introtext-container {
-    /* Position relative to content-wrapper or body */
-    position: absolute;
-    top: 12%;
-    right: 5%;
-    width: clamp(280px, 20vw, 360px);
-    /* Responsive width */
-    max-width: 30%;
-    /* Limit max width */
-    max-height: 75vh;
-    /* Limit max height */
-    padding: 20px;
-    text-align: left;
-    font-size: clamp(14px, 1.1vw, 17px);
-    /* Responsive font size */
-    line-height: 1.6;
-    background-color: rgba(60, 40, 80, 0.6);
-    border-radius: 25px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    transition: transform 0.4s ease, background-color 0.3s ease, opacity 0.4s ease, box-shadow 0.3s ease;
-    transform-origin: center;
-    transform: scale(1);
-    opacity: 0.9;
-    z-index: 10;
-    /* Above background, below modal */
-    overflow-y: auto;
-    /* Enable scrolling if content exceeds max-height */
-    backdrop-filter: blur(3px);
-    /* Frosted glass effect */
-}
-
-.introtext-container:hover {
-    background-color: rgba(80, 60, 100, 0.75);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-    /* Optional: slightly increase scale on hover */
-    /* transform: scale(1.03); */
-}
-
-/* Custom scrollbar for intro text */
-.introtext-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.introtext-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-.introtext-container::-webkit-scrollbar-thumb {
-    background: rgba(228, 90, 132, 0.7);
-    border-radius: 4px;
-}
-
-.introtext-container::-webkit-scrollbar-thumb:hover {
-    background: #E45A84;
-}
-
-.intro-text {
-    font-family: "inkfree", sans-serif;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-    margin: 0;
-    /* Remove default paragraph margin if needed */
-}
-
 /* Main Content Area (Card Arc) */
 .main-content {
     position: absolute;
@@ -201,16 +531,6 @@ body {
     box-sizing: border-box;
     z-index: 5;
 }
-
-
-#drawn-cards {
-    position: relative;
-    /* Crucial for absolute positioning of cards */
-    width: 100%;
-    height: 100%;
-    /* background-color: rgba(0, 255, 0, 0.1); /* DEBUG BG */
-}
-
 
 /* Drawn Card Style - ADJUST SIZE AND TRANSITION HERE */
 .card {
@@ -324,40 +644,68 @@ body {
     gap: 15px;
 }
 
-.deck-area {
-    /* Match larger card width range */
+.right-container .deck-area {
     width: clamp(110px, 12vw, 140px);
     aspect-ratio: 2 / 3;
+    margin: 0 auto 20px;
     position: relative;
-    /* For potential future pseudo-elements */
 }
 
-#deck {
-    width: 90%;
-    height: 90%;
+.right-container #deck {
+    width: 100%;
+    height: 100%;
     background-image: url('images/tarot/back.png');
-    /* Card back image */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 10px;
-    /* Match card rounding */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    bottom: 10%;
 }
 
-#deck:hover {
+.right-container #deck:hover {
     transform: scale(1.1) translateY(-5px);
-    /* Lift and scale effect */
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
 }
 
-#deck:active {
+.right-container #deck:active {
     transform: scale(0.98);
-    /* Slight shrink on click */
     transition-duration: 0.1s;
+}
+
+#drawn-card-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#drawn-card-container img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#drawn-card-container h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: aliceblue;
+}
+
+#drawn-card-container p {
+    font-size: 14px;
+    color: aliceblue;
+    line-height: 1.5;
+}
+
+/* Remove old drawn-cards styles */
+#drawn-cards {
+    display: none;
 }
 
 /* Reset Button Style */
@@ -385,6 +733,7 @@ body {
     --c-color: #ffffff;
     -webkit-tap-highlight-color: transparent;
     -webkit-appearance: none;
+    appearance: none;
     outline: none;
     position: relative;
     cursor: pointer;
@@ -422,6 +771,7 @@ body {
 
 .styled-wrapper .uiverse .wrapper {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
     overflow: hidden;
     border-radius: 24px;
     min-width: 132px;
@@ -859,16 +1209,6 @@ body {
         bottom: 4%;
     }
 
-    .introtext-container {
-        right: 3%;
-        width: clamp(240px, 25vw, 320px);
-        /* Adjust width */
-        max-width: 35%;
-        top: 10%;
-        font-size: clamp(13px, 1.2vw, 16px);
-        max-height: 70vh;
-    }
-
     /* Adjust card size if needed */
     .card {
         /* Adjust larger card size for tablet */
@@ -1104,4 +1444,68 @@ body {
         /* Keep background color change */
         background-color: #E45A84;
     }
+}
+
+.right-container .deck-area {
+    width: clamp(110px, 12vw, 140px);
+    aspect-ratio: 2 / 3;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.right-container #deck {
+    width: 100%;
+    height: 100%;
+    background-image: url('images/tarot/back.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.right-container #deck:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+}
+
+.right-container #deck:active {
+    transform: scale(0.98);
+    transition-duration: 0.1s;
+}
+
+#drawn-card-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#drawn-card-container img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#drawn-card-container h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: aliceblue;
+}
+
+#drawn-card-container p {
+    font-size: 14px;
+    color: aliceblue;
+    line-height: 1.5;
+}
+
+/* Remove old drawn-cards styles */
+#drawn-cards {
+    display: none;
 }
