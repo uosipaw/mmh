@@ -1,4 +1,9 @@
+:root {
+    --main-font-family: "yuseimagic-regular", sans-serif;
+}
+
 body {
+    font-family: var(--main-font-family);
     height: 100%;
     overflow: hidden;
     /* Prevent scrollbars */
@@ -6,7 +11,6 @@ body {
     padding: 0;
     /* Reset padding just in case */
     box-sizing: border-box;
-    font-family: "inkfree", sans-serif;
     min-height: 100%;
     height: 100vh;
     /* Full viewport height */
@@ -18,8 +22,6 @@ body {
     color: aliceblue;
     background-color: #d7b8f5;
     /* Fallback color */
-    overflow: hidden;
-    /* Prevent body overflow */
     position: relative;
     /* For absolute positioning of children */
     display: flex;
@@ -27,469 +29,144 @@ body {
     /* Layout containers horizontally */
 }
 
-/* --- General Container Styles --- */
+@font-face {
+    font-family: "yuseimagic-regular";
+    src: url("/fonts/yuseimagic-regular.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-variant: small-caps;
+}
+
 .container {
-    height: 89vh;
+    height: auto;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Center containers vertically */
+    z-index: 0;
+    border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;
-    margin: 2% 1% 1% 1%;
+    margin: 2% 1%;
+    overflow: hidden;
 }
 
 .left-container,
 .middle-container,
 .right-container {
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
     position: absolute;
-    /* crucial for positioning inside rectangles */
-    background-color: #f0f0f059;
+    /* Make sure position is absolute to use left, top, width, height */
+    top: 0;
+    /* Adjust top to align with the top of purple rectangles */
+    height: 90%;
+    /* Adjust height to match the height of purple rectangles */
+    transform: none;
+    /* Remove vertical centering transform, as we are positioning directly */
 }
 
 .left-container {
-    top: 9.6%;
-    left: 7.4%;
-    width: 24.8%;
-    height: 79.6%;
+    left: 7%;
+    /* Adjusted left to align with left purple rectangle */
+    width: 22%;
+    /* Adjusted width to fit within left purple rectangle */
 }
 
 .middle-container {
-    top: 6.8%;
-    left: 35.8%;
-    width: 28.2%;
-    height: 82.5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    /* Align items to the start to prevent pushing out of box */
-    gap: 8px;
-    padding: 15px 15px 20px 15px;
-    overflow-y: auto;
-    /* Enable vertical scroll if content overflows */
-}
-
-
-/* --- Card Box Styles (Shared) --- */
-.card-box {
-    background-color: #ffffff73;
-    border: 2px solid #ccc;
-    border-radius: 15px 20px 18px 12px;
-    padding: 15px;
-    /* Reduced padding */
-    text-align: center;
-    cursor: pointer;
-    /* if you want them clickable */
-    transition: all 0.5s ease;
-    width: 90%;
-    /* Slightly wider for middle container */
-    margin-bottom: 8px;
-    /* Reduced margin */
-    box-shadow: 2px 2px 4px #ddd;
-    align-self: center;
-    /* Center card boxes in middle container */
-    box-sizing: border-box;
-}
-
-.card-box h3 {
-    margin-top: 0;
-}
-
-.card-content {
-    overflow: hidden;
-    max-height: 70px;
-    /* Further reduce max height */
-    /* Initial height */
-    transition: max-height 0.5s ease;
-}
-
-.card-box.expanded .card-content {
-    max-height: 500px;
-    /* Expanded height */
+    left: 38%;
+    /* Adjusted left to align with middle purple rectangle */
+    width: 24%;
+    /* Adjusted width to fit within middle purple rectangle */
 }
 
 .right-container {
-    top: 9.6%;
-    left: 66.1%;
-    width: 24.8%;
-    height: 79.6%;
-    padding: 15px;
-    /* Reduced padding */
+    left: 68%;
+    /* Adjusted left to align with right purple rectangle */
+    width: 22%;
+    /* Adjusted width to fit within right purple rectangle */
 }
 
-/* --- Reusable Expanded Container Styles --- */
-.container-expanded {
-    position: absolute;
-    top: 0;
-    /* Default top alignment, adjust per box */
-    left: 25%;
-    width: 50%;
-    height: auto;
-    z-index: 10;
-    padding: 40px;
-    opacity: 0;
-    /* Initially hidden */
-    pointer-events: none;
-    overflow: auto;
-    /* Enable scroll for expanded content */
-    transition: transform 0.7s ease, opacity 0.6s ease;
-    /* Add transition */
+/* --- Card Box Styles (Shared) --- */
+.card-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 95%;
+    /* Adjusted width to fit better within containers */
+    margin: 10px auto;
+    /* Centered and added spacing */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Center card boxes vertically within their containers */
 }
 
-.container-expanded.show {
-    opacity: 1;
-    pointer-events: auto;
-    /* Interactive when shown */
+.card-box:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Top Box Styles --- */
-.top-box.expanded {
-    position: absolute;
-    top: 0;
-    left: 7%;
-    /* Align with left container */
-    width: 90%;
-    /* Full width of the three containers area */
-    height: 90%;
-    /* Full height */
-    z-index: 10;
-    padding: 40px;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.7s ease, opacity 0.6s ease;
-    /* Ensure top alignment */
+.card-box h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #ffffff;
 }
 
-.top-box .introtext-container {
-    display: none;
-    /* Hidden by default */
-    position: absolute;
-    top: 5%;
-    /* Adjusted position */
-    right: 5%;
-    width: clamp(280px, 20vw, 360px);
-    max-width: 30%;
-    max-height: 75vh;
-    padding: 20px;
+.card-content {
+    font-size: 13px;
+    color: #e0e0e0;
+    line-height: 1.5;
     text-align: left;
-    font-size: clamp(14px, 1.1vw, 17px);
-    line-height: 1.6;
-    background-color: rgba(60, 40, 80, 0.6);
-    border-radius: 25px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    transition: transform 0.4s ease, background-color 0.3s ease, opacity 0.4s ease, box-shadow 0.3s ease;
-    transform-origin: center;
-    transform: scale(1);
-    opacity: 0.9;
-    z-index: 10;
-    overflow-y: auto;
-    backdrop-filter: blur(3px);
-}
-
-.top-box .introtext-container:hover {
-    background-color: rgba(80, 60, 100, 0.75);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-}
-
-/* Custom scrollbar for intro text */
-.top-box .introtext-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-.top-box .introtext-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-.top-box .introtext-container::-webkit-scrollbar-thumb {
-    background: rgba(228, 90, 132, 0.7);
-    border-radius: 4px;
-}
-
-.top-box .introtext-container::-webkit-scrollbar-thumb:hover {
-    background: #E45A84;
-}
-
-.top-box.expanded .introtext-container {
-    display: block;
-    /* Visible when expanded */
-}
-
-/* Hide other boxes when top box expands */
-/* --- Middle Box Styles --- */
-.middle-box.expanded {
-    position: absolute;
-    top: 0;
-    left: 7%;
-    /* Align with left container */
-    width: 90%;
-    /* Full width of the three containers area */
-    height: 90%;
-    /* Full height */
-    z-index: 10;
-    padding: 40px;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.7s ease, opacity 0.6s ease;
-    /* Ensure top alignment */
-}
-
-/* --- Middle Box Styles --- */
-.middle-box.expanded {
-    position: absolute;
-    top: 0;
-    left: 7%;
-    /* Align with left container */
-    width: 90%;
-    /* Full width of the three containers area */
-    height: 90%;
-    /* Full height */
-    z-index: 10;
-    padding: 40px;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.7s ease, opacity 0.6s ease;
-    /* Ensure top alignment */
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 90%;
-    /* Slightly wider for middle container */
-    max-height: 0;
-    /* Initially hidden */
     overflow: hidden;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
-.grid-container.show {
-    max-height: 500px;
-    /* Adjust as needed */
-    padding: 20px;
-}
-
-.grid-item {
-    background-color: #eeeeee57;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 2px 2px 3px #ddd;
-    min-height: 100px;
-}
-
-.grid-item:hover {
-    transform: scale(1.05);
-    box-shadow: 4px 4px 5px #ccc;
-}
-
-/* --- Bottom Box Styles --- */
-.bottom-box.expanded {
-    position: absolute;
-    bottom: 0;
-    left: 7%;
-    /* Align with left container */
-    width: 90%;
-    /* Full width of the three containers area */
-    height: 90%;
-    /* Full height */
-    z-index: 10;
-    padding: 50px;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.7s ease, opacity 0.6s ease;
-
-    /* --- Bottom Box Styles --- */
-    .bottom-box.expanded {
-        position: absolute;
-        bottom: 0;
-        left: 7%;
-        /* Align with left container */
-        width: 90%;
-        /* Full width of the three containers area */
-        height: 90%;
-        /* Full height */
-        z-index: 10;
-        padding: 40px;
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 0.7s ease, opacity 0.6s ease;
-        /* Align to bottom for bottom box */
-        top: auto;
-        /* Override default top: 0 from container-expanded */
-    }
-
-    /* Use container-expanded properties instead of @extend */
-    position: absolute;
-    width: 50%;
-    height: auto;
-    z-index: 10;
-    padding: 40px;
-    opacity: 0;
-    pointer-events: none;
-    overflow: auto;
-    transition: transform 0.7s ease,
-    opacity 0.6s ease;
-    /* Bottom box specific positioning */
-    bottom: 0;
-    /* Align to bottom for bottom box */
-    top: auto;
-    /* Override default top: 0 from container-expanded */
-}
-
-.bottom-box.expanded~.top-box,
-.bottom-box.expanded~.middle-box {
-    transform: translateY(-100vh);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.column-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    /* No gap between columns */
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.column-container.show {
-    max-height: 500px;
-    /* Adjust as needed */
-    padding: 0;
-}
-
-.column-item {
-    background-color: #f8f8f87a;
-    border-right: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    min-height: 150px;
-}
-
-.column-item:last-child {
-    border-right: none;
-    /* Remove border on the last column */
-}
-
-.column-item:hover {
-    background-color: #eee;
-    transform: scaleX(1.1);
-    z-index: 12;
-}
-
-.column-item.expanded-column {
-    position: absolute;
-    top: 0;
-    left: 7%;
-    /* Align with left container */
-    width: 50%;
-    height: 100vh;
-    z-index: 20;
-    overflow-y: auto;
-    padding: 50px;
-    box-sizing: border-box;
-    background-color: #f8f8f8;
-    border: none;
-}
-
-/* --- Card Box Animations and Visibility --- */
-.card-box.hidden,
-.card-box.hidden~.card-box {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-}
-
-.card-box.bounce {
-    animation: bounce-pop 0.8s ease;
-}
-
-@keyframes bounce-pop {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0);
-    }
-
-    40% {
-        transform: translateY(-20px);
-    }
-
-    60% {
-        transform: translateY(-10px);
-    }
-}
-
-/* --- Search Bar Styles --- */
-.search-bar {
-    padding: 10px 10px 0 10px;
-    /* Adjusted padding - less top padding */
-    margin-top: 10px;
-}
-
-#searchInput {
-    width: calc(100% - 40px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
-
-/* Search results dropdown */
-#searchResults {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: #ffffff79;
-    max-height: 300px;
-    overflow-y: auto;
-    display: none;
-    /* Hidden by default */
-    position: absolute;
-    /* Position under search input */
-}
-
-#searchResults.show {
-    display: block;
-}
-
-.search-result-item {
-    padding: 8px 0;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-}
-
-.search-result-item:last-child {
-    border-bottom: none;
-}
-
-.search-result-item:hover {
-    background-color: #f0f0f0;
-}
-
-.search-result-item img {
-    max-width: 50px;
     max-height: 70px;
-    vertical-align: middle;
-    margin-right: 10px;
+    /* Reduced max height for better alignment */
+    transition: max-height 0.3s ease;
+}
+
+.card-box.expanded .card-content {
+    max-height: 250px;
+    /* Adjusted expanded height */
+}
+
+.grid-container,
+.column-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+.grid-item,
+.column-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.grid-item:hover,
+.column-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* --- Background Animation Styles --- */
@@ -641,6 +318,11 @@ body {
     filter: brightness(1);
 }
 
+/* --- Reversed Card Styles --- */
+.reversed {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
 
 /* --- Controls Area (Deck + Reset) --- */
 .controls-area {
@@ -723,446 +405,24 @@ body {
     line-height: 1.5;
 }
 
-/* --- Reset Button Styles (uiverse button) --- */
-.styled-wrapper .uiverse {
-    --duration: 7s;
-    --easing: linear;
-    --c-color-1: #fc9999;
-    --c-color-2: #00bcd4;
-    --c-color-3: #7e27b0;
-    --c-color-4: #f5efb9;
-    --c-shadow: rgba(0, 0, 0, 0.3);
-    --c-shadow-inset-top: rgba(0, 0, 0, 0.2);
-    --c-shadow-inset-bottom: rgba(0, 0, 0, 0.2);
-    --c-radial-inner: #ff4081;
-    --c-radial-outer: #2a6ea5;
-    --c-color: #ffffff;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
-    position: relative;
-    cursor: pointer;
-    border: none;
-    display: table;
-    border-radius: 24px;
-    padding: 0;
-    margin: 0;
-    font-family: inherit;
-    text-align: center;
-    font-weight: 600;
-    text-shadow: rgb(38, 152, 203) 50px 5px 38px, rgb(217, 80, 183) -40px 26px 24px, rgb(255, 247, 0) 12px -24px 27px, rgb(0, 0, 0) 2px 2px 3px, rgb(0, 0, 0) -2px -2px 3px;
-    text-decoration: none;
-    font-size: 20px;
-    letter-spacing: 0.1em;
-    line-height: 1.5;
-    color: var(--c-color);
-    background: radial-gradient(circle, var(--c-radial-inner), var(--c-radial-outer) 80%);
-    box-shadow: 0 0 14px var(--c-shadow);
-    text-decoration: none;
-}
-
-.styled-wrapper .uiverse:before {
-    content: '';
-    pointer-events: none;
-    position: absolute;
-    z-index: 3;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 24px;
-    box-shadow: inset 0 3px 12px var(--c-shadow-inset-top), inset 0 -3px 4px var(--c-shadow-inset-bottom);
-}
-
-.styled-wrapper .uiverse .wrapper {
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-    mask-image: radial-gradient(white, black);
-    overflow: hidden;
-    border-radius: 24px;
-    min-width: 132px;
-    padding: 12px 0;
-}
-
-.styled-wrapper .uiverse .wrapper span {
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-}
-
-.styled-wrapper .uiverse .wrapper .circle {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    filter: blur(var(--blur, 8px));
-    background: var(--background, transparent);
-    transform: translate(var(--x, 0), var(--y, 0)) translateZ(0);
-    animation: var(--animation, none) var(--duration) var(--easing) infinite;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-1,
-.styled-wrapper .uiverse .wrapper .circle.circle-9,
-.styled-wrapper .uiverse .wrapper .circle.circle-10 {
-    --background: var(--c-color-4);
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-3,
-.styled-wrapper .uiverse .wrapper .circle.circle-4 {
-    --background: var(--c-color-2);
-    --blur: 14px;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-5,
-.styled-wrapper .uiverse .wrapper .circle.circle-6 {
-    --background: var(--c-color-3);
-    --blur: 16px;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-2,
-.styled-wrapper .uiverse .wrapper .circle.circle-7,
-.styled-wrapper .uiverse .wrapper .circle.circle-8,
-.styled-wrapper .uiverse .wrapper .circle.circle-11,
-.styled-wrapper .uiverse .wrapper .circle.circle-12 {
-    --background: var(--c-color-1);
-    --blur: 12px;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-1 {
-    --x: 0;
-    --y: -40px;
-    --animation: circle-1;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-2 {
-    --x: 92px;
-    --y: 8px;
-    --animation: circle-2;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-3 {
-    --x: -12px;
-    --y: -12px;
-    --animation: circle-3;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-4 {
-    --x: 80px;
-    --y: -12px;
-    --animation: circle-4;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-5 {
-    --x: 12px;
-    --y: -4px;
-    --animation: circle-5;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-6 {
-    --x: 56px;
-    --y: 16px;
-    --animation: circle-6;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-7 {
-    --x: 8px;
-    --y: 28px;
-    --animation: circle-7;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-8 {
-    --x: 28px;
-    --y: -4px;
-    --animation: circle-8;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-9 {
-    --x: 20px;
-    --y: -12px;
-    --animation: circle-9;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-10 {
-    --x: 64px;
-    --y: 16px;
-    --animation: circle-10;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-11 {
-    --x: 4px;
-    --y: 4px;
-    --animation: circle-11;
-}
-
-.styled-wrapper .uiverse .wrapper .circle.circle-12 {
-    --blur: 14px;
-    --x: 52px;
-    --y: 4px;
-    --animation: circle-12;
-}
-
-@keyframes circle-1 {
-    33% {
-        transform: translate(0px, 16px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(12px, 64px) translateZ(0);
-    }
-}
-
-@keyframes circle-2 {
-    33% {
-        transform: translate(80px, -10px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(72px, -48px) translateZ(0);
-    }
-}
-
-@keyframes circle-3 {
-    33% {
-        transform: translate(20px, 12px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(12px, 4px) translateZ(0);
-    }
-}
-
-@keyframes circle-4 {
-    33% {
-        transform: translate(76px, -12px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(112px, -8px) translateZ(0);
-    }
-}
-
-@keyframes circle-5 {
-    33% {
-        transform: translate(84px, 28px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(40px, -32px) translateZ(0);
-    }
-}
-
-@keyframes circle-6 {
-    33% {
-        transform: translate(28px, -16px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(76px, -56px) translateZ(0);
-    }
-}
-
-@keyframes circle-7 {
-    33% {
-        transform: translate(8px, 28px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(20px, -60px) translateZ(0);
-    }
-}
-
-@keyframes circle-8 {
-    33% {
-        transform: translate(32px, -4px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(56px, -20px) translateZ(0);
-    }
-}
-
-@keyframes circle-9 {
-    33% {
-        transform: translate(20px, -12px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(80px, -8px) translateZ(0);
-    }
-}
-
-@keyframes circle-10 {
-    33% {
-        transform: translate(68px, 20px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(100px, 28px) translateZ(0);
-    }
-}
-
-@keyframes circle-11 {
-    33% {
-        transform: translate(4px, 4px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(68px, 20px) translateZ(0);
-    }
-}
-
-@keyframes circle-12 {
-    33% {
-        transform: translate(56px, 0px) translateZ(0);
-    }
-
-    66% {
-        transform: translate(60px, -32px) translateZ(0);
-    }
-}
-
-
-/* --- Modal Styling --- */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: none;
-    /* Hidden by default */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 100;
-}
-
-#overlay.visible {
+/* --- Reset Button Styles --- */
+.reset-button {
     display: block;
-    opacity: 1;
-}
-
-#card-focus {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    width: 90%;
-    max-width: 600px;
-    background-color: rgba(40, 20, 60, 0.85);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-    display: none;
-    /* Hidden by default */
-    flex-direction: column;
-    align-items: center;
-    padding: 25px;
-    text-align: center;
-    z-index: 101;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#card-focus.visible {
-    display: flex;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    text-align: center;
-}
-
-.modal-card-image {
-    width: clamp(150px, 35%, 200px);
-    aspect-ratio: 2 / 3;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    object-fit: cover;
-    transition: transform 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.modal-card-image.reversed {
-    transform: rotate(180deg);
-}
-
-#focus-card-name {
-    font-size: clamp(20px, 4vw, 26px);
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #f0e8ff;
-    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-}
-
-#focus-card-orientation {
-    font-size: clamp(16px, 3vw, 20px);
-    font-style: italic;
-    margin-bottom: 15px;
-    color: #d8c0ff;
-}
-
-#focus-card-text-container {
-    max-height: 28vh;
-    overflow-y: auto;
-    width: 100%;
-    padding: 15px 10px 5px 15px;
-    margin-bottom: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    text-align: center;
-}
-
-/* Custom scrollbar for modal text */
-#focus-card-text-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-#focus-card-text-container::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-#focus-card-text-container::-webkit-scrollbar-thumb {
-    background: rgba(228, 90, 132, 0.5);
-    border-radius: 4px;
-}
-
-#focus-card-text-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(228, 90, 132, 0.8);
-}
-
-#focus-card-text {
-    font-size: clamp(14px, 2.5vw, 16px);
-    line-height: 1.7;
-    white-space: pre-line;
-    color: #ffffff;
-    margin: 0;
-    text-shadow: #333 0 5px rgba(0, 0, 0, 0.7);
-}
-
-#close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 1;
+    margin: 10px auto 0;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff73;
+    color: #333;
     cursor: pointer;
-    transition: transform 0.3s ease, color 0.3s ease;
-    padding: 5px;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#close-button:hover {
-    transform: scale(1.2) rotate(90deg);
-    color: #a3ffe9;
+.reset-button:hover {
+    background-color: #ddd;
+    color: #000;
 }
-
 
 /* --- Media Queries --- */
 
@@ -1178,7 +438,6 @@ body {
     width: clamp(110px, 12vw, 140px);
     /* Default larger size */
 }
-
 
 /* Tablet and smaller laptops */
 @media (max-width: 900px) {
@@ -1248,7 +507,6 @@ body {
         order: 0;
     }
 
-
     .controls-area {
         position: relative;
         /* Change from fixed */
@@ -1273,7 +531,6 @@ body {
         width: clamp(90px, 17vw, 115px);
         /* Mobile card size*/
     }
-
 
     #card-focus {
         max-width: 95%;
@@ -1403,4 +660,15 @@ body {
         transform: none;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
     }
+}
+
+/* --- Intro Description Styles --- */
+.intro-description {
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.intro-title.clicked+.intro-description {
+    display: block;
+    opacity: 1;
 }

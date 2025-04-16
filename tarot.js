@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardFocusModal = document.getElementById("card-focus");
   const overlayElement = document.getElementById("overlay");
   const closeButtonElement = document.getElementById("close-button");
-  const resetButtonElement = document.getElementById("reset-button");
 
   // --- Tarot Configuration ---
   const ARC_STRUCTURE = [1, 2, 3, 4, 5, 6, 7];
@@ -34,12 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       tarotData = await response.json();
-      console.log(
-        `Tarot card data loaded. Max cards for arc structure: ${MAX_CARDS}`
-      );
+      console.log("Tarot card data loaded.");
 
       if (tarotData && tarotData.cards) {
-        // Check for .cards property now
         tarotData = tarotData.cards; // Access the cards array
         shuffleDeck();
         initTarotInterface();
@@ -57,11 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Deck Shuffled");
   }
 
-  function resetDeck() {
-    shuffleDeck();
-    drawnCardContainer.innerHTML = "<p>Deck reset. Draw a card!</p>";
-  }
-
   function initTarotInterface() {
     // Combined conditional for element checks
     if (
@@ -71,8 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       !middleBox &&
       !cardFocusModal &&
       !overlayElement &&
-      !closeButtonElement &&
-      !resetButtonElement
+      !closeButtonElement
     ) {
       console.error(
         "Interface error: Base layout element(s) for tarot not found."
@@ -103,9 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (pullCardBtn) {
       pullCardBtn.addEventListener("click", drawRandomCardToRightContainer);
-    }
-    if (resetButtonElement) {
-      resetButtonElement.addEventListener("click", resetDeck);
     }
     if (closeButtonElement) {
       closeButtonElement.addEventListener("click", closeCardFocus);
@@ -138,14 +125,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const isReversed = Math.random() < 0.5;
 
     drawnCardContainer.innerHTML = `
-            <img src="${card.image}" alt="${card.name} ${
+        <img src="/images/tarot/${card.id}.png" alt="${card.name} ${
       isReversed ? "(Reversed)" : "(Upright)"
-    }">
-            <h3>${card.name} ${isReversed ? "(Reversed)" : "(Upright)"}</h3>
-            <p>${
-              isReversed ? card.description.reversed : card.description.upright
-            }</p>
-        `; // Changed path back to card.image
+    }" 
+             class="${isReversed ? "reversed" : ""}">
+        <h3>${card.name} ${isReversed ? "(Reversed)" : "(Upright)"}</h3>
+        <p>${
+          isReversed ? card.description.reversed : card.description.upright
+        }</p>
+    `;
   }
 
   function showCardFocus(cardData, isReversed) {
@@ -183,12 +171,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const descObj = cardData.description || {};
     const orientationKey = isReversed ? "reversed" : "upright";
-    descObj[orientationKey] ||
+    const descText =
+      descObj[orientationKey] ||
       "Description not available for this orientation.";
 
     focusCardText.innerHTML = descText.replace(/<br\s*\/?>/gi, "\n");
 
-    focusCardImage.src = cardData.image; // Changed path back to cardData.image
+    focusCardImage.src = `/images/tarot/${cardData.id}.png`;
     focusCardImage.alt = `${cardData.name || "Tarot Card"} ${
       isReversed ? "(Reversed)" : "(Upright)"
     }`;
@@ -207,6 +196,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (overlay) overlay.classList.remove("visible");
   }
 
+  // Create reset buttons
+  const resetTopBoxButton = document.createElement("button");
+  resetTopBoxButton.textContent = "Reset Top Box";
+  resetTopBoxButton.style.display = "none";
+
+  const resetMiddleBoxButton = document.createElement("button");
+  resetMiddleBoxButton.textContent = "Reset Middle Box";
+  resetMiddleBoxButton.style.display = "none";
+
+  const resetBottomBoxButton = document.createElement("button");
+  resetBottomBoxButton.textContent = "Reset Bottom Box";
+  resetBottomBoxButton.style.display = "none";
+
+  // Append reset buttons below their respective containers
+  topBox.insertAdjacentElement("afterend", resetTopBoxButton);
+  middleBox.insertAdjacentElement("afterend", resetMiddleBoxButton);
+  bottomBox.insertAdjacentElement("afterend", resetBottomBoxButton);
+
+  resetTopBoxButton.classList.add("reset-button");
+  resetMiddleBoxButton.classList.add("reset-button");
+  resetBottomBoxButton.classList.add("reset-button");
+
   // --- Top Box Functionality ---
   topBox.addEventListener("click", () => {
     topBox.classList.add("expanded"); // Changed to add for consistent behavior
@@ -214,6 +225,14 @@ document.addEventListener("DOMContentLoaded", () => {
     topBox.classList.toggle("show"); // Use reusable class for visibility
     middleBox.classList.toggle("hidden", topBox.classList.contains("expanded"));
     bottomBox.classList.toggle("hidden", topBox.classList.contains("expanded"));
+    resetTopBoxButton.style.display = "block";
+  });
+
+  resetTopBoxButton.addEventListener("click", () => {
+    topBox.classList.remove("expanded", "container-expanded", "show");
+    middleBox.classList.remove("hidden");
+    bottomBox.classList.remove("hidden");
+    resetTopBoxButton.style.display = "none";
   });
 
   // --- Middle Box Functionality ---
@@ -230,7 +249,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       gridContainer.classList.add("show");
       generateGridItems(gridContainer);
+      resetMiddleBoxButton.style.display = "block";
     }, 800);
+  });
+
+  resetMiddleBoxButton.addEventListener("click", () => {
+    topBox.style.display = "";
+    middleBox.style.display = "";
+    bottomBox.style.display = "";
+    gridContainer.classList.remove("show");
+    gridContainer.innerHTML = "";
+    resetMiddleBoxButton.style.display = "none";
   });
 
   function generateGridItems(container) {
@@ -273,11 +302,21 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         columnContainer.classList.add("show");
         generateColumns(columnContainer);
+        resetBottomBoxButton.style.display = "block";
       }, 500);
     } else {
       columnContainer.classList.remove("show");
       columnContainer.innerHTML = "";
     }
+  });
+
+  resetBottomBoxButton.addEventListener("click", () => {
+    bottomBox.classList.remove("expanded", "container-expanded", "show");
+    topBox.classList.remove("hidden");
+    middleBox.classList.remove("hidden");
+    columnContainer.classList.remove("show");
+    columnContainer.innerHTML = "";
+    resetBottomBoxButton.style.display = "none";
   });
 
   function generateColumns(container) {
@@ -326,7 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
         results.forEach((card) => {
           const resultItem = document.createElement("div");
           resultItem.classList.add("search-result-item");
-          resultItem.innerHTML = `<img src="${card.image}" alt="${card.name}"> ${card.name}`; // Changed path back to card.image
+          resultItem.innerHTML = `<img src="/images/tarot/${card.id}.png" alt="${card.name}"> ${card.name}`;
           resultItem.addEventListener("click", () => {
             searchInput.value = card.name;
             searchResultsDiv.classList.remove("show");
@@ -342,16 +381,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function displayCardDescription(card) {
       const cardDisplayArea = document.querySelector(".left-container");
       cardDisplayArea.innerHTML = `
-                    <h3>${card.name}</h3>
-                    <img src="${card.image}" alt="${
+        <h3>${card.name}</h3>
+        <img src="/images/tarot/${card.id}.png" alt="${
         card.name
       }" style="max-width: 100px; margin-bottom: 10px;">
-                    <p>${
-                      card.description.upright ||
-                      card.description.reversed ||
-                      "No description available"
-                    }</p>
-                `; // Changed path back to card.image
+        <p>${
+          card.description.upright ||
+          card.description.reversed ||
+          "No description available"
+        }</p>
+      `;
     }
   });
 
@@ -363,21 +402,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const isReversed = Math.random() < 0.5;
 
       randomCardDisplay.innerHTML = `
-                    <h3>Your Card: ${randomCard.name} ${
+        <h3>Your Card: ${randomCard.name} ${
         isReversed ? "(Reversed)" : "(Upright)"
       }</h3>
-                    <img src="${randomCard.image}" alt="${randomCard.name}">
-                    <p>${
-                      isReversed
-                        ? randomCard.description.reversed ||
-                          "No reversed description"
-                        : randomCard.description.upright ||
-                          "No upright description"
-                    }</p>
-                `; // Changed path back to randomCard.image
+        <img src="/images/tarot/${randomCard.id}.png" alt="${randomCard.name}">
+        <p>${
+          isReversed
+            ? randomCard.description.reversed || "No reversed description"
+            : randomCard.description.upright || "No upright description"
+        }</p>
+      `;
     } else {
       randomCardDisplay.textContent = "Tarot cards data not loaded yet.";
     }
+  }
+
+  // --- Intro Title Functionality ---
+  const introTitle = document.querySelector(".intro-title");
+  const introDescription = document.querySelector(".intro-description");
+
+  if (introTitle && introDescription) {
+    introTitle.addEventListener("click", () => {
+      introTitle.classList.toggle("clicked");
+    });
   }
 
   initTarot(); // Initialize tarot data and interface on page load

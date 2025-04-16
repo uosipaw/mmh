@@ -4,6 +4,10 @@
 <head>
     <title>work in progress</title>
     <link rel="stylesheet" type="text/css" href="tarot.css" />
+    <link rel="stylesheet" type="text/css" href="additional-styles.css" />
+    <link rel="stylesheet" type="text/css" href="uiverse.css" />
+    <link rel="stylesheet" type="text/css" href="uiverse-animations.css" />
+    <!-- Font is now loaded using @font-face in CSS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
     <meta name="description" content="Tarot Card Reading Application" />
@@ -33,31 +37,40 @@
             <input type="text" id="searchInput" placeholder="search tarot card" style="font-size: 13px;">
             <div id="searchResults"></div>
         </div>
+        <div class="card-box middle-box" id="middleBox">
+            <h3>Deck Anatomy</h3>
+            <div class="card-content">
+                <p>Click to explore the anatomy of a tarot deck, Rider-Waite symbolism, and special cards.</p>
+                <ul>
+                    <li>Major Arcana</li>
+                    <li>Minor Arcana</li>
+                    <li>Card Suits</li>
+                    <li>Symbolism</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="container middle-container"
         styles="justify-content: center; align-items: center; display: flex; flex-direction: column;">
         <div class="card-box top-box intro-text" id="topBox">
             <div class="intro-text">
-                Since the 1400s, tarot has evolved from simple playing cards to a conduit between future and past, to
-                a divination and occult staple, and now, 600 years later, is viewed as a course of study and self
-                improvement tool, extending beyond spirituality and into science, psychology and wellness. As a
-                mirror that
-                reflects our truest selves, Tarot reading encourages growth through self examination and
-                introspection for
-                skeptics and psychics alike. It is no longer tethered to an identity confined within spirituality.
-                The way
-                you relate your reading to your life is a personal journey, and the cards are a tool to help you
-                navigate
-                it. There is no right or wrong way to interpret the cards, and the meanings are as unique as the
-                people who
-                read them.
-            </div>
-        </div>
-        <div class="card-box middle-box" id="middleBox">
-            <h3>Deck Anatomy</h3>
-            <div class="card-content">
-                <p>Click to explore the anatomy of a tarot deck, Rider-Waite symbolism, and special cards.</p>
+                <h1 class="intro-title">Tarot Today</h1>
+                <p class="intro-description">Since the 1400s, tarot has evolved from simple playing cards to a conduit
+                    between future and past,
+                    to
+                    a divination and occult staple, and now, 600 years later, is viewed as a course of study and self
+                    improvement tool, extending beyond spirituality and into science, psychology and wellness. As a
+                    mirror that
+                    reflects our truest selves, Tarot reading encourages growth through self examination and
+                    introspection for
+                    skeptics and psychics alike. It is no longer tethered to an identity confined within spirituality.
+                    The way
+                    you relate your reading to your life is a personal journey, and the cards are a tool to help you
+                    navigate
+                    it. There is no right or wrong way to interpret the cards, and the meanings are as unique as the
+                    people who
+                    read them.</p>
             </div>
         </div>
         <div class="card-box bottom-box" id="bottomBox">
@@ -83,11 +96,7 @@
                 <!-- Randomly drawn card and description will appear here -->
             </div>
             <div class="styled-wrapper">
-                <button id="reset-button" title="Reset Deck" class="uiverse">
-                    <div class="wrapper">
-                        <span>shuffle me</span>
-                    </div>
-                </button>
+                <!-- Removed the "shuffle me" button -->
             </div>
         </div>
     </div>
