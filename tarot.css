@@ -96,7 +96,7 @@ body {
 
 /* --- Card Box Styles (Shared) --- */
 .card-box {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-image: url("images/elm5.png");
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 10px;
