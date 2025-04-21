@@ -1,63 +1,5 @@
-// Video playback handler with better mobile support
-(function () {
-  window.addEventListener("load", function () {
-    const video = document.getElementById("background-video");
-
-    if (video) {
-      // For browsers that ignore autoplay
-      function startPlayback() {
-        if (video.paused) {
-          video.play().catch(function (error) {
-            console.log("Still cannot autoplay:", error);
-          });
-        }
-      }
-
-      // Handle mobile devices differently - no looping
-      if (window.isMobile) {
-        // Listen for the end of the video
-        video.addEventListener("ended", function () {
-          console.log("Mobile video playback ended");
-          // You can show an alternative content or message here if needed
-
-          // Optionally, you can add a poster image for when the video ends
-          video.poster = "./images/homebgmobile-poster.jpg";
-        });
-      }
-
-      // For iOS devices
-      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        // Try to play when page is visible
-        document.addEventListener("visibilitychange", function () {
-          if (document.visibilityState === "visible") {
-            startPlayback();
-          }
-        });
-
-        // Some versions of iOS require user interaction
-        window.addEventListener(
-          "touchend",
-          function () {
-            startPlayback();
-          },
-          { once: true }
-        );
-      }
-
-      // Also try scroll events
-      window.addEventListener(
-        "scroll",
-        function () {
-          startPlayback();
-        },
-        { once: true }
-      );
-    }
-  });
-})();
-
+// Function to make image map responsive
 window.addEventListener("load", function () {
-  // Function to make image map responsive
   function makeImageMapResponsive() {
     const imageMap = document.getElementById("image-map");
     const image = document.getElementById("image-map");
@@ -598,3 +540,19 @@ var Brush = (function () {
 
   return Brush;
 })();
+
+window.addEventListener("resize", function () {
+  const uosipawContainer = document.querySelector(".uosipaw");
+  const uosipawImages = document.querySelectorAll(".uosipaw-image");
+
+  if (uosipawContainer && uosipawImages.length > 0) {
+    const containerWidth = uosipawContainer.offsetWidth;
+
+    uosipawImages.forEach((image) => {
+      image.style.width = `${containerWidth * 0.1}px`; // Adjust width dynamically (10% of container)
+    });
+  }
+});
+
+// Trigger resize logic on load
+window.dispatchEvent(new Event("resize"));

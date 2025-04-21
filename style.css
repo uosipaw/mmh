@@ -29,105 +29,20 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  height: 100vh;
-  width: 100vw;
-}
-
-.image-map {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
+  /* Prevent horizontal scroll */
+  min-height: 100vh;
+  /* Ensure body takes at least full viewport height */
+  background-image: url("/images/blankhomebg.png");
   background-size: cover;
-  background-repeat: no-repeat;
+  /* Makes the background scale */
   background-position: center;
-  z-index: 100;
-}
-
-
-#background-video {
-  position: fixed;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background-color: #000;
-  /* Fallback if video doesn't load */
-}
-
-#background-videomobile {
-  display: none;
-}
-
-.mobile-device #background-video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-position: center;
-}
-
-.paint {
-  font-family: 'chewy', sans-serif;
-  overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: 100vh;
-  /* Ensure the body takes the full viewport height */
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
-}
-
-.paintbutton {
-  z-index: 100;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-}
-
-canvas {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  z-index: 1;
-}
-
-.message {
-  color: #878782;
-  display: block;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 20px auto;
-  text-align: center;
-  letter-spacing: 2px;
   position: relative;
-  top: 50%;
-  left: 45%;
-  z-index: 0;
-  width: 100%;
-  text-shadow: 0 -1px 0 #d3d3d1;
+  /* Needed for absolute positioning of children like .uosipaw */
 }
 
-.dg.ac {
-  height: 100px;
-  z-index: 3;
-  font-size: larger;
-}
-
-.fade-message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 32px;
-  color: #878782;
-  text-align: center;
-  animation: fadeInOut 9.6s infinite;
-  /* 20% slower - original was 8s */
-}
 
 .folklore-page {
   background-color: #ede7f6;
@@ -166,94 +81,129 @@ canvas {
   }
 }
 
-/* Touch to play overlay */
-#touch-to-play {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  /* Initially hidden, shown if autoplay fails */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+/* --- START: uosipaw SCALABLE Styling Adjustments (Wave Layout) --- */
+
+.uosipaw {
+  position: absolute;
+  top: 50%;
+  left: 53%;
+  width: max-content;
+  /* Allow container to size based on its flex children */
+  transform: translate(-50%, -50%);
+  /* Re-center the container itself */
+  display: flex;
+  align-items: baseline;
+  /* Baseline alignment is a good starting point */
 }
 
-#touch-to-play span {
-  color: white;
-  font-size: 24px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
+.uosipaw-image {
+  /* Use clamp for responsive sizing with limits */
+  /* clamp(MIN, PREFERRED, MAX) */
+  width: clamp(90px, 11.33vw, 990px);
+  /* Scales between 60px and 160px, prefers 8.33vw */
+  height: auto;
+  position: relative;
+  display: flex;
 }
 
-/* Image map container styling */
-#image-map-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* Apply scalable overlap margin to all images except the first one */
+.uosipaw-u,
+.uosipaw-smiley,
+.uosipaw-s,
+.uosipaw-i,
+.uosipaw-p,
+/* Corrected typo */
+.uosipaw-aa,
+/* Note: Image 'aa' corresponds to 'a' in the target */
+.uosipaw-w {
+  /* Scales overlap between -25px and -60px, prefers -3.125vw */
+  margin-left: clamp(-90px, -3.125vw, -25px);
+  /* Note: Clamp order for negative values is MAX, PREFERRED, MIN */
+  /* So, max overlap (-60px), preferred scale, min overlap (-25px) */
+}
+
+/* --- Re-defined Staggering, Stacking Order, and Rotation --- */
+/* Adjust clamp values based on visual testing to match the target image */
+
+.uosipaw-a {
+  /* This is the '@' symbol */
+  /* Slightly above baseline */
+  transform: translateY(clamp(-10px, -0.7vw, -2px));
+  z-index: 1;
+  /* Starts the stack */
+}
+
+.uosipaw-u {
+  /* Lower position */
+  transform: translateY(clamp(10px, 1.5vw, 35px));
+  z-index: 2;
+}
+
+.uosipaw-smiley {
+  /* Much higher position */
+  transform: translateY(clamp(-45px, -.1vw, -15px));
   z-index: 10;
-  /* Above the video but below the touch-to-play overlay */
-  pointer-events: auto;
-  /* Ensure clicks are registered */
-  display: block;
-  /* Visible by default (for desktop) */
+  width: 65%;
+  /* Keep smiley visually prominent */
 }
 
-#image-map-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.01;
-  /* Nearly invisible but still present for the map */
+.uosipaw-s {
+  /* Lower again, but maybe slightly higher than 'u' */
+  transform: translateY(clamp(5px, 0.8vw, 25px)) translateX(-100%);
+  z-index: 4;
 }
+
+.uosipaw-i {
+  /* Highest point? */
+  transform: translateY(clamp(-55px, -3.8vw, -20px)) translateX(-100%);
+  z-index: 5;
+}
+
+.uosipaw-p {
+  /* Low again */
+  transform: translateY(clamp(20px, 1.8vw, 40px)) translateX(-130%);
+  z-index: 6;
+}
+
+.uosipaw-aa {
+  /* This is the 'a' letter */
+  /* High again, with rotation */
+  transform: translateY(clamp(-35px, -2.4vw, -10px)) translateX(-130%);
+  z-index: 7;
+}
+
+.uosipaw-w {
+  /* Lowest point, with rotation */
+  transform: translateY(clamp(25px, 2.8vw, 55px)) translateX(-125%);
+  z-index: 8;
+}
+
+/* --- END: uosipaw SCALABLE Styling Adjustments --- */
+
 
 /* 📱 Mobile Adjustments */
-@media screen and (max-width: 768px) {
-
-  body {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  #background-video {
-    position: fixed;
-    height: 100vh;
-    /* Use viewport height for mobile */
-    width: 100vw;
-    /* Use viewport width for mobile */
-    object-fit: cover;
-  }
-
-  .paint .navbar {
-    display: none;
-  }
-
-  .navbar {
-    width: 35px;
-  }
-
-  .navbar:hover {
-    width: 70px;
-  }
-
-  /* Mobile image map adjustments */
-  #mobile-image-map {
-    display: none;
-  }
-
-  /* 🌿 Reduce Motion for Accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
+/* The clamp() function might handle mobile sizes well enough. */
+/* You might not need specific overrides, or you might want to adjust */
+/* the MIN value in clamp() if 60px is still too big for very small phones. */
+@media screen and (max-width: 480px) {
+  /* Example: If needed, adjust the clamp MIN values for very small screens */
+  /*
+    .uosipaw-image {
+        width: clamp(45px, 8.33vw, 160px); // Lower min width
     }
-  }
+     .uosipaw-u, .uosipaw-smiley, .uosipaw-s, .uosipaw-i, .uosipaw-p, .uosipaw-aa, .uosipaw-w {
+        margin-left: clamp(-60px, -3.125vw, -20px); // Lower min overlap
+    }
+    */
+
+  /* You might also need to adjust the MIN/MAX pixel values in the transform clamps */
+  /* Example:
+    .uosipaw-smiley {
+      transform: translateY(clamp(-30px, -3.1vw, -10px)); // Adjust min/max pixels for mobile
+    }
+    */
+
+  /* Adjust centering transform slightly if needed due to smaller size */
+  /* .uosipaw { transform: translate(-50%, -50%) scale(0.9); } */
+  /* Example if scaling is needed */
 }

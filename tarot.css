@@ -1,34 +1,18 @@
 :root {
     --main-font-family: "yuseimagic-regular", sans-serif;
-}
-
-body {
-    font-family: var(--main-font-family);
-    height: 100%;
-    overflow: hidden;
-    /* Prevent scrollbars */
-    margin: 0;
-    padding: 0;
-    /* Reset padding just in case */
-    box-sizing: border-box;
-    min-height: 100%;
-    height: 100vh;
-    /* Full viewport height */
-    background-image: url('./images/tarot.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    /* Keep background static */
-    color: aliceblue;
-    background-color: #d7b8f5;
+    --primary-bg-color: #d7b8f5;
     /* Fallback color */
-    position: relative;
-    /* For absolute positioning of children */
-    display: flex;
-    flex-direction: row;
-    /* Layout containers horizontally */
+    --text-color-light: aliceblue;
+    --card-bg-color: rgba(255, 255, 255, 0.05);
+    --card-border-color: rgba(255, 255, 255, 0.2);
+    --card-hover-bg-color: rgba(255, 255, 255, 0.15);
+    --box-shadow-color-light: rgba(0, 0, 0, 0.2);
+    --box-shadow-color-medium: rgba(0, 0, 0, 0.3);
+    --box-shadow-color-heavy: rgba(0, 0, 0, 0.5);
+    --expanded-bg-color: rgba(40, 40, 40, 0.9);
 }
 
+/* Font Face */
 @font-face {
     font-family: "yuseimagic-regular";
     src: url("/fonts/yuseimagic-regular.ttf") format("truetype");
@@ -38,138 +22,41 @@ body {
     font-variant: small-caps;
 }
 
-.container {
-    height: auto;
-    min-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    /* Center containers vertically */
-    z-index: 0;
-    border-radius: 15px;
-    padding: 20px;
-    box-sizing: border-box;
-    margin: 2% 1%;
+/* Base Styles */
+body {
+    font-family: var(--main-font-family);
+    height: 100vh;
+    /* Full viewport height */
     overflow: hidden;
-}
-
-.left-container,
-.middle-container,
-.right-container {
-    border-radius: 10px;
-    padding: 15px;
-    overflow-y: auto;
-    position: absolute;
-    /* Make sure position is absolute to use left, top, width, height */
-    top: 0;
-    /* Adjust top to align with the top of purple rectangles */
-    height: 90%;
-    /* Adjust height to match the height of purple rectangles */
-    transform: none;
-    /* Remove vertical centering transform, as we are positioning directly */
-}
-
-.left-container {
-    left: 7%;
-    /* Adjusted left to align with left purple rectangle */
-    width: 22%;
-    /* Adjusted width to fit within left purple rectangle */
-}
-
-.middle-container {
-    left: 38%;
-    /* Adjusted left to align with middle purple rectangle */
-    width: 24%;
-    /* Adjusted width to fit within middle purple rectangle */
-}
-
-.right-container {
-    left: 68%;
-    /* Adjusted left to align with right purple rectangle */
-    width: 22%;
-    /* Adjusted width to fit within right purple rectangle */
-}
-
-/* --- Card Box Styles (Shared) --- */
-.card-box {
-    background-image: url("images/elm5.png");
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 95%;
-    /* Adjusted width to fit better within containers */
-    margin: 10px auto;
-    /* Centered and added spacing */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Prevent scrollbars */
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    background-image: url('./images/tarot.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Keep background static */
+    color: var(--text-color-light);
+    background-color: var(--primary-bg-color);
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    /* Center card boxes vertically within their containers */
+    /* For absolute positioning of children */
+    display: flex;
 }
 
-.card-box:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-}
 
-.card-box h3 {
-    margin: 0 0 8px;
-    font-size: 16px;
-    color: #ffffff;
-}
 
-.card-content {
-    font-size: 13px;
-    color: #e0e0e0;
-    line-height: 1.5;
-    text-align: left;
+/* Background Animation */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    max-height: 70px;
-    /* Reduced max height for better alignment */
-    transition: max-height 0.3s ease;
+    z-index: -1;
 }
 
-.card-box.expanded .card-content {
-    max-height: 250px;
-    /* Adjusted expanded height */
-}
-
-.grid-container,
-.column-container {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-    overflow-y: auto;
-}
-
-.grid-item,
-.column-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.grid-item:hover,
-.column-item:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* --- Background Animation Styles --- */
 .background span {
     opacity: 0.3;
     width: 20vmin;
@@ -177,10 +64,7 @@ body {
     border-radius: 50%;
     backface-visibility: hidden;
     position: absolute;
-    animation-name: move;
-    animation-duration: 30s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation: move 30s linear infinite;
     z-index: -1;
 }
 
@@ -240,209 +124,123 @@ body {
     }
 }
 
-/* --- Content Wrapper and Main Content (Card Arc) --- */
-.content-wrapper {
-    display: flex;
-    flex-grow: 1;
-    position: relative;
-    overflow: hidden;
-    padding: 10px;
-}
-
-.main-content {
-    position: absolute;
-    /* Keep as absolute for main content if needed */
-    top: 50%;
-    left: 32%;
-    transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 90vh;
-    box-sizing: border-box;
-    z-index: 5;
-}
-
-/* --- Card Styles (Tarot Arc Cards) --- */
-.card {
-    width: clamp(110px, 12vw, 140px);
-    /* Default larger size */
-    aspect-ratio: 2 / 3;
-    border-radius: 8px;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    position: absolute;
-    transform-origin: center center;
-    background-color: #333;
-    overflow: hidden;
-    opacity: 0;
-    /* Start invisible */
-    margin: 0;
-    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease, top 0.7s ease, left 0.7s ease, box-shadow 0.3s ease, filter 0.5s ease;
-}
-
-.card:hover {
-    z-index: 1000 !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    transition-property: transform, box-shadow;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-out;
-}
-
-/* Row Darkening Effect */
-.card.card-row-0 {
-    filter: brightness(0.82);
-}
-
-.card.card-row-1 {
-    filter: brightness(0.85);
-}
-
-.card.card-row-2 {
-    filter: brightness(0.88);
-}
-
-.card.card-row-3 {
-    filter: brightness(0.91);
-}
-
-.card.card-row-4 {
-    filter: brightness(0.94);
-}
-
-.card.card-row-5 {
-    filter: brightness(0.97);
-}
-
-.card.card-row-6 {
-    filter: brightness(1);
-}
-
-/* --- Reversed Card Styles --- */
-.reversed {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease;
-}
-
-/* --- Controls Area (Deck + Reset) --- */
-.controls-area {
-    position: fixed;
-    bottom: 9%;
-    left: 32%;
-    transform: translateX(-50%);
-    z-index: 20;
+/* Container Layout */
+.container {
+    height: 85vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    gap: 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 2% 1%;
+    overflow: hidden;
 }
 
-/* --- Deck Styles --- */
-.right-container .deck-area {
-    width: clamp(110px, 12vw, 140px);
-    /* Default larger size */
-    aspect-ratio: 2 / 3;
-    margin: 0 auto 20px;
+.left-container {
+    left: 7%;
+    width: 22%;
+}
+
+.middle-container {
+    left: 38%;
+    width: 24%;
+}
+
+.right-container {
+    left: 68%;
+    width: 26%;
+}
+
+.container-content {
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    height: 90%;
+}
+
+/* Search Bar Styles */
+.search-bar {
     position: relative;
+    /* To contain search results */
+    width: 95%;
+    margin: 10px auto;
 }
 
-.right-container #deck {
+.search-bar input[type="text"] {
     width: 100%;
-    height: 100%;
-    background-image: url('images/tarot/back.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.right-container #deck:hover {
-    transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
-}
-
-.right-container #deck:active {
-    transform: scale(0.98);
-    transition-duration: 0.1s;
-}
-
-/* --- Drawn Card Container --- */
-#drawn-card-container {
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(5px);
-    /* for Safari */
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Optional border for clarity */
-
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-#drawn-card-container img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
+    padding: 8px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-
-#drawn-card-container h3 {
-    margin: 10px 0 5px;
-    font-size: 18px;
-    color: aliceblue;
-}
-
-#drawn-card-container p {
-    font-size: 14px;
-    color: aliceblue;
-    line-height: 1.5;
-}
-
-/* --- Reset Button Styles --- */
-.reset-button {
-    display: block;
-    margin: 10px auto 0;
-    padding: 8px 16px;
-    font-size: 14px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #ffffff73;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.8);
     color: #333;
+}
+
+.img-wip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 400px;
+    width: 400px;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    z-index: 10;
+}
+
+#searchResults {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    /* Initially hidden */
+}
+
+#searchResults.show {
+    display: block;
+    /* Show when 'show' class is added */
+}
+
+.search-result-item {
+    padding: 8px 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.reset-button:hover {
-    background-color: #ddd;
-    color: #000;
+.search-result-item img {
+    width: 30px;
+    height: auto;
+    border-radius: 4px;
 }
 
-/* --- Media Queries --- */
-
-/* Default Card and Deck Sizes (Desktop - larger) */
-.card {
-    width: clamp(110px, 12vw, 140px);
-    /* Default larger size */
+.search-result-item:hover {
+    background-color: #eee;
 }
 
-.right-container .deck-area,
-.deck-area {
-    /*deck-area applies to mobile too*/
-    width: clamp(110px, 12vw, 140px);
-    /* Default larger size */
-}
+/* Media Queries */
 
 /* Tablet and smaller laptops */
 @media (max-width: 900px) {
     .main-content {
-        /* If you are using main content positioning, adjust this if needed for smaller screens */
         left: 40%;
         width: 70vw;
         height: 85vh;
@@ -453,65 +251,54 @@ body {
         left: 10%;
         bottom: 4%;
     }
-
-    .card {
-        width: clamp(100px, 13vw, 130px);
-        /* Tablet card size*/
-    }
-
-    .right-container .deck-area,
-    .deck-area {
-        /*deck-area applies to mobile too*/
-        width: clamp(100px, 13vw, 130px);
-        /* Tablet card size*/
-    }
 }
 
 /* Mobile landscape / large phones */
 @media (max-width: 767px) {
-
-    .container.left-container,
-    .container.middle-container,
-    .container.right-container {
-        /* Adjust containers to stack vertically */
-        padding: 5px;
+    body {
         flex-direction: column;
+        /* Stack containers vertically on mobile */
         align-items: center;
+        /* Center containers horizontally */
     }
 
-    .top-box .introtext-container {
+    .container {
         position: relative;
-        /* Change from absolute */
-        order: -1;
-        width: 90%;
-        margin: 15px auto;
-        top: unset;
-        right: unset;
-        left: unset;
-        max-width: 90%;
-        max-height: 25vh;
-        font-size: clamp(12px, 2.5vw, 14px);
-        z-index: 5;
-    }
-
-    .main-content {
-        /* If you are using main content positioning, adjust this */
-        position: relative;
-        /* Change from absolute */
-        width: 95vw;
-        height: 60vh;
-        top: unset;
-        left: unset;
-        transform: none;
+        /* Remove absolute positioning for stacking */
+        transform: translateY(0);
+        /* Remove vertical centering transform */
+        top: auto;
+        /* Reset top */
+        width: 95%;
+        /* Take up most of the width */
         margin: 10px auto;
-        order: 0;
+        /* Add vertical margin and center */
+    }
+
+    .left-container,
+    .middle-container,
+    .right-container {
+        position: relative;
+        /* Remove absolute positioning within body flex */
+        left: auto;
+        /* Reset left */
+        width: 95%;
+        /* Full width within container */
+        height: auto;
+        /* Adjust height to content */
+        margin: 10px 0;
+        /* Vertical margin between containers */
+    }
+
+    .container-content {
+        height: auto;
+        /* Adjust height to content */
     }
 
     .controls-area {
         position: relative;
-        /* Change from fixed */
-        bottom: unset;
-        left: unset;
+        bottom: auto;
+        left: auto;
         transform: none;
         margin: 15px auto;
         order: 1;
@@ -519,52 +306,11 @@ body {
         flex-direction: row;
         gap: 25px;
     }
-
-    .card {
-        width: clamp(90px, 17vw, 115px);
-        /* Mobile card size*/
-    }
-
-    .right-container .deck-area,
-    .deck-area {
-        /*deck-area applies to mobile too*/
-        width: clamp(90px, 17vw, 115px);
-        /* Mobile card size*/
-    }
-
-    #card-focus {
-        max-width: 95%;
-        padding: 20px;
-        max-height: 85vh;
-    }
-
-    .modal-card-image {
-        width: clamp(120px, 30%, 160px);
-    }
-
-    #focus-card-name {
-        font-size: clamp(18px, 5vw, 22px);
-    }
-
-    #focus-card-orientation {
-        font-size: clamp(15px, 4vw, 18px);
-    }
-
-    #focus-card-text-container {
-        max-height: 35vh;
-        text-align: center;
-    }
-
-    #focus-card-text {
-        font-size: clamp(13px, 3.5vw, 15px);
-        text-align: center;
-    }
 }
 
 /* Very small screens */
 @media (max-width: 480px) {
-    .introtext-container {
-        max-height: 20vh;
+    .intro-description {
         font-size: 12px;
         padding: 15px;
         margin: 10px auto;
@@ -578,97 +324,17 @@ body {
         gap: 20px;
         margin-top: 10px;
     }
-
-    #reset-button {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-
-    .card {
-        width: clamp(80px, 19vw, 100px);
-        /* Small mobile card size*/
-    }
-
-    .right-container .deck-area,
-    .deck-area {
-        /*deck-area applies to mobile too*/
-        width: clamp(80px, 19vw, 100px);
-        /* Small mobile card size*/
-    }
-
-    #focus-card-name {
-        font-size: 17px;
-    }
-
-    #focus-card-orientation {
-        font-size: 14px;
-    }
-
-    #focus-card-text {
-        font-size: 12px;
-    }
-
-    #focus-card-text-container {
-        max-height: 30vh;
-    }
-
-    #close-button {
-        font-size: 26px;
-        top: 5px;
-        right: 5px;
-    }
 }
 
 /* Touch device adjustments (reduce hover intensity) */
 @media (hover: none) {
-    .introtext-container:hover {
-        transform: none;
-        background-color: rgba(80, 60, 100, 0.75);
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-    }
 
-    .grid-item:hover {
-        /*prevent hover effect on touch devices*/
-        transform: none;
-        box-shadow: inherit;
-    }
-
+    .grid-item:hover,
     .column-item:hover {
-        /*prevent hover effect on touch devices*/
         transform: none;
-        background-color: inherit;
-        z-index: auto;
+        box-shadow: 2px 2px 5px var(--box-shadow-color-light);
+        /* Revert to normal box-shadow */
+        background-color: var(--card-hover-bg-color);
+        /* Revert to normal background color */
     }
-
-    .card-box:hover {
-        /*prevent hover effect on touch devices*/
-        transform: none;
-        box-shadow: inherit;
-    }
-
-    .card:hover {
-        transform: scale(1.03);
-        z-index: 1000 !important;
-        box-shadow: 0 8px 25px rgba(233, 188, 245, 0.5);
-        transition-property: initial;
-        transition-duration: initial;
-        transition-timing-function: initial;
-    }
-
-    #deck:hover {
-        transform: none;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-    }
-}
-
-/* --- Intro Description Styles --- */
-.intro-description {
-    display: none;
-    transition: opacity 0.3s ease;
-}
-
-.intro-title.clicked+.intro-description {
-    display: block;
-    opacity: 1;
 }
