@@ -43,7 +43,7 @@ body {
 
 .venmo.link {
   position: absolute;
-  top: 1%;
+  top: 7%;
   left: 0px;
   transform: scale(.7) translateX(-30%);
   /* Ensure it stays on top */
@@ -66,6 +66,12 @@ body {
   position: relative;
   left: 50%;
   top: 65%;
+}
+
+.quotes-link {
+  position: relative;
+  left: 50%;
+  top: 55%;
 }
 
 .fun-link {
