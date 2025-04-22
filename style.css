@@ -29,11 +29,9 @@ body {
   margin: 0;
   padding: 0;
   overflow: auto;
-  /* Prevent horizontal scroll */
-  min-height: 4000px;
-  /* Ensure body takes at least full viewport height */
+  width: 100vw;
   background-image: url("/images/scrollbg.png");
-  background-size: contain;
+  background-size: cover;
   background-position: top;
   background-attachment: scroll;
   background-position-x: center;
