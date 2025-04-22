@@ -1,0 +1,35 @@
+html
+
+/* Add your CSS styles here */
+.folklore-page {
+    background-color: #ede7f6;
+    background-image: url("./images/cloudsbg.png");
+    animation: floatingClouds 72s ease infinite;
+    /* 20% slower - original was 60s */
+    background-attachment: fixed;
+    background-size: 120% 120%;
+}
+
+/* 🌀 Floating Clouds Animation */
+@keyframes floatingClouds {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Slow down the fadeInOut animation by 20% */
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
