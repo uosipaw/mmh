@@ -1,228 +1,337 @@
+/* --- GLOBAL & BODY STYLES --- */
+
+/* Apply border-box sizing globally for easier layout */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Fonts */
 @font-face {
   font-family: "waiting-for-the-sunrise";
-  src: url("./fonts/WaitingfortheSunrise-Regular.ttf") format("truetype");
+  src: url("./fonts/WaitingfortheSunrise-Regular.woff2") format("woff2"),
+    url("./fonts/WaitingfortheSunrise-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "dynapuff";
-  src: url("./fonts/DynaPuff-Regular.ttf") format("truetype");
+  src: url("./fonts/DynaPuff-Regular.woff2") format("woff2"),
+    url("./fonts/DynaPuff-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "gamjaflower";
-  src: url("./fonts/GamjaFlower-Regular.ttf") format("truetype");
+  src: url("./fonts/GamjaFlower-Regular.woff2") format("woff2"),
+    url("./fonts/GamjaFlower-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "kranky";
-  src: url("./fonts/Kranky-Regular.ttf") format("truetype");
+  src: url("./fonts/Kranky-Regular.woff2") format("woff2"),
+    url("./fonts/Kranky-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "fredrickathegreat";
-  src: url('./fonts/FrederickatheGreat-Regular.ttf') format("truetype");
+  src: url('./fonts/FrederickatheGreat-Regular.woff2') format("woff2"),
+    url('./fonts/FrederickatheGreat-Regular.ttf') format("truetype");
 }
 
 body {
   font-family: 'kranky', sans-serif;
   background-color: #f5f5f5;
   margin: 0;
-  padding: 0;
-  overflow: auto;
-  width: 100vw;
+  min-height: 100vh;
   background-image: url("/images/scrollbg.png");
   background-size: cover;
-  background-position: top;
+  background-position: top center;
   background-attachment: scroll;
-  background-position-x: center;
-  /* Needed for absolute positioning of children like .uosipaw */
+  overflow-x: hidden;
+  padding: 0;
+  /* Ensure no extra padding by default */
 }
 
 
-.venmo.link {
-  position: absolute;
-  top: 7%;
-  left: 0px;
-  transform: scale(.7) translateX(-30%);
-  /* Ensure it stays on top */
+/* Ensure images scale down gracefully */
+img {
+  max-width: 135%;
+  height: auto;
+  display: block;
 }
 
-.cashapp.link {
-  position: absolute;
-  top: 1%;
-  right: 0px;
-  transform: scale(.7) translateX(30%);
-  /* Ensure it stays on top */
-}
-
-.button-links {
-  display: flex;
-  flex-direction: column;
-}
-
-.tips-link {
-  position: relative;
-  left: 50%;
-  top: 65%;
-}
-
-.quotes-link {
-  position: relative;
-  left: 50%;
-  top: 55%;
-}
-
-.fun-link {
-  position: relative;
-  left: 50%;
-  bottom: 15%;
-}
-
-.food-link {
-  position: absolute;
-  right: 5%;
-  bottom: 25%;
-}
-
-.dino-link {
-  position: absolute;
-  left: 50%;
-  bottom: 35%;
-}
-
-.about-link {
-  position: absolute;
-  left: 50%;
-  bottom: 45%;
-}
-
-.howto-link {
-  position: absolute;
-  left: 50%;
-  bottom: 55%;
-}
-
+/* --- UOSIPAW LOGO STYLES --- */
 .uosipaw {
   position: absolute;
-  top: 23%;
-  left: 53%;
-  width: max-content;
-  /* Allow container to size based on its flex children */
-  transform: translate(-50%, -50%);
-  /* Re-center the container itself */
+  width: 100vw;
+  max-width: 1100px;
   display: flex;
+  justify-content: center;
   align-items: baseline;
-  /* Baseline alignment is a good starting point */
+  z-index: 10;
+  margin-top: 12%;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
+
+/* Container to center uosipaw images */
+.uosipaw-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* Take full width */
+}
+
+
 
 .uosipaw-image {
-  /* Use clamp for responsive sizing with limits */
-  /* clamp(MIN, PREFERRED, MAX) */
-  width: clamp(90px, 11.33vw, 990px);
-  /* Scales between 60px and 160px, prefers 8.33vw */
+  width: 100vw;
+  /* Scalable width */
+  min-width: 100px;
+  /* Minimum size for small screens */
   height: auto;
-  position: relative;
-  display: flex;
 }
 
-/* Apply scalable overlap margin to all images except the first one */
+
+/* Overlap and Stagger */
 .uosipaw-u,
 .uosipaw-smiley,
 .uosipaw-s,
 .uosipaw-i,
 .uosipaw-p,
-/* Corrected typo */
 .uosipaw-aa,
-/* Note: Image 'aa' corresponds to 'a' in the target */
 .uosipaw-w {
-  /* Scales overlap between -25px and -60px, prefers -3.125vw */
-  margin-left: clamp(-90px, -3.125vw, -25px);
-  /* Note: Clamp order for negative values is MAX, PREFERRED, MIN */
-  /* So, max overlap (-60px), preferred scale, min overlap (-25px) */
+  position: relative;
+  /* Increased negative margin from -5vw for tighter overlap */
 }
 
-/* --- Re-defined Staggering, Stacking Order, and Rotation --- */
-/* Adjust clamp values based on visual testing to match the target image */
-
+/* Staggering, Stacking Order */
 .uosipaw-a {
-  /* This is the '@' symbol */
-  /* Slightly above baseline */
-  transform: translateY(clamp(-10px, -0.7vw, -2px));
+  transform: translateY(-1vh);
   z-index: 1;
-  /* Starts the stack */
 }
 
 .uosipaw-u {
-  /* Lower position */
-  transform: translateY(clamp(10px, 1.5vw, 35px));
+  transform: translateY(2vh);
   z-index: 2;
 }
 
-.uosipaw-smiley {
-  /* Much higher position */
-  transform: translateY(clamp(-45px, -.1vw, -15px));
-  z-index: 10;
-  width: 65%;
-  /* Keep smiley visually prominent */
-}
+
 
 .uosipaw-s {
-  /* Lower again, but maybe slightly higher than 'u' */
-  transform: translateY(clamp(5px, 0.8vw, 25px)) translateX(-100%);
+  transform: translateY(9vh);
   z-index: 4;
 }
 
 .uosipaw-i {
-  /* Highest point? */
-  transform: translateY(clamp(-55px, -3.8vw, -20px)) translateX(-100%);
+  transform: translateY(3vh);
   z-index: 5;
 }
 
 .uosipaw-p {
-  /* Low again */
-  transform: translateY(clamp(20px, 1.8vw, 40px)) translateX(-130%);
+  transform: translateY(-2vh);
   z-index: 6;
 }
 
 .uosipaw-aa {
-  /* This is the 'a' letter */
-  /* High again, with rotation */
-  transform: translateY(clamp(-35px, -2.4vw, -10px)) translateX(-130%);
+  transform: translateY(-3vh);
   z-index: 7;
 }
 
 .uosipaw-w {
-  /* Lowest point, with rotation */
-  transform: translateY(clamp(25px, 2.8vw, 55px)) translateX(-125%);
+  transform: translateY(4vh);
   z-index: 8;
 }
 
-/* --- END: uosipaw SCALABLE Styling Adjustments --- */
+/* Increase the size of specific uosipaw images */
+
+.links {
+  text-align: center;
+  /* Center items horizontally */
+  margin-top: 20px;
+  /* Reduced top margin */
+  margin-bottom: 20px;
+  z-index: 15;
+  /* Above background but below logo */
+  position: relative;
+}
 
 
-/* 📱 Mobile Adjustments */
-/* The clamp() function might handle mobile sizes well enough. */
-/* You might not need specific overrides, or you might want to adjust */
-/* the MIN value in clamp() if 60px is still too big for very small phones. */
-@media screen and (max-width: 480px) {
-  /* Example: If needed, adjust the clamp MIN values for very small screens */
-  /*
-    .uosipaw-image {
-        width: clamp(45px, 8.33vw, 160px); // Lower min width
-    }
-     .uosipaw-u, .uosipaw-smiley, .uosipaw-s, .uosipaw-i, .uosipaw-p, .uosipaw-aa, .uosipaw-w {
-        margin-left: clamp(-60px, -3.125vw, -20px); // Lower min overlap
-    }
-    */
 
-  /* You might also need to adjust the MIN/MAX pixel values in the transform clamps */
-  /* Example:
-    .uosipaw-smiley {
-      transform: translateY(clamp(-30px, -3.1vw, -10px)); // Adjust min/max pixels for mobile
-    }
-    */
+/* Style for main buttons */
+.button.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Distribute items vertically */
+  gap: 30px;
+  /* Space between links */
+  margin: 20px auto;
+  /* Reduced margin and center horizontally */
+  padding: 20px;
+  max-width: 90%;
+  /* Prevent links from being too wide */
+  position: relative;
+  z-index: 5;
+  /* Ensure links are above the background */
+}
 
-  /* Adjust centering transform slightly if needed due to smaller size */
-  /* .uosipaw { transform: translate(-50%, -50%) scale(0.9); } */
-  /* Example if scaling is needed */
+.link img {
+  max-width: 350px;
+  /* Default icon size for mobile */
+  height: auto;
+}
+
+.cash.links {
+  margin-top: 20px;
+  text-align: center;
+  /* Center venmo and cashapp horizontally */
+  margin-bottom: 20px;
+}
+
+.cash.links a {
+  display: inline-block;
+  margin: 0 10px;
+  /* Spacing between the icons */
+}
+
+/* Styles for Venmo and CashApp logos */
+.cash.links img {
+  max-width: 75px;
+  /* Further reduced max-width */
+  height: auto;
+  vertical-align: middle;
+}
+
+/* --- DESKTOP / LARGE SCREEN LAYOUT --- */
+@media screen and (min-width: 769px) {
+  body {
+    padding: 0;
+  }
+
+
+  /* General layout for larger screens using grid */
+  .button.links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    /* Two columns that can grow but start at 150px */
+    justify-content: space-evenly;
+    /* Evenly space the links */
+    align-items: center;
+    gap: 50px;
+    /* Increase spacing between the items */
+    max-width: 90%;
+  }
+
+  /* Stagger and position using nth-child and transforms */
+  .tips.link {
+    grid-column: 1;
+    /* Place on the left */
+    transform: translateY(calc(-20px * var(--stagger)));
+  }
+
+  .dino.link {
+    grid-column: 2;
+    /* Place on the right */
+    transform: translateY(calc(20px * var(--stagger)));
+  }
+
+  .food.link {
+    grid-column: 1;
+    /* Left */
+    transform: translateY(calc(10px * var(--stagger)));
+  }
+
+  .quotes.link {
+    grid-column: 2;
+    /* Right */
+    transform: translateY(calc(-30px * var(--stagger)));
+  }
+
+  .fun.link {
+    grid-column: 1;
+    /* Left */
+    transform: translateY(calc(30px * var(--stagger)));
+  }
+
+  .about.link {
+    grid-column: 2;
+    /* Right */
+    transform: translateY(calc(-10px * var(--stagger)));
+  }
+
+  .howto.link {
+    grid-column: 1;
+    /* Left */
+    transform: translateY(calc(-40px * var(--stagger)));
+  }
+
+  /* Set stagger variables. You can use this approach to further refine placement */
+  .tips.link {
+    --stagger: 1;
+  }
+
+  .dino.link {
+    --stagger: 2;
+  }
+
+  .food.link {
+    --stagger: 3;
+  }
+
+  .quotes.link {
+    --stagger: 4;
+  }
+
+  .fun.link {
+    --stagger: 5;
+  }
+
+  .about.link {
+    --stagger: 6;
+  }
+
+  .howto.link {
+    --stagger: 7;
+  }
+
+  /* For desktop: Cash Links centered at the bottom */
+  .cash.links {
+    position: fixed;
+    /* Stick to the bottom */
+    bottom: 20px;
+    /* Distance from the bottom */
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+
+  .cash.links img {
+    max-width: 100px;
+    /* Increased slightly for desktop */
+  }
+}
+
+
+
+
+
+/* --- Accessibility Enhancements --- */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
