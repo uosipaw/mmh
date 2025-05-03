@@ -116,6 +116,11 @@ img {
   z-index: 1;
 }
 
+.uosipaw-smiley {
+  transform: translateY(0vh);
+  z-index: 23;
+}
+
 .uosipaw-u {
   transform: translateY(2vh);
   z-index: 2;
@@ -197,7 +202,8 @@ img {
 
 .cash.links a {
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 100px;
+  /* Increased from 10px to 40px for wider spacing */
   /* Spacing between the icons */
 }
 
@@ -230,7 +236,7 @@ img {
   }
 
   /* Stagger and position using nth-child and transforms */
-  .tips.link {
+  .bugs.link {
     grid-column: 1;
     /* Place on the left */
     transform: translateY(calc(-20px * var(--stagger)));
@@ -305,7 +311,7 @@ img {
   .cash.links {
     position: fixed;
     /* Stick to the bottom */
-    bottom: 20px;
+    top: 20px;
     /* Distance from the bottom */
     left: 0;
     width: 100%;
@@ -314,7 +320,10 @@ img {
 
 
   .cash.links img {
-    max-width: 100px;
+    max-width: 300px;
+    /* Increased from 15% to 20% */
+    margin-right: 50%;
+    /* Increased from 15% to 20% */
     /* Increased slightly for desktop */
   }
 }
