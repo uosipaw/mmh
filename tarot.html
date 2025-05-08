@@ -2,68 +2,51 @@
 <html lang="en">
 
 <head>
-    <title>work in progress</title>
-    <link rel="stylesheet" type="text/css" href="tarot.css" />
-    <link rel="stylesheet" type="text/css" href="additional-styles.css" />
-    <link rel="stylesheet" type="text/css" href="uiverse.css" />
-    <link rel="stylesheet" type="text/css" href="uiverse-animations.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Tarot Card Reading</title>
     <meta charset="utf-8" />
     <meta name="description" content="Tarot Card Reading Application" />
-    <meta name="theme-color" content="#271030" />
-    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="tarot.css" />
     <link rel="preload" href="tarot-cards.json" as="fetch" crossorigin="anonymous">
-    <link rel="preload" href="./images/tarot/back1.png" as="image">
+    <link rel="preload" href="./images/tarot/back.png" as="image">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 </head>
 
 <body>
-    <img id="wip" src="./images/wip.png" alt="work in progress"
-        style="width: 480px; height: 200px; display: block; margin: auto; margin-top: 25%;" />
-
-    <div class="background">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-    </div>
+    <div class="background"> </div>
 
     <div class="container left-container">
         <div class="container-content">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="search tarot card">
-                <div id="searchResults"></div>
-            </div>
-        </div>
-    </div>
+            <div id="controls">
+                Spread:
+                <select id="spreadSelect">
+                    <option value="celtic-cross">Celtic Cross</option>
+                    <option value="guidance">Guidance</option>
+                    <option value="ancestral-connection">Ancestral Connection</option>
+                    <option value="two-options">Two Options</option>
+                    <option value="three-card">Three-Card</option>
+                    <option value="fan">Fan</option>
+                </select>
+                <button id="randomizeBtn">Randomize</button>
+                <button id="resetBtn">Reset</button>
 
-    <div class="container middle-container">
-        <div class="container-content">
-            <div class="grid-container" id="gridContainer"></div>
-            <div class="column-container" id="columnContainer"></div>
+                <button id="reshuffleBtn">Reshuffle</button>
+            </div>
+            <div id="deck"></div>
         </div>
     </div>
 
     <div class="container right-container">
-        <div class="container-content">
+        <div id="cardModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">×</span>
+                <div id="modalCardDescription"></div>
+            </div>
         </div>
     </div>
 
-    <div class="bottom links" style="position: fixed; bottom: 25px; width: 100%; text-align: center; padding: 10px;">
-        <a href="#link1">
-            <img src="./images/elm 10.png" alt="Link 1"
-                style="width: 150px; height: auto; filter: contrast(2) drop-shadow(5px 5px 15px rgb(116, 17, 116));">
-        </a>
-        <a href="#link2">
-            <img src="./images/elm 32.png" alt="Link 2" style="width: 150px; height: auto;">
-        </a>
-        <a href="#link3">
-            <img src="./images/elm 107.png" alt="Link 3"
-                style="width: 150px; height: auto; filter: contrast(2) drop-shadow(5px 5px 15px rgb(116, 17, 116));">
-        </a>
-    </div>
-
     <script src="tarot.js" defer></script>
-    <script src="additional-script.js" defer></script>
 </body>
 
 </html>

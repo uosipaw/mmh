@@ -1,5 +1,7 @@
+/* tarot.css */
+
 :root {
-    --main-font-family: "yuseimagic-regular", sans-serif;
+    --main-font-family: "Days of Love", "yuseimagic-regular", sans-serif;
     --primary-bg-color: #d7b8f5;
     /* Fallback color */
     --text-color-light: aliceblue;
@@ -14,8 +16,16 @@
 
 /* Font Face */
 @font-face {
+    font-family: "Days of Love";
+    src: url("Days of Love.ttf") format("truetype");
+    /* Relative URL relative to your css file. Move the Days of Love ttf to same directory */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: "yuseimagic-regular";
-    src: url("/fonts/yuseimagic-regular.ttf") format("truetype");
+    src: url("/fonts/inkwell-regular.ttf") format("truetype");
     font-weight: 100;
     font-style: normal;
     letter-spacing: 2px;
@@ -32,7 +42,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-image: url('./images/tarot.png');
+    background-image: url('./images/tarott.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -43,8 +53,6 @@ body {
     /* For absolute positioning of children */
     display: flex;
 }
-
-
 
 /* Background Animation */
 .background {
@@ -126,14 +134,13 @@ body {
 
 /* Container Layout */
 .container {
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    /* Removed absolute positioning */
     border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;
@@ -141,200 +148,233 @@ body {
     overflow: hidden;
 }
 
-.left-container {
-    left: 7%;
-    width: 22%;
+body {
+    display: flex;
+    /* Use flexbox for left and right containers */
+    justify-content: space-between;
+    /* Distribute space between containers */
 }
 
-.middle-container {
-    left: 38%;
-    width: 24%;
+.left-container {
+    width: 65%;
+    /* Adjust as needed */
+    height: 75vh;
+    /* Set card area height */
 }
 
 .right-container {
-    left: 68%;
-    width: 26%;
+    width: 33%;
+    /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    /* Center modal vertically */
+    justify-content: center;
 }
 
 .container-content {
     border-radius: 10px;
     padding: 15px;
-    overflow-y: auto;
-    height: 90%;
-}
-
-/* Search Bar Styles */
-.search-bar {
-    position: relative;
-    /* To contain search results */
-    width: 95%;
-    margin: 10px auto;
-}
-
-.search-bar input[type="text"] {
+    height: 100%;
     width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
     box-sizing: border-box;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #333;
+    position: relative;
+    /*  required for absolute positioned controls */
+
 }
 
-.img-wip {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    height: 400px;
-    width: 400px;
-    font-size: 2rem;
-    color: #fff;
-    text-align: center;
-    z-index: 10;
-}
-
-#searchResults {
+/* Controls Section Styles */
+#controls {
     position: absolute;
-    top: 100%;
+    /* Use absolute positioning to place */
+    top: 0;
+    /* Attach to the top */
     left: 0;
+    /* Align to the left */
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 0 0 8px 8px;
-    border: 1px solid #ccc;
-    border-top: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Span full width */
     z-index: 10;
-    max-height: 200px;
-    overflow-y: auto;
-    display: none;
-    /* Initially hidden */
-}
+    /*Ensure they are at the top */
+    background-color: rgba(40, 40, 40, 0.8);
+    /*Add background for more visibility*/
+    padding: 5px;
+    box-sizing: border-box;
 
-#searchResults.show {
-    display: block;
-    /* Show when 'show' class is added */
-}
-
-.search-result-item {
-    padding: 8px 10px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
+    margin-bottom: 0px;
+    /*  Controls use up some space at the top*/
     display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    /*  tighten control gap*/
     align-items: center;
-    gap: 8px;
+    justify-content: flex-start;
+    /* Align controls to the start */
+
 }
 
-.search-result-item img {
-    width: 30px;
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: var(--expanded-bg-color);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    position: relative;
+    color: var(--text-color-light);
+    max-height: 75vh;
+    overflow: hidden;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal-content img {
+    max-width: 90%;
     height: auto;
-    border-radius: 4px;
+    display: block;
+    /* Ensures image is centered horizontally */
+    margin: 10px auto;
+    /* Adds margin to the top and bottom */
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px var(--box-shadow-color-medium);
 }
 
-.search-result-item:hover {
-    background-color: #eee;
+/* Deck Styling */
+#deck {
+    display: grid;
+    gap: 5px;
+    /*  tighten gap between card*/
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(100% - 45px)
+        /*  take the space minus control area */
+    ;
+    position: relative
+        /* Ensure that height is enough for layout with scroll*/
+
 }
 
-/* Media Queries */
+.card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px var(--box-shadow-color-light);
+    width: 100%;
+    /* card will fill width of grid cell by default now */
+    height: 100%;
+    /* card will fill height of grid cell */
 
-/* Tablet and smaller laptops */
-@media (max-width: 900px) {
-    .main-content {
-        left: 40%;
-        width: 70vw;
-        height: 85vh;
-        top: 50%;
-    }
-
-    .controls-area {
-        left: 10%;
-        bottom: 4%;
-    }
 }
 
-/* Mobile landscape / large phones */
-@media (max-width: 767px) {
+.card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    /* Padding included in width/height */
+    padding: 10px;
+    /* Added some padding for visual breathing room */
+    transform: rotateY(180deg);
+    /* Initially rotated to be hidden */
+}
+
+.card-back {
+    background-size: cover;
+    background-image: url("./images/tarot/back.png");
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    /* Padding included in width/height */
+    padding: 10px;
+    position: absolute;
+    /* Back needs absolute positioning */
+    top: 0;
+    left: 0;
+}
+
+.card.flipped .card-front {
+    transform: rotateY(0deg);
+    /* Flip the front to visible */
+}
+
+.card.reversed .card-front {
+    transform: rotate(180deg);
+}
+
+/* Controls Styling */
+
+#controls>*,
+#controls button:hover,
+#controls select:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* Responsive Design - Smaller Screens */
+@media (max-width: 768px) {
     body {
         flex-direction: column;
-        /* Stack containers vertically on mobile */
-        align-items: center;
-        /* Center containers horizontally */
-    }
-
-    .container {
-        position: relative;
-        /* Remove absolute positioning for stacking */
-        transform: translateY(0);
-        /* Remove vertical centering transform */
-        top: auto;
-        /* Reset top */
-        width: 95%;
-        /* Take up most of the width */
-        margin: 10px auto;
-        /* Add vertical margin and center */
     }
 
     .left-container,
-    .middle-container,
     .right-container {
-        position: relative;
-        /* Remove absolute positioning within body flex */
-        left: auto;
-        /* Reset left */
         width: 95%;
-        /* Full width within container */
-        height: auto;
-        /* Adjust height to content */
-        margin: 10px 0;
-        /* Vertical margin between containers */
-    }
-
-    .container-content {
-        height: auto;
-        /* Adjust height to content */
-    }
-
-    .controls-area {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        margin: 15px auto;
-        order: 1;
-        z-index: 10;
-        flex-direction: row;
-        gap: 25px;
-    }
-}
-
-/* Very small screens */
-@media (max-width: 480px) {
-    .intro-description {
-        font-size: 12px;
-        padding: 15px;
         margin: 10px auto;
+        height: auto;
+        /* Let content dictate height on smaller screens */
+
     }
 
-    .main-content {
-        height: 55vh;
+    .left-container {
+        height: auto;
     }
 
-    .controls-area {
-        gap: 20px;
-        margin-top: 10px;
+    /* Force the modal to take up more space on small screens */
+    .modal-content {
+        margin: 5% auto;
+        max-width: 90%;
+
     }
-}
 
-/* Touch device adjustments (reduce hover intensity) */
-@media (hover: none) {
-
-    .grid-item:hover,
-    .column-item:hover {
-        transform: none;
-        box-shadow: 2px 2px 5px var(--box-shadow-color-light);
-        /* Revert to normal box-shadow */
-        background-color: var(--card-hover-bg-color);
-        /* Revert to normal background color */
+    #controls {
+        justify-content: center;
+        /* Center controls on smaller screens */
     }
 }
