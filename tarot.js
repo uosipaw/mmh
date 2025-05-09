@@ -201,6 +201,67 @@ document.addEventListener("DOMContentLoaded", () => {
       deck.appendChild(card);
       cardElements.push(card);
     });
+
+    deck.classList.add("visible"); // Show cards when a valid layout is selected
+  }
+
+  // Events for drag and drop functionality
+  function createControlButton(iconPath, altText, onClickHandler) {
+    const button = document.createElement("button");
+    const icon = document.createElement("img");
+    icon.src = iconPath;
+    icon.alt = altText;
+    button.appendChild(icon);
+    button.addEventListener("click", onClickHandler);
+    return button;
+  }
+
+  function setupControls() {
+    const controls = document.getElementById("controls");
+    controls.innerHTML = ""; // Clear existing controls
+
+    const randomizeBtn = createControlButton(
+      "./icons/randomize.png",
+      "Randomize",
+      () => {
+        cardElements.forEach((card, index) => {
+          const randX = Math.random() * 400 - 200;
+          const randY = Math.random() * 300 - 150;
+          const randRotation = Math.random() * 360 - 180;
+          gsap.to(card, {
+            x: randX,
+            y: randY,
+            rotation: randRotation,
+            duration: 0.5,
+            ease: "power2.inOut",
+          });
+          card.style.zIndex = index;
+        });
+      }
+    );
+
+    const resetBtn = createControlButton("./icons/reset.png", "Reset", () => {
+      cardElements.forEach((card, index) => {
+        gsap.to(card, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        });
+        card.style.zIndex = index;
+      });
+    });
+
+    const reshuffleBtn = createControlButton(
+      "./icons/reshuffle.png",
+      "Reshuffle",
+      reshuffle
+    );
+
+    controls.appendChild(randomizeBtn);
+    controls.appendChild(resetBtn);
+    controls.appendChild(reshuffleBtn);
   }
 
   function reshuffle() {
