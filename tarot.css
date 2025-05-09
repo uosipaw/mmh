@@ -1,11 +1,10 @@
 /* tarot.css */
 
 :root {
-    --main-font-family: "Days of Love", "yuseimagic-regular", sans-serif;
-    --primary-bg-color: #d7b8f5;
+    --main-font-family: "Days of Love", sans-serif;
     /* Fallback color */
-    --text-color-light: aliceblue;
-    --card-bg-color: rgba(255, 255, 255, 0.05);
+    --text-color-light: rgb(3, 25, 44);
+    --card-bg-color: rgba(4, 4, 4, 0.05);
     --card-border-color: rgba(255, 255, 255, 0.2);
     --card-hover-bg-color: rgba(255, 255, 255, 0.15);
     --box-shadow-color-light: rgba(0, 0, 0, 0.2);
@@ -17,19 +16,9 @@
 /* Font Face */
 @font-face {
     font-family: "Days of Love";
-    src: url("Days of Love.ttf") format("truetype");
-    /* Relative URL relative to your css file. Move the Days of Love ttf to same directory */
+    src: url("./fonts/Days of Love.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
-}
-
-@font-face {
-    font-family: "yuseimagic-regular";
-    src: url("/fonts/inkwell-regular.ttf") format("truetype");
-    font-weight: 100;
-    font-style: normal;
-    letter-spacing: 2px;
-    font-variant: small-caps;
 }
 
 /* Base Styles */
@@ -41,199 +30,254 @@ body {
     /* Prevent scrollbars */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
     background-image: url('./images/tarott.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     /* Keep background static */
-    color: var(--text-color-light);
-    background-color: var(--primary-bg-color);
+    color: rgb(22, 9, 18);
     position: relative;
     /* For absolute positioning of children */
     display: flex;
-}
-
-/* Background Animation */
-.background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.background span {
-    opacity: 0.3;
-    width: 20vmin;
-    height: 20vmin;
-    border-radius: 50%;
-    backface-visibility: hidden;
-    position: absolute;
-    animation: move 30s linear infinite;
-    z-index: -1;
-}
-
-.background span:nth-child(1) {
-    color: #d7c8f1;
-    top: 20%;
-    left: 40%;
-    animation-duration: 12s;
-    animation-delay: -5s;
-    transform-origin: 10vw 10vh;
-    box-shadow: 40vmin 0 10vmin currentColor;
-}
-
-.background span:nth-child(2) {
-    color: #E45A84;
-    top: 50%;
-    left: 70%;
-    animation-duration: 15s;
-    animation-delay: -7s;
-    transform-origin: -10vw 20vh;
-    box-shadow: -40vmin 0 10vmin currentColor;
-}
-
-.background span:nth-child(3) {
-    color: #FFACAC;
-    top: 80%;
-    left: 10%;
-    animation-duration: 10s;
-    animation-delay: -2s;
-    transform-origin: 20vw -10vh;
-    box-shadow: 40vmin 0 10vmin currentColor;
-}
-
-.background span:nth-child(4) {
-    color: #ffc830;
-    top: 30%;
-    left: 60%;
-    animation-duration: 14s;
-    animation-delay: -4s;
-    transform-origin: -15vw 5vh;
-    box-shadow: -40vmin 0 10vmin currentColor;
-}
-
-.background span:nth-child(5) {
-    color: #E45A84;
-    top: 70%;
-    left: 30%;
-    animation-duration: 11s;
-    animation-delay: -8s;
-    transform-origin: 5vw -15vh;
-    box-shadow: 40vmin 0 10vmin currentColor;
-}
-
-@keyframes move {
-    100% {
-        transform: translate3d(0, 0, 1px) rotate(360deg);
-    }
+    justify-content: center;
+    /* Distribute space between containers */
 }
 
 /* Container Layout */
 .container {
-    height: 90vh;
+    height: auto;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     position: relative;
     /* Removed absolute positioning */
-    border-radius: 15px;
-    padding: 20px;
-    box-sizing: border-box;
+    border-radius: 25px;
+    padding: 1%;
     margin: 2% 1%;
     overflow: hidden;
-}
-
-body {
-    display: flex;
-    /* Use flexbox for left and right containers */
-    justify-content: space-between;
+    /* Container Flexbox Layout */
     /* Distribute space between containers */
 }
 
 .left-container {
-    width: 65%;
-    /* Adjust as needed */
-    height: 75vh;
+    width: 45vw;
+    margin: 1%;
+    height: 80vh;
+    align-self: center;
     /* Set card area height */
 }
 
 .right-container {
-    width: 33%;
-    /* Adjust as needed */
-    display: flex;
-    align-items: center;
-    /* Center modal vertically */
-    justify-content: center;
+    width: 45%;
+    margin: 1%;
+    height: 80vh;
+    align-self: center;
+    font-size: larger;
 }
 
 .container-content {
-    border-radius: 10px;
-    padding: 15px;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    /*  required for absolute positioned controls */
-
+    display: inline-block;
+    justify-content: normal;
+    border-radius: 20%;
+    padding: 1%;
 }
 
 /* Controls Section Styles */
 #controls {
-    position: absolute;
-    /* Use absolute positioning to place */
-    top: 0;
-    /* Attach to the top */
+    font-family: var(--main-font-family);
+    position: relative;
     left: 0;
-    /* Align to the left */
-    width: 100%;
-    /* Span full width */
+    width: fit-content;
+    align-self: center;
+    height: 20vh;
     z-index: 10;
-    /*Ensure they are at the top */
-    background-color: rgba(40, 40, 40, 0.8);
-    /*Add background for more visibility*/
-    padding: 5px;
-    box-sizing: border-box;
-
-    margin-bottom: 0px;
-    /*  Controls use up some space at the top*/
+    padding: 15px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    /*  tighten control gap*/
-    align-items: center;
-    justify-content: flex-start;
-    /* Align controls to the start */
-
+    justify-content: left;
+    flex-direction: column;
+    gap: 20px;
+    color: black;
 }
 
+#controls button {
+    font-family: var(--main-font-family);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /* Make buttons circular */
+    border: none;
+    background: linear-gradient(135deg, rgba(87, 37, 144, 0.7), rgba(212, 175, 55, 0.7));
+    /* Semi-transparent background */
+    display: flex;
+    justify-content: left;
+    cursor: pointer;
+    animation-duration: 0.3s;
+    background-color: rgba(255, 255, 255, 0);
+    /* Highlight on hover */
+}
+
+#controls button:hover {
+    font-family: var(--main-font-family);
+    box-shadow: 0 0 10px var(--box-shadow-color-light);
+    /* Add shadow on hover */
+    transform: scale(1.15) rotate(25deg);
+    transition: transform 0.3s;
+    /* Slightly enlarge on hover */
+}
+
+#controls button i {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /* Make buttons circular */
+    border: none;
+    background: linear-gradient(135deg, rgba(87, 37, 144, 0.5), rgba(212, 175, 55, 0.5));
+    /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation-duration: 0.3s;
+    z-index: 10;
+}
+
+#controls button i:hover {
+    font-family: var(--main-font-family);
+    box-shadow: 0 0 10px var(--box-shadow-color-light);
+    /* Add shadow on hover */
+    transform: scale(1.15) rotate(25deg);
+    transition: transform 0.3s;
+    /* Slightly enlarge on hover */
+}
+
+#controls button i:active {
+    transform: scale(0.9) rotate(25deg);
+    transition: transform 0.1s;
+    /* Slightly shrink on click */
+}
+
+.dropdown {
+    width: 230px;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+}
+
+.dropdown ul {
+    list-style-type: none;
+    display: none;
+    /* Ensure dropdown is hidden by default */
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.dropdown:hover ul {
+    display: block;
+    /* Show dropdown on hover */
+}
+
+.dropdown a {
+    display: block;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    line-height: 40px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #333;
+    /* Ensure consistent text color */
+    background-color: #f9f9f9;
+    /* Consistent background color */
+}
+
+.dropdown li {
+    height: auto;
+    /* Ensure items are fully visible */
+    overflow: visible;
+    transition: none;
+    /* Remove transition for hover-only behavior */
+}
+
+.dropdown li:first-child a {
+    border-radius: 2px 2px 0 0;
+}
+
+.dropdown li:last-child a {
+    border-radius: 0 0 2px 2px;
+}
+
+.dropdown li:first-child a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #FFF;
+    margin: -10px 0 0 30px;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+    /* Highlight on hover */
+    color: #000;
+    /* Ensure text is readable */
+}
 
 /* Modal Styles */
 .modal {
-    display: none;
-    position: fixed;
+    font-family: var(--main-font-family);
+    display: block;
+    position: absolute;
     z-index: 100;
-    left: 0;
+    right: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url('./images/elm 1907.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 .modal-content {
-    background-color: var(--expanded-bg-color);
     margin: 10% auto;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     max-width: 600px;
     position: relative;
     color: var(--text-color-light);
-    max-height: 75vh;
+    max-height: 70vh;
     overflow: hidden;
 }
 
@@ -249,10 +293,12 @@ body {
 
 .modal-content img {
     max-width: 90%;
-    height: auto;
+    height: 30vh;
     display: block;
     /* Ensures image is centered horizontally */
     margin: 10px auto;
+    transform: var(--random-transform);
+    animation: subtleFloat 10s infinite ease-in-out;
     /* Adds margin to the top and bottom */
     border-radius: 5px;
     box-shadow: 2px 2px 10px var(--box-shadow-color-medium);
@@ -260,17 +306,19 @@ body {
 
 /* Deck Styling */
 #deck {
-    display: grid;
-    gap: 5px;
-    /*  tighten gap between card*/
+    display: none;
+    /* Initially hide the cards */
     width: 100%;
+    height: 100%;
+    /* Adjust height to fill the container */
     box-sizing: border-box;
-    height: calc(100% - 45px)
-        /*  take the space minus control area */
-    ;
-    position: relative
-        /* Ensure that height is enough for layout with scroll*/
+    position: relative;
+    overflow: hidden;
+}
 
+#deck.visible {
+    display: grid;
+    /* Show cards when the spread is selected */
 }
 
 .card {
@@ -278,103 +326,37 @@ body {
     transform-style: preserve-3d;
     transition: transform 0.5s ease-in-out;
     border-radius: 10px;
-    box-shadow: 3px 3px 8px var(--box-shadow-color-light);
-    width: 100%;
-    /* card will fill width of grid cell by default now */
-    height: 100%;
-    /* card will fill height of grid cell */
-
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+    width: calc(100% - 2%);
+    height: calc(100% - 2%);
+    padding: 1%;
+    margin: 2%;
+    overflow: hidden;
+    object-fit: cover;
+    /* Ensure card content fits within */
 }
 
 .card-inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
+    backface-visibility: visible;
+    /* Ensure the backface is visible */
 }
 
-.card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front {
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    backface-visibility: hidden;
-    box-sizing: border-box;
-    /* Padding included in width/height */
-    padding: 10px;
-    /* Added some padding for visual breathing room */
-    transform: rotateY(180deg);
-    /* Initially rotated to be hidden */
-}
-
+.card-front,
 .card-back {
     background-size: cover;
-    background-image: url("./images/tarot/back.png");
+    /* Ensure images cover the entire card */
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     height: 100%;
     border-radius: 10px;
     backface-visibility: hidden;
     box-sizing: border-box;
-    /* Padding included in width/height */
-    padding: 10px;
-    position: absolute;
-    /* Back needs absolute positioning */
-    top: 0;
-    left: 0;
-}
-
-.card.flipped .card-front {
-    transform: rotateY(0deg);
-    /* Flip the front to visible */
-}
-
-.card.reversed .card-front {
-    transform: rotate(180deg);
 }
 
 /* Controls Styling */
-
 #controls>*,
 #controls button:hover,
 #controls select:hover {
     background-color: rgba(255, 255, 255, 0.2);
-}
-
-
-/* Responsive Design - Smaller Screens */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
-    .left-container,
-    .right-container {
-        width: 95%;
-        margin: 10px auto;
-        height: auto;
-        /* Let content dictate height on smaller screens */
-
-    }
-
-    .left-container {
-        height: auto;
-    }
-
-    /* Force the modal to take up more space on small screens */
-    .modal-content {
-        margin: 5% auto;
-        max-width: 90%;
-
-    }
-
-    #controls {
-        justify-content: center;
-        /* Center controls on smaller screens */
-    }
 }
