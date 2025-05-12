@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slot Machine</title>
+    <link rel="stylesheet" href="casino.css">
+    <!-- Preload slot machine images -->
+    <link rel="preload" href="./images/1slots.png" as="image">
+    <link rel="preload" href="./images/2slots.png" as="image">
+    <link rel="preload" href="./images/3slots.png" as="image">
+    <link rel="preload" href="./images/4slots.png" as="image">
+    <link rel="preload" href="./images/5slots.png" as="image">
+    <link rel="preload" href="./images/6slots.png" as="image">
+    <link rel="preload" href="./images/7slots.png" as="image">
+    <link rel="preload" href="./images/8slots.png" as="image">
+</head>
+
+<body>
+
+    <div class="stats">
+        <div>Credits: <span id="credits">100</span></div>
+        <div>
+            Bet: <input type="number" id="bet" value="10" min="1" max="100" />
+        </div>
+    </div>
+
+    <div class="player-info">
+        Name: <input type="text" id="playerName" placeholder="Enter your name" />
+    </div>
+
+    <div class="slot-machine" id="slotMachine">
+        <div class="reel" id="reel0">
+            <div class="symbols"></div>
+        </div>
+        <div class="reel" id="reel1">
+            <div class="symbols"></div>
+        </div>
+        <div class="reel" id="reel2">
+            <div class="symbols"></div>
+        </div>
+        <div class="reel" id="reel3">
+            <div class="symbols"></div>
+        </div>
+        <div class="reel" id="reel4">
+            <div class="symbols"></div>
+        </div>
+    </div>
+
+    <button id="spinButton">Spin</button>
+    <div id="result"></div>
+
+    <div class="leaderboard-section">
+        <h3>🏆 Leaderboard</h3>
+        <ul id="leaderboard"></ul>
+    </div>
+
+    <script src="casino.js"></script>
+</body>
+
+</html>

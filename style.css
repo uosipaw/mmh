@@ -73,7 +73,7 @@ img {
   justify-content: center;
   align-items: baseline;
   z-index: 10;
-  margin-top: 12%;
+  margin-top: 18%;
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -155,6 +155,47 @@ img {
 
 /* Increase the size of specific uosipaw images */
 
+/* Adjust individual image sizes */
+.uosipaw-a {
+  width: 120px;
+  height: auto;
+}
+
+.uosipaw-u {
+  width: 150px;
+  height: auto;
+}
+
+.uosipaw-smiley {
+  width: 200px;
+  height: auto;
+}
+
+.uosipaw-s {
+  width: 140px;
+  height: auto;
+}
+
+.uosipaw-i {
+  width: 130px;
+  height: auto;
+}
+
+.uosipaw-p {
+  width: 160px;
+  height: auto;
+}
+
+.uosipaw-aa {
+  width: 170px;
+  height: auto;
+}
+
+.uosipaw-w {
+  width: 180px;
+  height: auto;
+}
+
 .links {
   text-align: center;
   /* Center items horizontally */
@@ -170,39 +211,41 @@ img {
 
 /* Style for main buttons */
 .button.links {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Three columns for better spacing */
+  grid-template-rows: repeat(3, auto);
+  /* Three rows for better spacing */
+  gap: 50px;
+  /* Space between the links */
+  justify-content: space-evenly;
+  /* Evenly distribute links horizontally */
   align-items: center;
-  justify-content: center;
-  /* Distribute items vertically */
-  gap: 30px;
-  /* Space between links */
-  margin: 20px auto;
-  /* Reduced margin and center horizontally */
-  padding: 20px;
+  /* Center links vertically */
   max-width: 90%;
-  /* Prevent links from being too wide */
+  margin: 50px auto;
+  /* Center the grid on the page */
   position: relative;
   z-index: 5;
   /* Ensure links are above the background */
 }
 
 .link img {
-  max-width: 350px;
-  /* Default icon size for mobile */
+  max-width: 150px;
+  /* Ensure links are fully visible */
   height: auto;
 }
 
 .cash.links {
-  margin-top: 20px;
+  margin-top: 100px;
   text-align: center;
   /* Center venmo and cashapp horizontally */
-  margin-bottom: 20px;
+
 }
 
 .cash.links a {
   display: inline-block;
-  margin: 0 100px;
+  margin: 100px;
   /* Increased from 10px to 40px for wider spacing */
   /* Spacing between the icons */
 }
@@ -307,16 +350,6 @@ img {
     --stagger: 7;
   }
 
-  /* For desktop: Cash Links centered at the bottom */
-  .cash.links {
-    position: fixed;
-    /* Stick to the bottom */
-    top: 20px;
-    /* Distance from the bottom */
-    left: 0;
-    width: 100%;
-    text-align: center;
-  }
 
 
   .cash.links img {
