@@ -4,11 +4,13 @@ html
 .folklore-page {
     background-color: #ede7f6;
     background-image: url("./images/cloudsbg.png");
-    animation: floatingClouds 72s ease infinite;
+    animation: floatingClouds 60s ease infinite;
     /* 20% slower - original was 60s */
     background-attachment: fixed;
-    background-size: 120% 120%;
+    background-size: width 100%;
+    background-repeat: no-repeat;
 }
+
 
 /* 🌀 Floating Clouds Animation */
 @keyframes floatingClouds {
