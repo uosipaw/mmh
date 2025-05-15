@@ -9,56 +9,56 @@
 /*creatures*/
 :root {
 
-    --leviathan-img: url("/placeholders.png");
-    --satyr-img: url("/placeholders.png");
-    --nymph-img: url("/placeholders.png");
-    --anansi-img: url("/placeholders.png");
-    --troll-img: url("/placeholders.png");
-    --bunyip-img: url("/placeholders.png");
-    --iktomi-img: url("/placeholders.png");
-    --lochnessmonster-img: url("/placeholders.png");
-    --chupacabra-img: url("/placeholders.png");
-    --jackalope-img: url("/placeholders.png");
-    --phoenix-img: url("/placeholders.png");
-    --griffin-img: url("/placeholders.png");
-    --minotaur-img: url("/placeholders.png");
-    --dragon-img: url("/placeholders.png");
-    --unicorn-img: url("/placeholders.png");
-    --cerberus-img: url("/placeholders.png");
-    --hydra-img: url("/placeholders.png");
-    --cyclops-img: url("/placeholders.png");
-    --chimera-img: url("/placeholders.png");
-    --sphinx-img: url("/placeholders.png");
-    --kraken-img: url("/placeholders.png");
-    --banshee-img: url("/placeholders.png");
-    --centaur-img: url("/placeholders.png");
-    --pegasus-img: url("/placeholders.png");
-    --basilisk-img: url("/placeholders.png");
-    --gorgon-img: url("/placeholders.png");
-    --harpy-img: url("/placeholders.png");
-    --siren-img: url("/placeholders.png");
-    --djinn-img: url("/placeholders.png");
-    --kitsune-img: url("/placeholders.png");
-    --wendigo-img: url("/placeholders.png");
-    --kappa-img: url("/placeholders.png");
-    --rusalka-img: url("/placeholders.png");
-    --naga-img: url("/placeholders.png");
-    --valkyrie-img: url("/placeholders.png");
-    --thunderbird-img: url("/placeholders.png");
-    --manticore-img: url("/placeholders.png");
-    --selkie-img: url("/placeholders.png");
-    --yeti-img: url("/placeholders.png");
-    --upyr-img: url("/placeholders.png");
-    --chort-img: url("/placeholders.png");
-    --polyovyk-img: url("/placeholders.png");
-    --poludnytsya-img: url("/placeholders.png");
-    --povitruya-img: url("/placeholders.png");
-    --mavka-img: url("/placeholders.png");
-    --vodyanoy-img: url("/placeholders.png");
-    --vodyanitsa-img: url("/placeholders.png");
-    --domovik-img: url("/placeholders.png");
-    --baba-yaga-img: url("/placeholders.png");
-    --leshy-img: url("/placeholders.png");
+    --leviathan-img: url("/images/leviathan.png");
+    --satyr-img: url("/images/satyr.png");
+    --nymph-img: url("/images/nymph.png");
+    --anansi-img: url("/images/anansi.png");
+    --troll-img: url("/images/troll.png");
+    --bunyip-img: url("/images/bunyip.png");
+    --iktomi-img: url("/images/iktomi.png");
+    --lochnessmonster-img: url("/images/lochnessmonster.png");
+    --chupacabra-img: url("/images/chupacabra.png");
+    --jackalope-img: url("/images/jackalope.png");
+    --phoenix-img: url("/images/phoenix.png");
+    --griffin-img: url("/images/griffin.png");
+    --minotaur-img: url("/images/minotaur.png");
+    --dragon-img: url("/images/dragon.png");
+    --unicorn-img: url("/images/unicorn.png");
+    --cerberus-img: url("/images/cerberus.png");
+    --hydra-img: url("/images/hydra.png");
+    --cyclops-img: url("/images/cyclops.png");
+    --chimera-img: url("/images/chimera.png");
+    --sphinx-img: url("/images/sphinx.png");
+    --kraken-img: url("/images/kraken.png");
+    --banshee-img: url("/images/banshee.png");
+    --centaur-img: url("/images/centaur.png");
+    --pegasus-img: url("/images/pegasus.png");
+    --basilisk-img: url("/images/basilisk.png");
+    --gorgon-img: url("/images/gorgon.png");
+    --harpy-img: url("/images/harpy.png");
+    --siren-img: url("/images/siren.png");
+    --djinn-img: url("/images/djinn.png");
+    --kitsune-img: url("/images/kitsune.png");
+    --wendigo-img: url("/images/wendigo.png");
+    --kappa-img: url("/images/kappa.png");
+    --rusalka-img: url("/images/rusalka.png");
+    --naga-img: url("/images/naga.png");
+    --valkyrie-img: url("/images/valkyrie.png");
+    --thunderbird-img: url("/images/thunderbird.png");
+    --manticore-img: url("/images/manticore.png");
+    --selkie-img: url("/images/selkie.png");
+    --yeti-img: url("/images/yeti.png");
+    --upyr-img: url("/images/upyr.png");
+    --chort-img: url("/images/chort.png");
+    --polyovyk-img: url("/images/polyovyk.png");
+    --poludnytsya-img: url("/images/poludnytsya.png");
+    --povitruya-img: url("/images/povitruya.png");
+    --mavka-img: url("/images/mavka.png");
+    --vodyanoy-img: url("/images/vodyanoy.png");
+    --vodyanitsa-img: url("/images/vodyanitsa.png");
+    --domovik-img: url("/images/domovik.png");
+    --baba-yaga-img: url("/images/baba-yaga.png");
+    --leshy-img: url("/images/leshy.png");
 
 }
 
@@ -69,14 +69,15 @@
     --radius: 8px;
     --gap: 16px;
     --aside_width: 360px;
-
     font-size: 16px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url(/images/matchbg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body {
-    background-image: url(/images/matchbg.png);
-    background-size: cover;
     color: white;
     padding: 0;
     margin: 0;
@@ -130,7 +131,7 @@ aside {
     width: 100%;
     /* max-width: 600px; */
     display: grid;
-    --col: 5;
+    --col: 8;
     grid-template-columns: repeat(var(--col), 1fr);
     gap: var(--gap);
     margin: auto;
@@ -229,34 +230,40 @@ aside {
     border: 2px solid rgba(255, 255, 255, 0.5);
     padding: calc(var(--gap) / 1.5);
     border-radius: calc(var(--radius) * 2);
+    visibility: hidden;
 }
 
 .start-button {
     display: block;
     margin: calc(var(--gap) * 2) auto;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.5s ease-in-out;
     border: 0;
-    border-radius: var(--radius);
     padding: calc(var(--gap) * 1.5) calc(var(--gap) * 3);
     font: inherit;
-    font-size: 2rem;
+    font-size: 3rem;
     text-transform: uppercase;
-    background: var(--poludnytsya-bcap-color);
+    background: url('images/strtbtnpng.png');
+    opacity: 0.9;
+    transform: skew(-2deg) rotate(6deg);
+    background-size: cover;
+    overflow: visible;
     cursor: pointer;
-    color: black;
+    color: rgb(4, 4, 1);
+    text-shadow: #f0f4f8 0px 3px 10px;
 }
 
 .start-button:hover,
 .start-button:focus {
     transform: translateY(calc(var(--gap) * -1 + 4px));
-    background: var(--poludnytsya-tcap-color);
+    color: antiquewhite;
 }
 
 h1 {
     text-align: center;
-    color: var(--poludnytsya-tcap-color);
-    font-size: 2.8rem;
+    color: rgb(244, 238, 206);
+    font-size: 3rem;
     text-transform: uppercase;
+    text-shadow: #0b2743 0px 3px 10px;
     margin: 0;
     padding: var(--gap) var(--gap) calc(var(--gap) * 2);
 }
@@ -264,7 +271,7 @@ h1 {
 p {
     text-align: center;
     color: white;
-    font-size: 1rem;
+    font-size: 2rem;
     margin: 0;
     padding: var(--gap);
 }
@@ -350,18 +357,19 @@ button.card {
 .card .card__side_back {
     z-index: 1000;
     transform: rotateY(-180deg);
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 30"><path fill="rgba(0,0,0,0.4)" d="M448.025,617h0a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2h-8Zm-8.707,0h0l-1.413-1.414a2,2,0,0,1,2.828-2.829l1.414,1.414,1.414-1.414a2,2,0,1,1,2.829,2.829L444.976,617h-5.658Zm-11.294,0h0a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2h-8Zm27-3v-4A2,2,0,0,1,457,608v8A2,2,0,0,1,455.024,614ZM427,616v-8h.023a2,2,0,0,1,2,2v4a2,2,0,0,1-2,2Zm20.806-4.657a2,2,0,0,1,0-2.829l5.658-5.657.3-.3a.68.68,0,1,0,0-1.112l-1.564-1.565-4.395-4.393a2,2,0,0,1,2.83-2.829l3.094,3.094.036.035,2.829,2.829a1.988,1.988,0,0,1,.408.589v1.65a.965.965,0,1,0-.408,1.7,1.988,1.988,0,0,1,.408.589v1.651a1.979,1.979,0,0,1-.409.589l-2.828,2.828-.025.024-3.105,3.106a2,2,0,0,1-2.828,0Zm-14.143,0-5.657-5.656-.3-.3a.655.655,0,1,0-.7-.589v-1.651a1.942,1.942,0,0,1,.148.484,1.183,1.183,0,1,0,.555-2.185,1.987,1.987,0,0,1-.555-1.071,2.011,2.011,0,0,1-.148.483V599.2a2.018,2.018,0,0,1,.148.482,1.986,1.986,0,0,1,.556-1.071l.3-.3,5.657-5.656a2,2,0,0,1,2.829,2.829l-3.1,3.1-.034.035-2.829,2.828a.681.681,0,1,0,0,1.113l2.829,2.829,3.129,3.129a2,2,0,0,1-2.829,2.829ZM439,602a3,3,0,1,1,3,3A3,3,0,0,1,439,602Zm16.024-8v-4A2,2,0,0,1,457,588v8A2,2,0,0,1,455.024,594ZM427,596v-8h.023a2,2,0,0,1,2,2v4a2,2,0,0,1-2,2Zm16.563-4.756-1.415-1.415-1.414,1.414a2,2,0,0,1-2.828-2.829L439.318,587h5.659l1.414,1.414a2,2,0,0,1-2.829,2.829ZM450.024,589a2,2,0,0,1-2-2h8a2,2,0,0,1-2,2Zm-20,0a2,2,0,0,1-2-2h8a2,2,0,0,1-2,2Z" transform="translate(-427 -587)"/></svg>') center/30px repeat,
-        var(--card-back-gradient);
+    background: url('images/mythcards/bg1.png') cover;
 }
 
 .card.fliped .card__side_front {
     z-index: 900;
     transform: rotateY(180deg);
+    background: url('images/mythcards/bg1.png') cover;
 }
 
 .card.fliped .card__side_back {
     z-index: 1000;
     transform: rotateX(0deg) rotateY(0deg);
+    background: url('images/mythcards/bg1.png') cover;
 }
 
 
@@ -435,7 +443,7 @@ label {
     border-radius: 0;
     border: 0;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: normal;
     cursor: pointer;
     user-select: none;
 }

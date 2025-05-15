@@ -2,82 +2,82 @@
   "creatures": [
     {
       "name": "Leviathan",
-      "image": "/placeholders.png",
+      "image": "/mythcards/leviathan.png",
       "description": "A colossal sea serpent of biblical legend, basically the ocean's version of a boss fight."
     },
     {
       "name": "Satyr",
-      "image": "/placeholders.png",
+      "image": "/mythcards/satyr.png",
       "description": "Half-man, half-goat, full-time party animal with a penchant for pan flutes and poor decisions."
     },
     {
       "name": "Nymph",
-      "image": "/placeholders.png",
+      "image": "/mythcards/nymph.png",
       "description": "Nature spirits that embody the beauty of forests, rivers, and fields—like Mother Nature’s influencers."
     },
     {
       "name": "Anansi",
-      "image": "/placeholders.png",
+      "image": "/mythcards/anansi.png",
       "description": "A clever spider-trickster from African folklore who spins both webs and stories."
     },
     {
       "name": "Troll",
-      "image": "/placeholders.png",
+      "image": "/mythcards/troll.png",
       "description": "Grumpy bridge-dwellers or mountain giants with questionable hygiene and zero social skills."
     },
     {
       "name": "Bunyip",
-      "image": "/placeholders.png",
+      "image": "/mythcards/bunyip.png",
       "description": "A mysterious Australian swamp creature—think cryptid meets cautionary tale."
     },
     {
       "name": "Iktomi",
-      "image": "/placeholders.png",
+      "image": "/mythcards/iktomi.png",
       "description": "A Lakota spider-trickster god who weaves chaos with intelligence and mischief."
     },
     {
       "name": "Loch Ness Monster",
-      "image": "/placeholders.png",
+      "image": "/mythcards/loch_ness_monster.png",
       "description": "Scotland’s most elusive lake dweller—photogenic, yet camera shy."
     },
     {
       "name": "Chupacabra",
-      "image": "/placeholders.png",
+      "image": "/mythcards/chupacabra.png",
       "description": "The goat-sucker of Latin American lore, feared by livestock and embraced by late-night TV."
     },
     {
       "name": "Jackalope",
-      "image": "/placeholders.png",
+      "image": "/mythcards/jackalope.png",
       "description": "A mythical horned rabbit—equal parts adorable and armed."
     },
     {
       "name": "Phoenix",
-      "image": "/placeholders.png",
+      "image": "/mythcards/phoenix.png",
       "description": "A firebird that bursts into flames and rises from the ashes. Ultimate glow-up."
     },
     {
       "name": "Griffin",
-      "image": "/placeholders.png",
+      "image": "/mythcards/griffin.png",
       "description": "The majestic fusion of lion and eagle—basically nature's power couple."
     },
     {
       "name": "Minotaur",
-      "image": "/placeholders.png",
+      "image": "/mythcards/minotaur.png",
       "description": "Bull-headed maze dweller with anger management issues."
     },
     {
       "name": "Dragon",
-      "image": "/placeholders.png",
+      "image": "/mythcards/dragon.png",
       "description": "Winged, fire-breathing legends found in nearly every culture—mythology’s most iconic hothead."
     },
     {
       "name": "Unicorn",
-      "image": "/placeholders.png",
+      "image": "/mythcards/unicorn.png",
       "description": "A magical horse with a horn and a brand deal with rainbows."
     },
     {
       "name": "Cerberus",
-      "image": "/placeholders.png",
+      "image": "/mythcards/cerberus.png",
       "description": "The three-headed hound guarding the gates of the Underworld—think security with bite."
     },
     {
@@ -87,167 +87,167 @@
     },
     {
       "name": "Cyclops",
-      "image": "/placeholders.png",
+      "image": "/mythcards/cyclops.png",
       "description": "A one-eyed giant with a terrible depth perception and worse manners."
     },
     {
       "name": "Chimera",
-      "image": "/placeholders.png",
+      "image": "/mythcards/chimera.png",
       "description": "A fiery mashup of lion, goat, and snake—ancient Greece's version of a patch update gone rogue."
     },
     {
       "name": "Sphinx",
-      "image": "/placeholders.png",
+      "image": "/mythcards/sphinx.png",
       "description": "Riddle-loving guardian with the body of a lion and the face of a trivia night champion."
     },
     {
       "name": "Kraken",
-      "image": "/placeholders.png",
+      "image": "/mythcards/kraken.png",
       "description": "Giant sea monster with a flair for dramatic ship-smashing entrances."
     },
     {
       "name": "Banshee",
-      "image": "/placeholders.png",
+      "image": "/mythcards/banshee.png",
       "description": "A wailing Irish spirit—when she screams, someone’s about to get ghosted. Literally."
     },
     {
       "name": "Centaur",
-      "image": "/placeholders.png",
+      "image": "/mythcards/centaur.png",
       "description": "Half-man, half-horse, all gallop. Known for archery and identity confusion."
     },
     {
       "name": "Pegasus",
-      "image": "/placeholders.png",
+      "image": "/mythcards/pegasus.png",
       "description": "A winged horse who makes a dramatic entrance look like child's play."
     },
     {
       "name": "Basilisk",
-      "image": "/placeholders.png",
+      "image": "/mythcards/basilisk.png",
       "description": "Deadly reptile that can kill with a glare—basically a toxic gaze personified."
     },
     {
       "name": "Gorgon",
-      "image": "/placeholders.png",
+      "image": "/mythcards/gorgon.png",
       "description": "Snake-haired women whose gaze turns folks to stone. Zero tolerance for awkward stares."
     },
     {
       "name": "Harpy",
-      "image": "/placeholders.png",
+      "image": "/mythcards/harpy.png",
       "description": "Winged women of vengeance and shrieking doom. Not your ideal dinner guests."
     },
     {
       "name": "Siren",
-      "image": "/placeholders.png",
+      "image": "/mythcards/siren.png",
       "description": "Sea-dwelling singers whose songs spell doom. Basically ancient Spotify with bad intentions."
     },
     {
       "name": "Djinn",
-      "image": "/placeholders.png",
+      "image": "/mythcards/djinn.png",
       "description": "Magical beings with big powers and even bigger fine print."
     },
     {
       "name": "Kitsune",
-      "image": "/placeholders.png",
+      "image": "/mythcards/kitsune.png",
       "description": "Shapeshifting fox spirit of Japanese lore, equally known for wisdom and mischief."
     },
     {
       "name": "Wendigo",
-      "image": "/placeholders.png",
+      "image": "/mythcards/wendigo.png",
       "description": "Cannibal spirit of the frozen north, driven by hunger and spooky winter vibes."
     },
     {
       "name": "Kappa",
-      "image": "/placeholders.png",
+      "image": "/mythcards/kappa.png",
       "description": "A polite yet dangerous river creature from Japan—just bow back and you’ll be fine."
     },
     {
       "name": "Rusalka",
-      "image": "/placeholders.png",
+      "image": "/mythcards/rusalka.png",
       "description": "Slavic water spirit with a haunting beauty and ghost story energy."
     },
     {
       "name": "Naga",
-      "image": "/placeholders.png",
+      "image": "/mythcards/naga.png",
       "description": "Serpent beings from Hindu and Buddhist mythology—divine and deadly."
     },
     {
       "name": "Valkyrie",
-      "image": "/placeholders.png",
+      "image": "/mythcards/valkyrie.png",
       "description": "Norse warrior-maidens who choose the slain—Valkyrie Uber to Valhalla."
     },
     {
       "name": "Thunderbird",
-      "image": "/placeholders.png",
+      "image": "/mythcards/thunderbird.png",
       "description": "Giant bird of Native American lore that brings the storm—and the thunder."
     },
     {
       "name": "Manticore",
-      "image": "/placeholders.png",
+      "image": "/mythcards/manticore.png",
       "description": "Lion body, scorpion tail, human face—nature’s uncanny collage."
     },
     {
       "name": "Selkie",
-      "image": "/placeholders.png",
+      "image": "/mythcards/selkie.png",
       "description": "Seal by sea, human by shore—romantic shapeshifters with trust issues."
     },
     {
       "name": "Yeti",
-      "image": "/placeholders.png",
+      "image": "/mythcards/yeti.png",
       "description": "Himalayan snow monster. Cold, elusive, and probably tired of the paparazzi."
     },
     {
       "name": "Upyr",
-      "image": "/placeholders.png",
+      "image": "/mythcards/upyr.png",
       "description": "A Slavic vampire who snacks during the day. A real overachiever in the undead community."
     },
     {
       "name": "Chort",
-      "image": "/placeholders.png",
+      "image": "/mythcards/chort.png",
       "description": "A demon of Slavic folklore—goat horns, evil laugh, and chaotic energy."
     },
     {
       "name": "Polyovyk",
-      "image": "/placeholders.png",
+      "image": "/mythcards/polyovyk.png",
       "description": "Field spirit of Slavic myth, more at home in wheat than your average scarecrow."
     },
     {
       "name": "Poludnytsya",
-      "image": "/placeholders.png",
+      "image": "/mythcards/poludnytsya.png",
       "description": "The ‘Lady Midday’ who appears in fields to strike down lazy workers. Your HR department's nightmare."
     },
     {
       "name": "Povitruya",
-      "image": "/placeholders.png",
+      "image": "/mythcards/povitruya.png",
       "description": "Slavic air spirit with a breezy attitude and a twist of mischief."
     },
     {
       "name": "Mavka",
-      "image": "/placeholders.png",
+      "image": "/mythcards/mavka.png",
       "description": "Forest nymphs with tragic origins and a haunting gaze. Think enchanted ghost, not Casper."
     },
     {
       "name": "Vodyanoy",
-      "image": "/placeholders.png",
+      "image": "/mythcards/vodyanoy.png",
       "description": "Slavic water spirit with a grudge and a tendency to drown fishermen. Hydration with consequences."
     },
     {
       "name": "Vodyanitsa",
-      "image": "/placeholders.png",
+      "image": "/mythcards/vodyanitsa.png",
       "description": "Female counterpart to the Vodyanoy, equally mysterious and equally fond of ponds."
     },
     {
       "name": "Domovik",
-      "image": "/placeholders.png",
+      "image": "/mythcards/domovik.png",
       "description": "Household spirit from Slavic folklore. Part ghost, part roommate, all vibes."
     },
     {
       "name": "Baba Yaga",
-      "image": "/placeholders.png",
+      "image": "/mythcards/baba_yaga.png",
       "description": "Witch of the woods who flies in a mortar and pestle—your grandma if she were an eldritch boss."
     },
     {
       "name": "Leshy",
-      "image": "/placeholders.png",
+      "image": "/mythcards/leshy.png",
       "description": "Forest guardian with a talent for leading travelers astray and sprouting from trees."
     }
   ]

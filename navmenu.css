@@ -12,6 +12,10 @@
     --size: 20;
     --ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-family: 'Gaegu', sans-serif;
+    background: url("/images/matchbg.png") no-repeat center center fixed;
+    background-size: cover;
+    max-height: 100vh;
+    height: 100vh;
 }
 
 /* Menu Container */
@@ -181,4 +185,9 @@
     --delay: 0.8;
     --x: 50;
     --y: 80;
+}
+
+body {
+    max-height: 100vh;
+    height: 100vh;
 }

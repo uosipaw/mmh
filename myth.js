@@ -1,5 +1,3 @@
-// Update creature list according to myth.css
-// Update creature list according to myth.css
 // Update creature list according to myth.json
 let CHARACTERS = [];
 let LEVELS = {};
@@ -8,8 +6,8 @@ let LEVELS = {};
 fetch("myth.json")
   .then((response) => response.json())
   .then((data) => {
-    CHARACTERS = data.CHARACTERS;
-    LEVELS = data.LEVELS;
+    CHARACTERS = data.creatures;
+    LEVELS = data.levels;
     // Initialize the game after data is loaded
     startScreen();
   })

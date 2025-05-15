@@ -9,6 +9,17 @@
     <meta charset="utf-8">
     <meta name="description" content="description">
     <script src="myth.js" defer></script>
+    <script>
+        (function () {
+            window.isMobile =
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                    navigator.userAgent
+                ) || window.innerWidth <= 768;
+            document.documentElement.className = window.isMobile
+                ? "mobile-device"
+                : "desktop-device";
+        })();
+    </script>
 </head>
 
 <body class="myth-page">
