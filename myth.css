@@ -129,30 +129,98 @@ aside {
     width: 100%;
     /* max-width: 600px; */
     display: grid;
-    --col: 5;
-    grid-template-columns: repeat(var(--col), 1fr);
     gap: var(--gap);
     margin: auto;
+    /* Use grid-template-areas for flexible layouts */
+    grid-template-areas:
+        "top-start  top     top-end"
+        "mid-start  middle  mid-end"
+        "bottom-start bottom  bottom-end";
+    /* Define column widths */
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
+/* Adjust column and row counts based on difficulty */
 .card_table.easier {
-    --col: 4;
+    grid-template-areas:
+        "top    top"
+        "mid  mid"
+        "bottom bottom";
+    grid-template-columns: 1fr 1fr;
 }
 
 .card_table.easy {
-    --col: 4;
+    grid-template-areas:
+        "top    top"
+        "mid  mid"
+        "bottom bottom";
+    grid-template-columns: 1fr 1fr;
 }
 
 .card_table.normal {
-    --col: 5;
+    grid-template-areas:
+        "top-start  top     top-end"
+        "mid-start  middle  mid-end"
+        "bottom-start bottom  bottom-end";
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
 .card_table.hard {
-    --col: 6;
+    grid-template-areas:
+        "top-start  top     top-end"
+        "mid-start  middle  mid-end"
+        "bottom-start bottom  bottom-end";
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
 .card_table.harder {
-    --col: 8;
+    grid-template-areas:
+        "top-start  top     top-end"
+        "mid-start  middle  mid-end"
+        "bottom-start bottom  bottom-end";
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+/* Style the card-place elements to occupy the grid areas */
+.card-place:nth-child(1),
+.card-place:nth-child(2) {
+    grid-area: top;
+}
+
+.card-place:nth-child(3) {
+    grid-area: top-start;
+}
+
+.card-place:nth-child(4) {
+    grid-area: top-end;
+}
+
+.card-place:nth-child(5),
+.card-place:nth-child(6),
+.card-place:nth-child(7),
+.card-place:nth-child(8) {
+    grid-area: middle;
+}
+
+.card-place:nth-child(9) {
+    grid-area: mid-start;
+}
+
+.card-place:nth-child(10) {
+    grid-area: mid-end;
+}
+
+.card-place:nth-child(11),
+.card-place:nth-child(12) {
+    grid-area: bottom;
+}
+
+.card-place:nth-child(13) {
+    grid-area: bottom-start;
+}
+
+.card-place:nth-child(14) {
+    grid-area: bottom-end;
 }
 
 @media (orientation: landscape) {
@@ -169,27 +237,27 @@ aside {
  */
 @media (max-width: 1024px) {
     .card_table {
-        --col: 5;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.normal {
-        --col: 5;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.easier {
-        --col: 4;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.easy {
-        --col: 4;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.hard {
-        --col: 5;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.harder {
-        --col: 6;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 }
 
@@ -200,27 +268,27 @@ aside {
     }
 
     .card_table {
-        --col: 3;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.normal {
-        --col: 4;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.easier {
-        --col: 2;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.easy {
-        --col: 3;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.hard {
-        --col: 4;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 
     .card_table.harder {
-        --col: 4;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 }
 
@@ -275,6 +343,9 @@ button.card {
     border: 0;
     background-color: transparent;
     outline: none;
+    width: 100%;
+    /* Make the card fill the card-place */
+    height: 100%;
 }
 
 #stats {
@@ -295,11 +366,12 @@ button.card {
     position: relative;
     perspective: 1000px;
     cursor: pointer;
-    width: 100%;
     /* max-width: 200px; */
     transition: all 0.1s ease-in-out;
     border-radius: var(--radius);
     transform: rotate(var(--deg)) translateY(0);
+    height: 100%;
+    /* Ensure card fills the height of the card-place */
 }
 
 .card:hover,
@@ -333,6 +405,12 @@ button.card {
     transition: all 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
     background-color: #f0f4f8;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+    display: flex;
+    /* Use flexbox to center content */
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    /* Make image scale nicely */
 }
 
 .card:hover .card__side_back,
@@ -365,48 +443,48 @@ button.card {
 
 /* upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka*/
 .card.upyr .card__side_front {
-    background: var(--upyr-img) center/90% no-repeat, var(--upyr-gradient);
+    background: var(--upyr-img) center/contain no-repeat, var(--upyr-gradient);
 }
 
 .card.chort .card__side_front {
-    background: var(--chort-img) center/90% no-repeat, var(--chort-gradient);
+    background: var(--chort-img) center/contain no-repeat, var(--chort-gradient);
 }
 
 .card.povitruya .card__side_front {
-    background: var(--povitruya-img) center/90% no-repeat,
+    background: var(--povitruya-img) center/contain no-repeat,
         var(--povitruya-gradient);
 }
 
 .card.poludnytsya .card__side_front {
-    background: var(--poludnytsya-img) center/90% no-repeat,
+    background: var(--poludnytsya-img) center/contain no-repeat,
         var(--poludnytsya-gradient);
 }
 
 .card.polyovyk .card__side_front {
-    background: var(--polyovyk-img) center/90% no-repeat, var(--polyovyk-gradient);
+    background: var(--polyovyk-img) center/contain no-repeat, var(--polyovyk-gradient);
 }
 
 .card.chugaister .card__side_front {
-    background: var(--chugaister-img) center/90% no-repeat,
+    background: var(--chugaister-img) center/contain no-repeat,
         var(--chugaister-gradient);
 }
 
 .card.mavka .card__side_front {
-    background: var(--mavka-img) center/90% no-repeat, var(--mavka-gradient);
+    background: var(--mavka-img) center/contain no-repeat, var(--mavka-gradient);
 }
 
 .card.wandering_fier .card__side_front {
-    background: var(--wandering_fier-img) center/90% no-repeat,
+    background: var(--wandering_fier-img) center/contain no-repeat,
         var(--wandering_fier-gradient);
 }
 
 .card.nichnytsya .card__side_front {
-    background: var(--nichnytsya-img) center/90% no-repeat,
+    background: var(--nichnytsya-img) center/contain no-repeat,
         var(--nichnytsya-gradient);
 }
 
 .card.vovkulaka .card__side_front {
-    background: var(--vovkulaka-img) center/90% no-repeat,
+    background: var(--vovkulaka-img) center/contain no-repeat,
         var(--vovkulaka-gradient);
 }
 

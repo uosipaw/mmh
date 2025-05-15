@@ -450,11 +450,46 @@ function start(e) {
   let pairs = createArray(LEVELS[l]);
   allPairs = LEVELS[l];
   pairs = shuffle(shuffle(shuffle(pairs)));
-  let html = ``;
 
-  pairs.forEach((p) => {
-    html += getTemplate(p, true, false);
-  });
+  //   Adapt pair distribution based on difficulty
+  let html = ``;
+  let topCount, middleCount, bottomCount;
+
+  switch (l) {
+    case "easier":
+      topCount = pairs.length > 2 ? 1 : 0;
+      middleCount = pairs.length > 2 ? pairs.length - 2 : pairs.length;
+      bottomCount = pairs.length > 2 ? 1 : 0;
+      break;
+    case "easy":
+      topCount = pairs.length > 4 ? 2 : 0;
+      middleCount = pairs.length > 4 ? pairs.length - 4 : pairs.length;
+      bottomCount = pairs.length > 4 ? 2 : 0;
+      break;
+    default:
+      // Normal, Hard, Harder
+      topCount = Math.floor(pairs.length * 0.2);
+      middleCount = pairs.length - 2 * topCount;
+      bottomCount = topCount;
+      break;
+  }
+
+  let currentPairIndex = 0;
+
+  //   Top row
+  for (let i = 0; i < topCount; i++) {
+    html += getTemplate(pairs[currentPairIndex++], true, false);
+  }
+
+  //   Middle Row
+  for (let i = 0; i < middleCount; i++) {
+    html += getTemplate(pairs[currentPairIndex++], true, false);
+  }
+
+  //   Bottom row
+  for (let i = 0; i < bottomCount; i++) {
+    html += getTemplate(pairs[currentPairIndex++], true, false);
+  }
   cardTable.innerHTML = html;
   init();
 }
