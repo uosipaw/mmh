@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 /*creatures*/
 :root {
     --leviathan-img: url("images/mythcards/leviathan.png");
@@ -15,8 +9,7 @@
     --troll-img: url("images/mythcards/troll.png");
     --bunyip-img: url("images/mythcards/bunyip.png");
     --iktomi-img: url("images/mythcards/iktomi.png");
-    --lochnessmonster-img: var(--loch_ness_monster-img);
-    --loch_ness_monster-img: url("images/mythcards/loch_ness_monster.png");
+    --lochnessmonster-img: url("images/mythcards/loch_ness_monster.png");
     --chupacabra-img: url("images/mythcards/chupacabra.png");
     --jackalope-img: url("images/mythcards/jackalope.png");
     --phoenix-img: url("images/mythcards/phoenix.png");
@@ -57,15 +50,9 @@
     --vodyanoy-img: url("images/mythcards/vodyanoy.png");
     --vodyanitsa-img: url("images/mythcards/vodyanitsa.png");
     --domovik-img: url("images/mythcards/domovik.png");
-    --baba-yaga-img: var(--baba_yaga-img);
-    --baba_yaga-img: url("images/mythcards/baba_yaga.png");
+    --baba-yaga-img: url("images/mythcards/baba_yaga.png");
     --leshy-img: url("images/mythcards/leshy.png");
-}
 
-
-:root {
-    --desc-bg: var(r);
-    --card-back-gradient: var();
     --radius: 6px;
     --gap: 10px;
     --aside_width: 220px;
@@ -74,6 +61,18 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+
+::root {
+    --desc-bg: var(--nichnytsya-bcap-color);
+    --card-back-gradient: var(--poludnytsya-gradient);
+    --radius: 8px;
+    --gap: 16px;
+    --aside_width: 360px;
+
+    font-size: 16px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -113,53 +112,27 @@ body {
 }
 
 main {
-    padding: calc(var(--gap) * 1.2);
     position: relative;
+    padding: calc(var(--gap) * 2);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
 }
 
 aside {
     background-color: rgba(32, 32, 32, 0.32);
     padding: var(--gap);
-    min-width: 0;
-    width: var(--aside_width);
-    max-width: var(--aside_width);
 }
 
 .card_table {
-    display: block;
-    width: auto;
-    max-width: 900px;
-    margin: auto;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 80vh;
-}
-
-.card_row {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    /* max-width: 600px; */
+    display: grid;
+    --col: 5;
+    grid-template-columns: repeat(var(--col), 1fr);
     gap: var(--gap);
-    margin-bottom: var(--gap);
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.card_table>* {
-    flex: 1 1 calc(100% / var(--col, 8) - var(--gap));
-    max-width: calc(100% / var(--col, 8) - var(--gap));
-    min-width: 0;
-    box-sizing: border-box;
-}
-
-.card_row>.card-place {
-    flex: 0 0 auto;
-    max-width: none;
-    width: 100px;
+    margin: auto;
 }
 
 .card_table.easier {
@@ -179,21 +152,21 @@ aside {
 }
 
 .card_table.harder {
-    --col: 10;
+    --col: 8;
 }
 
-@media (max-width: 1024px) {
-    .card_table.harder {
-        --col: 7;
+@media (orientation: landscape) {
+    aside {
+        max-height: 100vh;
+        overflow: auto;
+        position: sticky;
+        top: 0;
     }
 }
 
-@media (max-width: 640px) {
-    .card_table.harder {
-        --col: 3;
-    }
-}
-
+/* 
+ * and (orientation: landscape)
+ */
 @media (max-width: 1024px) {
     .card_table {
         --col: 5;
@@ -254,45 +227,35 @@ aside {
 .card-place {
     border: 2px solid rgba(255, 255, 255, 0.5);
     padding: calc(var(--gap) / 1.5);
-    border-radius: calc(var(--radius) * 1.5);
-    visibility: visible;
-    perspective: 1000px;
-    flex: 1 1 calc(100% / var(--col, 8) - var(--gap));
-    max-width: calc(100% / var(--col, 8) - var(--gap));
-    box-sizing: border-box;
+    border-radius: calc(var(--radius) * 2);
 }
 
 .start-button {
     display: block;
     margin: calc(var(--gap) * 2) auto;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.1s ease-in-out;
     border: 0;
+    border-radius: var(--radius);
     padding: calc(var(--gap) * 1.5) calc(var(--gap) * 3);
     font: inherit;
-    font-size: 3rem;
+    font-size: 2rem;
     text-transform: uppercase;
-    background: url('images/strtbtnpng.png');
-    opacity: 0.9;
-    transform: skew(-2deg) rotate(6deg);
-    background-size: cover;
-    overflow: visible;
+    background: var(--poludnytsya-bcap-color);
     cursor: pointer;
-    color: rgb(135, 135, 120);
-    text-shadow: #000000 0px 3px 10px;
+    color: black;
 }
 
 .start-button:hover,
 .start-button:focus {
     transform: translateY(calc(var(--gap) * -1 + 4px));
-    color: antiquewhite;
+    background: var(--poludnytsya-tcap-color);
 }
 
 h1 {
     text-align: center;
-    color: rgb(244, 238, 206);
-    font-size: 3rem;
+    color: var(--poludnytsya-tcap-color);
+    font-size: 2.8rem;
     text-transform: uppercase;
-    text-shadow: #0b2743 0px 3px 10px;
     margin: 0;
     padding: var(--gap) var(--gap) calc(var(--gap) * 2);
 }
@@ -300,7 +263,7 @@ h1 {
 p {
     text-align: center;
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
     margin: 0;
     padding: var(--gap);
 }
@@ -332,13 +295,9 @@ button.card {
     position: relative;
     perspective: 1000px;
     cursor: pointer;
-    width: 100px;
-    aspect-ratio: 5/7;
-    min-height: 140px;
-    max-width: 100px;
-    max-height: 180px;
-    transition: transform 0.3s cubic-bezier(.4, 2, .6, 1), box-shadow 0.1s;
-    will-change: transform;
+    width: 100%;
+    /* max-width: 200px; */
+    transition: all 0.1s ease-in-out;
     border-radius: var(--radius);
     transform: rotate(var(--deg)) translateY(0);
 }
@@ -357,7 +316,7 @@ button.card {
     position: relative;
     width: 100%;
     display: block;
-    padding-top: 120%;
+    padding-top: 155%;
 }
 
 .card .card__side_back,
@@ -371,40 +330,84 @@ button.card {
     border-radius: var(--radius);
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transition: transform 0.5s cubic-bezier(.4, 2, .6, 1), box-shadow 0.1s;
+    transition: all 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
     background-color: #f0f4f8;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 
+.card:hover .card__side_back,
+.card:hover .card__side_front,
+.card:focus .card__side_back,
+.card:focus .card__side_front {
+    box-shadow: 0 16px 16px -8px rgba(0, 0, 0, 0.5);
+}
+
+.card .card__side_back {
+    z-index: 900;
+}
+
 .card .card__side_back {
     z-index: 1000;
-    opacity: 1;
-    pointer-events: auto;
-    transform: rotateY(0deg);
-    background: url('images/mythcards/bg1.png') cover;
-}
-
-.card .card__side_front {
-    z-index: 0;
-    opacity: 0;
-    pointer-events: none;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.card.flipped .card__side_back {
-    z-index: 900;
-    opacity: 0;
-    pointer-events: none;
     transform: rotateY(-180deg);
+    background: var(--card-back-gradient);
+    background-size: cover;
 }
 
 .card.flipped .card__side_front {
+    z-index: 900;
+    transform: rotateY(180deg);
+}
+
+.card.flipped .card__side_back {
     z-index: 1000;
-    opacity: 1;
-    pointer-events: auto;
-    transform: rotateY(0deg);
+    transform: rotateX(0deg) rotateY(0deg);
+}
+
+/* upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka*/
+.card.upyr .card__side_front {
+    background: var(--upyr-img) center/90% no-repeat, var(--upyr-gradient);
+}
+
+.card.chort .card__side_front {
+    background: var(--chort-img) center/90% no-repeat, var(--chort-gradient);
+}
+
+.card.povitruya .card__side_front {
+    background: var(--povitruya-img) center/90% no-repeat,
+        var(--povitruya-gradient);
+}
+
+.card.poludnytsya .card__side_front {
+    background: var(--poludnytsya-img) center/90% no-repeat,
+        var(--poludnytsya-gradient);
+}
+
+.card.polyovyk .card__side_front {
+    background: var(--polyovyk-img) center/90% no-repeat, var(--polyovyk-gradient);
+}
+
+.card.chugaister .card__side_front {
+    background: var(--chugaister-img) center/90% no-repeat,
+        var(--chugaister-gradient);
+}
+
+.card.mavka .card__side_front {
+    background: var(--mavka-img) center/90% no-repeat, var(--mavka-gradient);
+}
+
+.card.wandering_fier .card__side_front {
+    background: var(--wandering_fier-img) center/90% no-repeat,
+        var(--wandering_fier-gradient);
+}
+
+.card.nichnytsya .card__side_front {
+    background: var(--nichnytsya-img) center/90% no-repeat,
+        var(--nichnytsya-gradient);
+}
+
+.card.vovkulaka .card__side_front {
+    background: var(--vovkulaka-img) center/90% no-repeat,
+        var(--vovkulaka-gradient);
 }
 
 /* level-checker-button-group
@@ -476,7 +479,7 @@ label {
     border-radius: 0;
     border: 0;
     font-size: 12px;
-    font-weight: normal;
+    font-weight: bold;
     cursor: pointer;
     user-select: none;
 }

@@ -307,11 +307,11 @@ const CHARACTERS = [
 ];
 
 const LEVELS = {
-  harder: CHARACTERS.length,
-  hard: Math.max(2, Math.floor(CHARACTERS.length * 0.6)),
-  normal: Math.max(2, Math.floor(CHARACTERS.length * 0.35)),
-  easy: Math.max(2, Math.floor(CHARACTERS.length * 0.2)),
-  easier: Math.max(2, Math.floor(CHARACTERS.length * 0.1)),
+  easier: 2,
+  easy: 4,
+  normal: 5,
+  hard: 7,
+  harder: 10,
 };
 
 const getTemplate = (creature, flipped = true, disabled = false) => {
@@ -324,16 +324,14 @@ const getTemplate = (creature, flipped = true, disabled = false) => {
     creature.code
   }">
     <div class="card__side_back"></div>
-    <div class="card__side_front" style="background-image: var(--${
-      creature.code
-    }-img);"></div>
+    <div class="card__side_front"></div>
 </button></div>`;
 };
 
 const getTemplateArticle = (creature) => {
-  return `<article><button disabled style="--deg: 0deg;" class="card flipped ${creature.code}">
+  return `<article><button disabled style="--deg: 0deg;" class="card ${creature.code}">
     <div class="card__side_back"></div>
-    <div class="card__side_front" style="background-image: var(--${creature.code}-img);"></div>
+    <div class="card__side_front"></div>
 </button><div><h2 style="color: var(--${creature.code}-tcap-color)">${creature.name}</h2><p>${creature.description}</p></div></article>`;
 };
 
@@ -354,15 +352,9 @@ window.addEventListener(
   false
 );
 
-let cardTable, victoryBlock, statsBlock;
-
-document.addEventListener("DOMContentLoaded", () => {
-  cardTable = document.querySelector("#cardTable");
-  victoryBlock = document.querySelector(".victory");
-  statsBlock = document.querySelector("#stats");
-  startScreen();
-});
-
+let cardTable = document.querySelector("#cardTable");
+let victoryBlock = document.querySelector(".victory");
+let statsBlock = document.querySelector("#stats");
 let allPairs = 0;
 let openPairs = [];
 let moves = 0;
@@ -382,6 +374,9 @@ function getCharacterByCode(code) {
   return null;
 }
 
+// start()
+startScreen();
+
 function startScreen() {
   let html = ``;
 
@@ -394,8 +389,7 @@ function startScreen() {
 let opened = [];
 
 function openCard(card) {
-  if (opened.length >= 2 || card.classList.contains("matched") || card.disabled)
-    return;
+  if (opened.length >= 2) return;
 
   card.style.setProperty("--deg", `${getRandomArbitrary(-1.5, 1.5)}deg`);
   card.classList.remove("flipped");
@@ -406,13 +400,11 @@ function openCard(card) {
   if (opened.length == 2) {
     moves++;
     if (opened[0].dataset["code"] == opened[1].dataset["code"]) {
-      // Mark both as matched
-      opened[0].classList.add("matched");
-      opened[1].classList.add("matched");
       openPairs.push(getCharacterByCode(opened[0].dataset["code"]));
       opened = [];
     } else {
       setTimeout(() => {
+        // console.log("WRONG :(");
         opened[0].classList.add("flipped");
         opened[1].classList.add("flipped");
         opened[0].disabled = false;
@@ -443,95 +435,85 @@ function init() {
   });
 }
 
-function getBestColCount(cardCount) {
-  // Try to make the grid as square as possible, but always fill rows first
-  let bestCols = 1;
-  let minRemainder = cardCount;
-  for (let cols = 2; cols <= cardCount; cols++) {
-    if (cardCount % cols === 0) {
-      bestCols = cols;
-      minRemainder = 0;
-    } else if (cardCount % cols < minRemainder) {
-      bestCols = cols;
-      minRemainder = cardCount % cols;
-    }
-    if (minRemainder === 0 && cols * cols >= cardCount) break;
-  }
-  return bestCols;
+function start(e) {
+  resetStats();
+  victoryBlock.innerHTML = ``;
+  e.innerText = "ReStart";
+
+  opened = [];
+
+  let l = document.querySelector('input[name="level"]:checked').value;
+
+  cardTable.className = "";
+  cardTable.classList.add("card_table", l);
+
+  let pairs = createArray(LEVELS[l]);
+  allPairs = LEVELS[l];
+  pairs = shuffle(shuffle(shuffle(pairs)));
+  let html = ``;
+
+  pairs.forEach((p) => {
+    html += getTemplate(p, true, false);
+  });
+  cardTable.innerHTML = html;
+  init();
 }
 
-function getDiamondRows(cardCount) {
-  // Dynamically calculate the optimal number of rows for a diamond/circle layout
-  // 1. Use as few rows as possible (odd number for symmetry)
-  // 2. Middle row is the widest, top/bottom are smallest
-  // 3. All rows have at least 1 card
+function createArray(pairCount = 5) {
+  if (pairCount > CHARACTERS.length) {
+    throw new Error(`Pair count more ${CHARACTERS.length}`);
+  }
 
-  // Estimate ideal row count (odd, close to sqrt(cardCount))
-  let minRows = 3;
-  let maxRows = Math.min(cardCount, 11); // Don't go too tall
-  let bestRows = minRows;
-  let minScroll = Infinity;
-  for (let rows = minRows; rows <= maxRows; rows += 2) {
-    let mid = Math.floor(rows / 2);
-    // Calculate base width for middle row
-    let base = Math.floor(cardCount / rows);
-    let extra = cardCount % rows;
-    let rowSizes = [];
-    for (let i = 0; i < rows; i++) {
-      // Diamond: rows farther from middle get fewer cards
-      let dist = Math.abs(i - mid);
-      let size = base - dist;
-      rowSizes.push(size);
-    }
-    // Distribute remaining cards to rows, starting from middle out
-    let i = 0;
-    while (rowSizes.reduce((a, b) => a + b, 0) < cardCount) {
-      let idx = mid + (i % 2 === 0 ? i / 2 : -Math.ceil(i / 2));
-      if (idx >= 0 && idx < rows) rowSizes[idx]++;
-      i++;
-    }
-    // No row should have less than 1 card
-    if (rowSizes.every((n) => n > 0)) {
-      // Heuristic: prefer fewer rows (less scrolling), but penalize if any row is much wider than others
-      let maxRow = Math.max(...rowSizes);
-      let minRow = Math.min(...rowSizes);
-      let scrollScore = rows + (maxRow - minRow);
-      if (scrollScore < minScroll) {
-        minScroll = scrollScore;
-        bestRows = rows;
-      }
-    }
+  let source = [];
+  source.push(...CHARACTERS);
+  let result = [];
+
+  for (let i = 0; i < pairCount; i++) {
+    let randomIndex = Math.floor(Math.random() * source.length);
+    let removed = source.splice(randomIndex, 1);
+    result.push(removed[0]);
+    result.push(removed[0]);
   }
-  // Build final rowSizes for bestRows
-  let rows = bestRows;
-  let mid = Math.floor(rows / 2);
-  let base = Math.floor(cardCount / rows);
-  let rowSizes = [];
-  for (let i = 0; i < rows; i++) {
-    let dist = Math.abs(i - mid);
-    let size = base - dist;
-    rowSizes.push(size);
+
+  return result;
+}
+
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
-  let i = 0;
-  while (rowSizes.reduce((a, b) => a + b, 0) < cardCount) {
-    let idx = mid + (i % 2 === 0 ? i / 2 : -Math.ceil(i / 2));
-    if (idx >= 0 && idx < rows) rowSizes[idx]++;
-    i++;
-  }
-  // Ensure all rows have at least 1 card
-  for (let i = 0; i < rowSizes.length; i++) {
-    if (rowSizes[i] < 1) rowSizes[i] = 1;
-  }
-  // If we have too many, trim from outer rows
-  let sum = rowSizes.reduce((a, b) => a + b, 0);
-  while (sum > cardCount) {
-    for (let j = 0; j < rowSizes.length && sum > cardCount; j++) {
-      let idx = j < mid ? j : rowSizes.length - 1 - j;
-      if (rowSizes[idx] > 1) {
-        rowSizes[idx]--;
-        sum--;
-      }
-    }
-  }
-  return rowSizes;
+
+  return array;
+}
+
+/**
+ * Returns a random number between min (inclusive) and max (exclusive)
+ */
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive).
+ * The value is no lower than min (or the next integer greater than min
+ * if min isn't an integer) and no greater than max (or the next integer
+ * lower than max if max isn't an integer).
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
