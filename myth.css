@@ -64,7 +64,7 @@
 }
 
 
-::root {
+:root {
     --desc-bg: var(--nichnytsya-bcap-color);
     --card-back-gradient: var(--poludnytsya-gradient);
     --radius: 8px;
@@ -125,111 +125,38 @@ aside {
     padding: var(--gap);
 }
 
+/* --- Card Table Responsive Layout --- */
 .card_table {
     width: 100%;
-    /* max-width: 600px; */
     display: grid;
     gap: var(--gap);
     margin: auto;
-    /* Use grid-template-areas for flexible layouts */
-    grid-template-areas:
-        "top-start  top     top-end"
-        "mid-start  middle  mid-end"
-        "bottom-start bottom  bottom-end";
-    /* Define column widths */
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    justify-items: center;
+    align-items: center;
+    place-items: center;
 }
 
-/* Adjust column and row counts based on difficulty */
-.card_table.easier {
-    grid-template-areas:
-        "top    top"
-        "mid  mid"
-        "bottom bottom";
-    grid-template-columns: 1fr 1fr;
-}
 
-.card_table.easy {
-    grid-template-areas:
-        "top    top"
-        "mid  mid"
-        "bottom bottom";
-    grid-template-columns: 1fr 1fr;
-}
-
-.card_table.normal {
-    grid-template-areas:
-        "top-start  top     top-end"
-        "mid-start  middle  mid-end"
-        "bottom-start bottom  bottom-end";
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
-.card_table.hard {
-    grid-template-areas:
-        "top-start  top     top-end"
-        "mid-start  middle  mid-end"
-        "bottom-start bottom  bottom-end";
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
+/* Remove legacy .card_table.[level] grid-template-areas and columns */
+.card_table.easier,
+.card_table.easy,
+.card_table.normal,
+.card_table.hard,
 .card_table.harder {
-    grid-template-areas:
-        "top-start  top     top-end"
-        "mid-start  middle  mid-end"
-        "bottom-start bottom  bottom-end";
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
 }
 
-/* Style the card-place elements to occupy the grid areas */
-.card-place:nth-child(1),
-.card-place:nth-child(2) {
-    grid-area: top;
-}
-
-.card-place:nth-child(3) {
-    grid-area: top-start;
-}
-
-.card-place:nth-child(4) {
-    grid-area: top-end;
-}
-
-.card-place:nth-child(5),
-.card-place:nth-child(6),
-.card-place:nth-child(7),
-.card-place:nth-child(8) {
-    grid-area: middle;
-}
-
-.card-place:nth-child(9) {
-    grid-area: mid-start;
-}
-
-.card-place:nth-child(10) {
-    grid-area: mid-end;
-}
-
-.card-place:nth-child(11),
-.card-place:nth-child(12) {
-    grid-area: bottom;
-}
-
-.card-place:nth-child(13) {
-    grid-area: bottom-start;
-}
-
-.card-place:nth-child(14) {
-    grid-area: bottom-end;
-}
-
-@media (orientation: landscape) {
-    aside {
-        max-height: 100vh;
-        overflow: auto;
-        position: sticky;
-        top: 0;
-    }
+/* --- Card Sizing --- */
+button.card,
+.card {
+    width: 100%;
+    max-width: 180px;
+    min-width: 60px;
+    aspect-ratio: 5 / 7;
+    height: auto;
+    max-height: 252px;
+    min-height: 84px;
 }
 
 /* 
@@ -296,73 +223,37 @@ aside {
     border: 2px solid rgba(255, 255, 255, 0.5);
     padding: calc(var(--gap) / 1.5);
     border-radius: calc(var(--radius) * 2);
-}
-
-.start-button {
-    display: block;
-    margin: calc(var(--gap) * 2) auto;
-    transition: all 0.1s ease-in-out;
-    border: 0;
-    border-radius: var(--radius);
-    padding: calc(var(--gap) * 1.5) calc(var(--gap) * 3);
-    font: inherit;
-    font-size: 2rem;
-    text-transform: uppercase;
-    background: var(--poludnytsya-bcap-color);
-    cursor: pointer;
-    color: black;
-}
-
-.start-button:hover,
-.start-button:focus {
-    transform: translateY(calc(var(--gap) * -1 + 4px));
-    background: var(--poludnytsya-tcap-color);
-}
-
-h1 {
-    text-align: center;
-    color: var(--poludnytsya-tcap-color);
-    font-size: 2.8rem;
-    text-transform: uppercase;
-    margin: 0;
-    padding: var(--gap) var(--gap) calc(var(--gap) * 2);
-}
-
-p {
-    text-align: center;
-    color: white;
-    font-size: 1rem;
-    margin: 0;
-    padding: var(--gap);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Let the card fill the place, but keep aspect ratio */
 }
 
 button.card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 7;
+    max-width: 180px;
+    max-height: 252px;
+    min-width: 60px;
+    min-height: 84px;
     display: block;
+    position: relative;
     padding: 0;
     margin: 0;
     border: 0;
     background-color: transparent;
     outline: none;
-    width: 100%;
-    /* Make the card fill the card-place */
-    height: 100%;
-}
-
-#stats {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: white;
-    padding: 2px;
-    font-weight: bold;
-    font-size: 12px;
 }
 
 .card {
-    --deg: 0deg;
-    user-select: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 7;
+    max-width: 180px;
+    max-height: 252px;
+    min-width: 60px;
+    min-height: 84px;
     position: relative;
     perspective: 1000px;
     cursor: pointer;
@@ -370,8 +261,9 @@ button.card {
     transition: all 0.1s ease-in-out;
     border-radius: var(--radius);
     transform: rotate(var(--deg)) translateY(0);
-    height: 100%;
-    /* Ensure card fills the height of the card-place */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
 }
 
 .card:hover,
@@ -384,15 +276,17 @@ button.card {
 }
 
 .card:after {
-    content: "";
-    position: relative;
-    width: 100%;
-    display: block;
-    padding-top: 155%;
+    display: none;
 }
 
 .card .card__side_back,
 .card .card__side_front {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 5 / 7;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -402,7 +296,7 @@ button.card {
     border-radius: var(--radius);
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transition: all 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.1s;
     background-color: #f0f4f8;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -420,25 +314,22 @@ button.card {
     box-shadow: 0 16px 16px -8px rgba(0, 0, 0, 0.5);
 }
 
-.card .card__side_back {
-    z-index: 900;
+.card .card__side_front {
+    z-index: 2;
+    transform: rotateY(0deg);
 }
 
 .card .card__side_back {
-    z-index: 1000;
-    transform: rotateY(-180deg);
-    background: var(--card-back-gradient);
-    background-size: cover;
+    z-index: 1;
+    transform: rotateY(180deg);
 }
 
 .card.flipped .card__side_front {
-    z-index: 900;
     transform: rotateY(180deg);
 }
 
 .card.flipped .card__side_back {
-    z-index: 1000;
-    transform: rotateX(0deg) rotateY(0deg);
+    transform: rotateY(0deg);
 }
 
 /* upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka*/
@@ -587,4 +478,214 @@ article h2 {
 
 a {
     color: inherit;
+}
+
+.card[class*=" "] .card__side_front {
+    /* Use the code as a class to assign the image */
+    background-image: var(--img, none);
+}
+
+/* Generic rule for all cards: set --img variable based on code */
+.card.leviathan {
+    --img: var(--leviathan-img);
+}
+
+.card.satyr {
+    --img: var(--satyr-img);
+}
+
+.card.nymph {
+    --img: var(--nymph-img);
+}
+
+.card.anansi {
+    --img: var(--anansi-img);
+}
+
+.card.troll {
+    --img: var(--troll-img);
+}
+
+.card.bunyip {
+    --img: var(--bunyip-img);
+}
+
+.card.iktomi {
+    --img: var(--iktomi-img);
+}
+
+.card.loch_ness_monster {
+    --img: var(--lochnessmonster-img);
+}
+
+.card.chupacabra {
+    --img: var(--chupacabra-img);
+}
+
+.card.jackalope {
+    --img: var(--jackalope-img);
+}
+
+.card.phoenix {
+    --img: var(--phoenix-img);
+}
+
+.card.griffin {
+    --img: var(--griffin-img);
+}
+
+.card.minotaur {
+    --img: var(--minotaur-img);
+}
+
+.card.dragon {
+    --img: var(--dragon-img);
+}
+
+.card.unicorn {
+    --img: var(--unicorn-img);
+}
+
+.card.cerberus {
+    --img: var(--cerberus-img);
+}
+
+.card.hydra {
+    --img: var(--hydra-img);
+}
+
+.card.cyclops {
+    --img: var(--cyclops-img);
+}
+
+.card.chimera {
+    --img: var(--chimera-img);
+}
+
+.card.sphinx {
+    --img: var(--sphinx-img);
+}
+
+.card.kraken {
+    --img: var(--kraken-img);
+}
+
+.card.banshee {
+    --img: var(--banshee-img);
+}
+
+.card.centaur {
+    --img: var(--centaur-img);
+}
+
+.card.pegasus {
+    --img: var(--pegasus-img);
+}
+
+.card.basilisk {
+    --img: var(--basilisk-img);
+}
+
+.card.gorgon {
+    --img: var(--gorgon-img);
+}
+
+.card.harpy {
+    --img: var(--harpy-img);
+}
+
+.card.siren {
+    --img: var(--siren-img);
+}
+
+.card.djinn {
+    --img: var(--djinn-img);
+}
+
+.card.kitsune {
+    --img: var(--kitsune-img);
+}
+
+.card.wendigo {
+    --img: var(--wendigo-img);
+}
+
+.card.kappa {
+    --img: var(--kappa-img);
+}
+
+.card.rusalka {
+    --img: var(--rusalka-img);
+}
+
+.card.naga {
+    --img: var(--naga-img);
+}
+
+.card.valkyrie {
+    --img: var(--valkyrie-img);
+}
+
+.card.thunderbird {
+    --img: var(--thunderbird-img);
+}
+
+.card.manticore {
+    --img: var(--manticore-img);
+}
+
+.card.selkie {
+    --img: var(--selkie-img);
+}
+
+.card.yeti {
+    --img: var(--yeti-img);
+}
+
+.card.upyr {
+    --img: var(--upyr-img);
+}
+
+.card.chort {
+    --img: var(--chort-img);
+}
+
+.card.polyovyk {
+    --img: var(--polyovyk-img);
+}
+
+.card.poludnytsya {
+    --img: var(--poludnytsya-img);
+}
+
+.card.povitruya {
+    --img: var(--povitruya-img);
+}
+
+.card.mavka {
+    --img: var(--mavka-img);
+}
+
+.card.vodyanoy {
+    --img: var(--vodyanoy-img);
+}
+
+.card.vodyanitsa {
+    --img: var(--vodyanitsa-img);
+}
+
+.card.domovik {
+    --img: var(--domovik-img);
+}
+
+.card.baba_yaga {
+    --img: var(--baba-yaga-img);
+}
+
+.card.leshy {
+    --img: var(--leshy-img);
+}
+
+.card[class*=" "] .card__side_front {
+    background: var(--img) center/contain no-repeat, var(--poludnytsya-gradient);
 }

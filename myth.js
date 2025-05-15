@@ -307,11 +307,11 @@ const CHARACTERS = [
 ];
 
 const LEVELS = {
-  easier: 2,
-  easy: 4,
-  normal: 5,
-  hard: 7,
-  harder: 10,
+  easier: Math.ceil(CHARACTERS.length * 0.15), // ~15% of cards
+  easy: Math.ceil(CHARACTERS.length * 0.25), // ~25% of cards
+  normal: Math.ceil(CHARACTERS.length * 0.4), // ~40% of cards
+  hard: Math.ceil(CHARACTERS.length * 0.6), // ~60% of cards
+  harder: CHARACTERS.length, // all cards
 };
 
 const getTemplate = (creature, flipped = true, disabled = false) => {
@@ -379,11 +379,15 @@ startScreen();
 
 function startScreen() {
   let html = ``;
-
   CHARACTERS.forEach((p) => {
     html += getTemplate(p, false, true);
   });
   cardTable.innerHTML = html;
+  // Hide replay button, show start button
+  const startBtn = document.getElementById("startBtn");
+  const replayBtn = document.getElementById("replayBtn");
+  if (startBtn) startBtn.style.display = "inline-block";
+  if (replayBtn) replayBtn.style.display = "none";
 }
 
 let opened = [];
@@ -552,3 +556,22 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const startBtn = document.getElementById("startBtn");
+  const replayBtn = document.getElementById("replayBtn");
+
+  if (startBtn && replayBtn) {
+    startBtn.addEventListener("click", function () {
+      start(this);
+      startBtn.style.display = "none";
+      replayBtn.style.display = "inline-block";
+    });
+    replayBtn.addEventListener("click", function () {
+      start(startBtn); // Pass startBtn for label update
+    });
+  }
+
+  // Hide replay button on initial load
+  if (replayBtn) replayBtn.style.display = "none";
+});
