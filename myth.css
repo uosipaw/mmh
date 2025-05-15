@@ -8,70 +8,69 @@
 
 /*creatures*/
 :root {
-
-    --leviathan-img: url("/images/leviathan.png");
-    --satyr-img: url("/images/satyr.png");
-    --nymph-img: url("/images/nymph.png");
-    --anansi-img: url("/images/anansi.png");
-    --troll-img: url("/images/troll.png");
-    --bunyip-img: url("/images/bunyip.png");
-    --iktomi-img: url("/images/iktomi.png");
-    --lochnessmonster-img: url("/images/lochnessmonster.png");
-    --chupacabra-img: url("/images/chupacabra.png");
-    --jackalope-img: url("/images/jackalope.png");
-    --phoenix-img: url("/images/phoenix.png");
-    --griffin-img: url("/images/griffin.png");
-    --minotaur-img: url("/images/minotaur.png");
-    --dragon-img: url("/images/dragon.png");
-    --unicorn-img: url("/images/unicorn.png");
-    --cerberus-img: url("/images/cerberus.png");
-    --hydra-img: url("/images/hydra.png");
-    --cyclops-img: url("/images/cyclops.png");
-    --chimera-img: url("/images/chimera.png");
-    --sphinx-img: url("/images/sphinx.png");
-    --kraken-img: url("/images/kraken.png");
-    --banshee-img: url("/images/banshee.png");
-    --centaur-img: url("/images/centaur.png");
-    --pegasus-img: url("/images/pegasus.png");
-    --basilisk-img: url("/images/basilisk.png");
-    --gorgon-img: url("/images/gorgon.png");
-    --harpy-img: url("/images/harpy.png");
-    --siren-img: url("/images/siren.png");
-    --djinn-img: url("/images/djinn.png");
-    --kitsune-img: url("/images/kitsune.png");
-    --wendigo-img: url("/images/wendigo.png");
-    --kappa-img: url("/images/kappa.png");
-    --rusalka-img: url("/images/rusalka.png");
-    --naga-img: url("/images/naga.png");
-    --valkyrie-img: url("/images/valkyrie.png");
-    --thunderbird-img: url("/images/thunderbird.png");
-    --manticore-img: url("/images/manticore.png");
-    --selkie-img: url("/images/selkie.png");
-    --yeti-img: url("/images/yeti.png");
-    --upyr-img: url("/images/upyr.png");
-    --chort-img: url("/images/chort.png");
-    --polyovyk-img: url("/images/polyovyk.png");
-    --poludnytsya-img: url("/images/poludnytsya.png");
-    --povitruya-img: url("/images/povitruya.png");
-    --mavka-img: url("/images/mavka.png");
-    --vodyanoy-img: url("/images/vodyanoy.png");
-    --vodyanitsa-img: url("/images/vodyanitsa.png");
-    --domovik-img: url("/images/domovik.png");
-    --baba-yaga-img: url("/images/baba-yaga.png");
-    --leshy-img: url("/images/leshy.png");
-
+    --leviathan-img: url("images/mythcards/leviathan.png");
+    --satyr-img: url("images/mythcards/satyr.png");
+    --nymph-img: url("images/mythcards/nymph.png");
+    --anansi-img: url("images/mythcards/anansi.png");
+    --troll-img: url("images/mythcards/troll.png");
+    --bunyip-img: url("images/mythcards/bunyip.png");
+    --iktomi-img: url("images/mythcards/iktomi.png");
+    --lochnessmonster-img: var(--loch_ness_monster-img);
+    --loch_ness_monster-img: url("images/mythcards/loch_ness_monster.png");
+    --chupacabra-img: url("images/mythcards/chupacabra.png");
+    --jackalope-img: url("images/mythcards/jackalope.png");
+    --phoenix-img: url("images/mythcards/phoenix.png");
+    --griffin-img: url("images/mythcards/griffin.png");
+    --minotaur-img: url("images/mythcards/minotaur.png");
+    --dragon-img: url("images/mythcards/dragon.png");
+    --unicorn-img: url("images/mythcards/unicorn.png");
+    --cerberus-img: url("images/mythcards/cerberus.png");
+    --hydra-img: url("images/mythcards/hydra.png");
+    --cyclops-img: url("images/mythcards/cyclops.png");
+    --chimera-img: url("images/mythcards/chimera.png");
+    --sphinx-img: url("images/mythcards/sphinx.png");
+    --kraken-img: url("images/mythcards/kraken.png");
+    --banshee-img: url("images/mythcards/banshee.png");
+    --centaur-img: url("images/mythcards/centaur.png");
+    --pegasus-img: url("images/mythcards/pegasus.png");
+    --basilisk-img: url("images/mythcards/basilisk.png");
+    --gorgon-img: url("images/mythcards/gorgon.png");
+    --harpy-img: url("images/mythcards/harpy.png");
+    --siren-img: url("images/mythcards/siren.png");
+    --djinn-img: url("images/mythcards/djinn.png");
+    --kitsune-img: url("images/mythcards/kitsune.png");
+    --wendigo-img: url("images/mythcards/wendigo.png");
+    --kappa-img: url("images/mythcards/kappa.png");
+    --rusalka-img: url("images/mythcards/rusalka.png");
+    --naga-img: url("images/mythcards/naga.png");
+    --valkyrie-img: url("images/mythcards/valkyrie.png");
+    --thunderbird-img: url("images/mythcards/thunderbird.png");
+    --manticore-img: url("images/mythcards/manticore.png");
+    --selkie-img: url("images/mythcards/selkie.png");
+    --yeti-img: url("images/mythcards/yeti.png");
+    --upyr-img: url("images/mythcards/upyr.png");
+    --chort-img: url("images/mythcards/chort.png");
+    --polyovyk-img: url("images/mythcards/polyovyk.png");
+    --poludnytsya-img: url("images/mythcards/poludnytsya.png");
+    --povitruya-img: url("images/mythcards/povitruya.png");
+    --mavka-img: url("images/mythcards/mavka.png");
+    --vodyanoy-img: url("images/mythcards/vodyanoy.png");
+    --vodyanitsa-img: url("images/mythcards/vodyanitsa.png");
+    --domovik-img: url("images/mythcards/domovik.png");
+    --baba-yaga-img: var(--baba_yaga-img);
+    --baba_yaga-img: url("images/mythcards/baba_yaga.png");
+    --leshy-img: url("images/mythcards/leshy.png");
 }
 
 
 :root {
     --desc-bg: var(r);
     --card-back-gradient: var();
-    --radius: 8px;
-    --gap: 16px;
-    --aside_width: 360px;
-    font-size: 16px;
+    --radius: 6px;
+    --gap: 10px;
+    --aside_width: 220px;
+    font-size: 13px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url(/images/matchbg.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -114,27 +113,53 @@ body {
 }
 
 main {
+    padding: calc(var(--gap) * 1.2);
     position: relative;
-    padding: calc(var(--gap) * 2);
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
+    align-items: center;
+    justify-content: center;
 }
 
 aside {
     background-color: rgba(32, 32, 32, 0.32);
     padding: var(--gap);
+    min-width: 0;
+    width: var(--aside_width);
+    max-width: var(--aside_width);
 }
 
 .card_table {
-    width: 100%;
-    /* max-width: 600px; */
-    display: grid;
-    --col: 8;
-    grid-template-columns: repeat(var(--col), 1fr);
-    gap: var(--gap);
+    display: block;
+    width: auto;
+    max-width: 900px;
     margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 80vh;
+}
+
+.card_row {
+    display: flex;
+    justify-content: center;
+    gap: var(--gap);
+    margin-bottom: var(--gap);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card_table>* {
+    flex: 1 1 calc(100% / var(--col, 8) - var(--gap));
+    max-width: calc(100% / var(--col, 8) - var(--gap));
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.card_row>.card-place {
+    flex: 0 0 auto;
+    max-width: none;
+    width: 100px;
 }
 
 .card_table.easier {
@@ -154,21 +179,21 @@ aside {
 }
 
 .card_table.harder {
-    --col: 8;
+    --col: 10;
 }
 
-@media (orientation: landscape) {
-    aside {
-        max-height: 100vh;
-        overflow: auto;
-        position: sticky;
-        top: 0;
+@media (max-width: 1024px) {
+    .card_table.harder {
+        --col: 7;
     }
 }
 
-/* 
- * and (orientation: landscape)
- */
+@media (max-width: 640px) {
+    .card_table.harder {
+        --col: 3;
+    }
+}
+
 @media (max-width: 1024px) {
     .card_table {
         --col: 5;
@@ -229,8 +254,12 @@ aside {
 .card-place {
     border: 2px solid rgba(255, 255, 255, 0.5);
     padding: calc(var(--gap) / 1.5);
-    border-radius: calc(var(--radius) * 2);
-    visibility: hidden;
+    border-radius: calc(var(--radius) * 1.5);
+    visibility: visible;
+    perspective: 1000px;
+    flex: 1 1 calc(100% / var(--col, 8) - var(--gap));
+    max-width: calc(100% / var(--col, 8) - var(--gap));
+    box-sizing: border-box;
 }
 
 .start-button {
@@ -248,8 +277,8 @@ aside {
     background-size: cover;
     overflow: visible;
     cursor: pointer;
-    color: rgb(4, 4, 1);
-    text-shadow: #f0f4f8 0px 3px 10px;
+    color: rgb(135, 135, 120);
+    text-shadow: #000000 0px 3px 10px;
 }
 
 .start-button:hover,
@@ -303,9 +332,13 @@ button.card {
     position: relative;
     perspective: 1000px;
     cursor: pointer;
-    width: 100%;
-    /* max-width: 200px; */
-    transition: all 0.1s ease-in-out;
+    width: 100px;
+    aspect-ratio: 5/7;
+    min-height: 140px;
+    max-width: 100px;
+    max-height: 180px;
+    transition: transform 0.3s cubic-bezier(.4, 2, .6, 1), box-shadow 0.1s;
+    will-change: transform;
     border-radius: var(--radius);
     transform: rotate(var(--deg)) translateY(0);
 }
@@ -324,7 +357,7 @@ button.card {
     position: relative;
     width: 100%;
     display: block;
-    padding-top: 155%;
+    padding-top: 120%;
 }
 
 .card .card__side_back,
@@ -338,41 +371,41 @@ button.card {
     border-radius: var(--radius);
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transition: all 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
+    transition: transform 0.5s cubic-bezier(.4, 2, .6, 1), box-shadow 0.1s;
     background-color: #f0f4f8;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 
-.card:hover .card__side_back,
-.card:hover .card__side_front,
-.card:focus .card__side_back,
-.card:focus .card__side_front {
-    box-shadow: 0 16px 16px -8px rgba(0, 0, 0, 0.5);
-}
-
-.card .card__side_back {
-    z-index: 900;
-}
-
 .card .card__side_back {
     z-index: 1000;
+    opacity: 1;
+    pointer-events: auto;
+    transform: rotateY(0deg);
+    background: url('images/mythcards/bg1.png') cover;
+}
+
+.card .card__side_front {
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card.flipped .card__side_back {
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
     transform: rotateY(-180deg);
-    background: url('images/mythcards/bg1.png') cover;
 }
 
-.card.fliped .card__side_front {
-    z-index: 900;
-    transform: rotateY(180deg);
-    background: url('images/mythcards/bg1.png') cover;
-}
-
-.card.fliped .card__side_back {
+.card.flipped .card__side_front {
     z-index: 1000;
-    transform: rotateX(0deg) rotateY(0deg);
-    background: url('images/mythcards/bg1.png') cover;
+    opacity: 1;
+    pointer-events: auto;
+    transform: rotateY(0deg);
 }
-
-
 
 /* level-checker-button-group
  */
