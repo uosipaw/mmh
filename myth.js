@@ -361,8 +361,6 @@ document.addEventListener("DOMContentLoaded", () => {
   victoryBlock = document.querySelector(".victory");
   statsBlock = document.querySelector("#stats");
   startScreen();
-  // Expose start only after DOM is ready
-  window.start = start;
 });
 
 let allPairs = 0;
@@ -536,83 +534,4 @@ function getDiamondRows(cardCount) {
     }
   }
   return rowSizes;
-}
-
-function start(e) {
-  resetStats();
-  victoryBlock.innerHTML = ``;
-  e.innerText = "ReStart";
-
-  opened = [];
-
-  let l = document.querySelector('input[name="level"]:checked').value;
-
-  cardTable.className = "";
-  cardTable.classList.add("card_table", l);
-
-  let pairs = createArray(LEVELS[l]);
-  allPairs = LEVELS[l];
-  pairs = shuffle(shuffle(shuffle(pairs)));
-
-  // Diamond/circle layout
-  let rowCounts = getDiamondRows(pairs.length);
-  let html = "";
-  let idx = 0;
-  rowCounts.forEach((rowLen) => {
-    html += '<div class="card_row">';
-    for (let i = 0; i < rowLen; i++) {
-      if (idx < pairs.length) {
-        html += getTemplate(pairs[idx], true, false);
-        idx++;
-      }
-    }
-    html += "</div>";
-  });
-  cardTable.innerHTML = html;
-  init();
-}
-
-// Remove the old: window.start = start;
-
-function createArray(pairCount = 5) {
-  if (pairCount > CHARACTERS.length) {
-    throw new Error(`Pair count more ${CHARACTERS.length}`);
-  }
-
-  let source = [];
-  source.push(...CHARACTERS);
-  let result = [];
-
-  for (let i = 0; i < pairCount; i++) {
-    let randomIndex = Math.floor(Math.random() * source.length);
-    let removed = source.splice(randomIndex, 1);
-    result.push(removed[0]);
-    result.push(removed[0]);
-  }
-
-  return result;
-}
-
-function shuffle(array) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-
-  return array;
-}
-
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
 }
