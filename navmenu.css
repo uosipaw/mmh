@@ -3,55 +3,29 @@
 @font-face {
     font-family: 'Gaegu';
     src: url("fonts/Gaegu-Regular.ttf") format('truetype');
-
 }
 
-* {
-    box-sizing: border-box;
-}
-
+/* Global Variables */
 :root {
     --speed: 0.85;
     --primary: #fff;
     --size: 20;
-    /* Reduced from 30 to make items smaller */
     --ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-body {
     font-family: 'Gaegu', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    padding: 0;
 }
 
-main {
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    -ms-scroll-snap-type: y mandatory;
-    scroll-snap-type: y mandatory;
-}
-
-section {
-    align-items: center;
-    display: flex;
-    font-size: 3rem;
-    height: 100vh;
-    justify-content: center;
-    scroll-snap-align: center;
-    width: 100vw;
-}
-
+/* Menu Container */
 .menu {
     position: fixed;
 }
 
+/* Hidden Toggle Checkbox */
 .menu__toggle {
-    opacity: 0;
+    opacity: 100%;
     position: absolute;
 }
 
+/* Toggle Active State */
 .menu__toggle:checked~.menu__content .menu__item {
     --active-x: var(--x);
     --active-y: var(--y);
@@ -62,120 +36,93 @@ section {
     --clip: circle(1000% at 0% 0%);
     height: 100vh;
     width: 100vw;
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    z-index: 1;
 }
 
-.menu__toggle:checked~.menu__toggle-label .menu__icon:nth-of-type(1) {
-    --scale: 0;
-}
-
-.menu__toggle:checked~.menu__toggle-label .menu__icon:nth-of-type(2) {
-    --scale: 1;
-}
-
+/* Toggle Button Label */
 .menu__toggle-label {
     cursor: pointer;
-    height: calc(var(--size, 20) * 0.5vmin);
-    width: calc(var(--size, 20) * 0.5vmin);
-    display: block;
-    --clip: circle(100% at 0% 0%);
-    -webkit-clip-path: var(--clip);
-    clip-path: var(--clip);
+    height: calc(var(--size) * 0.5vmin);
+    width: calc(var(--size) * 0.5vmin);
     position: absolute;
     top: 0;
     left: 0;
-    transition: backdrop-filter calc(var(--speed, 1) * 1s) var(--ease), clip-path 0s, -webkit-clip-path 0s;
+    display: block;
+    clip-path: circle(100% at 0% 0%);
+    transition: backdrop-filter calc(var(--speed) * 1s) var(--ease);
+    z-index: 1000;
 }
 
-.menu__toggle-label--closer {
-    z-index: 3;
-    --scale: 0;
-}
-
+/* Icon inside toggle */
 .menu__icon {
-    --scale: .5;
-    height: calc(var(--size, 20) * 0.25vmin);
-    width: calc(var(--size, 20) * 0.25vmin);
+    opacity: 100%;
+    height: calc(var(--size) * 0.25vmin);
+    width: calc(var(--size) * 0.25vmin);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-70%, -70%) scale(var(--scale, 1));
     fill: var(--primary);
-    transition: all calc(var(--speed, 1) * 1s) var(--ease);
+    transition: all calc(var(--speed) * 1s) var(--ease);
 }
 
-.menu__icon:nth-of-type(2) {
-    --scale: 0;
-}
-
+/* Menu Content */
 .menu__content {
+    background: linear-gradient(135deg, #0e3534 0%, #1679bf 50%, #28b4aa 100%);
     margin: 0;
-    display: block;
-    list-style-type: none;
-    z-index: -1;
-    filter: url("#goo");
+    list-style: none;
     position: absolute;
     top: 0;
-    height: 0;
-    width: 0;
     left: 0;
     z-index: 2;
+    filter: url("#goo");
 }
 
-.menu__content:after {
-    background: hsl(var(--hue, 0), 50%, 50%);
-    content: '';
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    height: calc(var(--size, 20) * 1vmin);
-    width: calc(var(--size, 20) * 1vmin);
-    top: 0;
-    left: 0;
-}
-
+/* Menu Items */
 .menu__item {
-    background: linear-gradient(135deg, rgb(14, 53, 52) 0%, rgb(22, 121, 191) 50%, rgb(40, 180, 170) 100%);
-    opacity: 70%;
+    background: linear-gradient(135deg, #0e3534 0%, #1679bf 50%, #28b4aa 100%);
+    opacity: 0.9;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
-    list-style-type: none;
     font-size: 1rem;
-    height: calc(var(--size, 15) * 0.8vmin);
-    /* Reduced size */
-    left: calc(var(--active-x, 0) * 1vw);
-    overflow: hidden;
-    place-items: center;
+    height: calc(var(--size) * 0.8vmin);
+    width: calc(var(--size) * 0.8vmin);
     position: absolute;
-    text-align: center;
+    left: calc(var(--active-x, 0) * 1vw);
     top: calc(var(--active-y, 0) * 1vh);
     transform: translate(-50%, -50%) scale(1);
-    transition: all calc(var(--speed, 1) * 1s) calc(var(--delay, 0) * 1s) var(--ease);
-    width: calc(var(--size, 15) * 0.8vmin);
-    /* Reduced size */
-    box-shadow: 0 0 0 0 rgb(0, 0, 0);
+    transition: all calc(var(--speed) * 1s) calc(var(--delay, 0.5) * 1s) var(--ease);
 }
 
 .menu__item:hover {
-    /* Fade Background Colors */
-    background: linear-gradient(135deg, rgba(14, 53, 52, 0.5) 0%, rgba(22, 121, 191, 0.5) 50%, rgba(40, 180, 170, 0.5) 100%);
-    /* Reduced opacity of colors */
-    /* Optional adjustments: */
-    box-shadow: 0 0 15px 15px rgba(230, 41, 142, 0.717);
-    /* Retain box-shadow */
+    background: linear-gradient(135deg, rgba(14, 53, 52, 0.5), rgba(22, 121, 191, 0.5), rgba(40, 180, 170, 0.5));
     transform: translate(-50%, -50%) scale(1.1);
-    /* Reduced hover scale */
-    opacity: 90%;
-    animation: pulse 4s infinite alternate;
-    /* Adjust the hover opacity */
-    transition: all calc(var(--speed, 1) * 3.5s) var(--ease) calc(var(--delay, 0) * 3s);
+    opacity: 1;
+    animation: none;
+    transition: all calc(var(--speed) * 1.5s) cubic-bezier(0.25, 0.1, 0.25, 1.0);
 }
 
+/* Menu Links */
+.menu__link {
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: calc(1rem + 0.5vw);
+}
+
+/* Hover Animation */
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 10 3px rgba(152, 233, 255, 0.5);
+        box-shadow: 0 0 1px 3px rgba(152, 233, 255, 0.5);
     }
 
     50% {
@@ -187,12 +134,7 @@ section {
     }
 }
 
-@media (min-width: 768px) {
-    .menu__item {
-        font-size: 3rem;
-    }
-}
-
+/* Menu Item Positions */
 .menu__item:nth-of-type(1) {
     --delay: 0.1;
     --x: 35;
@@ -239,22 +181,4 @@ section {
     --delay: 0.8;
     --x: 50;
     --y: 80;
-}
-
-.menu__link {
-    align-items: center;
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-    text-shadow: #24063f;
-    font-weight: bold;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-
-.menu__link:hover {
-    text-decoration: none;
 }
