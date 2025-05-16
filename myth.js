@@ -317,6 +317,15 @@ function calculateRowCount(i, mid, remaining) {
   return Math.min(mid - Math.abs(i - mid + 1), remaining);
 }
 
+// Utility: Shuffle an array in place (Fisher-Yates)
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 // --- Game Logic ---
 let firstCard, secondCard, lockBoard, matches, cards;
 
@@ -363,29 +372,27 @@ function resetGame() {
 }
 
 function createCard(creature) {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.classList.add(
-    Math.random() > 0.5 ? "rotate-positive" : "rotate-negative"
-  );
-
-  const cardInner = document.createElement("div");
-  cardInner.classList.add("card-inner");
-
+  // Card front: show bg1.png
   const cardFront = document.createElement("div");
   cardFront.classList.add("card-front");
+  // No creature image here
+
+  // Card back: show creature image
+  const cardBack = document.createElement("div");
+  cardBack.classList.add("card-back");
   const img = document.createElement("img");
   img.src = creature.image;
   img.alt = creature.name;
   img.className = "creature-image";
-  cardFront.appendChild(img);
+  cardBack.appendChild(img);
 
-  const cardBack = document.createElement("div");
-  cardBack.classList.add("card-back");
-  // Optionally, add a back image or pattern here
-
+  const cardInner = document.createElement("div");
+  cardInner.classList.add("card-inner");
   cardInner.appendChild(cardFront);
   cardInner.appendChild(cardBack);
+
+  const card = document.createElement("div");
+  card.classList.add("card");
   card.appendChild(cardInner);
 
   card.dataset.code = creature.code;

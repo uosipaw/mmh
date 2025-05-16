@@ -12,216 +12,6 @@
     --card-radius: 10px;
 }
 
-/* Mythical creatures card images */
-.card-phoenix {
-    background-image: url("/images/mythcards/phoenix.png");
-}
-
-.card-unicorn {
-    background-image: url("/images/mythcards/unicorn.png");
-}
-
-.card-cerberus {
-    background-image: url("/images/mythcards/cerberus.png");
-}
-
-.card-chimera {
-    background-image: url("/images/mythcards/chimera.png");
-}
-
-.card-anansi {
-    background-image: url("/images/mythcards/anansi.png");
-}
-
-.card-baba_yaga {
-    background-image: url("/images/mythcards/baba_yaga.png");
-}
-
-.card-banshee {
-    background-image: url("/images/mythcards/banshee.png");
-}
-
-.card-basilisk {
-    background-image: url("/images/mythcards/basilisk.png");
-}
-
-.card-bunyip {
-    background-image: url("/images/mythcards/bunyip.png");
-}
-
-.card-centaur {
-    background-image: url("/images/mythcards/centaur.png");
-}
-
-.card-chort {
-    background-image: url("/images/mythcards/chort.png");
-}
-
-.card-chupacabra {
-    background-image: url("/images/mythcards/chupacabra.png");
-}
-
-.card-cyclops {
-    background-image: url("/images/mythcards/cyclops.png");
-}
-
-.card-domovik {
-    background-image: url("/images/mythcards/domovik.png");
-}
-
-.card-dragon {
-    background-image: url("/images/mythcards/dragon.png");
-}
-
-.card-djinn {
-    background-image: url("/images/mythcards/djinn.png");
-}
-
-.card-griffin {
-    background-image: url("/images/mythcards/griffin.png");
-}
-
-.card-gorgon {
-    background-image: url("/images/mythcards/gorgon.png");
-}
-
-.card-harpy {
-    background-image: url("/images/mythcards/harpy.png");
-}
-
-.card-hydra {
-    background-image: url("/images/mythcards/hydra.png");
-}
-
-.card-iktomi {
-    background-image: url("/images/mythcards/iktomi.png");
-}
-
-.card-jackalope {
-    background-image: url("/images/mythcards/jackalope.png");
-}
-
-.card-kappa {
-    background-image: url("/images/mythcards/kappa.png");
-}
-
-.card-kitsune {
-    background-image: url("/images/mythcards/kitsune.png");
-}
-
-.card-kraken {
-    background-image: url("/images/mythcards/kraken.png");
-}
-
-.card-leshy {
-    background-image: url("/images/mythcards/leshy.png");
-}
-
-.card-leviathan {
-    background-image: url("/images/mythcards/leviathan.png");
-}
-
-.card-loch_ness_monster {
-    background-image: url("/images/mythcards/loch_ness_monster.png");
-}
-
-.card-manticore {
-    background-image: url("/images/mythcards/manticore.png");
-}
-
-.card-mavka {
-    background-image: url("/images/mythcards/mavka.png");
-}
-
-.card-mermaid {
-    background-image: url("/images/mythcards/mermaid.png");
-}
-
-.card-minotaur {
-    background-image: url("/images/mythcards/minotaur.png");
-}
-
-.card-naga {
-    background-image: url("/images/mythcards/naga.png");
-}
-
-.card-nymph {
-    background-image: url("/images/mythcards/nymph.png");
-}
-
-.card-pegasus {
-    background-image: url("/images/mythcards/pegasus.png");
-}
-
-.card-polyovyk {
-    background-image: url("/images/mythcards/polyovyk.png");
-}
-
-.card-poludnytsya {
-    background-image: url("/images/mythcards/poludnytsya.png");
-}
-
-.card-povitruya {
-    background-image: url("/images/mythcards/povitruya.png");
-}
-
-.card-rusalka {
-    background-image: url("/images/mythcards/rusalka.png");
-}
-
-.card-satyr {
-    background-image: url("/images/mythcards/satyr.png");
-}
-
-.card-selkie {
-    background-image: url("/images/mythcards/selkie.png");
-}
-
-.card-siren {
-    background-image: url("/images/mythcards/siren.png");
-}
-
-.card-sphinx {
-    background-image: url("/images/mythcards/sphinx.png");
-}
-
-.card-thunderbird {
-    background-image: url("/images/mythcards/thunderbird.png");
-}
-
-.card-troll {
-    background-image: url("/images/mythcards/troll.png");
-}
-
-.card-upyr {
-    background-image: url("/images/mythcards/upyr.png");
-}
-
-.card-valkyrie {
-    background-image: url("/images/mythcards/valkyrie.png");
-}
-
-.card-vodyanitsa {
-    background-image: url("/images/mythcards/vodyanitsa.png");
-}
-
-.card-vodyanoy {
-    background-image: url("/images/mythcards/vodyanoy.png");
-}
-
-.card-wendigo {
-    background-image: url("/images/mythcards/wendigo.png");
-}
-
-.card-yeti {
-    background-image: url("/images/mythcards/yeti.png");
-}
-
-/* Keep card-back variable for consistency */
-:root {
-    --card-back-url: url("/images/mythcards/bg1.png");
-}
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -273,27 +63,41 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Start at the top */
     background-color: #888;
     height: 100%;
+    width: 100%;
     padding: 10px;
     max-width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    /* Allow scrolling if needed */
     position: relative;
 }
 
 .card-row {
     display: flex;
+    flex-wrap: wrap;
+    /* Allow cards to wrap to next line if needed */
     justify-content: center;
     align-items: center;
     gap: var(--card-margin);
     width: 100%;
     margin: 10px 0;
+    box-sizing: border-box;
 }
 
 /* Fix card sizing and positioning for grid layout */
 .card {
+    aspect-ratio: 5 / 7;
     width: var(--card-width);
-    height: var(--card-height);
+    height: auto;
+    /* Let aspect-ratio control height */
+    max-width: 100%;
+    flex: 1 1 var(--card-width);
+    /* Allow cards to shrink/grow */
+    box-sizing: border-box;
     perspective: 1000px;
     cursor: pointer;
     border-radius: 10px;
@@ -325,23 +129,19 @@ body {
     transform: rotateY(180deg);
 }
 
-.card-front,
-.card-back {
+.card-front {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: visible;
+    backface-visibility: hidden;
     border-radius: var(--card-radius);
-    overflow: hidden;
-    top: 0;
-    left: 0;
-}
-
-.card-front {
-    background: linear-gradient(var(--card-back-gradient));
+    background-image: url("images/mythcards/bg1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-back {
@@ -349,64 +149,64 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("/images/mythcards/bg1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.card-back {
-    display: flex;
+    /* No background-image here */
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: var(--card-radius);
+    backface-visibility: hidden;
+}
 
-    .outline-placeholder {
-        border: 2px dashed #888;
-        background: rgba(200, 200, 200, 0.15);
-        box-shadow: none;
-        cursor: default;
-        margin: 5px 0;
-    }
+.creature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
 
-    /* Responsive adjustments for smaller screens:
+/* Responsive adjustments for smaller screens:
 - Adjust panel width and card dimensions for better fit.
 - Change layout of game container and matches panel for improved usability. */
-    @media (max-width: 900px) {
-        :root {
-            --panel-width: 120px;
-        }
-
-        .game-container {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .matches-panel {
-            width: 100%;
-            margin: 0 0 10px 0;
-        }
+@media (max-width: 900px) {
+    :root {
+        --panel-width: 120px;
     }
 
-    /* Further adjustments for very small screens:
+    .game-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .matches-panel {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+}
+
+/* Further adjustments for very small screens:
 - Reduce card size and panel width to fit narrow viewports.
 - Add padding to the game container and adjust card row spacing. */
-    @media (max-width: 600px) {
-        :root {
-            --card-width: 70px;
-            --card-height: 98px;
-            --panel-width: 100vw;
-        }
-
-        .game-container {
-            padding: 5px;
-        }
-
-        .card-row {
-            margin: 5px 0;
-        }
+@media (max-width: 600px) {
+    :root {
+        --card-width: 70px;
+        --card-height: 98px;
+        --panel-width: 100vw;
     }
 
-    margin: 5px 0;
+    .game-container {
+        padding: 5px;
+    }
+
+    .card-row {
+        margin: 5px 0;
+    }
+}
+
+.creature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
 }
