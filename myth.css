@@ -7,7 +7,9 @@
     --panel-gap: 20px;
     --panel-bg: rgba(255, 255, 255, 0.8);
     --card-back-gradient: rgba(0, 0, 0, 0.5);
-
+    --card-width: 120px;
+    --card-height: 168px;
+    --card-radius: 10px;
 }
 
 /* Mythical creatures card images */
@@ -336,7 +338,7 @@ body {
 }
 
 .card-front {
-    background: linear-gradient(var(--card-back-gradient)), url("images/mythcards/card_back.png");
+    background: linear-gradient(var(--card-back-gradient));
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -347,28 +349,30 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("/images/mythcards/bg1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.card-back img {
+.card-back {
     display: flex;
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: var(--card-radius);
-}
 
-.outline-placeholder {
-    border: 2px dashed #888;
-    background: rgba(200, 200, 200, 0.15);
-    box-shadow: none;
-    cursor: default;
+    .outline-placeholder {
+        border: 2px dashed #888;
+        background: rgba(200, 200, 200, 0.15);
+        box-shadow: none;
+        cursor: default;
+        margin: 5px 0;
+    }
 
     /* Responsive adjustments for smaller screens:
-   - Adjust panel width and card dimensions for better fit.
-   - Change layout of game container and matches panel for improved usability. */
+- Adjust panel width and card dimensions for better fit.
+- Change layout of game container and matches panel for improved usability. */
     @media (max-width: 900px) {
         :root {
             --panel-width: 120px;
@@ -386,8 +390,8 @@ body {
     }
 
     /* Further adjustments for very small screens:
-   - Reduce card size and panel width to fit narrow viewports.
-   - Add padding to the game container and adjust card row spacing. */
+- Reduce card size and panel width to fit narrow viewports.
+- Add padding to the game container and adjust card row spacing. */
     @media (max-width: 600px) {
         :root {
             --card-width: 70px;
