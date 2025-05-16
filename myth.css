@@ -1,691 +1,408 @@
-@charset "UTF-8";
+/* --- Global Styles --- */
 
-/*creatures*/
+
 :root {
-    --leviathan-img: url("images/mythcards/leviathan.png");
-    --satyr-img: url("images/mythcards/satyr.png");
-    --nymph-img: url("images/mythcards/nymph.png");
-    --anansi-img: url("images/mythcards/anansi.png");
-    --troll-img: url("images/mythcards/troll.png");
-    --bunyip-img: url("images/mythcards/bunyip.png");
-    --iktomi-img: url("images/mythcards/iktomi.png");
-    --lochnessmonster-img: url("images/mythcards/loch_ness_monster.png");
-    --chupacabra-img: url("images/mythcards/chupacabra.png");
-    --jackalope-img: url("images/mythcards/jackalope.png");
-    --phoenix-img: url("images/mythcards/phoenix.png");
-    --griffin-img: url("images/mythcards/griffin.png");
-    --minotaur-img: url("images/mythcards/minotaur.png");
-    --dragon-img: url("images/mythcards/dragon.png");
-    --unicorn-img: url("images/mythcards/unicorn.png");
-    --cerberus-img: url("images/mythcards/cerberus.png");
-    --hydra-img: url("images/mythcards/hydra.png");
-    --cyclops-img: url("images/mythcards/cyclops.png");
-    --chimera-img: url("images/mythcards/chimera.png");
-    --sphinx-img: url("images/mythcards/sphinx.png");
-    --kraken-img: url("images/mythcards/kraken.png");
-    --banshee-img: url("images/mythcards/banshee.png");
-    --centaur-img: url("images/mythcards/centaur.png");
-    --pegasus-img: url("images/mythcards/pegasus.png");
-    --basilisk-img: url("images/mythcards/basilisk.png");
-    --gorgon-img: url("images/mythcards/gorgon.png");
-    --harpy-img: url("images/mythcards/harpy.png");
-    --siren-img: url("images/mythcards/siren.png");
-    --djinn-img: url("images/mythcards/djinn.png");
-    --kitsune-img: url("images/mythcards/kitsune.png");
-    --wendigo-img: url("images/mythcards/wendigo.png");
-    --kappa-img: url("images/mythcards/kappa.png");
-    --rusalka-img: url("images/mythcards/rusalka.png");
-    --naga-img: url("images/mythcards/naga.png");
-    --valkyrie-img: url("images/mythcards/valkyrie.png");
-    --thunderbird-img: url("images/mythcards/thunderbird.png");
-    --manticore-img: url("images/mythcards/manticore.png");
-    --selkie-img: url("images/mythcards/selkie.png");
-    --yeti-img: url("images/mythcards/yeti.png");
-    --upyr-img: url("images/mythcards/upyr.png");
-    --chort-img: url("images/mythcards/chort.png");
-    --polyovyk-img: url("images/mythcards/polyovyk.png");
-    --poludnytsya-img: url("images/mythcards/poludnytsya.png");
-    --povitruya-img: url("images/mythcards/povitruya.png");
-    --mavka-img: url("images/mythcards/mavka.png");
-    --vodyanoy-img: url("images/mythcards/vodyanoy.png");
-    --vodyanitsa-img: url("images/mythcards/vodyanitsa.png");
-    --domovik-img: url("images/mythcards/domovik.png");
-    --baba-yaga-img: url("images/mythcards/baba_yaga.png");
-    --leshy-img: url("images/mythcards/leshy.png");
+    --card-margin: 5px;
+    --panel-width: 200px;
+    --panel-gap: 20px;
+    --panel-bg: rgba(255, 255, 255, 0.8);
+    --card-back-gradient: rgba(0, 0, 0, 0.5);
 
-    --radius: 6px;
-    --gap: 10px;
-    --aside_width: 220px;
-    font-size: 13px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
+/* Mythical creatures card images */
+.card-phoenix {
+    background-image: url("/images/mythcards/phoenix.png");
+}
 
+.card-unicorn {
+    background-image: url("/images/mythcards/unicorn.png");
+}
+
+.card-cerberus {
+    background-image: url("/images/mythcards/cerberus.png");
+}
+
+.card-chimera {
+    background-image: url("/images/mythcards/chimera.png");
+}
+
+.card-anansi {
+    background-image: url("/images/mythcards/anansi.png");
+}
+
+.card-baba_yaga {
+    background-image: url("/images/mythcards/baba_yaga.png");
+}
+
+.card-banshee {
+    background-image: url("/images/mythcards/banshee.png");
+}
+
+.card-basilisk {
+    background-image: url("/images/mythcards/basilisk.png");
+}
+
+.card-bunyip {
+    background-image: url("/images/mythcards/bunyip.png");
+}
+
+.card-centaur {
+    background-image: url("/images/mythcards/centaur.png");
+}
+
+.card-chort {
+    background-image: url("/images/mythcards/chort.png");
+}
+
+.card-chupacabra {
+    background-image: url("/images/mythcards/chupacabra.png");
+}
+
+.card-cyclops {
+    background-image: url("/images/mythcards/cyclops.png");
+}
+
+.card-domovik {
+    background-image: url("/images/mythcards/domovik.png");
+}
+
+.card-dragon {
+    background-image: url("/images/mythcards/dragon.png");
+}
+
+.card-djinn {
+    background-image: url("/images/mythcards/djinn.png");
+}
+
+.card-griffin {
+    background-image: url("/images/mythcards/griffin.png");
+}
+
+.card-gorgon {
+    background-image: url("/images/mythcards/gorgon.png");
+}
+
+.card-harpy {
+    background-image: url("/images/mythcards/harpy.png");
+}
+
+.card-hydra {
+    background-image: url("/images/mythcards/hydra.png");
+}
+
+.card-iktomi {
+    background-image: url("/images/mythcards/iktomi.png");
+}
+
+.card-jackalope {
+    background-image: url("/images/mythcards/jackalope.png");
+}
+
+.card-kappa {
+    background-image: url("/images/mythcards/kappa.png");
+}
+
+.card-kitsune {
+    background-image: url("/images/mythcards/kitsune.png");
+}
+
+.card-kraken {
+    background-image: url("/images/mythcards/kraken.png");
+}
+
+.card-leshy {
+    background-image: url("/images/mythcards/leshy.png");
+}
+
+.card-leviathan {
+    background-image: url("/images/mythcards/leviathan.png");
+}
+
+.card-loch_ness_monster {
+    background-image: url("/images/mythcards/loch_ness_monster.png");
+}
+
+.card-manticore {
+    background-image: url("/images/mythcards/manticore.png");
+}
+
+.card-mavka {
+    background-image: url("/images/mythcards/mavka.png");
+}
+
+.card-mermaid {
+    background-image: url("/images/mythcards/mermaid.png");
+}
+
+.card-minotaur {
+    background-image: url("/images/mythcards/minotaur.png");
+}
+
+.card-naga {
+    background-image: url("/images/mythcards/naga.png");
+}
+
+.card-nymph {
+    background-image: url("/images/mythcards/nymph.png");
+}
+
+.card-pegasus {
+    background-image: url("/images/mythcards/pegasus.png");
+}
+
+.card-polyovyk {
+    background-image: url("/images/mythcards/polyovyk.png");
+}
+
+.card-poludnytsya {
+    background-image: url("/images/mythcards/poludnytsya.png");
+}
+
+.card-povitruya {
+    background-image: url("/images/mythcards/povitruya.png");
+}
+
+.card-rusalka {
+    background-image: url("/images/mythcards/rusalka.png");
+}
+
+.card-satyr {
+    background-image: url("/images/mythcards/satyr.png");
+}
+
+.card-selkie {
+    background-image: url("/images/mythcards/selkie.png");
+}
+
+.card-siren {
+    background-image: url("/images/mythcards/siren.png");
+}
+
+.card-sphinx {
+    background-image: url("/images/mythcards/sphinx.png");
+}
+
+.card-thunderbird {
+    background-image: url("/images/mythcards/thunderbird.png");
+}
+
+.card-troll {
+    background-image: url("/images/mythcards/troll.png");
+}
+
+.card-upyr {
+    background-image: url("/images/mythcards/upyr.png");
+}
+
+.card-valkyrie {
+    background-image: url("/images/mythcards/valkyrie.png");
+}
+
+.card-vodyanitsa {
+    background-image: url("/images/mythcards/vodyanitsa.png");
+}
+
+.card-vodyanoy {
+    background-image: url("/images/mythcards/vodyanoy.png");
+}
+
+.card-wendigo {
+    background-image: url("/images/mythcards/wendigo.png");
+}
+
+.card-yeti {
+    background-image: url("/images/mythcards/yeti.png");
+}
+
+/* Keep card-back variable for consistency */
 :root {
-    --desc-bg: var(--nichnytsya-bcap-color);
-    --card-back-gradient: var(--poludnytsya-gradient);
-    --radius: 8px;
-    --gap: 16px;
-    --aside_width: 360px;
-
-    font-size: 16px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --card-back-url: url("/images/mythcards/bg1.png");
 }
 
 body {
-    color: white;
-    padding: 0;
     margin: 0;
-    min-height: 100vh;
-    background-color: var(--desc-bg);
-    display: grid;
-    grid-template-columns: auto var(--aside_width);
-}
-
-@media (max-width: 640px) {
-    body {
-        grid-template-columns: 1fr;
-    }
-
-    aside {
-        order: -1;
-    }
-}
-
-@media (orientation: portrait) {
-    body {
-        grid-template-columns: 1fr;
-    }
-
-    aside {
-        order: -1;
-    }
-}
-
-@media (max-width: 1024px) and (orientation: landscape) {
-    :root {
-        --aside_width: 240px;
-    }
-}
-
-main {
-    position: relative;
-    padding: calc(var(--gap) * 2);
-    display: flex;
-    flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
-}
-
-aside {
-    background-color: rgba(32, 32, 32, 0.32);
-    padding: var(--gap);
-}
-
-/* --- Card Table Responsive Layout --- */
-.card_table {
-    width: 100%;
-    display: grid;
-    gap: var(--gap);
-    margin: auto;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    justify-items: center;
-    align-items: center;
-    place-items: center;
-}
-
-
-/* Remove legacy .card_table.[level] grid-template-areas and columns */
-.card_table.easier,
-.card_table.easy,
-.card_table.normal,
-.card_table.hard,
-.card_table.harder {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-}
-
-/* --- Card Sizing --- */
-button.card,
-.card {
-    width: 100%;
-    max-width: 180px;
-    min-width: 60px;
-    aspect-ratio: 5 / 7;
-    height: auto;
-    max-height: 252px;
-    min-height: 84px;
-}
-
-/* 
- * and (orientation: landscape)
- */
-@media (max-width: 1024px) {
-    .card_table {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.normal {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.easier {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.easy {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.hard {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.harder {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    :root {
-        --gap: 8px;
-        --radius: 4px;
-    }
-
-    .card_table {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.normal {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.easier {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.easy {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.hard {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-
-    .card_table.harder {
-        grid-template-columns: repeat(var(--col), 1fr);
-    }
-}
-
-.card-place {
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    padding: calc(var(--gap) / 1.5);
-    border-radius: calc(var(--radius) * 2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Let the card fill the place, but keep aspect ratio */
-}
-
-button.card {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 5 / 7;
-    max-width: 180px;
-    max-height: 252px;
-    min-width: 60px;
-    min-height: 84px;
-    display: block;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    background-color: transparent;
-    outline: none;
-}
-
-.card {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 5 / 7;
-    max-width: 180px;
-    max-height: 252px;
-    min-width: 60px;
-    min-height: 84px;
-    position: relative;
-    perspective: 1000px;
-    cursor: pointer;
-    /* max-width: 200px; */
-    transition: all 0.1s ease-in-out;
-    border-radius: var(--radius);
-    transform: rotate(var(--deg)) translateY(0);
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-}
-
-.card:hover,
-.card:focus {
-    transform: rotate(var(--deg)) translateY(calc(var(--gap) * -1 + 4px));
-}
-
-.card:disabled {
-    pointer-events: none;
-}
-
-.card:after {
-    display: none;
-}
-
-.card .card__side_back,
-.card .card__side_front {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 5 / 7;
-    background-size: contain;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0 url("images/matchbg.png");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.top-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #210e217c;
+    color: #fff;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-container {
+    position: relative;
+    display: inline-flexbox;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #33333353;
+    padding: 10px;
+    height: 80vh;
+    width: 90%;
+}
+
+.matches-panel {
+    width: 10%;
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    text-align: center;
-    border-radius: var(--radius);
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.1s;
-    background-color: #f0f4f8;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
-    display: flex;
-    /* Use flexbox to center content */
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    /* Make image scale nicely */
+    height: 100%;
+    background: #888;
+    margin: 10px;
 }
 
-.card:hover .card__side_back,
-.card:hover .card__side_front,
-.card:focus .card__side_back,
-.card:focus .card__side_front {
-    box-shadow: 0 16px 16px -8px rgba(0, 0, 0, 0.5);
-}
-
-.card .card__side_front {
-    z-index: 2;
-    transform: rotateY(0deg);
-}
-
-.card .card__side_back {
-    z-index: 1;
-    transform: rotateY(180deg);
-}
-
-.card.flipped .card__side_front {
-    transform: rotateY(180deg);
-}
-
-.card.flipped .card__side_back {
-    transform: rotateY(0deg);
-}
-
-/* upyr, chort, povitruya, poludnytsya, polyovyk, chugaister, mavka, wandering_fier, nichnytsya, vovkulaka*/
-.card.upyr .card__side_front {
-    background: var(--upyr-img) center/contain no-repeat, var(--upyr-gradient);
-}
-
-.card.chort .card__side_front {
-    background: var(--chort-img) center/contain no-repeat, var(--chort-gradient);
-}
-
-.card.povitruya .card__side_front {
-    background: var(--povitruya-img) center/contain no-repeat,
-        var(--povitruya-gradient);
-}
-
-.card.poludnytsya .card__side_front {
-    background: var(--poludnytsya-img) center/contain no-repeat,
-        var(--poludnytsya-gradient);
-}
-
-.card.polyovyk .card__side_front {
-    background: var(--polyovyk-img) center/contain no-repeat, var(--polyovyk-gradient);
-}
-
-.card.chugaister .card__side_front {
-    background: var(--chugaister-img) center/contain no-repeat,
-        var(--chugaister-gradient);
-}
-
-.card.mavka .card__side_front {
-    background: var(--mavka-img) center/contain no-repeat, var(--mavka-gradient);
-}
-
-.card.wandering_fier .card__side_front {
-    background: var(--wandering_fier-img) center/contain no-repeat,
-        var(--wandering_fier-gradient);
-}
-
-.card.nichnytsya .card__side_front {
-    background: var(--nichnytsya-img) center/contain no-repeat,
-        var(--nichnytsya-gradient);
-}
-
-.card.vovkulaka .card__side_front {
-    background: var(--vovkulaka-img) center/contain no-repeat,
-        var(--vovkulaka-gradient);
-}
-
-/* level-checker-button-group
- */
-
-.level-checker-button-group {
-    display: flex;
-    gap: var(--gap);
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.level-checker-button-group .radio-btn {
+.card-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-input[type="radio"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-
-    --size: 24px;
-
-    border-radius: 50%;
-    width: var(--size);
-    height: var(--size);
-
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    transition: 0.1s all ease-in-out;
-    outline: none;
-    margin-right: 5px;
-
+    justify-content: center;
+    background-color: #888;
+    height: 100%;
+    padding: 10px;
+    max-width: 100%;
     position: relative;
-    top: 4px;
-    --color-radio: var(--chort-bg-bottom-color);
 }
 
-.radio-btn:nth-child(1) input[type="radio"] {
-    --color-radio: var(--polyovyk-bg-bottom-color);
-}
-
-.radio-btn:nth-child(2) input[type="radio"] {
-    --color-radio: var(--poludnytsya-bg-bottom-color);
-}
-
-.radio-btn:nth-child(3) input[type="radio"] {
-    --color-radio: var(--povitruya-bg-bottom-color);
-}
-
-.radio-btn:nth-child(4) input[type="radio"] {
-    --color-radio: var(--chort-bg-bottom-color);
-}
-
-.radio-btn:nth-child(5) input[type="radio"] {
-    --color-radio: var(--upyr-bg-bottom-color);
-}
-
-input[type="radio"]:checked {
-    border: calc(var(--size) / 2) solid var(--color-radio);
-}
-
-/* button, */
-label {
-    color: white;
-    padding: var(--gap) calc(var(--gap) / 2) 0;
-    border-radius: 0;
-    border: 0;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-}
-
-.victory {
+.card-row {
     display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-    margin: 2rem 0;
+    justify-content: center;
+    align-items: center;
+    gap: var(--card-margin);
+    width: 100%;
+    margin: 10px 0;
 }
 
-article {
-    border-radius: var(--radius);
-    background-color: rgba(0, 0, 0, 0.5);
-    display: grid;
-    grid-template-columns: 128px auto;
-    gap: var(--gap);
+/* Fix card sizing and positioning for grid layout */
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    padding: 0;
+    position: relative;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-article p {
-    text-align: left;
+.rotate-positive {
+    transform: rotateZ(3deg);
 }
 
-article h2 {
-    margin: var(--gap);
+.rotate-negative {
+    transform: rotateZ(-3deg);
 }
 
-a {
-    color: inherit;
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    visibility: visible;
 }
 
-.card[class*=" "] .card__side_front {
-    /* Use the code as a class to assign the image */
-    background-image: var(--img, none);
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
 }
 
-/* Generic rule for all cards: set --img variable based on code */
-.card.leviathan {
-    --img: var(--leviathan-img);
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: visible;
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    top: 0;
+    left: 0;
 }
 
-.card.satyr {
-    --img: var(--satyr-img);
+.card-front {
+    background: linear-gradient(var(--card-back-gradient)), url("images/mythcards/card_back.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.card.nymph {
-    --img: var(--nymph-img);
+.card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.card.anansi {
-    --img: var(--anansi-img);
+.card-back img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--card-radius);
 }
 
-.card.troll {
-    --img: var(--troll-img);
-}
+.outline-placeholder {
+    border: 2px dashed #888;
+    background: rgba(200, 200, 200, 0.15);
+    box-shadow: none;
+    cursor: default;
 
-.card.bunyip {
-    --img: var(--bunyip-img);
-}
+    /* Responsive adjustments for smaller screens:
+   - Adjust panel width and card dimensions for better fit.
+   - Change layout of game container and matches panel for improved usability. */
+    @media (max-width: 900px) {
+        :root {
+            --panel-width: 120px;
+        }
 
-.card.iktomi {
-    --img: var(--iktomi-img);
-}
+        .game-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
 
-.card.loch_ness_monster {
-    --img: var(--lochnessmonster-img);
-}
+        .matches-panel {
+            width: 100%;
+            margin: 0 0 10px 0;
+        }
+    }
 
-.card.chupacabra {
-    --img: var(--chupacabra-img);
-}
+    /* Further adjustments for very small screens:
+   - Reduce card size and panel width to fit narrow viewports.
+   - Add padding to the game container and adjust card row spacing. */
+    @media (max-width: 600px) {
+        :root {
+            --card-width: 70px;
+            --card-height: 98px;
+            --panel-width: 100vw;
+        }
 
-.card.jackalope {
-    --img: var(--jackalope-img);
-}
+        .game-container {
+            padding: 5px;
+        }
 
-.card.phoenix {
-    --img: var(--phoenix-img);
-}
+        .card-row {
+            margin: 5px 0;
+        }
+    }
 
-.card.griffin {
-    --img: var(--griffin-img);
-}
-
-.card.minotaur {
-    --img: var(--minotaur-img);
-}
-
-.card.dragon {
-    --img: var(--dragon-img);
-}
-
-.card.unicorn {
-    --img: var(--unicorn-img);
-}
-
-.card.cerberus {
-    --img: var(--cerberus-img);
-}
-
-.card.hydra {
-    --img: var(--hydra-img);
-}
-
-.card.cyclops {
-    --img: var(--cyclops-img);
-}
-
-.card.chimera {
-    --img: var(--chimera-img);
-}
-
-.card.sphinx {
-    --img: var(--sphinx-img);
-}
-
-.card.kraken {
-    --img: var(--kraken-img);
-}
-
-.card.banshee {
-    --img: var(--banshee-img);
-}
-
-.card.centaur {
-    --img: var(--centaur-img);
-}
-
-.card.pegasus {
-    --img: var(--pegasus-img);
-}
-
-.card.basilisk {
-    --img: var(--basilisk-img);
-}
-
-.card.gorgon {
-    --img: var(--gorgon-img);
-}
-
-.card.harpy {
-    --img: var(--harpy-img);
-}
-
-.card.siren {
-    --img: var(--siren-img);
-}
-
-.card.djinn {
-    --img: var(--djinn-img);
-}
-
-.card.kitsune {
-    --img: var(--kitsune-img);
-}
-
-.card.wendigo {
-    --img: var(--wendigo-img);
-}
-
-.card.kappa {
-    --img: var(--kappa-img);
-}
-
-.card.rusalka {
-    --img: var(--rusalka-img);
-}
-
-.card.naga {
-    --img: var(--naga-img);
-}
-
-.card.valkyrie {
-    --img: var(--valkyrie-img);
-}
-
-.card.thunderbird {
-    --img: var(--thunderbird-img);
-}
-
-.card.manticore {
-    --img: var(--manticore-img);
-}
-
-.card.selkie {
-    --img: var(--selkie-img);
-}
-
-.card.yeti {
-    --img: var(--yeti-img);
-}
-
-.card.upyr {
-    --img: var(--upyr-img);
-}
-
-.card.chort {
-    --img: var(--chort-img);
-}
-
-.card.polyovyk {
-    --img: var(--polyovyk-img);
-}
-
-.card.poludnytsya {
-    --img: var(--poludnytsya-img);
-}
-
-.card.povitruya {
-    --img: var(--povitruya-img);
-}
-
-.card.mavka {
-    --img: var(--mavka-img);
-}
-
-.card.vodyanoy {
-    --img: var(--vodyanoy-img);
-}
-
-.card.vodyanitsa {
-    --img: var(--vodyanitsa-img);
-}
-
-.card.domovik {
-    --img: var(--domovik-img);
-}
-
-.card.baba_yaga {
-    --img: var(--baba-yaga-img);
-}
-
-.card.leshy {
-    --img: var(--leshy-img);
-}
-
-.card[class*=" "] .card__side_front {
-    background: var(--img) center/contain no-repeat, var(--poludnytsya-gradient);
+    margin: 5px 0;
 }

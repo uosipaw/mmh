@@ -1,66 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>myth match</title>
-    <link rel="stylesheet" type="text/css" href="myth.css">
-    <link rel="stylesheet" type="text/css" href="navmenu.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="description" content="description">
-    <script src="myth.js" defer></script>
-    <script>
-        (function () {
-            window.isMobile =
-                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                    navigator.userAgent
-                ) || window.innerWidth <= 768;
-            document.documentElement.className = window.isMobile
-                ? "mobile-device"
-                : "desktop-device";
-        })();
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Matching Game</title>
+    <link rel="stylesheet" href="myth.css" />
 </head>
 
-<body class="myth-page">
-    <main>
-        <div id="stats"></div>
-        <div class="victory"></div>
-        <section class="card_table" id="cardTable"></section>
-
-    </main>
-    <aside>
-        <p>Find all the pairs</p>
-        <h1>Myth-Match</h1>
-
-        <div class="level-checker-button-group">
-            <div class="radio-btn">
-                <input type="radio" name="level" id="easier" value="easier">
-                <label for="easier">Easier</label>
-            </div>
-            <div class="radio-btn">
-                <input type="radio" checked name="level" id="easy" value="easy">
-                <label for="easy">Easy</label>
-            </div>
-            <div class="radio-btn">
-                <input type="radio" name="level" id="normal" value="normal">
-                <label for="normal">Normal</label>
-            </div>
-            <div class="radio-btn">
-                <input type="radio" name="level" id="hard" value="hard">
-                <label for="hard">Hard</label>
-            </div>
-            <div class="radio-btn">
-                <input type="radio" name="level" id="harder" value="harder">
-                <label for="harder">Harder</label>
-            </div>
+<body>
+    <div class="top-panel">
+        <div class="controls">
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option value="1">easiest</option>
+                <option value="2">easier</option>
+                <option value="3">medium</option>
+                <option value="4">hard</option>
+                <option value="5">hardest</option>
+            </select>
+            <button id="startBtn">Start</button>
+            <button id="resetBtn">Reset</button>
         </div>
-        <button class="start-button" id="startBtn">Start Game</button>
-        <button class="replay-button" id="replayBtn" style="display:none;">Replay</button>
-        <small>original Game Design by<a target="_black" href="https://codepen.io/rodzyk">Andrii Rodzyk</a></small>
-    </aside>
+    </div>
 
+    <div class="game-container">
+        <div class="matches-panel">
+            <h3>Matches</h3>
+            <ul id="matchesList"></ul>
+        </div>
 
+        <div class="card-grid" id="cardGrid"></div>
+    </div>
+
+    <script src="myth.js"></script>
 </body>
 
 </html>
