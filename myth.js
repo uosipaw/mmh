@@ -441,6 +441,11 @@ function createCard(creature) {
   card.dataset.code = creature.code;
   card.dataset.name = creature.name;
 
+  // Add event listener for flipping the card
+  card.addEventListener("click", () =>
+    flipCard(card, creature.code, creature.name)
+  );
+
   return card;
 }
 
@@ -458,58 +463,21 @@ function flipCard(card, code, name) {
   secondCard = { card, code, name };
   lockBoard = true;
 
+  // Check for a match
   if (firstCard.code === secondCard.code) {
-    // It's a match
-    matches.push(firstCard.name);
-    updateMatches();
-    checkWin();
-    resetFlip();
+    matches.push(firstCard.card);
+    matches.push(secondCard.card);
+    resetCards();
   } else {
-    // Not a match, flip back after delay
     setTimeout(() => {
       firstCard.card.classList.remove("flipped");
       secondCard.card.classList.remove("flipped");
-      resetFlip();
+      resetCards();
     }, 1000);
   }
 }
-function updateMatches() {
-  matchesList.innerHTML = "";
-  matches.forEach((matchName) => {
-    const li = document.createElement("li");
-    li.textContent = matchName;
-    matchesList.appendChild(li);
-  });
-}
 
-function checkWin() {
-  if (matches.length === cards.length / 2) {
-    alert(`You win!`);
-  }
-}
-
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-  }
-  return array;
-}
-
-// Use event delegation for card clicks
-cardGrid.addEventListener("click", (event) => {
-  const card = event.target.closest(".card");
-  if (
-    !card ||
-    card.classList.contains("flipped") ||
-    card.classList.contains("outline-placeholder")
-  )
-    return;
-  const { code, name } = card.dataset;
-  flipCard(card, code, name);
-});
-
-function resetFlip() {
-  lockBoard = false;
+function resetCards() {
   [firstCard, secondCard] = [null, null];
+  lockBoard = false;
 }
