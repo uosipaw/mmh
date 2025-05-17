@@ -49,12 +49,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Function to get card size percent based on card count
+  function getCardSizePercent(cardCount) {
+    if (cardCount <= 6) return 18;
+    if (cardCount <= 12) return 13;
+    if (cardCount <= 20) return 10;
+    if (cardCount <= 32) return 8;
+    if (cardCount <= 48) return 6.5;
+    return 5.5;
+  }
+
   // Function to create a card element
-  function createCard(data) {
+  function createCard(data, idx) {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.dataset.image = data.image; // Store image in dataset
-    card.dataset.description = data.description; // Store description in dataset
+    card.dataset.image = data.image;
+    card.dataset.description = data.description;
+    // Alternate rotation
+    card.style.transform = `rotate(${idx % 2 === 0 ? 3 : -3}deg)`;
+    // Remove all direct width/height/aspect-ratio styling from JS
 
     const cardInner = document.createElement("div");
     cardInner.classList.add("card-inner");
@@ -73,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cardInner.appendChild(cardFront);
     cardInner.appendChild(cardBack);
     card.appendChild(cardInner);
-
     card.addEventListener("click", flipCard);
     return card;
   }
@@ -182,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to initialize the game
   function initializeGame() {
     if (!dataLoaded) return;
+    document.body.classList.add("game-active");
     matchedPairs = 0;
     flippedCards = [];
     messageDisplay.textContent = "";
@@ -195,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     selected = selected.slice(0, count);
     cardData = [...selected, ...selected]; // duplicate for pairs
     shuffleCards(cardData);
-    cards = cardData.map(createCard);
+    cards = cardData.map((data, idx) => createCard(data, idx));
     gameBoard.innerHTML = "";
     cards.forEach((card) => gameBoard.appendChild(card));
   }
@@ -204,6 +217,11 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", () => {
     initializeGame();
     startBtn.blur();
+  });
+
+  // Optionally, remove blur/dim when game is reset or page is left
+  window.addEventListener("beforeunload", () => {
+    document.body.classList.remove("game-active");
   });
 
   // Optionally, disable the button until data is loaded

@@ -24,7 +24,22 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
-    display: flex
+    display: flex;
+    overflow: auto;
+}
+
+body.game-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 30, 60, 0.32);
+    z-index: 1;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .top-panel {
@@ -48,27 +63,79 @@ body {
 
 .container {
     text-align: center;
-    margin-top: 90px;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* CSS */
+.startBtn {
+    --b: 3px;
+    /* border thickness */
+    --s: .45em;
+    /* size of the corner */
+    --color: #ffffff;
+
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+        conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+
+    border: 0;
+
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.startBtn:hover,
+.startBtn:focus-visible {
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+}
+
+.startBtn:active {
+    background: var(--color);
+    color: #fff;
 }
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    /* Responsive columns */
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-auto-rows: 154px;
+    grid-gap: 1%;
     width: 90vw;
-    /* Adjust as needed */
+    max-width: 100vw;
+    height: auto;
     margin: 40px auto 20px auto;
     padding: 20px;
-    top: 20%;
+    justify-items: center;
+    align-items: center;
+    overflow-y: visible;
+    max-height: none;
+    position: relative;
+    z-index: 2;
 }
 
 .card {
-    position: relative;
     width: 100%;
-    height: 0;
-    padding-bottom: 140%;
-    /* 7/5 aspect ratio (height / width) */
+    height: auto;
+    aspect-ratio: 110/154;
+    position: relative;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -128,6 +195,13 @@ body {
 
 .card-front {
     background-color: #eee;
+    background: url("images/backgroundmatchwatrer.png");
+    background-size: cover;
+}
+
+.card-front img {
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .card-back {
@@ -136,9 +210,9 @@ body {
 }
 
 .card-back img {
-    size: cover;
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
 }
 
