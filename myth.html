@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Card Matching Game</title>
     <link rel="stylesheet" href="myth.css" />
+    <!-- Font-face declaration moved to CSS -->
 </head>
 
 <body>
@@ -13,26 +14,25 @@
         <div class="controls">
             <label for="difficulty">Difficulty:</label>
             <select id="difficulty">
-                <option value="1">easiest</option>
-                <option value="2">easier</option>
-                <option value="3">medium</option>
-                <option value="4">hard</option>
-                <option value="5">hardest</option>
+                <option value="0">-</option>
+                <option value="1" style="font-family: 'love ya like a sister', sans-serif;">easiest</option>
+                <option value="2" style="font-family: 'love ya like a sister', sans-serif;">easier</option>
+                <option value="3" style="font-family: 'love ya like a sister', sans-serif;">medium</option>
+                <option value="4" style="font-family: 'love ya like a sister', sans-serif;">hard</option>
+                <option value="5" style="font-family: 'love ya like a sister', sans-serif;">hardest</option>
             </select>
-            <button id="startBtn">Start</button>
-            <button id="resetBtn">Reset</button>
+            <button id="startBtn">Start Game</button>
+            <h1>Myth Match</h1>
         </div>
     </div>
 
-    <div class="game-container">
-        <div class="matches-panel">
-            <h3>Matches</h3>
-            <ul id="matchesList"></ul>
+    <div class="container">
+        <div class="game-board" id="gameBoard">
+            <!-- Cards will be dynamically added here -->
         </div>
-
-        <div class="card-grid" id="cardGrid"></div>
+        <p id="message"></p>
     </div>
-
+    <div class="side-panel" id="sidePanel"></div>
     <script src="myth.js"></script>
 </body>
 

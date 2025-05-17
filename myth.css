@@ -1,25 +1,30 @@
 /* --- Global Styles --- */
-
+@font-face {
+    font-family: "love ya like a sister";
+    font-style: normal;
+    src: url("fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf") format("woff2"),
+        url("fonts/love-ya-like-a-sister.woff") format("woff");
+}
 
 :root {
-    --card-margin: 5px;
+    --card-margin: 5%;
     --panel-width: 200px;
     --panel-gap: 20px;
     --panel-bg: rgba(255, 255, 255, 0.8);
-    --card-back-gradient: rgba(0, 0, 0, 0.5);
-    --card-width: 120px;
-    --card-height: 168px;
-    --card-radius: 10px;
+    --card-radius: 5%;
+    font-family: "love ya like a sister", sans-serif;
+
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "love ya like a sister", sans-serif;
     background: #f0f0f0 url("images/matchbg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    display: flex
 }
 
 .top-panel {
@@ -29,6 +34,10 @@ body {
     padding: 10px 20px;
     background: #210e217c;
     color: #fff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
 }
 
 .controls {
@@ -37,176 +46,166 @@ body {
     gap: 10px;
 }
 
-.game-container {
-    position: relative;
-    display: inline-flexbox;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background: #33333353;
-    padding: 10px;
-    height: 80vh;
-    width: 90%;
+.container {
+    text-align: center;
+    margin-top: 90px;
 }
 
-.matches-panel {
-    width: 10%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: #888;
-    margin: 10px;
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    /* Responsive columns */
+    grid-gap: 10px;
+    width: 90vw;
+    /* Adjust as needed */
+    margin: 40px auto 20px auto;
+    padding: 20px;
+    top: 20%;
 }
 
-.card-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    /* Start at the top */
-    background-color: #888;
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-y: auto;
-    /* Allow scrolling if needed */
-    position: relative;
-}
-
-.card-row {
-    display: flex;
-    flex-wrap: wrap;
-    /* Allow cards to wrap to next line if needed */
-    justify-content: center;
-    align-items: center;
-    gap: var(--card-margin);
-    width: 100%;
-    margin: 10px 0;
-    box-sizing: border-box;
-}
-
-/* Fix card sizing and positioning for grid layout */
 .card {
-    aspect-ratio: 5 / 7;
-    width: var(--card-width);
-    height: auto;
-    /* Let aspect-ratio control height */
-    max-width: 100%;
-    flex: 1 1 var(--card-width);
-    /* Allow cards to shrink/grow */
-    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 140%;
+    /* 7/5 aspect ratio (height / width) */
     perspective: 1000px;
     cursor: pointer;
+}
+
+.card-description-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 180px;
+    max-width: 90%;
+    background: var(--panel-bg, rgba(255, 255, 255, 0.97));
+    color: #222;
     border-radius: 10px;
-    border: none;
-    padding: 0;
-    position: relative;
-    transition: transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+    padding: 18px 16px;
+    font-size: 1em;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-align: left;
+    display: block;
 }
 
-.rotate-positive {
-    transform: rotateZ(3deg);
-}
-
-.rotate-negative {
-    transform: rotateZ(-3deg);
+.card.matched:hover .card-description-panel {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .card-inner {
+    position: absolute;
     width: 100%;
     height: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
     transition: transform 0.6s;
-    visibility: visible;
+    transform-style: preserve-3d;
 }
 
 .card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-.card-front {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: var(--card-radius);
-    background-image: url("images/mythcards/bg1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 8px;
+    font-size: 1.2em;
+    /* Adjust font size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-front {
+    background-color: #eee;
 }
 
 .card-back {
+    background-color: #dddddd00;
     transform: rotateY(180deg);
+}
+
+.card-back img {
+    size: cover;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+}
+
+
+#message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+/* Description Modal Styles */
+.description-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
     display: flex;
-    justify-content: center;
     align-items: center;
-    /* No background-image here */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--card-radius);
-    backface-visibility: hidden;
+    justify-content: center;
+    z-index: 9999;
 }
 
-.creature-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-    user-select: none;
+.description-modal-content {
+    background: #fffbe9;
+    color: #222;
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.18);
+    padding: 32px 28px 24px 28px;
+    font-size: 1.15em;
+    max-width: 400px;
+    min-width: 220px;
+    text-align: left;
+    position: relative;
 }
 
-/* Responsive adjustments for smaller screens:
-- Adjust panel width and card dimensions for better fit.
-- Change layout of game container and matches panel for improved usability. */
-@media (max-width: 900px) {
-    :root {
-        --panel-width: 120px;
-    }
-
-    .game-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .matches-panel {
-        width: 100%;
-        margin: 0 0 10px 0;
-    }
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
 }
 
-/* Further adjustments for very small screens:
-- Reduce card size and panel width to fit narrow viewports.
-- Add padding to the game container and adjust card row spacing. */
+.close-modal:hover {
+    color: #c00;
+}
+
+/* Media query for smaller screens */
 @media (max-width: 600px) {
-    :root {
-        --card-width: 70px;
-        --card-height: 98px;
-        --panel-width: 100vw;
+    .game-board {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        /* Adjust for smaller screens */
     }
 
-    .game-container {
-        padding: 5px;
+    .side-panel {
+        position: static;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        padding: 10px;
+        font-size: 1em;
     }
-
-    .card-row {
-        margin: 5px 0;
-    }
-}
-
-.creature-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-    user-select: none;
 }

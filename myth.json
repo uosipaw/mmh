@@ -24,12 +24,6 @@
     "description": "A clever spider-trickster from African folklore who spins both webs and stories."
   },
   {
-    "name": "Troll",
-    "code": "troll",
-    "image": "images/mythcards/troll.png",
-    "description": "Grumpy bridge-dwellers or mountain giants with questionable hygiene and zero social skills."
-  },
-  {
     "name": "Bunyip",
     "code": "bunyip",
     "image": "images/mythcards/bunyip.png",
@@ -76,18 +70,6 @@
     "code": "minotaur",
     "image": "images/mythcards/minotaur.png",
     "description": "Bull-headed maze dweller with anger management issues."
-  },
-  {
-    "name": "Dragon",
-    "code": "dragon",
-    "image": "images/mythcards/dragon.png",
-    "description": "Winged, fire-breathing legends found in nearly every culture—mythology's most iconic hothead."
-  },
-  {
-    "name": "Unicorn",
-    "code": "unicorn",
-    "image": "images/mythcards/unicorn.png",
-    "description": "A magical horse with a horn and a brand deal with rainbows."
   },
   {
     "name": "Cerberus",
@@ -192,12 +174,6 @@
     "description": "A polite yet dangerous river creature from Japan—just bow back and you'll be fine."
   },
   {
-    "name": "Rusalka",
-    "code": "rusalka",
-    "image": "images/mythcards/rusalka.png",
-    "description": "Slavic water spirit with a haunting beauty and ghost story energy."
-  },
-  {
     "name": "Naga",
     "code": "naga",
     "image": "images/mythcards/naga.png",
@@ -215,12 +191,7 @@
     "image": "images/mythcards/manticore.png",
     "description": "Lion body, scorpion tail, human face—nature's uncanny collage."
   },
-  {
-    "name": "Selkie",
-    "code": "selkie",
-    "image": "images/mythcards/selkie.png",
-    "description": "Seal by sea, human by shore—romantic shapeshifters with trust issues."
-  },
+
   {
     "name": "Yeti",
     "code": "yeti",
@@ -240,21 +211,9 @@
     "description": "A demon of Slavic folklore—goat horns, evil laugh, and chaotic energy."
   },
   {
-    "name": "Poludnytsya",
-    "code": "poludnytsya",
-    "image": "images/mythcards/poludnytsya.png",
-    "description": "The 'Lady Midday' who appears in fields to strike down lazy workers. Your HR department's nightmare."
-  },
-  {
     "name": "Baba Yaga",
     "code": "baba_yaga",
     "image": "images/mythcards/baba_yaga.png",
     "description": "Witch of the woods who flies in a mortar and pestle—your grandma if she were an eldritch boss."
-  },
-  {
-    "name": "Leshy",
-    "code": "leshy",
-    "image": "images/mythcards/leshy.png",
-    "description": "Forest guardian with a talent for leading travelers astray and sprouting from trees."
   }
 ]
