@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       disableCards();
       if (matchedPairs === cardData.length / 2) {
         messageDisplay.textContent = "Congratulations! You won!";
+        endGame();
       }
     } else {
       // No match
@@ -213,15 +214,15 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach((card) => gameBoard.appendChild(card));
   }
 
+  // Optionally, remove blur/dim when game is not active (e.g. after win)
+  function endGame() {
+    document.body.classList.remove("game-active");
+  }
+
   // Start button event
   startBtn.addEventListener("click", () => {
     initializeGame();
     startBtn.blur();
-  });
-
-  // Optionally, remove blur/dim when game is reset or page is left
-  window.addEventListener("beforeunload", () => {
-    document.body.classList.remove("game-active");
   });
 
   // Optionally, disable the button until data is loaded

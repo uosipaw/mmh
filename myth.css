@@ -26,20 +26,21 @@ body {
     height: 100vh;
     display: flex;
     overflow: auto;
+    transition: background 0.3s, filter 0.3s;
 }
 
 body.game-active::before {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(30, 30, 60, 0.32);
+    background: rgba(0, 0, 0, 0.28);
     z-index: 1;
     pointer-events: none;
     backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.3s, backdrop-filter 0.3s;
 }
 
 .top-panel {
@@ -53,6 +54,7 @@ body.game-active::before {
     left: 0;
     width: 100%;
     position: fixed;
+    z-index: 3;
 }
 
 .controls {
@@ -127,8 +129,6 @@ body.game-active::before {
     align-items: center;
     overflow-y: visible;
     max-height: none;
-    position: relative;
-    z-index: 2;
 }
 
 .card {
