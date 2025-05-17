@@ -9,6 +9,35 @@ document.addEventListener("DOMContentLoaded", () => {
   let allCardData = [];
   let cardData = [];
   let dataLoaded = false;
+  let timerInterval;
+  let secondsElapsed = 0;
+
+  // Timer setup
+  const timerDisplay = document.createElement("div");
+  timerDisplay.id = "timer";
+  timerDisplay.style.fontSize = "1.2em";
+  timerDisplay.style.margin = "10px 0";
+  messageDisplay.parentNode.insertBefore(
+    timerDisplay,
+    messageDisplay.nextSibling
+  );
+
+  function startTimer() {
+    stopTimer();
+    secondsElapsed = 0;
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      secondsElapsed++;
+      updateTimerDisplay();
+    }, 1000);
+  }
+  function stopTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  function updateTimerDisplay() {
+    timerDisplay.textContent = `Time: ${secondsElapsed}s`;
+  }
 
   // Fetch card data from JSON file
   fetch("myth.json")
@@ -65,9 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
     card.classList.add("card");
     card.dataset.image = data.image;
     card.dataset.description = data.description;
-    // Alternate rotation
+    card.dataset.pairType = data.pairType || "image";
     card.style.transform = `rotate(${idx % 2 === 0 ? 3 : -3}deg)`;
-    // Remove all direct width/height/aspect-ratio styling from JS
 
     const cardInner = document.createElement("div");
     cardInner.classList.add("card-inner");
@@ -78,10 +106,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const cardBack = document.createElement("div");
     cardBack.classList.add("card-back");
-    const img = document.createElement("img");
-    img.src = data.image; // Set image source
-    img.alt = data.description;
-    cardBack.appendChild(img);
+    if (data.pairType === "description") {
+      cardBack.textContent = data.description;
+      cardBack.style.display = "flex";
+      cardBack.style.alignItems = "center";
+      cardBack.style.justifyContent = "center";
+      cardBack.style.fontSize = "0.85em";
+      cardBack.style.padding = "10px";
+      cardBack.style.textAlign = "center";
+    } else {
+      const img = document.createElement("img");
+      img.src = data.image; // Set image source
+      img.alt = data.description;
+      cardBack.appendChild(img);
+    }
 
     cardInner.appendChild(cardFront);
     cardInner.appendChild(cardBack);
@@ -90,24 +128,80 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
+  // Function to initialize the game
+  function initializeGame() {
+    if (!dataLoaded) return;
+    document.body.classList.add("game-active");
+    matchedPairs = 0;
+    flippedCards = [];
+    messageDisplay.textContent = "";
+    // Select cards based on difficulty
+    let count = getCardCountByDifficulty();
+    let selected = allCardData.slice();
+    shuffleCards(selected);
+    selected = selected.slice(0, count);
+    let isHardest = parseInt(difficultySelect.value, 10) === 5;
+    let isHard = parseInt(difficultySelect.value, 10) === 4;
+    if (isHardest) {
+      // For hardest: use the same number of unique cards as hard level
+      let hardCount = Math.max(12, Math.floor(allCardData.length * 0.65));
+      let hardSelected = allCardData.slice();
+      shuffleCards(hardSelected);
+      hardSelected = hardSelected.slice(0, hardCount);
+      cardData = [];
+      hardSelected.forEach((card) => {
+        cardData.push({ ...card, pairType: "image" });
+        cardData.push({ ...card, pairType: "description" });
+      });
+      shuffleCards(cardData);
+    } else {
+      // Normal: duplicate for pairs
+      cardData = [...selected, ...selected];
+      shuffleCards(cardData);
+    }
+    cards = cardData.map((data, idx) => createCard(data, idx));
+    gameBoard.innerHTML = "";
+    cards.forEach((card) => gameBoard.appendChild(card));
+    startTimer();
+  }
+
+  let boardLocked = false;
   // Function to flip a card
   function flipCard() {
-    if (flippedCards.length < 2 && !this.classList.contains("flipped")) {
-      this.classList.add("flipped");
-      flippedCards.push(this);
+    if (
+      boardLocked ||
+      this.classList.contains("flipped") ||
+      this.classList.contains("matched")
+    )
+      return;
+    this.classList.add("flipped");
+    flippedCards.push(this);
 
-      if (flippedCards.length === 2) {
-        setTimeout(checkForMatch, 700); // Delay before checking for match
-      }
+    if (flippedCards.length === 2) {
+      boardLocked = true;
+      setTimeout(checkForMatch, 700); // Delay before checking for match
     }
   }
 
   // Function to check for a match
   function checkForMatch() {
-    const card1 = flippedCards[0];
-    const card2 = flippedCards[1];
-
-    if (card1.dataset.image === card2.dataset.image) {
+    const [card1, card2] = flippedCards;
+    let isMatch = false;
+    // Hardest: match image to description, not identical cards
+    if (
+      card1.dataset.image === card2.dataset.image &&
+      card1.dataset.pairType !== card2.dataset.pairType
+    ) {
+      isMatch = true;
+    }
+    // Other: match identical cards
+    if (
+      card1.dataset.image === card2.dataset.image &&
+      card1.dataset.pairType === card2.dataset.pairType
+    ) {
+      isMatch = true;
+    }
+    if (isMatch) {
       // Match!
       messageDisplay.textContent = "It's a match!";
       matchedPairs++;
@@ -125,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
       messageDisplay.textContent = "Not a match!";
       unflipCards();
     }
+    boardLocked = false;
   }
 
   // Function to enable description hover on matched cards
@@ -145,6 +240,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.createElement("div");
     modal.id = "descModal";
     modal.className = "description-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
     const content = document.createElement("div");
     content.className = "description-modal-content";
     content.textContent = this.dataset.description;
@@ -184,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       resetFlippedCards();
       messageDisplay.textContent = ""; // Clear message
-    }, 1000); // Delay before unflipping
+    }, 100); // Delay before unflipping
   }
 
   // Function to reset the flipped cards array
@@ -192,31 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
     flippedCards = [];
   }
 
-  // Function to initialize the game
-  function initializeGame() {
-    if (!dataLoaded) return;
-    document.body.classList.add("game-active");
-    matchedPairs = 0;
-    flippedCards = [];
-    messageDisplay.textContent = "";
-    const sidePanel = document.getElementById("sidePanel");
-    sidePanel.textContent = "";
-    sidePanel.classList.remove("active");
-    // Select cards based on difficulty
-    let count = getCardCountByDifficulty();
-    let selected = allCardData.slice();
-    shuffleCards(selected);
-    selected = selected.slice(0, count);
-    cardData = [...selected, ...selected]; // duplicate for pairs
-    shuffleCards(cardData);
-    cards = cardData.map((data, idx) => createCard(data, idx));
-    gameBoard.innerHTML = "";
-    cards.forEach((card) => gameBoard.appendChild(card));
-  }
-
   // Optionally, remove blur/dim when game is not active (e.g. after win)
   function endGame() {
     document.body.classList.remove("game-active");
+    stopTimer();
   }
 
   // Start button event

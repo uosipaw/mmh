@@ -2,14 +2,13 @@
 @font-face {
     font-family: "love ya like a sister";
     font-style: normal;
-    src: url("fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf") format("woff2"),
+    src: url("fonts/Love_Ya_Like_A_Sister/LoveYaLikeASister-Regular.ttf") format("truetype"),
         url("fonts/love-ya-like-a-sister.woff") format("woff");
 }
 
 :root {
     --card-margin: 5%;
-    --panel-width: 200px;
-    --panel-gap: 20px;
+    --panel-gap: 5%;
     --panel-bg: rgba(255, 255, 255, 0.8);
     --card-radius: 5%;
     font-family: "love ya like a sister", sans-serif;
@@ -19,14 +18,15 @@
 body {
     margin: 0;
     font-family: "love ya like a sister", sans-serif;
-    background: #f0f0f0 url("images/matchbg.png");
+    background: #f0f0f0 url("images/mmbg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-    display: flex;
-    overflow: auto;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
     transition: background 0.3s, filter 0.3s;
+    position: relative;
 }
 
 body.game-active::before {
@@ -55,6 +55,7 @@ body.game-active::before {
     width: 100%;
     position: fixed;
     z-index: 3;
+    box-sizing: border-box;
 }
 
 .controls {
@@ -65,105 +66,72 @@ body.game-active::before {
 
 .container {
     text-align: center;
-    margin-top: 5vh;
+    margin-top: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 0;
     height: auto;
-    overflow: visible;
+    width: 100vw;
     position: relative;
-    z-index: 2;
+    z-index: 4;
+    box-sizing: border-box;
 }
 
-
-/* CSS */
-.startBtn {
-    --b: 3px;
-    /* border thickness */
-    --s: .45em;
-    /* size of the corner */
-    --color: #ffffff;
-
-    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-    color: var(--color);
-    --_p: var(--s);
-    background:
-        conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-    transition: .3s linear, color 0s, background-color 0s;
-    outline: var(--b) solid #0000;
-    outline-offset: .6em;
-    font-size: 16px;
-
-    border: 0;
-
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+#message {
+    margin-top: 16px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
 }
 
-.startBtn:hover,
-.startBtn:focus-visible {
-    --_p: 0px;
-    outline-color: var(--color);
-    outline-offset: .05em;
-}
-
-.startBtn:active {
-    background: var(--color);
-    color: #fff;
+#timer {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2d2d2d;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 8px 18px;
+    margin: 16px auto 0 auto;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    letter-spacing: 1px;
 }
 
 .game-board {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     grid-auto-rows: 154px;
-    grid-gap: 1%;
-    width: 90vw;
-    max-width: 100vw;
-    height: auto;
-    margin: 40px auto 20px auto;
-    padding: 20px;
+    gap: 18px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 32px auto;
+    padding: 20px 10px 10px 10px;
     justify-items: center;
     align-items: center;
-    overflow-y: visible;
-    max-height: none;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    box-sizing: border-box;
+    position: relative;
 }
 
 .card {
     width: 100%;
-    height: auto;
+    max-width: 110px;
     aspect-ratio: 110/154;
     position: relative;
     perspective: 1000px;
     cursor: pointer;
-}
-
-.card-description-panel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 180px;
-    max-width: 90%;
-    background: var(--panel-bg, rgba(255, 255, 255, 0.97));
-    color: #222;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-    padding: 18px 16px;
-    font-size: 1em;
-    z-index: 10;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-    text-align: left;
-    display: block;
-}
-
-.card.matched:hover .card-description-panel {
-    opacity: 1;
-    pointer-events: auto;
+    border-radius: var(--card-radius);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.18);
+    background: transparent;
+    transition: box-shadow 0.2s;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-inner {
@@ -189,7 +157,6 @@ body.game-active::before {
     align-items: center;
     border-radius: 8px;
     font-size: 1.2em;
-    /* Adjust font size */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -205,8 +172,16 @@ body.game-active::before {
 }
 
 .card-back {
-    background-color: #dddddd00;
+    background-color: #4f4f4fca;
     transform: rotateY(180deg);
+    font-size: 0.85em;
+    line-height: 1.1;
+    word-break: break-word;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .card-back img {
@@ -216,13 +191,61 @@ body.game-active::before {
     border-radius: 8px;
 }
 
-
-#message {
-    margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
+.card-description-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 180px;
+    max-width: 90%;
+    background: var(--panel-bg, rgba(255, 255, 255, 0.97));
+    color: #222;
+    border-radius: 10px;
+    padding: 18px 16px;
+    font-size: 1em;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-align: left;
+    display: block;
 }
 
+.card.matched:hover .card-description-panel {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.startBtn {
+    --b: 3px;
+    --s: .45em;
+    --color: #ffffff;
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+        conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+    border: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.startBtn:hover,
+.startBtn:focus-visible {
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+}
+
+.startBtn:active {
+    background: var(--color);
+    color: #fff;
+}
 
 /* Description Modal Styles */
 .description-modal {
@@ -268,18 +291,39 @@ body.game-active::before {
 }
 
 /* Media query for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .game-board {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        /* Adjust for smaller screens */
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        max-width: 98vw;
+        padding: 10px 2vw;
     }
 
-    .side-panel {
-        position: static;
-        width: 100%;
-        height: auto;
-        box-shadow: none;
-        padding: 10px;
+    .card {
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin-top: 60px;
+        padding: 0 2vw;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        max-width: 100vw;
+        padding: 6px 1vw;
+        gap: 8px;
+    }
+
+    .card {
+        max-width: 60px;
+    }
+
+    .description-modal-content {
         font-size: 1em;
+        padding: 18px 8px 14px 8px;
+        min-width: 120px;
+        max-width: 90vw;
     }
 }
