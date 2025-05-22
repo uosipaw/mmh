@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let dataLoaded = false;
   let timerInterval;
   let secondsElapsed = 0;
+  let moveCount = 0;
+  const leaderboardKey = "mythMatchLeaderboard";
+  const leaderboardPanel = document.getElementById("leaderboardPanel");
+  const leaderboardList = document.getElementById("leaderboardList");
 
   // Start button event
   startBtn.addEventListener("click", () => {
@@ -107,6 +111,44 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
 
+  // Load leaderboard from localStorage
+  function loadLeaderboard() {
+    let data = localStorage.getItem(leaderboardKey);
+    if (!data) return [];
+    try {
+      return JSON.parse(data);
+    } catch {
+      return [];
+    }
+  }
+
+  // Save leaderboard to localStorage
+  function saveLeaderboard(entries) {
+    localStorage.setItem(leaderboardKey, JSON.stringify(entries));
+  }
+
+  // Update leaderboard UI
+  function updateLeaderboardUI() {
+    const entries = loadLeaderboard();
+    leaderboardList.innerHTML = "";
+    entries.slice(0, 10).forEach((entry, i) => {
+      const li = document.createElement("li");
+      li.textContent = `#${i + 1}: ${entry.moves} moves${
+        entry.difficulty ? ` (${entry.difficulty})` : ""
+      }`;
+      leaderboardList.appendChild(li);
+    });
+  }
+
+  // Add a new score to leaderboard
+  function addToLeaderboard(moves, difficulty) {
+    let entries = loadLeaderboard();
+    entries.push({ moves, difficulty, date: Date.now() });
+    entries.sort((a, b) => a.moves - b.moves);
+    saveLeaderboard(entries);
+    updateLeaderboardUI();
+  }
+
   // Function to initialize the game
   function initializeGame() {
     if (!dataLoaded) return;
@@ -114,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     matchedPairs = 0;
     flippedCards = [];
     messageDisplay.textContent = "";
+    moveCount = 0;
     // Select cards based on difficulty
     let count = getCardCountByDifficulty();
     let selected = allCardData.slice();
@@ -142,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gameBoard.innerHTML = "";
     cards.forEach((card) => gameBoard.appendChild(card));
     startTimer();
+    updateLeaderboardUI();
   }
 
   let boardLocked = false;
@@ -158,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (flippedCards.length === 2) {
       boardLocked = true;
+      moveCount++;
       setTimeout(checkForMatch, 700); // Delay before checking for match
     }
   }
@@ -192,6 +237,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (matchedPairs === cardData.length / 2) {
         messageDisplay.textContent = "Congratulations! You won!";
         endGame();
+        // Add to leaderboard
+        const difficultyLabel =
+          difficultySelect.options[difficultySelect.selectedIndex].text;
+        addToLeaderboard(moveCount, difficultyLabel);
       }
     } else {
       // No match
@@ -302,4 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Optionally, disable the button until data is loaded
   startBtn.disabled = true;
+
+  // On load, show leaderboard
+  updateLeaderboardUI();
 });

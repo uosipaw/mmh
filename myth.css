@@ -288,7 +288,44 @@ body.game-active::before {
     color: #c00;
 }
 
-/* Media query for smaller screens */
+/* Leaderboard Panel Styles */
+.leaderboard-panel {
+    position: fixed;
+    top: 70px;
+    right: 2vw;
+    background: var(--panel-bg);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+    border-radius: 12px;
+    padding: 18px 22px 12px 22px;
+    min-width: 170px;
+    max-width: 90vw;
+    z-index: 2200;
+    font-size: 1.1em;
+    color: #222;
+    transition: background 0.2s;
+    outline: none;
+}
+
+.leaderboard-panel h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.2em;
+    color: #7a4c00;
+    text-align: center;
+}
+
+#leaderboardList {
+    list-style: decimal inside;
+    margin: 0;
+    padding: 0;
+}
+
+#leaderboardList li {
+    padding: 2px 0;
+    border-bottom: 1px solid #e0cfa0;
+    font-size: 1em;
+    color: #333;
+}
+
 @media (max-width: 900px) {
     .game-board {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -298,6 +335,15 @@ body.game-active::before {
 
     .card {
         max-width: 80px;
+    }
+
+    .leaderboard-panel {
+        position: static;
+        margin: 10px auto 0 auto;
+        width: 95vw;
+        min-width: 0;
+        max-width: 98vw;
+        font-size: 1em;
     }
 }
 
@@ -323,6 +369,20 @@ body.game-active::before {
         padding: 18px 8px 14px 8px;
         min-width: 120px;
         max-width: 90vw;
+    }
+
+    .leaderboard-panel {
+        position: static;
+        margin: 8px auto 0 auto;
+        width: 99vw;
+        min-width: 0;
+        max-width: 99vw;
+        font-size: 0.95em;
+        padding: 10px 4vw 8px 4vw;
+    }
+
+    .leaderboard-panel h2 {
+        font-size: 1em;
     }
 }
 
