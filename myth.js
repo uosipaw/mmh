@@ -12,32 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let timerInterval;
   let secondsElapsed = 0;
 
-  // Timer setup
-  const timerDisplay = document.createElement("div");
-  timerDisplay.id = "timer";
-  timerDisplay.style.fontSize = "1.2em";
-  timerDisplay.style.margin = "10px 0";
-  messageDisplay.parentNode.insertBefore(
-    timerDisplay,
-    messageDisplay.nextSibling
-  );
-
-  function startTimer() {
-    stopTimer();
-    secondsElapsed = 0;
-    updateTimerDisplay();
-    timerInterval = setInterval(() => {
-      secondsElapsed++;
-      updateTimerDisplay();
-    }, 1000);
-  }
-  function stopTimer() {
-    if (timerInterval) clearInterval(timerInterval);
-    timerInterval = null;
-  }
-  function updateTimerDisplay() {
-    timerDisplay.textContent = `Time: ${secondsElapsed}s`;
-  }
+  // Start button event
+  startBtn.addEventListener("click", () => {
+    initializeGame();
+    startBtn.blur();
+  });
 
   // Fetch card data from JSON file
   fetch("myth.json")
@@ -222,47 +201,67 @@ document.addEventListener("DOMContentLoaded", () => {
     boardLocked = false;
   }
 
-  // Function to enable description hover on matched cards
-  function enableDescriptionHover(card) {
+  // Function to show the description modal
+  function showDescriptionModal(card) {
     card.addEventListener("click", showDescriptionModal);
   }
 
   // Modal logic
+  // Function to show the description modal
   function showDescriptionModal(e) {
     // Only trigger for matched cards
     if (!this.classList.contains("matched")) return;
     // Prevent double modal on click (e.g. from flip)
     if (e && e.target && e.target.closest(".close-modal")) return;
+    openDescriptionModal(this.dataset.description); // Use shared function
+  }
+
+  function openDescriptionModal(description) {
     // Remove any existing modal
     let oldModal = document.getElementById("descModal");
     if (oldModal) oldModal.remove();
-    // Create modal
+
+    // Create modal elements
     const modal = document.createElement("div");
     modal.id = "descModal";
     modal.className = "description-modal";
     modal.setAttribute("role", "dialog");
     modal.setAttribute("aria-modal", "true");
+
     const content = document.createElement("div");
     content.className = "description-modal-content";
-    content.textContent = this.dataset.description;
-    // Add close button
+    content.textContent = description;
+
     const closeBtn = document.createElement("button");
     closeBtn.className = "close-modal";
     closeBtn.type = "button";
-    closeBtn.innerHTML = "&times;";
+    closeBtn.innerHTML = "×";
     closeBtn.onclick = (evt) => {
-      evt.stopPropagation();
-      modal.remove();
+      evt.stopPropagation(); // Prevent click from propagating to modal
+      closeDescriptionModal();
     };
     content.appendChild(closeBtn);
     modal.appendChild(content);
-    // Close modal on background click
-    modal.onclick = (evt) => {
-      if (evt.target === modal) modal.remove();
-    };
+
+    // Close modal on background click (only outside modal content)
+    modal.addEventListener("click", (evt) => {
+      if (evt.target === modal) {
+        closeDescriptionModal();
+      }
+    });
+
     document.body.appendChild(modal);
+
     // Accessibility: focus close button
     closeBtn.focus();
+  }
+
+  // Function to close the description modal
+  function closeDescriptionModal() {
+    const modal = document.getElementById("descModal");
+    if (modal) {
+      modal.remove();
+    }
   }
 
   // Function to disable matched cards
