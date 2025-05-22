@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageDisplay = document.getElementById("message");
   const startBtn = document.getElementById("startBtn");
   const difficultySelect = document.getElementById("difficulty");
+  const playerNameInput = document.getElementById("playerName");
   let cards = []; // Array to hold card objects
   let flippedCards = []; // Array to store currently flipped cards
   let matchedPairs = 0;
@@ -133,9 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
     leaderboardList.innerHTML = "";
     entries.slice(0, 10).forEach((entry, i) => {
       const li = document.createElement("li");
+      const name = entry.name ? ` - ${entry.name}` : "";
       li.textContent = `#${i + 1}: ${entry.moves} moves${
         entry.difficulty ? ` (${entry.difficulty})` : ""
-      }`;
+      }${name}`;
       leaderboardList.appendChild(li);
     });
   }
@@ -143,7 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Add a new score to leaderboard
   function addToLeaderboard(moves, difficulty) {
     let entries = loadLeaderboard();
-    entries.push({ moves, difficulty, date: Date.now() });
+    let name = playerNameInput.value.trim().slice(0, 16) || "anon";
+    entries.push({ moves, difficulty, name, date: Date.now() });
     entries.sort((a, b) => a.moves - b.moves);
     saveLeaderboard(entries);
     updateLeaderboardUI();
@@ -231,8 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
       matchedPairs++;
       card1.classList.add("matched");
       card2.classList.add("matched");
-      enableDescriptionHover(card1);
-      enableDescriptionHover(card2);
       disableCards();
       if (matchedPairs === cardData.length / 2) {
         messageDisplay.textContent = "Congratulations! You won!";
@@ -342,12 +343,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("game-active");
     stopTimer();
   }
-
-  // Start button event
-  startBtn.addEventListener("click", () => {
-    initializeGame();
-    startBtn.blur();
-  });
 
   // Optionally, disable the button until data is loaded
   startBtn.disabled = true;
