@@ -16,42 +16,47 @@
 <body>
     <!-- Intro Overlay -->
     <div id="introOverlay">
-        <div class="deck-intro"></div>
+        <div class="deck-intro" tabindex="0" aria-label="Click to begin your tarot reading"></div>
     </div>
+
+    <!-- Visually hidden heading for screen readers -->
+    <h1 class="visually-hidden">Tarot Card Reading Application</h1>
 
     <!-- Dropdown Menu -->
     <div class="dropdown">
-        <select id="spreadSelect">
+        <label for="spreadSelect" class="visually-hidden">Choose a Tarot Spread</label>
+        <select id="spreadSelect" aria-label="Choose a Tarot Spread">
+            <option value="default" selected>Choose a Spread</option>
             <option value="three-card">Three Card</option>
             <option value="celtic-cross">Celtic Cross</option>
-            <option value="guidance">Guidance</option>
-            <option value="ancestral-connection">Ancestral Connection</option>
-            <option value="two-options">Two Options</option>
         </select>
+        <div id="spreadDescription"
+            style="margin-top: 10px; text-align: right; font-size: 1.1em; color: #140437; min-height: 2em;"></div>
     </div>
 
     <!-- Card Deck -->
-    <div id="deck" class="deck"></div>
+    <div id="deck" class="deck" aria-label="Tarot card spread" tabindex="0"></div>
+
+    <!-- Modal -->
+    <div id="cardModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalCardTitle"
+        aria-describedby="modalCardDescription" tabindex="-1">
+        <div class="modal-content">
+            <span class="close-modal" tabindex="0" aria-label="Close card details">×</span>
+            <div id="modalCardDescription"></div>
+        </div>
+    </div>
 
     <!-- Controls -->
     <div id="controls">
-        <button id="randomizeBtn" class="icon-button" title="Randomize">
+        <button id="randomizeBtn" class="icon-button" title="Randomize" aria-label="Randomize spread">
             <i src="./images/001_magic.png" alt="Randomize" width="50" height="50">i'm feeling lucky</i>
         </button>
-        <button id="resetBtn" class="icon-button" title="Reset">
+        <button id="resetBtn" class="icon-button" title="Reset" aria-label="Reset spread">
             <i src="./images/006_magic.png" alt="Reset" width="50" height="50">reset</i>
         </button>
-        <button id="reshuffleBtn" class="icon-button" title="Reshuffle">
+        <button id="reshuffleBtn" class="icon-button" title="Reshuffle" aria-label="Reshuffle deck">
             <i src="./images/004_magic.png" alt="Reshuffle" width="50" height="50">reshuffle</i>
         </button>
-    </div>
-
-    <!-- Modal -->
-    <div id="cardModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">×</span>
-            <div id="modalCardDescription"></div>
-        </div>
     </div>
 
     <script src="tarot.js" defer></script>
