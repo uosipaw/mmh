@@ -1,30 +1,37 @@
-const symbolPaths = [
-  "./images/1slots.png",
-  "./images/2slots.png",
-  "./images/3slots.png",
-  "./images/4slots.png",
-  "./images/5slots.png",
-  "./images/6slots.png",
-  "./images/7slots.png",
-  "./images/8slots.png",
+const defaultSymbolPaths = [
+  "images/6slots0.png",
+  "images/7slots1.png",
+  "images/8slots2.png",
+  "images/9slots3.png",
+  "images/10slots4.png",
+  "images/11slots5.png",
 ];
 
+const symbolPaths =
+  Array.isArray(window.slotSymbolImages) &&
+  window.slotSymbolImages.every(
+    (path) => typeof path === "string" && path.trim() !== ""
+  )
+    ? window.slotSymbolImages
+    : defaultSymbolPaths;
+
 const symbolValues = {
-  "./images/1slots.png": 1,
-  "./images/2slots.png": 2,
-  "./images/3slots.png": 3,
-  "./images/4slots.png": 4,
-  "./images/5slots.png": 5,
-  "./images/6slots.png": 6,
-  "./images/7slots.png": 7,
-  "./images/8slots.png": 10,
+  "6slots0.png": 1,
+  "7slots1.png": 2,
+  "8slots2.png": 3,
+  "9slots3.png": 4,
+  "10slots4.png": 5,
+  "11slots5.png": 6,
 };
 
 const numReels = 5;
+const symbolsPerReel = 20;
+const visibleSymbols = 3;
 let credits = 100;
-const stoppedIndexes = new Array(numReels);
+const stoppedIndexes = new Array(numReels).fill(0);
 let reels = [];
 let playerName = "";
+let spinning = false;
 
 const creditsDisplay = document.getElementById("credits");
 const betInput = document.getElementById("bet");
@@ -32,52 +39,22 @@ const spinButton = document.getElementById("spinButton");
 const resultDisplay = document.getElementById("result");
 const playerNameInput = document.getElementById("playerName");
 const leaderboardList = document.getElementById("leaderboard");
+const linesDisplay = document.getElementById("lines");
 
+// Configuration for winning lines in the slot machine.
+// Each line is an array of objects, where each object specifies the reel index and row index
+// for a symbol that is part of the line. For example:
+// - The first three lines represent horizontal lines (top, middle, bottom).
+// - The last two lines represent diagonal lines (from top-left to bottom-right and vice versa).
 const winningLinesConfig = [
-  [
-    { reel: 0, row: 0 },
-    { reel: 1, row: 0 },
-    { reel: 2, row: 0 },
-    { reel: 3, row: 0 },
-    { reel: 4, row: 0 },
-  ], // Top
-  [
-    { reel: 0, row: 1 },
-    { reel: 1, row: 1 },
-    { reel: 2, row: 1 },
-    { reel: 3, row: 1 },
-    { reel: 4, row: 1 },
-  ], // Middle
-  [
-    { reel: 0, row: 2 },
-    { reel: 1, row: 2 },
-    { reel: 2, row: 2 },
-    { reel: 3, row: 2 },
-    { reel: 4, row: 2 },
-  ], // Bottom
-  [
-    { reel: 0, row: 0 },
-    { reel: 1, row: 1 },
-    { reel: 2, row: 2 },
-    { reel: 3, row: 1 },
-    { reel: 4, row: 0 },
-  ], // Diagonal 1
-  [
-    { reel: 0, row: 2 },
-    { reel: 1, row: 1 },
-    { reel: 2, row: 0 },
-    { reel: 3, row: 1 },
-    { reel: 4, row: 2 },
-  ], // Diagonal 2
+  [...Array(5)].map((_, i) => ({ reel: i, row: 0 })), // Top
+  [...Array(5)].map((_, i) => ({ reel: i, row: 1 })), // Middle
+  [...Array(5)].map((_, i) => ({ reel: i, row: 2 })), // Bottom
+  [0, 1, 2, 3, 4].map((i) => ({ reel: i, row: [0, 1, 2, 1, 0][i] })), // Diagonal 1
+  [0, 1, 2, 3, 4].map((i) => ({ reel: i, row: [2, 1, 0, 1, 2][i] })), // Diagonal 2
 ];
 
-const linesMap = {
-  0: "top",
-  1: "middle",
-  2: "bottom",
-  3: "diagonal1",
-  4: "diagonal2",
-};
+const linesMap = ["top", "middle", "bottom", "diagonal1", "diagonal2"];
 
 function init() {
   playerName = playerNameInput.value.trim();
@@ -86,205 +63,247 @@ function init() {
   );
   reels.forEach(populateReel);
   creditsDisplay.textContent = credits;
+  displayLeaderboard();
 }
 
-init();
+function generateSymbolsHTML(count) {
+  return Array.from({ length: count }, () => {
+    const path = symbolPaths[Math.floor(Math.random() * symbolPaths.length)];
+    return `<div class="symbol"><img src="${path}" alt="symbol"></div>`;
+  }).join("");
+}
 
 function populateReel(reelEl) {
-  reelEl.innerHTML = "";
-  const symbolsHTML = Array.from({ length: 20 }, () => {
-    const rand = Math.floor(Math.random() * symbolPaths.length);
-    return `<div class="symbol"><img src="${symbolPaths[rand]}" alt="symbol"></div>`;
-  }).join("");
-  reelEl.innerHTML = symbolsHTML;
-
-  const extraSymbolsHTML = Array.from({ length: 3 }, () => {
-    const rand = Math.floor(Math.random() * symbolPaths.length);
-    return `<div class="symbol"><img src="${symbolPaths[rand]}" alt="symbol"></div>`;
-  }).join("");
-  reelEl.innerHTML += extraSymbolsHTML;
+  reelEl.innerHTML = generateSymbolsHTML(symbolsPerReel + visibleSymbols);
 }
 
 function isValidBet(bet) {
-  const numBet = Number(bet);
-  return !isNaN(numBet) && numBet >= 1 && numBet <= credits;
+  const num = Number(bet);
+  return Number.isFinite(num) && num >= 1 && num <= credits;
+}
+
+function extractFileName(url) {
+  return url.split("/").pop();
 }
 
 function spinReel(reelEl, index) {
-  populateReel(reelEl);
+  const totalNew = symbolsPerReel + visibleSymbols;
+  const symbolHeight = reelEl.querySelector(".symbol")?.offsetHeight || 70;
+  const spinRounds = 3 + Math.floor(Math.random() * 2);
+  const randomOffset = Math.floor(Math.random() * symbolsPerReel);
+  const stopOffset = randomOffset * symbolHeight;
+  const spinDistance = spinRounds * totalNew * symbolHeight + stopOffset;
+
+  reelEl.insertAdjacentHTML(
+    "beforeend",
+    generateSymbolsHTML(symbolsPerReel + visibleSymbols)
+  );
+
   reelEl.style.transition = "none";
   reelEl.style.transform = "translateY(0px)";
+  reelEl.classList.add("spinning");
 
   return new Promise((resolve) => {
-    setTimeout(() => {
-      reelEl.style.transition =
-        "transform 2.5s cubic-bezier(0.25, 1.5, 0.5, 1)";
-      const stopIndex = Math.floor(Math.random() * 17) + 3;
-      stoppedIndexes[index] = stopIndex;
-      const translateY = -(stopIndex * 70);
-      reelEl.style.transform = `translateY(${translateY}px)`;
-
-      setTimeout(() => {
+    let start = null;
+    const duration = 2200;
+    function animate(ts) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = spinDistance * ease;
+      reelEl.style.transform = `translateY(-${current}px)`;
+      if (progress < 1) requestAnimationFrame(animate);
+      else {
+        while (reelEl.childNodes.length > totalNew)
+          reelEl.removeChild(reelEl.firstChild);
         reelEl.style.transition = "none";
-        reelEl.style.transform = `translateY(${translateY % (20 * 70)}px)`;
+        reelEl.style.transform = `translateY(-${stopOffset}px)`;
+        reelEl.classList.remove("spinning");
+        stoppedIndexes[index] = randomOffset;
         resolve();
-      }, 2500);
-    }, index * 400);
+      }
+    }
+    requestAnimationFrame(animate);
   });
 }
 
 async function spin() {
+  if (spinning) return;
   const bet = Number(betInput.value);
-  if (!isValidBet(bet)) {
-    alert("Invalid bet amount.");
-    return;
-  }
+  if (!isValidBet(bet)) return alert("Invalid bet amount.");
 
   credits -= bet;
   creditsDisplay.textContent = credits;
   spinButton.disabled = true;
+  spinning = true;
   resultDisplay.textContent = "";
   resultDisplay.className = "";
+  linesDisplay.textContent = "";
 
-  // Clear previous winning highlights
   clearWinningHighlights();
-
-  await Promise.all(reels.map((reelEl, index) => spinReel(reelEl, index)));
+  await Promise.all(reels.map(spinReel));
 
   const lines = getAllWinningLines();
   const payout = calculatePayout(lines, bet);
-  const winningSymbolElements = getWinningSymbolElements(lines);
-  highlightSymbols(winningSymbolElements);
+  highlightSymbols(getWinningSymbolElements(lines));
 
   credits += payout;
   creditsDisplay.textContent = credits;
-  displayResult(lines, payout);
+  displayResult(payout);
+  updateLeaderboard(playerNameInput.value.trim(), credits);
 
-  if (credits > 0) {
-    updateLeaderboard(playerNameInput.value.trim(), credits);
-  }
-  spinButton.disabled = false;
+  if (credits <= 0) alert("Game over! You ran out of credits.");
+  spinButton.disabled = credits <= 0;
+  spinning = false;
 }
 
 function getSymbolAt(reelIndex, rowIndex) {
-  const allSymbols = reels[reelIndex].querySelectorAll(".symbol");
-  const symbol = allSymbols[stoppedIndexes[reelIndex] + rowIndex + 1];
-  return symbol?.querySelector("img")?.src || null;
+  const all = reels[reelIndex]?.querySelectorAll(".symbol");
+  const idx = (stoppedIndexes[reelIndex] + rowIndex) % symbolsPerReel;
+  const img = all[idx]?.querySelector("img");
+  if (!img) return null;
+  return extractFileName(img.src) || null;
 }
 
 function getAllWinningLines() {
-  const lines = [];
-  for (const lineConfig of winningLinesConfig) {
-    const line = lineConfig.map(({ reel, row }) => getSymbolAt(reel, row));
-    lines.push(line);
-  }
-  return lines;
+  return winningLinesConfig.map((line) =>
+    line.map(({ reel, row }) => getSymbolAt(reel, row))
+  );
 }
 
 function calculatePayout(lines, bet) {
-  let totalPayout = 0;
-  for (const line of lines) {
-    if (!line) continue;
+  let total = 0;
+  linesDisplay.textContent = "";
+  lines.forEach((line, i) => {
     const counts = {};
-    for (const symbol of line) {
-      counts[symbol] = (counts[symbol] || 0) + 1;
-    }
-    let linePayout = 0;
-    for (const symbol in counts) {
-      if (!symbol) continue;
-      const count = counts[symbol];
-      const baseValue = symbolValues[symbol] || 0;
+    line.forEach((sym) => {
+      counts[sym] = (counts[sym] || 0) + 1;
+    });
+    let payout = 0;
+    for (const [sym, count] of Object.entries(counts)) {
+      const val = symbolValues[sym] || 0;
       let multiplier = 0;
-      if (count === 3) multiplier = baseValue;
-      else if (count === 4) multiplier = baseValue * 2;
-      else if (count === 5) multiplier = baseValue * 10;
-      linePayout = Math.max(linePayout, bet * multiplier);
+      if (count === 5) {
+        multiplier = val * 10;
+      } else if (count === 4) {
+        multiplier = val * 2;
+      } else if (count === 3) {
+        multiplier = val;
+      }
+      payout = Math.max(payout, bet * multiplier);
     }
-    totalPayout += linePayout;
-  }
-  return totalPayout;
+    if (payout > 0)
+      linesDisplay.textContent += `Line ${i + 1} (${
+        linesMap[i]
+      }): ${payout} credits\n`;
+    total += payout;
+  });
+  return total;
 }
 
 function getWinningSymbolElements(lines) {
-  const winningSymbolElements = [];
+  const elements = [];
   reels.forEach((reelEl, reelIndex) => {
-    const base = stoppedIndexes[reelIndex];
-    const allSymbols = reelEl.querySelectorAll(".symbol"); // Cache the result
-    for (let row = 0; row < 3; row++) {
-      const symbolEl = allSymbols[base + row + 1];
-      if (!symbolEl) continue;
-      const lineIndex = row;
-      const line = lines[lineIndex];
+    for (let row = 0; row < visibleSymbols; row++) {
+      const idx = (stoppedIndexes[reelIndex] + row) % symbolsPerReel;
+      const el = reelEl.querySelectorAll(".symbol")[idx];
+      const sym = extractFileName(el?.querySelector("img")?.src || "");
       if (
-        line &&
-        line[reelIndex] === line[0] &&
-        line.filter((sym) => sym === line[0]).length >= 3
+        el &&
+        lines.some(
+          (line) =>
+            line[reelIndex] === sym && line.filter((s) => s === sym).length >= 3
+        )
       ) {
-        winningSymbolElements.push(symbolEl);
-      }
-    }
-
-    const symbolEl1 = allSymbols[base + (reelIndex < 3 ? reelIndex : 2)];
-    if (symbolEl1) {
-      const diagonal1 = lines[3];
-      if (
-        diagonal1 &&
-        diagonal1[reelIndex] === diagonal1[0] &&
-        diagonal1.filter((sym) => sym === diagonal1[0]).length >= 3
-      ) {
-        winningSymbolElements.push(symbolEl1);
-      }
-    }
-
-    const symbolEl2 = allSymbols[base + (reelIndex < 3 ? 2 - reelIndex : 2)];
-    if (symbolEl2) {
-      const diagonal2 = lines[4];
-      if (
-        diagonal2 &&
-        diagonal2[reelIndex] === diagonal2[0] &&
-        diagonal2.filter((sym) => sym === diagonal2[0]).length >= 3
-      ) {
-        winningSymbolElements.push(symbolEl2);
+        elements.push(el);
       }
     }
   });
-  return winningSymbolElements;
+  return elements;
 }
 
-function highlightSymbols(symbolElements) {
-  symbolElements.forEach((el) => el.classList.add("winning"));
+function highlightSymbols(symbols) {
+  symbols.forEach((el) => el && el.classList.add("winning-symbol"));
 }
 
 function clearWinningHighlights() {
-  reels.forEach((reelEl) => {
+  reels.forEach((reelEl) =>
     reelEl
       .querySelectorAll(".symbol")
-      .forEach((symbol) => symbol.classList.remove("winning"));
-  });
+      .forEach((sym) => sym && sym.classList.remove("winning-symbol"))
+  );
 }
 
-function displayResult(lines, payout) {
-  let message = `You won ${payout} credits!`;
-  let linesDetails = Object.entries(linesMap)
-    .map(([lineIndex, lineName]) => {
-      if (!lines[lineIndex]) return;
-      if (
-        lines[lineIndex].filter((sym) => sym === lines[lineIndex][0]).length >=
-        3
+function displayResult(payout) {
+  resultDisplay.textContent =
+    payout > 0 ? `You won ${payout} credits!` : "No win. Try again!";
+  let leaderboard;
+  try {
+    const parsed = JSON.parse(localStorage.getItem("leaderboard"));
+    leaderboard =
+      Array.isArray(parsed) &&
+      parsed.every(
+        (entry) =>
+          typeof entry.player === "string" && typeof entry.score === "number"
       )
-        return `Line ${lineName}`;
-    })
-    .filter(Boolean)
-    .join(", ");
-  if (linesDetails) message += ` on ${linesDetails}`;
-  resultDisplay.textContent = message;
-  resultDisplay.className = payout > 0 ? "win" : "lose";
+        ? parsed
+        : [];
+  } catch {
+    leaderboard = [];
+  }
+  resultDisplay.classList.toggle("win", payout > 0);
 }
 
-function updateLeaderboard(playerName, credits) {
-  // Dummy implementation
-  console.log(`Updated leaderboard: ${playerName} - ${credits}`);
-  // Add to your leaderboard display logic here (e.g., localStorage)
+function updateLeaderboard(player, score) {
+  if (!player) return;
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  const index = leaderboard.findIndex((entry) => entry.player === player);
+  if (index !== -1 && score > leaderboard[index].score)
+    leaderboard[index].score = score;
+  else if (index === -1) leaderboard.push({ player, score });
+
+  leaderboard.sort(
+    (a, b) => b.score - a.score || a.player.localeCompare(b.player)
+  );
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+  displayLeaderboard();
 }
+
+function displayLeaderboard() {
+  leaderboardList.innerHTML = "";
+  (JSON.parse(localStorage.getItem("leaderboard")) || [])
+    .slice(0, 5)
+    .forEach(({ player, score }) => {
+      const li = document.createElement("li");
+      li.textContent = `${player}: ${score} credits`;
+      leaderboardList.appendChild(li);
+    });
+}
+
+document.getElementById("playerForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const player = playerNameInput.value.trim();
+  if (player) {
+    playerName = player;
+    localStorage.setItem("playerName", player);
+    const notification = document.createElement("div");
+    notification.textContent = "Player name set!";
+    notification.className = "notification";
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+    playerNameInput.value = stored.trim();
+    playerName = stored.trim();
+  } else {
+    localStorage.removeItem("playerName");
+    playerNameInput.value = "";
+    playerName = "";
+  }
+});
 
 spinButton.addEventListener("click", spin);
+const stored = localStorage.getItem("playerName");
+if (stored) {
+  playerNameInput.value = stored;
+  playerName = stored;
+}
+init();

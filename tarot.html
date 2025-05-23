@@ -14,61 +14,47 @@
 </head>
 
 <body>
-    <div class="container left-container">
-        <div class="container-content">
-
-            <div class="dropdown hover">
-                <select class="spreadSelect" id="spreadSelect">
-                    <option value="default" selected>Choose a Spread</option>
-                    <option value="celtic-cross">Celtic Cross</option>
-                    <option value="guidance">Guidance</option>
-                    <li data-value="ancestral-connection">Ancestral Connection</li>
-                    <option value="two-options">Two Options</option>
-                    <option value="three-card">Three-Card</option>
-                </select>
-            </div>
-            <br>
-        </div>
-
-        <div id="controls">
-            <button id="randomizeBtn" class="icon-button" title="Randomize">
-                <i src="./images/001_magic.png" alt="Randomize" width="50" height="50"></i>
-            </button><br>
-
-            <button id="resetBtn" class="icon-button" title="Reset">
-                <i src="./images/006_magic.png" alt="Reset" width="50" height="50"></i>
-            </button><br>
-
-            <button id="reshuffleBtn" class="icon-button" title="Reshuffle">
-                <i src="./images/004_magic.png" alt="Reshuffle" width="50" height="50"></i>
-            </button>
-        </div>
-
-        <div id="deck">
-            <!-- Example card structure for fallback -->
-            <div class="card">
-                <div class="card-inner">
-                    <div class="card-front" style="background-image: url('./images/tarot/fool.png');"></div>
-                    <div class="card-back" style="background-image: url('./images/tarot/back.png');"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Intro Overlay -->
+    <div id="introOverlay">
+        <div class="deck-intro"></div>
     </div>
 
-    <div class="container right-container">
-        <div id="cardModal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">×</span>
-                <div id="modalCardDescription"></div>
-            </div>
-        </div>
+    <!-- Dropdown Menu -->
+    <div class="dropdown">
+        <select id="spreadSelect">
+            <option value="three-card">Three Card</option>
+            <option value="celtic-cross">Celtic Cross</option>
+            <option value="guidance">Guidance</option>
+            <option value="ancestral-connection">Ancestral Connection</option>
+            <option value="two-options">Two Options</option>
+        </select>
     </div>
 
+    <!-- Card Deck -->
+    <div id="deck" class="deck"></div>
 
+    <!-- Controls -->
+    <div id="controls">
+        <button id="randomizeBtn" class="icon-button" title="Randomize">
+            <i src="./images/001_magic.png" alt="Randomize" width="50" height="50">i'm feeling lucky</i>
+        </button>
+        <button id="resetBtn" class="icon-button" title="Reset">
+            <i src="./images/006_magic.png" alt="Reset" width="50" height="50">reset</i>
+        </button>
+        <button id="reshuffleBtn" class="icon-button" title="Reshuffle">
+            <i src="./images/004_magic.png" alt="Reshuffle" width="50" height="50">reshuffle</i>
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div id="cardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <div id="modalCardDescription"></div>
+        </div>
+    </div>
 
     <script src="tarot.js" defer></script>
-
 </body>
 
 </html>
