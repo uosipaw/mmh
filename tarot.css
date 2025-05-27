@@ -35,8 +35,6 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* Keep background static */
-    color: rgb(22, 9, 18);
     position: relative;
     /* For absolute positioning of children */
     display: flex;
@@ -215,7 +213,7 @@ body {
     justify-content: flex-end;
     flex-direction: row;
     gap: 20px;
-    color: rgb(46, 2, 33);
+    color: rgba(46, 2, 33, 0);
     background: none;
     box-shadow: none;
 }
