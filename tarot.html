@@ -2,60 +2,37 @@
 <html lang="en">
 
 <head>
-    <title>work in progress</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="Tarot Card Reading Application" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="tarot.css" />
-    <link rel="preload" href="tarot-cards.json" as="fetch" type="application/json" crossorigin="anonymous">
-    <script src="tarot.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarot Reading</title>
+    <link rel="stylesheet" href="tarot.css" />
 </head>
 
 <body>
     <div class="tarot-layout">
-        <!-- Left: Spread/labels/descriptions -->
         <div class="tarot-left">
-            <!-- Dropdown Menu -->
-            <div class="dropdown">
-                <label for="spreadSelect" class="visually-hidden">Choose a Tarot Spread</label>
-                <select id="spreadSelect" aria-label="Choose a Tarot Spread">
-                    <option value="default" selected>Choose a Spread</option>
-                    <option value="three-card">Three Card</option>
-                    <option value="celticCross">Celtic Cross</option>
-                </select>
-                <div id="spreadDescription"
-                    style="margin-top: 10px; text-align: right; font-size: 1.1em; color: #140437; min-height: 2em;">
-                    class="spread-description">
-                </div>
-                <div id="spreadDescriptions" class="spread-descriptions"></div>
-            </div>
-            <!-- Right: Card grid and modal -->
-            <div class="tarot-right">
-                <div id="deck" aria-label="Tarot card spread" tabindex="0"></div>
-                <div id="cardModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalCardTitle"
-                    aria-describedby="modalCardDescription" tabindex="-1">
-                    <div class="modal-content">
-                        <span class="close-modal" tabindex="0" aria-label="Close card details">×</span>
-                        <div id="modalCardDescription"></div>
-                    </div>
-                </div>
-            </div>
+            <select id="spreadSelect">
+                <option value="default">Select a spread</option>
+                <option value="threeCard">Three Card</option>
+                <option value="celticCross">Celtic Cross</option>
+            </select>
+            <div id="spreadDescriptions" class="spread-descriptions"></div>
         </div>
-        <!-- Controls -->
-        <div id="controls">
-            <button id="randomizeBtn" class="icon-button" title="Randomize" aria-label="Randomize spread">
-                <img src="./images/001_magic.png" alt="Randomize" width="50" height="50" />
-            </button>
-            <button id="resetBtn" class="icon-button" title="Reset" aria-label="Reset spread">
-                <img src="./images/006_magic.png" alt="Reset" width="50" height="50" />
-            </button>
-            <button id="reshuffleBtn" class="icon-button" title="Reshuffle" aria-label="Reshuffle deck">
-                <img src="./images/004_magic.png" alt="Reshuffle" width="50" height="50" />
-            </button>
+        <div class="tarot-right">
+            <div id="deck"></div>
         </div>
-        <script src="tarot.js" defer></script>
+    </div>
+
+    <div id="controls">
+        <button id="reshuffleBtn">🔄</button>
+        <button id="resetBtn">♻️</button>
+    </div>
+
+    <div id="cardModal" class="modal">
+        <div class="modal-content"></div>
+    </div>
+
+    <script src="tarot.js"></script>
 </body>
 
 </html>

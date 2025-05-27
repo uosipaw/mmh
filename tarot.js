@@ -1,7 +1,9 @@
-const deck = document.getElementById("deck");
+const deckEl = document.getElementById("deck");
 const spreadSelect = document.getElementById("spreadSelect");
-let cardElements = [];
-let lastFocusedElement = null;
+const spreadDescriptionsDiv = document.getElementById("spreadDescriptions");
+
+let fullDeck = [];
+
 const spreadLayouts = {
   celticCross: {
     numCards: 10,
@@ -32,194 +34,194 @@ const spreadLayouts = {
   },
 };
 
-// Load the full deck from tarot-cards.json
-let fullDeck = [];
 fetch("tarot-cards.json")
   .then((res) => res.json())
   .then((data) => {
     fullDeck = data.cards;
-    // Optionally, initialize the deck/spread here if needed
-    // e.g., createCards(fullDeck);
-  });
+  })
+  .catch((err) => console.error("Error loading JSON:", err));
 
-// Helper to create a card DOM element with unique face and common back
-function createCardElement(cardData, cardSize) {
+function shuffleDeck(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function calculateCardSize(spread, containerWidth, containerHeight) {
+  const padding = 20;
+  const cols = spread.columns;
+  const rows = spread.rows;
+
+  const width = (containerWidth - (cols + 1) * padding) / cols;
+  const height = (containerHeight - (rows + 1) * padding) / rows;
+
+  return {
+    width: Math.min(width, 180),
+    height: Math.min(height, 270),
+  };
+}
+
+function createCardElement(
+  cardData,
+  index,
+  orientation = "upright",
+  label = "",
+  size
+) {
   const card = document.createElement("div");
   card.className = "card";
-  card.setAttribute("tabindex", "0");
-  card.setAttribute("data-id", cardData.id);
+  card.tabIndex = 0;
+  card.style.width = `${size.width}px`;
+  card.style.height = `${size.height}px`;
 
-  // Card inner for flip animation
-  const cardInner = document.createElement("div");
-  cardInner.className = "card-inner";
+  // Do NOT add 'flipped' class initially; all cards start face down
+  // Do NOT add 'reversed' class at creation, only use orientation for later logic if needed
+  // Only add 'flipped' when user clicks
 
-  // Card front (face)
-  const cardFront = document.createElement("div");
-  cardFront.className = "card-front";
-  const faceImg = document.createElement("img");
-  faceImg.src = `./images/tarot/${cardData.id}.png`;
-  faceImg.alt = cardData.name;
-  cardFront.appendChild(faceImg);
+  const inner = document.createElement("div");
+  inner.className = "card-inner";
 
-  // Card back (shared image)
-  const cardBack = document.createElement("div");
-  cardBack.className = "card-back";
+  const front = document.createElement("div");
+  front.className = "card-front";
+  const face = document.createElement("img");
+  face.src = `./images/tarot/${cardData.id}.png`;
+  face.alt = cardData.name;
+  front.appendChild(face);
+
+  const back = document.createElement("div");
+  back.className = "card-back";
   const backImg = document.createElement("img");
   backImg.src = "./images/tarot/back.png";
-  backImg.alt = "Tarot Card Back";
-  cardBack.appendChild(backImg);
+  backImg.alt = "Back of card";
+  back.appendChild(backImg);
 
-  cardInner.appendChild(cardFront);
-  cardInner.appendChild(cardBack);
-  card.appendChild(cardInner);
+  inner.appendChild(front);
+  inner.appendChild(back);
+  card.appendChild(inner);
 
-  // Optionally set card size
-  if (cardSize) {
-    card.style.width = cardSize.width + "px";
-    card.style.height = cardSize.height + "px";
+  // Remove manual visibility settings; let CSS handle face up/down
+  // (Do not set front.style.visibility or back.style.visibility)
+
+  // Set up upright/reversed logic for description and image rotation
+  let cardOrientation = orientation;
+  let cardDescription =
+    cardData.description?.[cardOrientation] || cardData.meaning;
+  if (cardOrientation === "reversed") {
+    face.style.transform = "rotate(180deg)";
+  } else {
+    face.style.transform = "none";
   }
 
-  // ...add event listeners for flip/modal as needed...
+  card.addEventListener("click", () => {
+    if (!card.classList.contains("flipped")) {
+      card.classList.add("flipped");
+      setTimeout(() => {
+        addCardDescription(
+          { ...cardData, description: { [cardOrientation]: cardDescription } },
+          cardOrientation,
+          label
+        );
+      }, 800);
+    } else {
+      showModal(
+        { ...cardData, description: { [cardOrientation]: cardDescription } },
+        cardOrientation
+      );
+    }
+  });
 
   return card;
 }
 
-function createCards(cards) {
-  const layout = spreadSelect.value;
-  const spreadLayout = spreadLayouts[layout];
-  if (!spreadLayout) return;
+function addCardDescription(cardData, orientation, label = "") {
+  const descBlock = document.createElement("div");
+  descBlock.className = "card-desc-block";
+  descBlock.innerHTML = `
+    <div class="card-desc-label">${label} (${orientation})</div>
+    <div class="card-desc-text">${
+      cardData.description?.[orientation] || cardData.meaning
+    }</div>
+  `;
+  spreadDescriptionsDiv.appendChild(descBlock);
+}
+
+function createCards(cardPool) {
+  const layoutKey = spreadSelect.value;
+  const spread = spreadLayouts[layoutKey];
+  if (!spread) return;
+
+  const selectedCards = cardPool.slice(0, spread.numCards);
+  deckEl.innerHTML = "";
+  spreadDescriptionsDiv.innerHTML = "";
+
+  deckEl.style.gridTemplateColumns = `repeat(${spread.columns}, 1fr)`;
+  deckEl.style.gridTemplateRows = `repeat(${spread.rows}, 1fr)`;
 
   const cardSize = calculateCardSize(
-    layout,
-    deck.offsetWidth,
-    deck.offsetHeight
+    spread,
+    deckEl.offsetWidth,
+    deckEl.offsetHeight
   );
-  const selectedCards = cards.slice(0, spreadLayout.numCards);
 
-  deck.innerHTML = "";
-  cardElements = [];
-
-  deck.style.gridTemplateColumns = `repeat(${spreadLayout.columns}, 1fr)`;
-  deck.style.gridTemplateRows = `repeat(${spreadLayout.rows}, 1fr)`;
-
-  // Render all card descriptions for the spread in the left column
-  const spreadDescriptionsDiv = document.getElementById("spreadDescriptions");
-  spreadDescriptionsDiv.innerHTML = "";
   selectedCards.forEach((cardData, i) => {
-    const pos = spreadLayout.positions[i + 1];
-    const descBlock = document.createElement("div");
-    descBlock.className = "card-desc-block";
-    const label = document.createElement("div");
-    label.className = "card-desc-label";
-    label.textContent = pos && pos.label ? pos.label : cardData.name;
-    const text = document.createElement("div");
-    text.className = "card-desc-text";
-    text.textContent = cardData.meaning || "";
-    descBlock.appendChild(label);
-    descBlock.appendChild(text);
-    spreadDescriptionsDiv.appendChild(descBlock);
-  });
-
-  // Render cards in the right column
-  selectedCards.forEach((cardData, i) => {
-    const card = createCardElement(cardData, cardSize);
-    const pos = spreadLayout.positions[i + 1];
-    // Position cards in grid (right side)
-    card.style.gridArea = pos && pos.gridArea ? pos.gridArea : "auto";
-    deck.appendChild(card);
-    cardElements.push(card);
+    const pos = spread.positions[i + 1];
+    const orientation = Math.random() > 0.5 ? "upright" : "reversed";
+    const card = createCardElement(
+      cardData,
+      i,
+      orientation,
+      pos?.label || cardData.name,
+      cardSize
+    );
+    if (pos?.gridArea) card.style.gridArea = pos.gridArea;
+    deckEl.appendChild(card);
   });
 }
 
-function showModal(cardData) {
-  // Find the modal and modal-content in the right pane
-  const tarotRight = document.querySelector(".tarot-right");
-  let modal = tarotRight.querySelector(".modal");
-
-  // If modal doesn't exist (shouldn't happen), create it
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.className = "modal";
-    modal.setAttribute("role", "dialog");
-    modal.setAttribute("aria-modal", "true");
-    modal.setAttribute("tabindex", "-1");
-    tarotRight.appendChild(modal);
-  }
-
-  modal.innerHTML = `
-    <div class="modal-content" tabindex="0">
-      <span class="close-modal" tabindex="0" aria-label="Close card details">&times;</span>
-      <img src="./images/tarot/${cardData.id}.png" alt="${cardData.name}" />
-      <h2 id="modalCardTitle">${cardData.name}</h2>
-      <p id="modalCardDescription">${cardData.meaning || ""}</p>
-    </div>
-  `;
+function showModal(cardData, orientation = "upright") {
+  const modal = document.getElementById("cardModal");
   modal.classList.add("show");
   document.body.classList.add("modal-bg-blur");
 
-  // Focus trap logic (same as before)
-  const focusableSelectors =
-    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-  const focusableEls = modal.querySelectorAll(focusableSelectors);
-  const firstFocusable = focusableEls[0];
-  const lastFocusable = focusableEls[focusableEls.length - 1];
-  lastFocusedElement = document.activeElement;
-  if (firstFocusable) firstFocusable.focus();
+  const content = modal.querySelector(".modal-content");
+  content.innerHTML = `
+    <span class="close-modal" tabindex="0">&times;</span>
+    <img src="./images/tarot/${cardData.id}.png" 
+         alt="${cardData.name}" 
+         style="transform: ${
+           orientation === "reversed" ? "rotate(180deg)" : "none"
+         };" />
+    <h2>${cardData.name} (${orientation})</h2>
+    <p>${cardData.description?.[orientation] || cardData.meaning}</p>
+  `;
 
-  function trapFocus(e) {
-    if (e.key !== "Tab") return;
-    if (focusableEls.length === 0) return;
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusable) {
-        e.preventDefault();
-        lastFocusable.focus();
-      }
-    } else {
-      if (document.activeElement === lastFocusable) {
-        e.preventDefault();
-        firstFocusable.focus();
-      }
-    }
-  }
-
-  function closeModal() {
+  const close = () => {
     modal.classList.remove("show");
     document.body.classList.remove("modal-bg-blur");
-    document.removeEventListener("keydown", escListener);
-    document.removeEventListener("keydown", trapFocus);
-    if (lastFocusedElement) lastFocusedElement.focus();
-  }
-
-  function escListener(e) {
-    if (e.key === "Escape") closeModal();
-  }
-  document.addEventListener("keydown", escListener);
-  document.addEventListener("keydown", trapFocus);
-
-  // Close modal logic (close button)
-  const closeBtn = modal.querySelector(".close-modal");
-  closeBtn.onclick = closeModal;
-  closeBtn.onkeydown = (e) => {
-    if (e.key === "Enter" || e.key === " ") closeModal();
   };
-  // Close modal when clicking outside modal-content
+
+  content.querySelector(".close-modal").onclick = close;
   modal.onclick = (e) => {
-    if (e.target === modal) closeModal();
+    if (e.target === modal) close();
   };
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const introOverlay = document.getElementById("introOverlay");
-  const deckIntro = document.querySelector(".deck-intro");
-  if (deckIntro) {
-    deckIntro.addEventListener("click", () => {
-      introOverlay.classList.add("hide");
-      setTimeout(() => {
-        if (introOverlay.parentNode) {
-          introOverlay.parentNode.removeChild(introOverlay);
-        }
-      }, 600); // Wait for fade-out transition
-      reshuffle();
-    });
-  }
+spreadSelect.addEventListener("change", () => {
+  if (spreadSelect.value === "default" || fullDeck.length === 0) return;
+  const cardPool = shuffleDeck(fullDeck);
+  createCards(cardPool);
+});
+
+document.getElementById("reshuffleBtn").addEventListener("click", () => {
+  if (spreadSelect.value === "default" || fullDeck.length === 0) return;
+  const cardPool = shuffleDeck(fullDeck);
+  createCards(cardPool);
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  deckEl.innerHTML = "";
+  spreadDescriptionsDiv.innerHTML = "";
 });
