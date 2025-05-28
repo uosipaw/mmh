@@ -1,0 +1,259 @@
+:root {
+    --font-main: "Days of Love", sans-serif;
+    --text-light: #faf7eb;
+    --text-dark: #2a1a2a;
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --highlight: #d4af37;
+    --modal-bg: rgba(30, 30, 30, 0.95);
+}
+
+/* Font */
+@font-face {
+    font-family: "Days of Love";
+    src: url("./fonts/Days of Love.ttf") format("truetype");
+}
+
+/* Base body */
+body {
+    font-family: var(--font-main);
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: url('./images/tarott.png') center/cover fixed no-repeat;
+    display: flex;
+    justify-content: center;
+}
+
+/* Layout */
+.tarot-layout {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.tarot-left {
+    flex: 0 0 38vw;
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+}
+
+.tarot-right {
+    flex: 1;
+    padding: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Grid for card spread */
+#deck {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+}
+
+/* Card styles */
+.card {
+    perspective: 1000px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform: rotateY(0deg);
+    /* face down by default */
+}
+
+.card.flipped .card-inner,
+.card.reversed .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    z-index: 2;
+}
+
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+    transform: none;
+    z-index: 1;
+}
+
+/* Ensure .card.flipped .card-front is on top, .card.flipped .card-back is hidden */
+.card.flipped .card-front {
+    z-index: 2;
+}
+
+.card.flipped .card-back {
+    z-index: 1;
+}
+
+.card-front img,
+.card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Spread descriptions */
+.spread-descriptions {
+    margin-top: 2em;
+    padding: 1em;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow-y: auto;
+    max-height: 60vh;
+    color: var(--text-dark);
+}
+
+.card-desc-block {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.8s;
+    margin-bottom: 1.2em;
+}
+
+.card-desc-label {
+    font-weight: bold;
+    font-size: 1.05em;
+    margin-bottom: 0.2em;
+    color: #3b0c2e;
+}
+
+.card-desc-text {
+    font-size: 0.95em;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    padding: 2em;
+    border-radius: 16px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.modal-content img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    margin-bottom: 1em;
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Controls */
+#controls {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
+    display: flex;
+    gap: 16px;
+    z-index: 999;
+}
+
+#controls button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, rgba(87, 37, 144, 0.7), rgba(212, 175, 55, 0.7));
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#controls button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .tarot-layout {
+        flex-direction: column;
+    }
+
+    .tarot-left,
+    .tarot-right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #deck {
+        height: 48vh;
+        width: 95vw;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .card {
+        width: 100px !important;
+        height: 150px !important;
+    }
+
+    .spread-descriptions {
+        max-height: 40vh;
+    }
+}

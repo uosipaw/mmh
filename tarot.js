@@ -4,22 +4,23 @@ const spreadDescriptionsDiv = document.getElementById("spreadDescriptions");
 
 let fullDeck = [];
 
+// Updated spreadLayouts keys to match HTML and CSS (camelCase)
 const spreadLayouts = {
   celticCross: {
     numCards: 10,
-    columns: 3,
+    columns: 4,
     rows: 4,
     positions: {
-      1: { label: "Present", gridArea: "2 / 2 / 3 / 3" },
-      2: { label: "Challenge", gridArea: "2 / 3 / 3 / 4" },
-      3: { label: "Past", gridArea: "1 / 2 / 2 / 3" },
-      4: { label: "Future", gridArea: "3 / 2 / 4 / 3" },
-      5: { label: "Above", gridArea: "2 / 1 / 3 / 2" },
-      6: { label: "Below", gridArea: "4 / 2 / 5 / 3" },
-      7: { label: "Advice", gridArea: "1 / 3 / 2 / 4" },
-      8: { label: "External", gridArea: "3 / 3 / 4 / 4" },
-      9: { label: "Hopes", gridArea: "4 / 3 / 5 / 4" },
-      10: { label: "Outcome", gridArea: "4 / 1 / 5 / 2" },
+      1: { label: "Present" },
+      2: { label: "Challenge" },
+      3: { label: "Past" },
+      4: { label: "Future" },
+      5: { label: "Above" },
+      6: { label: "Below" },
+      7: { label: "Advice" },
+      8: { label: "External" },
+      9: { label: "Hopes" },
+      10: { label: "Outcome" },
     },
   },
   threeCard: {
@@ -27,12 +28,103 @@ const spreadLayouts = {
     columns: 3,
     rows: 1,
     positions: {
-      1: { label: "Past", gridArea: "1 / 1 / 2 / 2" },
-      2: { label: "Present", gridArea: "1 / 2 / 2 / 3" },
-      3: { label: "Future", gridArea: "1 / 3 / 2 / 4" },
+      1: { label: "Past" },
+      2: { label: "Present" },
+      3: { label: "Future" },
+    },
+  },
+  crossSpread: {
+    numCards: 5,
+    columns: 3,
+    rows: 3,
+    positions: {
+      1: { label: "Center" },
+      2: { label: "Top" },
+      3: { label: "Right" },
+      4: { label: "Bottom" },
+      5: { label: "Left" },
+    },
+  },
+  horseshoe: {
+    numCards: 7,
+    columns: 7,
+    rows: 1,
+    positions: {
+      1: { label: "Past" },
+      2: { label: "Present" },
+      3: { label: "Hidden" },
+      4: { label: "Obstacles" },
+      5: { label: "Environment" },
+      6: { label: "Advice" },
+      7: { label: "Outcome" },
+    },
+  },
+  pentagram: {
+    numCards: 5,
+    columns: 3,
+    rows: 3,
+    positions: {
+      1: { label: "Spirit" },
+      2: { label: "Air" },
+      3: { label: "Water" },
+      4: { label: "Fire" },
+      5: { label: "Earth" },
+    },
+  },
+  eightCards: {
+    // fixed key
+    numCards: 8,
+    columns: 3,
+    rows: 4,
+    positions: {
+      1: { label: "Card1" },
+      2: { label: "Card2" },
+      3: { label: "Card3" },
+      4: { label: "Card4" },
+      5: { label: "Card5" },
+      6: { label: "Card6" },
+      7: { label: "Card7" },
+      8: { label: "Card8" },
+    },
+  },
+  sixCards: {
+    // fixed key
+    numCards: 6,
+    columns: 3,
+    rows: 3,
+    positions: {
+      1: { label: "Card1" },
+      2: { label: "Card2" },
+      3: { label: "Card3" },
+      4: { label: "Card4" },
+      5: { label: "Card5" },
+      6: { label: "Card6" },
+    },
+  },
+  loveSpread: {
+    // fixed key
+    numCards: 8,
+    columns: 3,
+    rows: 3,
+    positions: {
+      1: { label: "Card1" },
+      2: { label: "Card2" },
+      3: { label: "Card3" },
+      4: { label: "Card4" },
+      5: { label: "Card5" },
+      6: { label: "Card6" },
+      7: { label: "Card7" },
+      8: { label: "Card8" },
     },
   },
 };
+
+// Defensive: check for required DOM elements
+if (!deckEl || !spreadSelect || !spreadDescriptionsDiv) {
+  throw new Error(
+    "Required DOM elements not found. Check your HTML structure."
+  );
+}
 
 fetch("tarot-cards.json")
   .then((res) => res.json())
@@ -51,16 +143,44 @@ function shuffleDeck(array) {
 }
 
 function calculateCardSize(spread, containerWidth, containerHeight) {
-  const padding = 20;
+  const gap = 1; // match CSS grid gap
   const cols = spread.columns;
   const rows = spread.rows;
 
-  const width = (containerWidth - (cols + 1) * padding) / cols;
-  const height = (containerHeight - (rows + 1) * padding) / rows;
+  // Clamp padding to match .tarot-right and #deck
+  const horizontalPadding = 2 * 0.01 * window.innerWidth; // 2vw left/right
+  const verticalPadding = 2 * 0.01 * window.innerHeight; // 2vw top/bottom
+
+  // Calculate available width/height for the grid inside .tarot-right
+  const availableWidth = containerWidth - horizontalPadding;
+  const availableHeight = Math.min(
+    containerHeight - verticalPadding,
+    window.innerHeight * 0.8
+  );
+
+  // Calculate available width/height for cards (subtracting total gaps)
+  const totalGapWidth = gap * (cols - 1);
+  const totalGapHeight = gap * (rows - 1);
+
+  const maxWidth = (availableWidth - totalGapWidth) / cols;
+  const maxHeight = (availableHeight - totalGapHeight) / rows;
+
+  // Maintain 343:480 aspect ratio
+  const aspect = 343 / 480;
+  let width = maxWidth;
+  let height = width / aspect;
+  if (height > maxHeight) {
+    height = maxHeight;
+    width = height * aspect;
+  }
+
+  // Clamp to reasonable min/max for usability
+  width = Math.max(40, Math.min(width, 240));
+  height = Math.max(56, Math.min(height, 336)); // 40/0.714 ≈ 56, 240/0.714 ≈ 336
 
   return {
-    width: Math.min(width, 180),
-    height: Math.min(height, 270),
+    width,
+    height,
   };
 }
 
@@ -74,12 +194,9 @@ function createCardElement(
   const card = document.createElement("div");
   card.className = "card";
   card.tabIndex = 0;
+  // Set calculated size
   card.style.width = `${size.width}px`;
   card.style.height = `${size.height}px`;
-
-  // Do NOT add 'flipped' class initially; all cards start face down
-  // Do NOT add 'reversed' class at creation, only use orientation for later logic if needed
-  // Only add 'flipped' when user clicks
 
   const inner = document.createElement("div");
   inner.className = "card-inner";
@@ -89,6 +206,10 @@ function createCardElement(
   const face = document.createElement("img");
   face.src = `./images/tarot/${cardData.id}.png`;
   face.alt = cardData.name;
+  face.onerror = function () {
+    this.src = "./images/tarot/back.png";
+    this.alt = "Image not found";
+  };
   front.appendChild(face);
 
   const back = document.createElement("div");
@@ -102,10 +223,6 @@ function createCardElement(
   inner.appendChild(back);
   card.appendChild(inner);
 
-  // Remove manual visibility settings; let CSS handle face up/down
-  // (Do not set front.style.visibility or back.style.visibility)
-
-  // Set up upright/reversed logic for description and image rotation
   let cardOrientation = orientation;
   let cardDescription =
     cardData.description?.[cardOrientation] || cardData.meaning;
@@ -153,18 +270,28 @@ function createCards(cardPool) {
   const spread = spreadLayouts[layoutKey];
   if (!spread) return;
 
+  deckEl.className = layoutKey !== "default" ? layoutKey : "";
+
+  // Get the actual size of the right panel for sizing
+  const rightPanel = document.querySelector(".tarot-right");
+  let containerWidth = rightPanel
+    ? rightPanel.clientWidth
+    : window.innerWidth * 0.6;
+  let containerHeight = rightPanel
+    ? rightPanel.clientHeight
+    : window.innerHeight;
+
+  // For mobile, use window size if right panel is too small
+  if (window.innerWidth < 900) {
+    containerWidth = window.innerWidth * 0.95;
+    containerHeight = window.innerHeight * 0.48;
+  }
+
+  const cardSize = calculateCardSize(spread, containerWidth, containerHeight);
+
   const selectedCards = cardPool.slice(0, spread.numCards);
   deckEl.innerHTML = "";
   spreadDescriptionsDiv.innerHTML = "";
-
-  deckEl.style.gridTemplateColumns = `repeat(${spread.columns}, 1fr)`;
-  deckEl.style.gridTemplateRows = `repeat(${spread.rows}, 1fr)`;
-
-  const cardSize = calculateCardSize(
-    spread,
-    deckEl.offsetWidth,
-    deckEl.offsetHeight
-  );
 
   selectedCards.forEach((cardData, i) => {
     const pos = spread.positions[i + 1];
@@ -176,24 +303,30 @@ function createCards(cardPool) {
       pos?.label || cardData.name,
       cardSize
     );
-    if (pos?.gridArea) card.style.gridArea = pos.gridArea;
+    if (pos?.label) {
+      // Use area names matching CSS (lowercase, no spaces)
+      const area = pos.label.toLowerCase().replace(/[^a-z0-9]/g, "");
+      card.setAttribute("data-area", area);
+    }
     deckEl.appendChild(card);
   });
 }
 
 function showModal(cardData, orientation = "upright") {
   const modal = document.getElementById("cardModal");
+  if (!modal) return;
   modal.classList.add("show");
   document.body.classList.add("modal-bg-blur");
 
   const content = modal.querySelector(".modal-content");
+  if (!content) return;
   content.innerHTML = `
     <span class="close-modal" tabindex="0">&times;</span>
     <img src="./images/tarot/${cardData.id}.png" 
          alt="${cardData.name}" 
          style="transform: ${
            orientation === "reversed" ? "rotate(180deg)" : "none"
-         };" />
+         };" onerror="this.src='./images/tarot/back.png';this.alt='Image not found';" />
     <h2>${cardData.name} (${orientation})</h2>
     <p>${cardData.description?.[orientation] || cardData.meaning}</p>
   `;
@@ -203,9 +336,25 @@ function showModal(cardData, orientation = "upright") {
     document.body.classList.remove("modal-bg-blur");
   };
 
-  content.querySelector(".close-modal").onclick = close;
+  const closeBtn = content.querySelector(".close-modal");
+  if (closeBtn) {
+    closeBtn.onclick = close;
+    closeBtn.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
+        close();
+      }
+    };
+  }
+  // Remove previous event to avoid stacking
+  modal.onclick = null;
   modal.onclick = (e) => {
     if (e.target === modal) close();
+  };
+  // Allow ESC key to close modal
+  document.onkeydown = function (e) {
+    if (modal.classList.contains("show") && e.key === "Escape") {
+      close();
+    }
   };
 }
 
@@ -224,4 +373,12 @@ document.getElementById("reshuffleBtn").addEventListener("click", () => {
 document.getElementById("resetBtn").addEventListener("click", () => {
   deckEl.innerHTML = "";
   spreadDescriptionsDiv.innerHTML = "";
+});
+
+// Optional: Re-render cards on window resize for full responsiveness
+window.addEventListener("resize", () => {
+  if (spreadSelect.value !== "default" && fullDeck.length > 0) {
+    const cardPool = shuffleDeck(fullDeck);
+    createCards(cardPool);
+  }
 });

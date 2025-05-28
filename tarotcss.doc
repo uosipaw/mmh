@@ -588,7 +588,7 @@ body {
 .card {
     width: clamp(110px, 12vw, 140px);
     /* Default larger size */
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 2;
     border-radius: 8px;
     background-size: cover;
     background-position: center;
@@ -659,7 +659,7 @@ body {
 .right-container .deck-area {
     width: clamp(110px, 12vw, 140px);
     /* Default larger size */
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 2;
     margin: 0 auto 20px;
     position: relative;
 }
@@ -1076,7 +1076,7 @@ body {
 
 .modal-card-image {
     width: clamp(150px, 35%, 200px);
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 2;
     border-radius: 10px;
     margin-bottom: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
