@@ -28,16 +28,23 @@ var cols;
 
 window.addEventListener("DOMContentLoaded", function (event) {
   cols = document.querySelectorAll(".col");
-
   setInitialItems();
+  // Mobile: scroll to game on load if screen is small
+  if (window.innerWidth < 700) {
+    setTimeout(() => {
+      const container = document.getElementById("container");
+      if (container)
+        container.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 200);
+  }
 });
 
 function setInitialItems() {
-  let baseItemAmount = 40;
+  let baseItemAmount = window.innerWidth < 700 ? 20 : 40;
 
   for (let i = 0; i < cols.length; ++i) {
     let col = cols[i];
-    let amountOfItems = baseItemAmount + i * 3; // Increment the amount for each column
+    let amountOfItems = baseItemAmount + i * (window.innerWidth < 700 ? 1 : 3);
     let elms = "";
     let firstThreeElms = "";
 
