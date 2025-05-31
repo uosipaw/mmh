@@ -4,6 +4,16 @@ const spreadDescriptionsDiv = document.getElementById("spreadDescriptions");
 
 let fullDeck = [];
 
+document.querySelectorAll(".icon-option").forEach((option) => {
+  option.addEventListener("click", () => {
+    document
+      .querySelectorAll(".icon-option")
+      .forEach((opt) => opt.classList.remove("selected"));
+    option.classList.add("selected");
+    document.getElementById("spreadSelect").value = option.dataset.value;
+  });
+});
+
 // Updated spreadLayouts keys to match HTML and CSS (camelCase)
 const spreadLayouts = {
   celticCross: {

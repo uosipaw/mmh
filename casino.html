@@ -6,70 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slot Machine</title>
     <link rel="stylesheet" href="casino.css">
-    <!-- Preload slot machine images -->
-    <link rel="preload" href="images/6slots0.png" as="image">
-    <link rel="preload" href="images/7slots1.png" as="image">
-    <link rel="preload" href="images/8slots2.png" as="image">
-    <link rel="preload" href="images/9slots3.png" as="image">
-    <link rel="preload" href="images/10slots4.png" as="image">
-    <link rel="preload" href="images/11slots5.png" as="image">
-    <link rel="preload" href="images/12slots6.png" as="image">
-    <link rel="preload" href="images/13slots7.png" as="image">
-    <script>
-      // Make slot symbol image paths available globally for JS
-      window.slotSymbolImages = [
-        "images/6slots0.png",
-        "images/7slots1.png",
-        "images/8slots2.png",
-        "images/9slots3.png",
-        "images/10slots4.png",
-        "images/11slots5.png",
-        "images/12slots6.png",
-        "images/13slots7.png"
-      ];
-    </script>
 </head>
 
 <body>
 
-    <div class="stats">
-        <div>Credits: <span id="credits">100</span></div>
-        <div>
-            Bet: <input type="number" id="bet" value="10" min="1" max="100" />
+    <div id="container">
+        <div class="window-border">
+            <div class="window">
+                <div class="outer-spacer"></div>
+                <div class="outer-col">
+                    <div class="col"></div>
+                </div>
+                <div class="outer-spacer"></div>
+                <div class="outer-col">
+                    <div class="col"></div>
+                </div>
+                <div class="outer-spacer"></div>
+                <div class="outer-col">
+                    <div class="col"></div>
+                </div>
+                <div class="outer-spacer"></div>
+                <div class="outer-col">
+                    <div class="col"></div>
+                </div>
+                <div class="outer-spacer"></div>
+                <div class="outer-col">
+                    <div class="col"></div>
+                </div>
+                <div class="outer-spacer"></div>
+            </div>
         </div>
+
+        <input type="button" onclick="spin(this)" class="start-button" value="Spin" />
     </div>
-
-    <div class="player-info">
-        Name: <input type="text" id="playerName" placeholder="Enter your name" />
-    </div>
-
-    <div class="slot-machine" id="slotMachine">
-        <div class="reel" id="reel0">
-            <div class="symbols"></div>
-        </div>
-        <div class="reel" id="reel1">
-            <div class="symbols"></div>
-        </div>
-        <div class="reel" id="reel2">
-            <div class="symbols"></div>
-        </div>
-        <div class="reel" id="reel3">
-            <div class="symbols"></div>
-        </div>
-        <div class="reel" id="reel4">
-            <div class="symbols"></div>
-        </div>
-    </div>
-
-    <button id="spinButton">Spin</button>
-    <div id="result"></div>
-
-    <div class="leaderboard-section">
-        <h3>🏆 Leaderboard</h3>
-        <ul id="leaderboard"></ul>
-    </div>
-
     <script src="casino.js"></script>
+
 </body>
 
 </html>

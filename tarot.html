@@ -10,23 +10,44 @@
 
 <body>
     <div class="tarot-layout">
+        <div class="spreadselector">
+            <div id="spreadOptions" class="icon-radio-group">
+                <div class="icon-option" data-value="threeCard" title="Three Card">
+                    <img src="icons/.png" alt="Three Card">
+                </div>
+                <div class="icon-option" data-value="celticCross" title="Celtic Cross">
+                    <img src="icons/celtic-cross.png" alt="Celtic Cross">
+                </div>
+                <div class="icon-option" data-value="crossSpread" title="Cross Spread">
+                    <img src="icons/cross-spread.png" alt="Cross Spread">
+                </div>
+                <div class="icon-option" data-value="horseshoe" title="Horseshoe">
+                    <img src="icons/horseshoe.png" alt="Horseshoe">
+                </div>
+                <div class="icon-option" data-value="pentagram" title="Pentagram">
+                    <img src="icons/pentagram.png" alt="Pentagram">
+                </div>
+                <div class="icon-option" data-value="eightCards" title="Eight Cards">
+                    <img src="icons/eight-cards.png" alt="Eight Cards">
+                </div>
+                <div class="icon-option" data-value="sixCards" title="Six Cards">
+                    <img src="icons/six-cards.png" alt="Six Cards">
+                </div>
+                <div class="icon-option" data-value="loveSpread" title="Love Spread">
+                    <img src="icons/love-spread.png" alt="Love Spread">
+                </div>
+            </div>
+        </div>
+
         <div class="tarot-left">
-            <select id="spreadSelect">
-                <option value="default">Select a spread</option>
-                <option value="threeCard">Three Card</option>
-                <option value="celticCross">Celtic Cross</option>
-                <option value="crossSpread">Cross Spread</option>
-                <option value="horseshoe">Horseshoe</option>
-                <option value="pentagram">Pentagram</option>
-                <option value="eightCards">Eight Cards</option>
-                <option value="sixCards">Six Cards</option>
-                <option value="loveSpread">Love Spread</option>
-            </select>
-            <div id="spreadDescriptions" class="spread-descriptions"></div>
         </div>
-        <div class="tarot-right">
-            <div id="deck"></div>
-        </div>
+
+        <input type="hidden" id="spreadSelect" name="spread" value="default">
+        <div id="spreadDescriptions" class="spread-descriptions"></div>
+    </div>
+    <div class="tarot-right">
+        <div id="deck"></div>
+    </div>
     </div>
 
     <div id="controls">

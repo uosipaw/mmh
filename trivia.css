@@ -1,0 +1,13 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#game-area {
+    margin-top: 20px;
+}
