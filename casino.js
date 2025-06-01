@@ -12,116 +12,87 @@ const ICONS = [
   "images/slot16.png",
   "images/slot17.png",
 ];
-'<img src="' + ICONS + '">';
-/**
- * @type {number} The minimum spin time in seconds
- */
+
 const BASE_SPINNING_DURATION = 2.7;
-
-/**
- * @type {number} The additional duration to the base duration for each row (in seconds).
- * It makes the typical effect that the first reel ends, then the second, and so on...
- */
 const COLUMN_SPINNING_DURATION = 0.3;
+const spinSound = new Audio("sounds/spin.mp3");
 
-var cols;
+let cols;
 
-window.addEventListener("DOMContentLoaded", function (event) {
+window.addEventListener("DOMContentLoaded", () => {
   cols = document.querySelectorAll(".col");
   setInitialItems();
-  // Mobile: scroll to game on load if screen is small
   if (window.innerWidth < 700) {
     setTimeout(() => {
-      const container = document.getElementById("container");
-      if (container)
-        container.scrollIntoView({ behavior: "smooth", block: "start" });
+      document
+        .getElementById("container")
+        ?.scrollIntoView({ behavior: "smooth" });
     }, 200);
   }
 });
 
 function setInitialItems() {
-  let baseItemAmount = window.innerWidth < 700 ? 20 : 40;
+  const baseItemAmount = window.innerWidth < 700 ? 20 : 40;
 
-  for (let i = 0; i < cols.length; ++i) {
-    let col = cols[i];
-    let amountOfItems = baseItemAmount + i * (window.innerWidth < 700 ? 1 : 3);
+  cols.forEach((col, i) => {
+    const amountOfItems =
+      baseItemAmount + i * (window.innerWidth < 700 ? 1 : 3);
     let elms = "";
     let firstThreeElms = "";
 
     for (let x = 0; x < amountOfItems; x++) {
-      let icon = getRandomIcon();
-      let item =
-        '<div class="icon" data-item="' +
-        icon +
-        '"><img src="' +
-        icon +
-        '"></div>';
+      const icon = getRandomIcon();
+      const item = `<div class="icon" data-item="${icon}"><img src="${icon}" alt="Slot icon"></div>`;
       elms += item;
-
-      if (x < 3) firstThreeElms += item; // Backup the first three items because the last three must be the same
+      if (x < 3) firstThreeElms += item;
     }
     col.innerHTML = elms + firstThreeElms;
-  }
+  });
 }
 
-/**
- * Called when the start-button is pressed.
- *
- * @param elem The button itself
- */
-function spin(elem) {
+function spin(button) {
+  spinSound.play();
   let duration = BASE_SPINNING_DURATION + randomDuration();
 
-  for (let col of cols) {
-    // set the animation duration for each column
+  cols.forEach((col) => {
     duration += COLUMN_SPINNING_DURATION + randomDuration();
-    col.style.animationDuration = duration + "s";
-  }
+    col.style.animationDuration = `${duration}s`;
+  });
 
-  // disable the start-button
-  elem.setAttribute("disabled", true);
+  button.disabled = true;
+  const container = document.getElementById("container");
+  container.classList.add("spinning");
 
-  // set the spinning class so the css animation starts to play
-  document.getElementById("container").classList.add("spinning");
+  setTimeout(() => setResult(), (BASE_SPINNING_DURATION * 1000) / 2);
 
-  // set the result delayed
-  // this would be the right place to request the combination from the server
-  window.setTimeout(setResult, (BASE_SPINNING_DURATION * 1000) / 2);
-
-  window.setTimeout(
-    function () {
-      // after the spinning is done, remove the class and enable the button again
-      document.getElementById("container").classList.remove("spinning");
-      elem.removeAttribute("disabled");
-    }.bind(elem),
-    duration * 1000
-  );
+  setTimeout(() => {
+    container.classList.remove("spinning");
+    button.disabled = false;
+  }, duration * 1000);
 }
 
-/**
- * Sets the result items at the beginning and the end of the columns
- */
 function setResult() {
-  for (let col of cols) {
-    // generate 3 random items
-    let results = [getRandomIcon(), getRandomIcon(), getRandomIcon()];
+  cols.forEach((col) => {
+    const results = Array.from({ length: 3 }, getRandomIcon);
+    const icons = col.querySelectorAll(".icon img");
 
-    let icons = col.querySelectorAll(".icon img");
-    // replace the first and last three items of each column with the generated items
-    for (let x = 0; x < 3; x++) {
-      icons[x].setAttribute("src", results[x]);
-      icons[icons.length - 3 + x].setAttribute("src", results[x]);
+    for (let i = 0; i < 3; i++) {
+      icons[i].src = results[i];
+      icons[icons.length - 3 + i].src = results[i];
     }
-  }
+  });
 }
 
 function getRandomIcon() {
   return ICONS[Math.floor(Math.random() * ICONS.length)];
 }
 
-/**
- * @returns {number} 0.00 to 0.09 inclusive
- */
 function randomDuration() {
-  return Math.floor(Math.random() * 10) / 100;
+  return Math.random() * 0.09;
+}
+
+function toggleReferralSidebar(btn) {
+  const sidebar = document.getElementById("referrals-sidebar");
+  const expanded = sidebar.classList.toggle("active");
+  btn.setAttribute("aria-expanded", expanded);
 }
