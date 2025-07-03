@@ -53,6 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
     checkAnswer();
   });
 
+  // Allow submitting answer with Enter key
+  answerInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission if inside a form
+      checkAnswer();
+    }
+  });
+
   function checkAnswer(timeOut = false) {
     clearInterval(timerInterval); // Stop the timer
 

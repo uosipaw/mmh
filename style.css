@@ -5,12 +5,6 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
 /* Fonts */
 @font-face {
   font-family: "waiting-for-the-sunrise";
@@ -209,25 +203,59 @@ img {
 
 
 
-/* Style for main buttons */
+/* Style for main buttons - staggered layout */
 .button.links {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  /* Three columns for better spacing */
-  grid-template-rows: repeat(3, auto);
-  /* Three rows for better spacing */
-  gap: 50px;
-  /* Space between the links */
-  justify-content: space-evenly;
-  /* Evenly distribute links horizontally */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  /* Center links vertically */
+  gap: 30px;
   max-width: 90%;
   margin: 50px auto;
-  /* Center the grid on the page */
   position: relative;
   z-index: 5;
-  /* Ensure links are above the background */
+}
+
+/* Individual staggering for each button link */
+.button.links .link {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.button.links .link:hover {
+  transform: scale(1.05);
+}
+
+/* Stagger each link to different sides */
+.tips.link {
+  margin-left: -20%;
+}
+
+.dino.link {
+  margin-right: -15%;
+}
+
+.food.link {
+  margin-left: -10%;
+}
+
+.quotes.link {
+  margin-right: -25%;
+}
+
+.fun.link {
+  margin-left: -30%;
+}
+
+.about.link {
+  margin-right: -10%;
+}
+
+.howto.link {
+  margin-left: -15%;
+}
+
+.casino.link {
+  margin-right: -20%;
 }
 
 .link img {
@@ -237,23 +265,37 @@ img {
 }
 
 .cash.links {
-  margin-top: 100px;
-  text-align: center;
-  /* Center venmo and cashapp horizontally */
-
+  position: relative;
+  width: 200%;
+  height: auto;
+  pointer-events: none;
 }
 
 .cash.links a {
-  display: inline-block;
-  margin: 100px;
-  /* Increased from 10px to 40px for wider spacing */
-  /* Spacing between the icons */
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  pointer-events: all;
+  z-index: 100;
+}
+
+.cash.links a:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Position at edges */
+.venmo.link {
+  left: 0px;
+}
+
+.cashapp.link {
+  right: 0px;
 }
 
 /* Styles for Venmo and CashApp logos */
 .cash.links img {
-  max-width: 75px;
-  /* Further reduced max-width */
+  max-width: 35vw;
   height: auto;
   vertical-align: middle;
 }
@@ -264,100 +306,55 @@ img {
     padding: 0;
   }
 
-
-  /* General layout for larger screens using grid */
+  /* Enhanced staggering for desktop button links */
   .button.links {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
-    /* Two columns that can grow but start at 150px */
-    justify-content: space-evenly;
-    /* Evenly space the links */
-    align-items: center;
-    gap: 50px;
-    /* Increase spacing between the items */
-    max-width: 90%;
+    gap: 40px;
   }
 
-  /* Stagger and position using nth-child and transforms */
-  .bugs.link {
-    grid-column: 1;
-    /* Place on the left */
-    transform: translateY(calc(-20px * var(--stagger)));
-  }
-
-  .dino.link {
-    grid-column: 2;
-    /* Place on the right */
-    transform: translateY(calc(20px * var(--stagger)));
-  }
-
-  .food.link {
-    grid-column: 1;
-    /* Left */
-    transform: translateY(calc(10px * var(--stagger)));
-  }
-
-  .quotes.link {
-    grid-column: 2;
-    /* Right */
-    transform: translateY(calc(-30px * var(--stagger)));
-  }
-
-  .fun.link {
-    grid-column: 1;
-    /* Left */
-    transform: translateY(calc(30px * var(--stagger)));
-  }
-
-  .about.link {
-    grid-column: 2;
-    /* Right */
-    transform: translateY(calc(-10px * var(--stagger)));
-  }
-
-  .howto.link {
-    grid-column: 1;
-    /* Left */
-    transform: translateY(calc(-40px * var(--stagger)));
-  }
-
-  /* Set stagger variables. You can use this approach to further refine placement */
+  /* More pronounced staggering on desktop */
   .tips.link {
-    --stagger: 1;
+    margin-left: -25%;
   }
 
   .dino.link {
-    --stagger: 2;
+    margin-right: -20%;
   }
 
   .food.link {
-    --stagger: 3;
+    margin-left: -15%;
   }
 
   .quotes.link {
-    --stagger: 4;
+    margin-right: -30%;
   }
 
   .fun.link {
-    --stagger: 5;
+    margin-left: -35%;
   }
 
   .about.link {
-    --stagger: 6;
+    margin-right: -15%;
   }
 
   .howto.link {
-    --stagger: 7;
+    margin-left: -20%;
   }
 
+  .casino.link {
+    margin-right: -25%;
+  }
 
-
+  /* Enhanced cash links staggering */
   .cash.links img {
-    max-width: 300px;
-    /* Increased from 15% to 20% */
-    margin-right: 50%;
-    /* Increased from 15% to 20% */
-    /* Increased slightly for desktop */
+    max-width: 80px;
+  }
+
+  .venmo.link {
+    left: 30px;
+  }
+
+  .cashapp.link {
+    right: 30px;
   }
 }
 

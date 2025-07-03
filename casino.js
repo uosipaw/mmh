@@ -13,82 +13,77 @@ const ICONS = [
   "images/slot17.png",
 ];
 
-const BASE_SPINNING_DURATION = 2.7;
-const COLUMN_SPINNING_DURATION = 0.3;
-const spinSound = new Audio("sounds/spin.mp3");
+const NUM_REELS = 5;
+const NUM_ROWS = 3;
+const SPIN_DURATION = 1000; // ms
+const SYMBOLS_PER_REEL = ICONS.length;
 
-let cols;
+let reels;
+let spinButton;
 
 window.addEventListener("DOMContentLoaded", () => {
-  cols = document.querySelectorAll(".col");
-  setInitialItems();
-  if (window.innerWidth < 700) {
-    setTimeout(() => {
-      document
-        .getElementById("container")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
-  }
+  reels = Array.from(document.querySelectorAll(".col"));
+  spinButton = document.querySelector(".start-button");
+  setupReels();
+  spinButton.addEventListener("click", () => spin(spinButton));
 });
 
-function setInitialItems() {
-  const baseItemAmount = window.innerWidth < 700 ? 20 : 40;
-
-  cols.forEach((col, i) => {
-    const amountOfItems =
-      baseItemAmount + i * (window.innerWidth < 700 ? 1 : 3);
-    let elms = "";
-    let firstThreeElms = "";
-
-    for (let x = 0; x < amountOfItems; x++) {
-      const icon = getRandomIcon();
-      const item = `<div class="icon" data-item="${icon}"><img src="${icon}" alt="Slot icon"></div>`;
-      elms += item;
-      if (x < 3) firstThreeElms += item;
+function setupReels() {
+  reels.forEach((reelContainer) => {
+    reelContainer.innerHTML = ""; // Clear existing items
+    const reel = document.createElement("div");
+    reel.classList.add("reel");
+    for (let i = 0; i < NUM_ROWS; i++) {
+      const iconContainer = document.createElement("div");
+      iconContainer.classList.add("icon");
+      const img = document.createElement("img");
+      img.src = getRandomIcon();
+      img.alt = "Slot icon";
+      iconContainer.appendChild(img);
+      reel.appendChild(iconContainer);
     }
-    col.innerHTML = elms + firstThreeElms;
+    reelContainer.appendChild(reel);
   });
 }
 
 function spin(button) {
-  spinSound.play();
-  let duration = BASE_SPINNING_DURATION + randomDuration();
-
-  cols.forEach((col) => {
-    duration += COLUMN_SPINNING_DURATION + randomDuration();
-    col.style.animationDuration = `${duration}s`;
-  });
-
   button.disabled = true;
-  const container = document.getElementById("container");
-  container.classList.add("spinning");
+  let completedReels = 0;
 
-  setTimeout(() => setResult(), (BASE_SPINNING_DURATION * 1000) / 2);
+  reels.forEach((reelContainer, reelIndex) => {
+    const reel = reelContainer.querySelector(".reel");
+    const icons = Array.from(reel.querySelectorAll(".icon img"));
+    const startTime = Date.now();
 
-  setTimeout(() => {
-    container.classList.remove("spinning");
-    button.disabled = false;
-  }, duration * 1000);
-}
+    function animateReel() {
+      const elapsedTime = Date.now() - startTime;
+      const progress = elapsedTime / (SPIN_DURATION + reelIndex * 200); // Stagger stop
 
-function setResult() {
-  cols.forEach((col) => {
-    const results = Array.from({ length: 3 }, getRandomIcon);
-    const icons = col.querySelectorAll(".icon img");
+      icons.forEach((icon, iconIndex) => {
+        const offset = Math.floor(Math.random() * SYMBOLS_PER_REEL);
+        icon.src = ICONS[(offset + iconIndex) % SYMBOLS_PER_REEL];
+      });
 
-    for (let i = 0; i < 3; i++) {
-      icons[i].src = results[i];
-      icons[icons.length - 3 + i].src = results[i];
+      if (progress < 1) {
+        requestAnimationFrame(animateReel);
+      } else {
+        // Final symbols
+        for (let i = 0; i < NUM_ROWS; i++) {
+          icons[i].src = getRandomIcon();
+        }
+        completedReels++;
+        if (completedReels === NUM_REELS) {
+          button.disabled = false;
+          // Add any win checking logic here
+        }
+      }
     }
+    requestAnimationFrame(animateReel);
   });
 }
 
 function getRandomIcon() {
   return ICONS[Math.floor(Math.random() * ICONS.length)];
-}
-
-function randomDuration() {
-  return Math.random() * 0.09;
 }
 
 function toggleReferralSidebar(btn) {
