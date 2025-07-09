@@ -2,23 +2,103 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="paint.css" />
-    <title>Drawing App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Something Cool</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #1e1e1e;
+            color: white;
+            font-family: monospace;
+        }
+
+        #toolbar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        input[type="color"],
+        input[type="range"] {
+            cursor: pointer;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
-    <div class="toolbox">
-        <button id="decrease">-</button>
-        <span id="size">10</span>
-        <button id="increase">+</button>
-        <input type="color" id="color">
-        <button id="clear">X</button>
+    <div id="toolbar">
+        <label>
+            Color:
+            <input type="color" id="colorPicker" value="#ffffff">
+        </label>
+        <label>
+            Size:
+            <input type="range" id="brushSize" min="1" max="50" value="5">
+        </label>
+        <button id="clear">Clear</button>
     </div>
+    <canvas id="canvas"></canvas>
 
-    <script src="paint.js"></script>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const brushSize = document.getElementById('brushSize');
+        const clearButton = document.getElementById('clear');
+
+        let painting = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function startPosition(e) {
+            painting = true;
+            draw(e);
+        }
+
+        function endPosition() {
+            painting = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!painting) return;
+
+            ctx.lineWidth = brushSize.value;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = colorPicker.value;
+
+            ctx.lineTo(e.clientX, e.clientY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX, e.clientY);
+        }
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+
+        clearButton.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
 </body>
 
 </html>
