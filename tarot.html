@@ -10,55 +10,74 @@
 
 <body>
     <div class="tarot-layout">
-        <div class="spreadselector">
-            <div id="spreadOptions" class="icon-radio-group">
-                <div class="icon-option" data-value="threeCard" title="Three Card">
-                    <img src="icons/.png" alt="Three Card">
-                </div>
-                <div class="icon-option" data-value="celticCross" title="Celtic Cross">
-                    <img src="icons/celtic-cross.png" alt="Celtic Cross">
-                </div>
-                <div class="icon-option" data-value="crossSpread" title="Cross Spread">
-                    <img src="icons/cross-spread.png" alt="Cross Spread">
-                </div>
-                <div class="icon-option" data-value="horseshoe" title="Horseshoe">
-                    <img src="icons/horseshoe.png" alt="Horseshoe">
-                </div>
-                <div class="icon-option" data-value="pentagram" title="Pentagram">
-                    <img src="icons/pentagram.png" alt="Pentagram">
-                </div>
-                <div class="icon-option" data-value="eightCards" title="Eight Cards">
-                    <img src="icons/eight-cards.png" alt="Eight Cards">
-                </div>
-                <div class="icon-option" data-value="sixCards" title="Six Cards">
-                    <img src="icons/six-cards.png" alt="Six Cards">
-                </div>
-                <div class="icon-option" data-value="loveSpread" title="Love Spread">
-                    <img src="icons/love-spread.png" alt="Love Spread">
+        <div class="tarot-left">
+            <div class="spreadselector">
+                <div id="spreadOptions" class="icon-radio-group">
+                    <!-- Select (does not deal yet) -->
+                    <div class="icon-option" data-value="threeCard" title="Three Card">
+                        <img src="icons/three-cards.png" alt="Three Card">
+                    </div>
+                    <div class="icon-option" data-value="celticCross" title="Celtic Cross">
+                        <img src="icons/celtic-cross.png" alt="Celtic Cross">
+                    </div>
+                    <div class="icon-option" data-value="crossSpread" title="Cross Spread">
+                        <img src="icons/cross-spread.png" alt="Cross Spread">
+                    </div>
+                    <div class="icon-option" data-value="horseshoe" title="Horseshoe">
+                        <img src="icons/horseshoe.png" alt="Horseshoe">
+                    </div>
+                    <div class="icon-option" data-value="pentagram" title="Pentagram">
+                        <img src="icons/pentagram.png" alt="Pentagram">
+                    </div>
+                    <div class="icon-option" data-value="eightCards" title="Eight Cards">
+                        <img src="icons/eight-cards.png" alt="Eight Cards">
+                    </div>
+                    <div class="icon-option" data-value="sixCards" title="Six Cards">
+                        <img src="icons/six-cards.png" alt="Six Cards">
+                    </div>
+                    <div class="icon-option" data-value="loveSpread" title="Love Spread">
+                        <img src="icons/love-spread.png" alt="Love Spread">
+                    </div>
+
+                    <!-- Freeform examples (coords-based) -->
+                    <div class="icon-option" data-value="diamond7" title="Diamond 7">
+                        <img src="icons/diamond7.png" alt="Diamond 7">
+                    </div>
+                    <div class="icon-option" data-value="staff9" title="Staff 9">
+                        <img src="icons/staff9.png" alt="Staff 9">
+                    </div>
                 </div>
             </div>
+
+            <!-- Hidden field tracks selected spread; starts empty to force a choice -->
+            <input type="hidden" id="spreadSelect" name="spread" value="">
+
+            <div class="controls">
+                <button id="drawBtn" class="btn primary" disabled>🔮 Draw Cards</button>
+                <button id="reshuffleBtn" class="btn" disabled>🔄 Reshuffle</button>
+                <button id="resetBtn" class="btn" disabled>♻️ Reset</button>
+                <label class="toggle">
+                    <input id="guidesToggle" type="checkbox">
+                    <span>Show guides</span>
+                </label>
+            </div>
+
+            <div id="spreadDescriptions" class="spread-descriptions"></div>
         </div>
 
-        <div class="tarot-left">
+        <div class="tarot-right">
+            <!-- Board -->
+            <div id="deck" aria-live="polite"></div>
+
+            <!-- Animation overlay -->
+            <div id="dealLayer" aria-hidden="true">
+                <div id="deckPile" title="Deck pile"></div>
+            </div>
         </div>
-
-        <input type="hidden" id="spreadSelect" name="spread" value="default">
-        <div id="spreadDescriptions" class="spread-descriptions"></div>
-    </div>
-    <div class="tarot-right">
-        <div id="deck"></div>
-    </div>
     </div>
 
-    <div id="controls">
-        <button id="reshuffleBtn">🔄</button>
-        <button id="resetBtn">♻️</button>
-    </div>
-
-    <div id="cardModal" class="modal">
-        <div class="modal-content">
-            <!-- Modal content will be injected here -->
-        </div>
+    <div id="cardModal" class="modal" role="dialog" aria-modal="true" aria-label="Card details">
+        <div class="modal-content"><!-- injected --></div>
     </div>
 
     <script src="tarot.js"></script>
