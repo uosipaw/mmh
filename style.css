@@ -437,23 +437,23 @@ img {
     width: 100vw;
     left: -100vw;
   }
-  
+
   .sidebar.expanded {
     left: 0;
   }
-  
+
   .sidebar-toggle {
     right: -50px;
     padding: 12px 6px;
     font-size: 14px;
   }
-  
+
   .sidebar-nav {
     left: 30px;
     right: 30px;
     top: 15%;
   }
-  
+
   .sidebar-link {
     font-size: 18px;
     padding: 10px 15px;
