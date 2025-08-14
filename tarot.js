@@ -693,3 +693,121 @@ function showModal(cardData, orientation = "upright") {
   };
   window.addEventListener("keydown", onKey);
 }
+
+// --- CONFIG ---
+const SAFE_PADDING = 16; // extra px inside stage
+
+function $(sel, root=document){ return root.querySelector(sel); }
+function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+
+const spreadFrame = $('#spreadFrame');
+const spreadEl = $('#spread');
+const dealBtn = $('#dealBtn');
+const resetBtn = $('#resetBtn');
+const spreadSelect = $('#spreadSelect');
+
+// 1) Fit the spread to the viewport by scaling the frame contents
+function fitSpreadToViewport() {
+  if (!spreadEl || !spreadFrame) return;
+
+  // natural bounding box of the spread’s children
+  const cards = $all('.card', spreadEl);
+  // If you set an intrinsic width on the spread (via CSS), we can use its box directly:
+  const stageRect = spreadFrame.getBoundingClientRect();
+  const spreadRect = spreadEl.getBoundingClientRect();
+
+  // Compute scale so spread fits within frame (minus safe padding)
+  const availW = stageRect.width  - SAFE_PADDING * 2;
+  const availH = stageRect.height - SAFE_PADDING * 2;
+
+  const scaleX = availW / spreadRect.width;
+  const scaleY = availH / spreadRect.height;
+  const scale = Math.min(scaleX, scaleY, 1); // never upscale beyond 1 for sharpness
+
+  spreadEl.style.transform = `scale(${scale})`;
+}
+
+// Debounce resize for performance
+let resizeT;
+function onResize() {
+  clearTimeout(resizeT);
+  resizeT = setTimeout(fitSpreadToViewport, 60);
+}
+window.addEventListener('resize', onResize, { passive: true });
+window.addEventListener('orientationchange', onResize);
+
+// 2) Flip on tap
+function enableFlips() {
+  spreadEl.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    card.classList.toggle('is-flipped');
+  }, { passive: true });
+}
+
+// 3) Optional: long‑press to show meaning
+(function enableLongPressMeanings(){
+  let pressTimer = null;
+  spreadEl.addEventListener('touchstart', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    pressTimer = setTimeout(() => card.classList.add('show-meaning'), 450);
+  }, { passive: true });
+
+  ['touchend','touchcancel'].forEach(ev =>
+    spreadEl.addEventListener(ev, () => { clearTimeout(pressTimer); }, { passive: true })
+  );
+})();
+
+// 4) Deal animation with stagger
+function animateDeal() {
+  const cards = $all('.card', spreadEl);
+  cards.forEach((card, i) => {
+    card.style.setProperty('--delay', `${i * 90}ms`);
+    card.classList.remove('deal'); // restart
+    // force reflow
+    void card.offsetWidth;
+    card.classList.add('deal');
+  });
+}
+
+// 5) Example: build cards programmatically (use your existing logic)
+async function buildSpread(kind) {
+  // Add/remove a class on app or body so CSS can target layouts
+  document.querySelector('.tarot-app')?.classList.remove(
+    'spread--celtic','spread--three','spread--horseshoe'
+  );
+  document.querySelector('.tarot-app')?.classList.add(`spread--${kind}`);
+
+  // ... your existing code to pick and place cards goes here ...
+  // Ensure each card DOM looks like:
+  // <div class="card"><div class="card-inner"><div class="card-face card-back">...</div><div class="card-face card-front">IMG/TEXT</div></div></div>
+
+  // After DOM updates:
+  requestAnimationFrame(() => {
+    fitSpreadToViewport();
+    animateDeal();
+  });
+}
+
+// Hook up controls
+dealBtn?.addEventListener('click', () => {
+  const kind = spreadSelect?.value || 'three';
+  buildSpread(kind);
+});
+
+resetBtn?.addEventListener('click', () => {
+  $all('.card', spreadEl).forEach(c => c.remove());
+  fitSpreadToViewport();
+});
+
+// Initial
+document.addEventListener('DOMContentLoaded', () => {
+  enableFlips();
+  fitSpreadToViewport();
+  // Optionally auto-build a default spread:
+  // buildSpread('three');
+});
+
+// Improve touch responsiveness
+document.body.style.touchAction = 'manipulation';
