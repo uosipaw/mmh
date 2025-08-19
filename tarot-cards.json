@@ -1,376 +1,860 @@
 [
   {
     "name": "The Fool",
-    "keywords": ["beginnings", "innocence", "trust", "potential"],
-    "upright": "This card is all about new beginnings and trust in the unknown. Upright, it suggests curiosity, fresh starts, and the courage to take a leap. Where are you being invited to start fresh? Take one small step toward something that excites you.",
-    "reversed": "This card reversed is all about hesitation or recklessness. It suggests ignoring red flags, acting carelessly, or fearing the unknown. Are you holding back because of fear, or rushing ahead without a plan? Slow down, check your footing, then move forward mindfully."
+    "keywords": [
+      "beginnings",
+      "innocence",
+      "trust",
+      "potential"
+    ],
+    "upright": "The Fool is all about new beginnings and trust in the unknown. Upright, it suggests curiosity, fresh starts, and the courage to take a leap. Where are you being invited to start fresh? Take one small step toward something that excites you.",
+    "reversed": "The Fool reversed is all about hesitation or recklessness. It suggests ignoring red flags, acting carelessly, or fearing the unknown. Are you holding back because of fear, or rushing ahead without a plan? Slow down, check your footing, then move forward mindfully."
   },
   {
     "name": "The Magician",
-    "keywords": ["power", "focus", "manifestation", "skills"],
-    "upright": "This card is all about personal power and focused intention. Upright, it suggests that you have the tools and talents to make things happen. How can you channel your skills into something meaningful right now? Pick one idea and take the first tangible step toward it today.",
-    "reversed": "This card reversed is all about misused potential or scattered focus. It suggests manipulation, wasted talent, or lack of clear direction. Where might you be letting your power slip through your fingers? Regain clarity by choosing one priority and cutting the distractions."
+    "keywords": [
+      "power",
+      "focus",
+      "manifestation",
+      "skills"
+    ],
+    "upright": "The Magician is all about personal power and focused intention. Upright, it suggests that you have the tools and talents to make things happen. How can you channel your skills into something meaningful right now? Pick one idea and take the first tangible step toward it today.",
+    "reversed": "The Magician reversed is all about misused potential or scattered focus. It suggests manipulation, wasted talent, or lack of clear direction. Where might you be letting your power slip through your fingers? Regain clarity by choosing one priority and cutting the distractions."
   },
   {
     "name": "The High Priestess",
-    "keywords": ["intuition", "mystery", "wisdom", "subconscious"],
-    "upright": "This card is all about intuition, hidden knowledge, and inner wisdom. Upright, it suggests listening to your gut and trusting what you sense beneath the surface. What is your intuition whispering that you’ve been ignoring? Take quiet time alone to reconnect with your inner voice.",
-    "reversed": "This card reversed is all about blocked intuition or secrets kept. It suggests denial, confusion, or ignoring your instincts. Where are you second-guessing yourself? Clear the noise—limit outside opinions and trust what you already know."
+    "keywords": [
+      "intuition",
+      "mystery",
+      "wisdom",
+      "subconscious"
+    ],
+    "upright": "The High Priestess is all about intuition, hidden knowledge, and inner wisdom. Upright, it suggests listening to your gut and trusting what you sense beneath the surface. What is your intuition whispering that you’ve been ignoring? Take quiet time alone to reconnect with your inner voice.",
+    "reversed": "The High Priestess reversed is all about blocked intuition or secrets kept. It suggests denial, confusion, or ignoring your instincts. Where are you second-guessing yourself? Clear the noise—limit outside opinions and trust what you already know."
   },
   {
     "name": "The Empress",
-    "keywords": ["nurturing", "creativity", "abundance", "fertility"],
-    "upright": "This card is all about creativity, abundance, and nurturing energy. Upright, it suggests growth, fertility, or enjoying life’s pleasures. Where in your life do you need to give yourself more care or creative freedom? Do one thing today that feeds your body or your imagination.",
-    "reversed": "This card reversed is all about neglect, burnout, or blocked creativity. It suggests smothering energy or lack of self-care. Are you giving too much without refilling your own cup? Step back, rest, and create space for inspiration to flow back in."
+    "keywords": [
+      "nurturing",
+      "creativity",
+      "abundance",
+      "fertility"
+    ],
+    "upright": "The Empress is all about creativity, abundance, and nurturing energy. Upright, it suggests growth, fertility, or enjoying life’s pleasures. Where in your life do you need to give yourself more care or creative freedom? Do one thing today that feeds your body or your imagination.",
+    "reversed": "The Empress reversed is all about neglect, burnout, or blocked creativity. It suggests smothering energy or lack of self-care. Are you giving too much without refilling your own cup? Step back, rest, and create space for inspiration to flow back in."
   },
   {
     "name": "The Emperor",
-    "keywords": ["authority", "structure", "discipline", "boundaries"],
-    "upright": "This card is all about structure, authority, and discipline. Upright, it suggests stability, clear rules, and leadership. Reflection: Where would boundaries or structure make your life easier right now? Action: Commit to one system or boundary that keeps you grounded.",
-    "reversed": "This card reversed is all about control gone too far or lack of order. It suggests rigidity, power struggles, or chaos. Reflection: Where are you clinging too tightly—or not stepping up at all? Action: Loosen your grip where you’re being too rigid, or take responsibility where you’ve been passive."
-  }
-  [
+    "keywords": [
+      "authority",
+      "structure",
+      "discipline",
+      "boundaries"
+    ],
+    "upright": "The Emperor is all about structure, authority, and discipline. Upright, it suggests stability, clear rules, and leadership. Where would boundaries or structure make your life easier right now? Commit to one system or boundary that keeps you grounded.",
+    "reversed": "The Emperor reversed is all about control gone too far or lack of order. It suggests rigidity, power struggles, or chaos. Where are you clinging too tightly—or not stepping up at all? Loosen your grip where you’re being too rigid, or take responsibility where you’ve been passive."
+  },
+  {
+    "name": "The Hierophant",
+    "keywords": [
+      "tradition",
+      "guidance",
+      "spirituality",
+      "learning"
+    ],
+    "upright": "The Hierophant is all about tradition, spiritual wisdom, and guidance. Upright, it suggests learning, mentorship, or aligning with community values. Where could tradition or guidance support you? Seek advice from someone wise or lean into your own spiritual practice.",
+    "reversed": "The Hierophant reversed is all about rebellion or breaking away. It suggests challenging tradition, questioning authority, or creating your own path. What rule or tradition no longer fits you? Give yourself permission to redefine your own beliefs."
+  },
+  {
+    "name": "The Lovers",
+    "keywords": [
+      "union",
+      "choice",
+      "values",
+      "harmony"
+    ],
+    "upright": "The Lovers is all about connection, choice, and alignment with your values. Upright, it suggests harmony, love, or a meaningful decision. What choices are you facing that could bring you closer to your authentic path? Have one honest conversation—with yourself or someone else—that brings clarity.",
+    "reversed": "The Lovers reversed is all about disharmony or misalignment. It suggests imbalance, bad choices, or denial of your truth. Where are you ignoring what you know is right for you? Make one decision today that honors your true values."
+  },
+  {
+    "name": "The Chariot",
+    "keywords": [
+      "willpower",
+      "direction",
+      "determination",
+      "control"
+    ],
+    "upright": "The Chariot is all about momentum, determination, and direction. Upright, it suggests discipline, progress, and moving forward with focus. Where do you need to take the reins? Choose a direction and commit to it fully.",
+    "reversed": "The Chariot reversed is all about lack of control or scattered focus. It suggests delays, misdirection, or wasted effort. Where are you letting distractions pull you off track? Refocus and reclaim your direction before pushing ahead."
+  },
+  {
+    "name": "Strength",
+    "keywords": [
+      "courage",
+      "patience",
+      "resilience",
+      "inner power"
+    ],
+    "upright": "Strength is all about courage, patience, and inner strength. Upright, it suggests compassion, persistence, and quiet power. Where can you bring more gentleness and patience into your life? Face one challenge calmly instead of forcing it.",
+    "reversed": "Strength reversed is all about doubt, fear, or weakness. It suggests insecurity, avoidance, or lack of self-belief. Where are you underestimating your own strength? Practice small acts of self-trust until confidence grows."
+  },
+  {
+    "name": "The Hermit",
+    "keywords": [
+      "introspection",
+      "solitude",
+      "wisdom",
+      "truth"
+    ],
+    "upright": "The Hermit is all about introspection and inner guidance. Upright, it suggests solitude, reflection, or spiritual searching. What answers are waiting within you if you get quiet? Take intentional alone time today to listen inward.",
+    "reversed": "The Hermit reversed is all about isolation or avoidance. It suggests withdrawal, loneliness, or ignoring inner truths. Where are you hiding instead of facing yourself? Reconnect with others or step back into the light."
+  },
+  {
+    "name": "Wheel of Fortune",
+    "keywords": [
+      "cycles",
+      "fate",
+      "luck",
+      "change"
+    ],
+    "upright": "Wheel of Fortune is all about cycles, luck, and destiny. Upright, it suggests change, opportunity, and things turning in your favor. What cycle is shifting in your life now? Embrace the change and trust the wheel is turning for a reason.",
+    "reversed": "Wheel of Fortune reversed is all about resistance or bad luck. It suggests setbacks, delays, or fighting change. Where are you resisting the inevitable? Loosen your grip and allow change to move through."
+  },
+  {
+    "name": "Justice",
+    "keywords": [
+      "truth",
+      "fairness",
+      "law",
+      "cause and effect"
+    ],
+    "upright": "Justice is all about truth, fairness, and accountability. Upright, it suggests honesty, balance, or legal matters. Where are you being called to act with fairness? Take responsibility and choose integrity today.",
+    "reversed": "Justice reversed is all about dishonesty or unfairness. It suggests denial, corruption, or lack of accountability. Where are you avoiding the truth? Face the facts, even if they’re uncomfortable."
+  },
+  {
+    "name": "The Hanged Man",
+    "keywords": [
+      "pause",
+      "surrender",
+      "perspective",
+      "patience"
+    ],
+    "upright": "The Hanged Man is all about surrender, new perspective, and patience. Upright, it suggests pausing, letting go, or seeing things differently. Where do you need to release control? Stop forcing and allow a shift in perspective.",
+    "reversed": "The Hanged Man reversed is all about stagnation or resistance. It suggests delays, indecision, or wasted time. Where are you refusing to let go? Make a choice and release what’s holding you back."
+  },
+  {
+    "name": "Death",
+    "keywords": [
+      "endings",
+      "transformation",
+      "rebirth",
+      "release"
+    ],
+    "upright": "Death is all about endings and transformation. Upright, it suggests rebirth, closure, or a major shift. What are you ready to shed so you can grow? Let go of what no longer serves you and allow space for the new.",
+    "reversed": "Death reversed is all about resistance to change. It suggests stagnation, fear, or dragging out endings. Where are you clinging to what’s over? Accept the ending and step into your next chapter."
+  },
+  {
+    "name": "Temperance",
+    "keywords": [
+      "balance",
+      "harmony",
+      "moderation",
+      "patience"
+    ],
+    "upright": "Temperance is all about balance, patience, and harmony. Upright, it suggests moderation, healing, and blending differences. Where could you use more balance in your life? Bring two opposing forces into harmony today.",
+    "reversed": "Temperance reversed is all about excess or imbalance. It suggests conflict, impatience, or disharmony. Where are you overindulging or out of alignment? Pull back and restore balance."
+  },
+  {
+    "name": "The Devil",
+    "keywords": [
+      "addiction",
+      "materialism",
+      "bondage",
+      "temptation"
+    ],
+    "upright": "The Devil is all about temptation, attachment, and unhealthy patterns. Upright, it suggests addiction, control, or obsession. What’s holding you in chains right now? Identify one pattern you’re ready to break.",
+    "reversed": "The Devil reversed is all about release and freedom. It suggests breaking free, awareness, or reclaiming power. Where are you ready to cut ties? Take one step toward liberation."
+  },
+  {
+    "name": "The Tower",
+    "keywords": [
+      "chaos",
+      "upheaval",
+      "revelation",
+      "awakening"
+    ],
+    "upright": "The Tower is all about sudden change, upheaval, and revelation. Upright, it suggests disruption, shock, or truth revealed. What structure is crumbling so something better can rise? Trust the breakdown is part of rebuilding.",
+    "reversed": "The Tower reversed is all about avoiding disaster or prolonging the inevitable. It suggests resistance, denial, or clinging to false stability. Where are you afraid to let things fall apart? Release control and face the truth."
+  },
+  {
+    "name": "The Star",
+    "keywords": [
+      "hope",
+      "healing",
+      "guidance",
+      "renewal"
+    ],
+    "upright": "The Star is all about hope, inspiration, and healing. Upright, it suggests renewal, clarity, and faith in the future. Where are you being called to hope again? Focus on what lifts your spirit and trust your path.",
+    "reversed": "The Star reversed is all about despair or doubt. It suggests hopelessness, lack of faith, or disconnection. Where have you lost hope? Take one step to reconnect with your light."
+  },
+  {
+    "name": "The Moon",
+    "keywords": [
+      "illusion",
+      "intuition",
+      "dreams",
+      "mystery"
+    ],
+    "upright": "The Moon is all about illusions, intuition, and the unknown. Upright, it suggests confusion, dreams, or uncertainty. What feels unclear but important right now? Trust your instincts, not appearances.",
+    "reversed": "The Moon reversed is all about clarity emerging. It suggests release of fear, truth revealed, or light in the dark. Where is the fog starting to lift? Step forward with what you now see clearly."
+  },
+  {
+    "name": "The Sun",
+    "keywords": [
+      "joy",
+      "success",
+      "clarity",
+      "vitality"
+    ],
+    "upright": "The Sun is all about joy, clarity, and vitality. Upright, it suggests success, positivity, and warmth. What brings you genuine joy right now? Do something that makes you feel alive and radiant.",
+    "reversed": "The Sun reversed is all about temporary setbacks or hidden joy. It suggests delays, over-optimism, or false positivity. Where are you faking happiness instead of finding it? Reconnect with what truly lights you up."
+  },
+  {
+    "name": "Judgement",
+    "keywords": [
+      "awakening",
+      "rebirth",
+      "truth",
+      "redemption"
+    ],
+    "upright": "Judgement is all about awakening, truth, and renewal. Upright, it suggests clarity, second chances, or big realizations. What is rising within you now? Answer the call to step into your higher self.",
+    "reversed": "Judgement reversed is all about doubt or avoidance. It suggests self-criticism, denial, or ignoring a wake-up call. Where are you refusing to hear the call? Be honest and take responsibility for your path."
+  },
+  {
+    "name": "The World",
+    "keywords": [
+      "completion",
+      "success",
+      "integration",
+      "wholeness"
+    ],
+    "upright": "The World is all about completion, success, and fulfillment. Upright, it suggests achievement, integration, or wholeness. What cycle in your life is reaching its close? Celebrate your progress and honor the ending.",
+    "reversed": "The World reversed is all about delays or incompletion. It suggests loose ends, lack of closure, or unfinished business. What needs tying up before you can move forward? Finish what you started so you can step into the new."
+  },
   {
     "name": "Ace of Wands",
-    "keywords": ["inspiration", "potential", "creation", "energy"],
-    "upright": "This card is all about fresh inspiration and creative sparks. Upright, it suggests new beginnings, motivation, or raw energy. Reflection: What excites you right now? Action: Say yes to one new idea and explore it.",
-    "reversed": "This card reversed is all about delays or blocked inspiration. It suggests false starts, wasted energy, or hesitation. Reflection: Where are you second-guessing your fire? Action: Reignite by taking one small, passionate step forward."
+    "keywords": [
+      "inspiration",
+      "potential",
+      "creation",
+      "energy"
+    ],
+    "upright": "Ace of Wands is all about fresh inspiration and creative sparks. Upright, it suggests new beginnings, motivation, or raw energy. What excites you right now? Say yes to one new idea and explore it.",
+    "reversed": "Ace of Wands reversed is all about delays or blocked inspiration. It suggests false starts, wasted energy, or hesitation. Where are you second-guessing your fire? Reignite by taking one small, passionate step forward."
   },
   {
     "name": "Two of Wands",
-    "keywords": ["planning", "decisions", "expansion", "possibility"],
-    "upright": "This card is all about planning and looking forward. Upright, it suggests choices, new horizons, or future growth. Reflection: What path feels most expansive for you? Action: Make a plan and take the first step toward it.",
-    "reversed": "This card reversed is all about fear of the unknown or poor planning. It suggests hesitation, delays, or shrinking from possibility. Reflection: Where are you playing small instead of stepping out? Action: Expand your vision, even if it scares you."
+    "keywords": [
+      "planning",
+      "decisions",
+      "expansion",
+      "possibility"
+    ],
+    "upright": "Two of Wands is all about planning and looking forward. Upright, it suggests choices, new horizons, or future growth. What path feels most expansive for you? Make a plan and take the first step toward it.",
+    "reversed": "Two of Wands reversed is all about fear of the unknown or poor planning. It suggests hesitation, delays, or shrinking from possibility. Where are you playing small instead of stepping out? Expand your vision, even if it scares you."
   },
   {
     "name": "Three of Wands",
-    "keywords": ["vision", "progress", "exploration", "growth"],
-    "upright": "This card is all about vision, progress, and expansion. Upright, it suggests opportunities, long-term growth, and foresight. Reflection: What bigger picture are you starting to glimpse? Action: Take action that supports your long-term vision.",
-    "reversed": "This card reversed is all about delays or lack of foresight. It suggests missed opportunities, obstacles, or short-sightedness. Reflection: Where are you limiting your own horizon? Action: Open up and think bigger."
+    "keywords": [
+      "vision",
+      "progress",
+      "exploration",
+      "growth"
+    ],
+    "upright": "Three of Wands is all about vision, progress, and expansion. Upright, it suggests opportunities, long-term growth, and foresight. What bigger picture are you starting to glimpse? Take action that supports your long-term vision.",
+    "reversed": "Three of Wands reversed is all about delays or lack of foresight. It suggests missed opportunities, obstacles, or short-sightedness. Where are you limiting your own horizon? Open up and think bigger."
   },
   {
     "name": "Four of Wands",
-    "keywords": ["celebration", "harmony", "community", "home"],
-    "upright": "This card is all about celebration, home, and community. Upright, it suggests joy, milestones, or stability. Reflection: What accomplishment deserves recognition? Action: Celebrate your wins with people who matter.",
-    "reversed": "This card reversed is all about instability or lack of harmony. It suggests tension, unfinished projects, or feeling unwelcome. Reflection: Where is your foundation shaky? Action: Strengthen your support system."
+    "keywords": [
+      "celebration",
+      "harmony",
+      "community",
+      "home"
+    ],
+    "upright": "Four of Wands is all about celebration, home, and community. Upright, it suggests joy, milestones, or stability. What accomplishment deserves recognition? Celebrate your wins with people who matter.",
+    "reversed": "Four of Wands reversed is all about instability or lack of harmony. It suggests tension, unfinished projects, or feeling unwelcome. Where is your foundation shaky? Strengthen your support system."
   },
   {
     "name": "Five of Wands",
-    "keywords": ["conflict", "competition", "tension", "challenge"],
-    "upright": "This card is all about conflict and competition. Upright, it suggests tension, rivalry, or challenges. Reflection: Where are you clashing with others? Action: Channel your energy into collaboration instead of chaos.",
-    "reversed": "This card reversed is all about avoidance or inner conflict. It suggests resolution, compromise, or suppressed tension. Reflection: Where are you avoiding a fight that needs airing out? Action: Face conflict directly but calmly."
+    "keywords": [
+      "conflict",
+      "competition",
+      "tension",
+      "challenge"
+    ],
+    "upright": "Five of Wands is all about conflict and competition. Upright, it suggests tension, rivalry, or challenges. Where are you clashing with others? Channel your energy into collaboration instead of chaos.",
+    "reversed": "Five of Wands reversed is all about avoidance or inner conflict. It suggests resolution, compromise, or suppressed tension. Where are you avoiding a fight that needs airing out? Face conflict directly but calmly."
   },
   {
     "name": "Six of Wands",
-    "keywords": ["victory", "recognition", "success", "achievement"],
-    "upright": "This card is all about recognition and success. Upright, it suggests achievement, celebration, or public acknowledgment. Reflection: Where have you earned recognition? Action: Accept praise and own your accomplishments.",
-    "reversed": "This card reversed is all about pride or lack of recognition. It suggests self-doubt, failure, or arrogance. Reflection: Where are you depending too much on others’ approval? Action: Celebrate your wins privately if needed."
+    "keywords": [
+      "victory",
+      "recognition",
+      "success",
+      "achievement"
+    ],
+    "upright": "Six of Wands is all about recognition and success. Upright, it suggests achievement, celebration, or public acknowledgment. Where have you earned recognition? Accept praise and own your accomplishments.",
+    "reversed": "Six of Wands reversed is all about pride or lack of recognition. It suggests self-doubt, failure, or arrogance. Where are you depending too much on others’ approval? Celebrate your wins privately if needed."
   },
   {
     "name": "Seven of Wands",
-    "keywords": ["defense", "perseverance", "challenge", "courage"],
-    "upright": "This card is all about standing your ground. Upright, it suggests defense, courage, or holding your position. Reflection: Where do you need to protect your values? Action: Stand firm without unnecessary aggression.",
-    "reversed": "This card reversed is all about overwhelm or giving up. It suggests exhaustion, lack of confidence, or feeling under attack. Reflection: Where are you burning out by always being on guard? Action: Step back and pick your battles."
+    "keywords": [
+      "defense",
+      "perseverance",
+      "challenge",
+      "courage"
+    ],
+    "upright": "Seven of Wands is all about standing your ground. Upright, it suggests defense, courage, or holding your position. Where do you need to protect your values? Stand firm without unnecessary aggression.",
+    "reversed": "Seven of Wands reversed is all about overwhelm or giving up. It suggests exhaustion, lack of confidence, or feeling under attack. Where are you burning out by always being on guard? Step back and pick your battles."
   },
   {
     "name": "Eight of Wands",
-    "keywords": ["speed", "movement", "progress", "communication"],
-    "upright": "This card is all about momentum and fast progress. Upright, it suggests news, communication, or rapid movement. Reflection: What’s moving quickly in your life right now? Action: Stay adaptable and flow with the speed.",
-    "reversed": "This card reversed is all about delays or miscommunication. It suggests chaos, setbacks, or impatience. Reflection: Where are you forcing things that need time? Action: Slow down and sort the details before pushing forward."
+    "keywords": [
+      "speed",
+      "movement",
+      "progress",
+      "communication"
+    ],
+    "upright": "Eight of Wands is all about momentum and fast progress. Upright, it suggests news, communication, or rapid movement. What’s moving quickly in your life right now? Stay adaptable and flow with the speed.",
+    "reversed": "Eight of Wands reversed is all about delays or miscommunication. It suggests chaos, setbacks, or impatience. Where are you forcing things that need time? Slow down and sort the details before pushing forward."
   },
   {
     "name": "Nine of Wands",
-    "keywords": ["resilience", "boundaries", "persistence", "strength"],
-    "upright": "This card is all about persistence and resilience. Upright, it suggests defending boundaries, perseverance, and holding on. Reflection: What’s worth standing firm for? Action: Push through, but know your limits.",
-    "reversed": "This card reversed is all about burnout or defensiveness. It suggests fatigue, paranoia, or refusing to let go. Reflection: Where are you holding on too tightly? Action: Drop one defense that no longer protects you."
+    "keywords": [
+      "resilience",
+      "boundaries",
+      "persistence",
+      "strength"
+    ],
+    "upright": "Nine of Wands is all about persistence and resilience. Upright, it suggests defending boundaries, perseverance, and holding on. What’s worth standing firm for? Push through, but know your limits.",
+    "reversed": "Nine of Wands reversed is all about burnout or defensiveness. It suggests fatigue, paranoia, or refusing to let go. Where are you holding on too tightly? Drop one defense that no longer protects you."
   },
   {
     "name": "Ten of Wands",
-    "keywords": ["burden", "responsibility", "hardship", "obligation"],
-    "upright": "This card is all about burdens and responsibility. Upright, it suggests hard work, stress, or heavy loads. Reflection: Where are you carrying too much alone? Action: Delegate or release one burden.",
-    "reversed": "This card reversed is all about release or avoidance. It suggests freedom, delegation, or dropping unnecessary weight. Reflection: What can you put down that isn’t yours to carry? Action: Lighten your load intentionally."
+    "keywords": [
+      "burden",
+      "responsibility",
+      "hardship",
+      "obligation"
+    ],
+    "upright": "Ten of Wands is all about burdens and responsibility. Upright, it suggests hard work, stress, or heavy loads. Where are you carrying too much alone? Delegate or release one burden.",
+    "reversed": "Ten of Wands reversed is all about release or avoidance. It suggests freedom, delegation, or dropping unnecessary weight. What can you put down that isn’t yours to carry? Lighten your load intentionally."
   },
   {
     "name": "Page of Wands",
-    "keywords": ["exploration", "curiosity", "energy", "adventure"],
-    "upright": "This card is all about curiosity and fresh energy. Upright, it suggests exploration, enthusiasm, or creative sparks. Reflection: What new adventure is calling to you? Action: Follow your curiosity without overthinking.",
-    "reversed": "This card reversed is all about immaturity or scattered energy. It suggests poor planning, boredom, or lack of follow-through. Reflection: Where are you avoiding growth? Action: Commit to following through on one idea."
+    "keywords": [
+      "exploration",
+      "curiosity",
+      "energy",
+      "adventure"
+    ],
+    "upright": "Page of Wands is all about curiosity and fresh energy. Upright, it suggests exploration, enthusiasm, or creative sparks. What new adventure is calling to you? Follow your curiosity without overthinking.",
+    "reversed": "Page of Wands reversed is all about immaturity or scattered energy. It suggests poor planning, boredom, or lack of follow-through. Where are you avoiding growth? Commit to following through on one idea."
   },
   {
     "name": "Knight of Wands",
-    "keywords": ["passion", "adventure", "action", "impulsiveness"],
-    "upright": "This card is all about energy and bold movement. Upright, it suggests passion, adventure, and fearless action. Reflection: Where could you bring more boldness into your life? Action: Chase what excites you with enthusiasm.",
-    "reversed": "This card reversed is all about recklessness or scattered energy. It suggests delays, arrogance, or aimless rushing. Reflection: Where are you moving too fast? Action: Slow down and focus before leaping."
+    "keywords": [
+      "passion",
+      "adventure",
+      "action",
+      "impulsiveness"
+    ],
+    "upright": "Knight of Wands is all about energy and bold movement. Upright, it suggests passion, adventure, and fearless action. Where could you bring more boldness into your life? Chase what excites you with enthusiasm.",
+    "reversed": "Knight of Wands reversed is all about recklessness or scattered energy. It suggests delays, arrogance, or aimless rushing. Where are you moving too fast? Slow down and focus before leaping."
   },
   {
     "name": "Queen of Wands",
-    "keywords": ["confidence", "creativity", "independence", "charisma"],
-    "upright": "This card is all about confidence and self-assurance. Upright, it suggests independence, charisma, or creativity. Reflection: Where are you ready to shine unapologetically? Action: Step into the spotlight without holding back.",
-    "reversed": "This card reversed is all about insecurity or jealousy. It suggests burnout, hidden anger, or lack of confidence. Reflection: Where are you dimming your own light? Action: Reclaim your space and your voice."
+    "keywords": [
+      "confidence",
+      "creativity",
+      "independence",
+      "charisma"
+    ],
+    "upright": "Queen of Wands is all about confidence and self-assurance. Upright, it suggests independence, charisma, or creativity. Where are you ready to shine unapologetically? Step into the spotlight without holding back.",
+    "reversed": "Queen of Wands reversed is all about insecurity or jealousy. It suggests burnout, hidden anger, or lack of confidence. Where are you dimming your own light? Reclaim your space and your voice."
   },
   {
     "name": "King of Wands",
-    "keywords": ["leadership", "vision", "power", "influence"],
-    "upright": "This card is all about leadership and vision. Upright, it suggests confidence, authority, and big-picture thinking. Reflection: Where are you being called to lead? Action: Take responsibility and guide others with clarity.",
-    "reversed": "This card reversed is all about arrogance or misuse of power. It suggests impulsiveness, ego, or poor direction. Reflection: Where are you leading from pride instead of purpose? Action: Realign with vision and humility."
-  }
-[
+    "keywords": [
+      "leadership",
+      "vision",
+      "power",
+      "influence"
+    ],
+    "upright": "King of Wands is all about leadership and vision. Upright, it suggests confidence, authority, and big-picture thinking. Where are you being called to lead? Take responsibility and guide others with clarity.",
+    "reversed": "King of Wands reversed is all about arrogance or misuse of power. It suggests impulsiveness, ego, or poor direction. Where are you leading from pride instead of purpose? Realign with vision and humility."
+  },
   {
     "name": "Ace of Cups",
-    "keywords": ["love", "compassion", "intuition", "new beginnings"],
-    "upright": "This card is all about emotional renewal and connection. Upright, it suggests love, intuition, or spiritual growth. Reflection: Where are you being offered new emotional fulfillment? Action: Open your heart and let it flow.",
-    "reversed": "This card reversed is all about blocked emotions or emptiness. It suggests repression, heartbreak, or self-love struggles. Reflection: Where are you holding back emotionally? Action: Practice one act of self-care that nurtures your heart."
+    "keywords": [
+      "love",
+      "compassion",
+      "intuition",
+      "new beginnings"
+    ],
+    "upright": "Ace of Cups is all about emotional renewal and connection. Upright, it suggests love, intuition, or spiritual growth. Where are you being offered new emotional fulfillment? Open your heart and let it flow.",
+    "reversed": "Ace of Cups reversed is all about blocked emotions or emptiness. It suggests repression, heartbreak, or self-love struggles. Where are you holding back emotionally? Practice one act of self-care that nurtures your heart."
   },
   {
     "name": "Two of Cups",
-    "keywords": ["partnership", "connection", "union", "harmony"],
-    "upright": "This card is all about deep bonds and mutual respect. Upright, it suggests love, partnership, or reconciliation. Reflection: Where in your life is connection being offered? Action: Nurture one important relationship today.",
-    "reversed": "This card reversed is all about imbalance or broken connections. It suggests disharmony, separation, or tension. Reflection: Where is reciprocity missing? Action: Have an honest conversation or release the bond."
+    "keywords": [
+      "partnership",
+      "connection",
+      "union",
+      "harmony"
+    ],
+    "upright": "Two of Cups is all about deep bonds and mutual respect. Upright, it suggests love, partnership, or reconciliation. Where in your life is connection being offered? Nurture one important relationship today.",
+    "reversed": "Two of Cups reversed is all about imbalance or broken connections. It suggests disharmony, separation, or tension. Where is reciprocity missing? Have an honest conversation or release the bond."
   },
   {
     "name": "Three of Cups",
-    "keywords": ["celebration", "friendship", "community", "joy"],
-    "upright": "This card is all about joy and community. Upright, it suggests friendship, celebration, or shared happiness. Reflection: Where can you celebrate with others? Action: Gather with people who lift your spirit.",
-    "reversed": "This card reversed is all about overindulgence or isolation. It suggests gossip, excess, or feeling left out. Reflection: Where are you overdoing or under-connecting? Action: Seek authentic connections instead of empty indulgence."
+    "keywords": [
+      "celebration",
+      "friendship",
+      "community",
+      "joy"
+    ],
+    "upright": "Three of Cups is all about joy and community. Upright, it suggests friendship, celebration, or shared happiness. Where can you celebrate with others? Gather with people who lift your spirit.",
+    "reversed": "Three of Cups reversed is all about overindulgence or isolation. It suggests gossip, excess, or feeling left out. Where are you overdoing or under-connecting? Seek authentic connections instead of empty indulgence."
   },
   {
     "name": "Four of Cups",
-    "keywords": ["apathy", "contemplation", "disconnection", "boredom"],
-    "upright": "This card is all about reflection and reevaluation. Upright, it suggests boredom, withdrawal, or feeling uninspired. Reflection: Where are you ignoring opportunities? Action: Shift your perspective and notice what’s being offered.",
-    "reversed": "This card reversed is all about clarity or new outlooks. It suggests fresh motivation, acceptance, or emotional re-engagement. Reflection: What is waking your heart back up? Action: Say yes to one new opportunity."
+    "keywords": [
+      "apathy",
+      "contemplation",
+      "disconnection",
+      "boredom"
+    ],
+    "upright": "Four of Cups is all about reflection and reevaluation. Upright, it suggests boredom, withdrawal, or feeling uninspired. Where are you ignoring opportunities? Shift your perspective and notice what’s being offered.",
+    "reversed": "Four of Cups reversed is all about clarity or new outlooks. It suggests fresh motivation, acceptance, or emotional re-engagement. What is waking your heart back up? Say yes to one new opportunity."
   },
   {
     "name": "Five of Cups",
-    "keywords": ["loss", "regret", "disappointment", "grief"],
-    "upright": "This card is all about grief and regret. Upright, it suggests loss, mourning, or dwelling on the past. Reflection: Where are you stuck looking back? Action: Shift your focus to what still remains.",
-    "reversed": "This card reversed is all about acceptance and healing. It suggests moving on, forgiveness, or recovery. Reflection: What are you ready to release? Action: Take one step toward forgiveness today."
+    "keywords": [
+      "loss",
+      "regret",
+      "disappointment",
+      "grief"
+    ],
+    "upright": "Five of Cups is all about grief and regret. Upright, it suggests loss, mourning, or dwelling on the past. Where are you stuck looking back? Shift your focus to what still remains.",
+    "reversed": "Five of Cups reversed is all about acceptance and healing. It suggests moving on, forgiveness, or recovery. What are you ready to release? Take one step toward forgiveness today."
   },
   {
     "name": "Six of Cups",
-    "keywords": ["nostalgia", "innocence", "childhood", "memory"],
-    "upright": "This card is all about nostalgia and innocence. Upright, it suggests happy memories, kindness, or reconnection. Reflection: What sweet memory is calling to you? Action: Revisit something from your past that brings joy.",
-    "reversed": "This card reversed is all about clinging to the past or immaturity. It suggests unrealistic nostalgia, stagnation, or dependence. Reflection: Where are you idealizing the past? Action: Focus on the present and future growth."
+    "keywords": [
+      "nostalgia",
+      "innocence",
+      "childhood",
+      "memory"
+    ],
+    "upright": "Six of Cups is all about nostalgia and innocence. Upright, it suggests happy memories, kindness, or reconnection. What sweet memory is calling to you? Revisit something from your past that brings joy.",
+    "reversed": "Six of Cups reversed is all about clinging to the past or immaturity. It suggests unrealistic nostalgia, stagnation, or dependence. Where are you idealizing the past? Focus on the present and future growth."
   },
   {
     "name": "Seven of Cups",
-    "keywords": ["choices", "fantasy", "illusion", "imagination"],
-    "upright": "This card is all about possibilities and choices. Upright, it suggests imagination, fantasy, or options. Reflection: Where are you overwhelmed by choices? Action: Ground yourself and choose one path.",
-    "reversed": "This card reversed is all about clarity or illusion breaking. It suggests decisiveness, truth, or avoiding wishful thinking. Reflection: What illusion is falling away? Action: Choose clarity over fantasy."
+    "keywords": [
+      "choices",
+      "fantasy",
+      "illusion",
+      "imagination"
+    ],
+    "upright": "Seven of Cups is all about possibilities and choices. Upright, it suggests imagination, fantasy, or options. Where are you overwhelmed by choices? Ground yourself and choose one path.",
+    "reversed": "Seven of Cups reversed is all about clarity or illusion breaking. It suggests decisiveness, truth, or avoiding wishful thinking. What illusion is falling away? Choose clarity over fantasy."
   },
   {
     "name": "Eight of Cups",
-    "keywords": ["transition", "search", "withdrawal", "journey"],
-    "upright": "This card is all about moving on and seeking deeper fulfillment. Upright, it suggests leaving behind, searching, or spiritual journeys. Reflection: What are you ready to walk away from? Action: Take a step toward something more meaningful.",
-    "reversed": "This card reversed is all about avoidance or fear of change. It suggests stagnation, fear of loss, or false security. Reflection: Where are you staying stuck out of fear? Action: Face the discomfort and take the step anyway."
+    "keywords": [
+      "transition",
+      "search",
+      "withdrawal",
+      "journey"
+    ],
+    "upright": "Eight of Cups is all about moving on and seeking deeper fulfillment. Upright, it suggests leaving behind, searching, or spiritual journeys. What are you ready to walk away from? Take a step toward something more meaningful.",
+    "reversed": "Eight of Cups reversed is all about avoidance or fear of change. It suggests stagnation, fear of loss, or false security. Where are you staying stuck out of fear? Face the discomfort and take the step anyway."
   },
   {
     "name": "Nine of Cups",
-    "keywords": ["contentment", "gratitude", "wishes", "satisfaction"],
-    "upright": "This card is all about emotional satisfaction and gratitude. Upright, it suggests wish fulfillment, contentment, or joy. Reflection: What wish has already come true? Action: Celebrate the abundance you already have.",
-    "reversed": "This card reversed is all about overindulgence or dissatisfaction. It suggests emptiness, arrogance, or lack of fulfillment. Reflection: Where are you chasing shallow pleasures? Action: Seek deeper satisfaction and gratitude."
+    "keywords": [
+      "contentment",
+      "gratitude",
+      "wishes",
+      "satisfaction"
+    ],
+    "upright": "Nine of Cups is all about emotional satisfaction and gratitude. Upright, it suggests wish fulfillment, contentment, or joy. What wish has already come true? Celebrate the abundance you already have.",
+    "reversed": "Nine of Cups reversed is all about overindulgence or dissatisfaction. It suggests emptiness, arrogance, or lack of fulfillment. Where are you chasing shallow pleasures? Seek deeper satisfaction and gratitude."
   },
   {
     "name": "Ten of Cups",
-    "keywords": ["harmony", "family", "joy", "completion"],
-    "upright": "This card is all about emotional fulfillment and harmony. Upright, it suggests happy families, peace, or long-term joy. Reflection: What does true emotional harmony look like for you? Action: Create space for love and joy today.",
-    "reversed": "This card reversed is all about tension or disconnection. It suggests broken relationships, false happiness, or misalignment. Reflection: Where is disharmony showing up? Action: Address what’s off instead of pretending."
+    "keywords": [
+      "harmony",
+      "family",
+      "joy",
+      "completion"
+    ],
+    "upright": "Ten of Cups is all about emotional fulfillment and harmony. Upright, it suggests happy families, peace, or long-term joy. What does true emotional harmony look like for you? Create space for love and joy today.",
+    "reversed": "Ten of Cups reversed is all about tension or disconnection. It suggests broken relationships, false happiness, or misalignment. Where is disharmony showing up? Address what’s off instead of pretending."
   },
   {
     "name": "Page of Cups",
-    "keywords": ["creativity", "intuition", "curiosity", "dreamer"],
-    "upright": "This card is all about curiosity and imagination. Upright, it suggests creativity, intuitive nudges, or emotional openness. Reflection: Where can you dream bigger? Action: Explore your imagination with playful curiosity.",
-    "reversed": "This card reversed is all about immaturity or escapism. It suggests emotional immaturity, insecurity, or unrealistic dreams. Reflection: Where are you avoiding reality? Action: Ground your dreams in practical steps."
+    "keywords": [
+      "creativity",
+      "intuition",
+      "curiosity",
+      "dreamer"
+    ],
+    "upright": "Page of Cups is all about curiosity and imagination. Upright, it suggests creativity, intuitive nudges, or emotional openness. Where can you dream bigger? Explore your imagination with playful curiosity.",
+    "reversed": "Page of Cups reversed is all about immaturity or escapism. It suggests emotional immaturity, insecurity, or unrealistic dreams. Where are you avoiding reality? Ground your dreams in practical steps."
   },
   {
     "name": "Knight of Cups",
-    "keywords": ["romance", "charm", "idealism", "pursuit"],
-    "upright": "This card is all about romance and charm. Upright, it suggests pursuit of love, dreams, or emotional connections. Reflection: What passion are you ready to chase? Action: Move toward it with heart.",
-    "reversed": "This card reversed is all about moodiness or unrealistic expectations. It suggests jealousy, disappointment, or chasing illusions. Reflection: Where are you expecting too much? Action: Be honest about what’s real versus fantasy."
+    "keywords": [
+      "romance",
+      "charm",
+      "idealism",
+      "pursuit"
+    ],
+    "upright": "Knight of Cups is all about romance and charm. Upright, it suggests pursuit of love, dreams, or emotional connections. What passion are you ready to chase? Move toward it with heart.",
+    "reversed": "Knight of Cups reversed is all about moodiness or unrealistic expectations. It suggests jealousy, disappointment, or chasing illusions. Where are you expecting too much? Be honest about what’s real versus fantasy."
   },
   {
     "name": "Queen of Cups",
-    "keywords": ["compassion", "intuition", "nurturing", "empathy"],
-    "upright": "This card is all about compassion and intuition. Upright, it suggests nurturing, sensitivity, or psychic insight. Reflection: Where are you being called to listen deeply? Action: Hold space for someone—or yourself—with care.",
-    "reversed": "This card reversed is all about insecurity or emotional overwhelm. It suggests dependence, suppression, or lack of self-care. Reflection: Where are you neglecting your emotional needs? Action: Nurture yourself before others."
+    "keywords": [
+      "compassion",
+      "intuition",
+      "nurturing",
+      "empathy"
+    ],
+    "upright": "Queen of Cups is all about compassion and intuition. Upright, it suggests nurturing, sensitivity, or psychic insight. Where are you being called to listen deeply? Hold space for someone—or yourself—with care.",
+    "reversed": "Queen of Cups reversed is all about insecurity or emotional overwhelm. It suggests dependence, suppression, or lack of self-care. Where are you neglecting your emotional needs? Nurture yourself before others."
   },
   {
     "name": "King of Cups",
-    "keywords": ["emotional balance", "wisdom", "support", "maturity"],
-    "upright": "This card is all about emotional maturity and balance. Upright, it suggests wisdom, calmness, or steady support. Reflection: Where can you bring calm leadership? Action: Respond with wisdom instead of reactivity.",
-    "reversed": "This card reversed is all about manipulation or imbalance. It suggests moodiness, withdrawal, or emotional control issues. Reflection: Where are emotions running the show? Action: Regain balance by addressing what’s underneath."
-  }
-[
+    "keywords": [
+      "emotional balance",
+      "wisdom",
+      "support",
+      "maturity"
+    ],
+    "upright": "King of Cups is all about emotional maturity and balance. Upright, it suggests wisdom, calmness, or steady support. Where can you bring calm leadership? Respond with wisdom instead of reactivity.",
+    "reversed": "King of Cups reversed is all about manipulation or imbalance. It suggests moodiness, withdrawal, or emotional control issues. Where are emotions running the show? Regain balance by addressing what’s underneath."
+  },
   {
     "name": "Ace of Swords",
-    "keywords": ["clarity", "truth", "breakthrough", "ideas"],
-    "upright": "This card is all about clarity and fresh perspective. Upright, it suggests breakthroughs, truth, or new ideas. Reflection: Where is clarity breaking through for you? Action: Speak your truth with confidence.",
-    "reversed": "This card reversed is all about confusion or dishonesty. It suggests misinformation, lack of clarity, or mental blocks. Reflection: Where are you clouded or misled? Action: Seek facts before making decisions."
+    "keywords": [
+      "clarity",
+      "truth",
+      "breakthrough",
+      "ideas"
+    ],
+    "upright": "Ace of Swords is all about clarity and fresh perspective. Upright, it suggests breakthroughs, truth, or new ideas. Where is clarity breaking through for you? Speak your truth with confidence.",
+    "reversed": "Ace of Swords reversed is all about confusion or dishonesty. It suggests misinformation, lack of clarity, or mental blocks. Where are you clouded or misled? Seek facts before making decisions."
   },
   {
     "name": "Two of Swords",
-    "keywords": ["decisions", "stalemate", "balance", "choices"],
-    "upright": "This card is all about difficult choices and balance. Upright, it suggests indecision, stalemate, or weighing options. Reflection: Where are you avoiding a decision? Action: Remove the blindfold and choose.",
-    "reversed": "This card reversed is all about confusion or delays. It suggests information overload, avoidance, or false choices. Reflection: What truth are you refusing to see? Action: Step back and simplify your decision."
+    "keywords": [
+      "decisions",
+      "stalemate",
+      "balance",
+      "choices"
+    ],
+    "upright": "Two of Swords is all about difficult choices and balance. Upright, it suggests indecision, stalemate, or weighing options. Where are you avoiding a decision? Remove the blindfold and choose.",
+    "reversed": "Two of Swords reversed is all about confusion or delays. It suggests information overload, avoidance, or false choices. What truth are you refusing to see? Step back and simplify your decision."
   },
   {
     "name": "Three of Swords",
-    "keywords": ["heartbreak", "grief", "pain", "betrayal"],
-    "upright": "This card is all about heartbreak and loss. Upright, it suggests grief, betrayal, or sadness. Reflection: What heartbreak needs acknowledgment? Action: Allow yourself to feel and release the pain.",
-    "reversed": "This card reversed is all about healing or forgiveness. It suggests recovery, reconciliation, or moving on. Reflection: What hurt are you ready to release? Action: Begin the process of healing by letting go."
+    "keywords": [
+      "heartbreak",
+      "grief",
+      "pain",
+      "betrayal"
+    ],
+    "upright": "Three of Swords is all about heartbreak and loss. Upright, it suggests grief, betrayal, or sadness. What heartbreak needs acknowledgment? Allow yourself to feel and release the pain.",
+    "reversed": "Three of Swords reversed is all about healing or forgiveness. It suggests recovery, reconciliation, or moving on. What hurt are you ready to release? Begin the process of healing by letting go."
   },
   {
     "name": "Four of Swords",
-    "keywords": ["rest", "recovery", "retreat", "stillness"],
-    "upright": "This card is all about rest and recovery. Upright, it suggests retreat, stillness, or recharging. Reflection: Where are you overdue for rest? Action: Take a pause before moving forward.",
-    "reversed": "This card reversed is all about burnout or restlessness. It suggests avoidance, overexertion, or lack of recovery. Reflection: Where are you ignoring your body’s signals? Action: Give yourself permission to slow down."
+    "keywords": [
+      "rest",
+      "recovery",
+      "retreat",
+      "stillness"
+    ],
+    "upright": "Four of Swords is all about rest and recovery. Upright, it suggests retreat, stillness, or recharging. Where are you overdue for rest? Take a pause before moving forward.",
+    "reversed": "Four of Swords reversed is all about burnout or restlessness. It suggests avoidance, overexertion, or lack of recovery. Where are you ignoring your body’s signals? Give yourself permission to slow down."
   },
   {
     "name": "Five of Swords",
-    "keywords": ["conflict", "ego", "tension", "loss"],
-    "upright": "This card is all about conflict and hollow victories. Upright, it suggests ego battles, deceit, or tension. Reflection: Where are you fighting just to win? Action: Choose peace over pride.",
-    "reversed": "This card reversed is all about reconciliation or lingering conflict. It suggests regret, compromise, or moving past tension. Reflection: What fight is it time to release? Action: Make amends or let go gracefully."
+    "keywords": [
+      "conflict",
+      "ego",
+      "tension",
+      "loss"
+    ],
+    "upright": "Five of Swords is all about conflict and hollow victories. Upright, it suggests ego battles, deceit, or tension. Where are you fighting just to win? Choose peace over pride.",
+    "reversed": "Five of Swords reversed is all about reconciliation or lingering conflict. It suggests regret, compromise, or moving past tension. What fight is it time to release? Make amends or let go gracefully."
   },
   {
     "name": "Six of Swords",
-    "keywords": ["transition", "healing", "journey", "release"],
-    "upright": "This card is all about transition and healing. Upright, it suggests moving on, travel, or finding peace. Reflection: What are you ready to leave behind? Action: Step into smoother waters with trust.",
-    "reversed": "This card reversed is all about resistance or stuckness. It suggests delays, baggage, or unfinished transitions. Reflection: Where are you carrying the past with you? Action: Release what no longer serves."
+    "keywords": [
+      "transition",
+      "healing",
+      "journey",
+      "release"
+    ],
+    "upright": "Six of Swords is all about transition and healing. Upright, it suggests moving on, travel, or finding peace. What are you ready to leave behind? Step into smoother waters with trust.",
+    "reversed": "Six of Swords reversed is all about resistance or stuckness. It suggests delays, baggage, or unfinished transitions. Where are you carrying the past with you? Release what no longer serves."
   },
   {
     "name": "Seven of Swords",
-    "keywords": ["deception", "strategy", "betrayal", "secrecy"],
-    "upright": "This card is all about strategy and secrecy. Upright, it suggests deception, hidden agendas, or clever tactics. Reflection: Where is honesty missing? Action: Bring integrity back to the table.",
-    "reversed": "This card reversed is all about truth revealed. It suggests exposure, regret, or facing consequences. Reflection: What truth can no longer be hidden? Action: Step into honesty, even if it’s uncomfortable."
+    "keywords": [
+      "deception",
+      "strategy",
+      "betrayal",
+      "secrecy"
+    ],
+    "upright": "Seven of Swords is all about strategy and secrecy. Upright, it suggests deception, hidden agendas, or clever tactics. Where is honesty missing? Bring integrity back to the table.",
+    "reversed": "Seven of Swords reversed is all about truth revealed. It suggests exposure, regret, or facing consequences. What truth can no longer be hidden? Step into honesty, even if it’s uncomfortable."
   },
   {
     "name": "Eight of Swords",
-    "keywords": ["restriction", "fear", "entrapment", "limitation"],
-    "upright": "This card is all about feeling trapped. Upright, it suggests fear, restriction, or self-imposed limitations. Reflection: Where are you holding yourself hostage? Action: Take one step toward freedom.",
-    "reversed": "This card reversed is all about release or empowerment. It suggests freedom, clarity, or breaking barriers. Reflection: What chains are loosening? Action: Walk toward your liberation."
+    "keywords": [
+      "restriction",
+      "fear",
+      "entrapment",
+      "limitation"
+    ],
+    "upright": "Eight of Swords is all about feeling trapped. Upright, it suggests fear, restriction, or self-imposed limitations. Where are you holding yourself hostage? Take one step toward freedom.",
+    "reversed": "Eight of Swords reversed is all about release or empowerment. It suggests freedom, clarity, or breaking barriers. What chains are loosening? Walk toward your liberation."
   },
   {
     "name": "Nine of Swords",
-    "keywords": ["anxiety", "fear", "nightmares", "worry"],
-    "upright": "This card is all about fear and sleepless nights. Upright, it suggests anxiety, nightmares, or worry. Reflection: What fears keep you up at night? Action: Write them down and release one.",
-    "reversed": "This card reversed is all about recovery or acceptance. It suggests healing, hope, or facing fears. Reflection: What fear is starting to lose its grip? Action: Seek support or release guilt."
+    "keywords": [
+      "anxiety",
+      "fear",
+      "nightmares",
+      "worry"
+    ],
+    "upright": "Nine of Swords is all about fear and sleepless nights. Upright, it suggests anxiety, nightmares, or worry. What fears keep you up at night? Write them down and release one.",
+    "reversed": "Nine of Swords reversed is all about recovery or acceptance. It suggests healing, hope, or facing fears. What fear is starting to lose its grip? Seek support or release guilt."
   },
   {
     "name": "Ten of Swords",
-    "keywords": ["betrayal", "ending", "collapse", "defeat"],
-    "upright": "This card is all about painful endings. Upright, it suggests betrayal, collapse, or finality. Reflection: What cycle has reached its painful close? Action: Accept the ending and prepare to heal.",
-    "reversed": "This card reversed is all about recovery or regeneration. It suggests survival, resilience, or new beginnings. Reflection: What pain are you ready to rise from? Action: Rebuild from the ground up."
+    "keywords": [
+      "betrayal",
+      "ending",
+      "collapse",
+      "defeat"
+    ],
+    "upright": "Ten of Swords is all about painful endings. Upright, it suggests betrayal, collapse, or finality. What cycle has reached its painful close? Accept the ending and prepare to heal.",
+    "reversed": "Ten of Swords reversed is all about recovery or regeneration. It suggests survival, resilience, or new beginnings. What pain are you ready to rise from? Rebuild from the ground up."
   },
   {
     "name": "Page of Swords",
-    "keywords": ["curiosity", "ideas", "communication", "vigilance"],
-    "upright": "This card is all about curiosity and new ideas. Upright, it suggests learning, vigilance, or youthful energy. Reflection: What truth are you eager to explore? Action: Pursue knowledge with openness.",
-    "reversed": "This card reversed is all about gossip or deception. It suggests defensiveness, scattered thoughts, or dishonesty. Reflection: Where are you speaking without clarity? Action: Pause before reacting and seek facts."
+    "keywords": [
+      "curiosity",
+      "ideas",
+      "communication",
+      "vigilance"
+    ],
+    "upright": "Page of Swords is all about curiosity and new ideas. Upright, it suggests learning, vigilance, or youthful energy. What truth are you eager to explore? Pursue knowledge with openness.",
+    "reversed": "Page of Swords reversed is all about gossip or deception. It suggests defensiveness, scattered thoughts, or dishonesty. Where are you speaking without clarity? Pause before reacting and seek facts."
   },
   {
     "name": "Knight of Swords",
-    "keywords": ["action", "ambition", "speed", "determination"],
-    "upright": "This card is all about ambition and swift action. Upright, it suggests boldness, determination, or pursuit of goals. Reflection: Where are you ready to charge forward? Action: Move with focus and clarity.",
-    "reversed": "This card reversed is all about recklessness or haste. It suggests impulsiveness, scattered focus, or aggression. Reflection: Where are you rushing without thought? Action: Slow down before acting."
+    "keywords": [
+      "action",
+      "ambition",
+      "speed",
+      "determination"
+    ],
+    "upright": "Knight of Swords is all about ambition and swift action. Upright, it suggests boldness, determination, or pursuit of goals. Where are you ready to charge forward? Move with focus and clarity.",
+    "reversed": "Knight of Swords reversed is all about recklessness or haste. It suggests impulsiveness, scattered focus, or aggression. Where are you rushing without thought? Slow down before acting."
   },
   {
     "name": "Queen of Swords",
-    "keywords": ["truth", "clarity", "independence", "perception"],
-    "upright": "This card is all about honesty and clear perspective. Upright, it suggests independence, directness, or wisdom. Reflection: Where do you need to cut through the fog? Action: Speak your truth clearly.",
-    "reversed": "This card reversed is all about coldness or dishonesty. It suggests bitterness, manipulation, or miscommunication. Reflection: Where are you shutting down emotionally? Action: Balance clarity with compassion."
+    "keywords": [
+      "truth",
+      "clarity",
+      "independence",
+      "perception"
+    ],
+    "upright": "Queen of Swords is all about honesty and clear perspective. Upright, it suggests independence, directness, or wisdom. Where do you need to cut through the fog? Speak your truth clearly.",
+    "reversed": "Queen of Swords reversed is all about coldness or dishonesty. It suggests bitterness, manipulation, or miscommunication. Where are you shutting down emotionally? Balance clarity with compassion."
   },
   {
     "name": "King of Swords",
-    "keywords": ["authority", "logic", "truth", "discipline"],
-    "upright": "This card is all about authority and intellect. Upright, it suggests clear thinking, wisdom, and decisive leadership. Reflection: Where are you being called to lead with logic? Action: Make decisions with clarity and fairness.",
-    "reversed": "This card reversed is all about misuse of power or manipulation. It suggests corruption, cruelty, or abuse of authority. Reflection: Where is logic being twisted into control? Action: Realign with truth and integrity."
-  }
-[
+    "keywords": [
+      "authority",
+      "logic",
+      "truth",
+      "discipline"
+    ],
+    "upright": "King of Swords is all about authority and intellect. Upright, it suggests clear thinking, wisdom, and decisive leadership. Where are you being called to lead with logic? Make decisions with clarity and fairness.",
+    "reversed": "King of Swords reversed is all about misuse of power or manipulation. It suggests corruption, cruelty, or abuse of authority. Where is logic being twisted into control? Realign with truth and integrity."
+  },
   {
     "name": "Ace of Pentacles",
-    "keywords": ["opportunity", "prosperity", "foundation", "growth"],
-    "upright": "This card is all about new opportunities and material beginnings. Upright, it suggests prosperity, stability, or fresh starts. Reflection: Where are you being offered a seed of abundance? Action: Plant it and nurture it carefully.",
-    "reversed": "This card reversed is all about missed chances or instability. It suggests poor planning, delays, or short-term thinking. Reflection: Where are you letting fear block your abundance? Action: Reevaluate your foundation and start again."
+    "keywords": [
+      "opportunity",
+      "prosperity",
+      "foundation",
+      "growth"
+    ],
+    "upright": "Ace of Pentacles is all about new opportunities and material beginnings. Upright, it suggests prosperity, stability, or fresh starts. Where are you being offered a seed of abundance? Plant it and nurture it carefully.",
+    "reversed": "Ace of Pentacles reversed is all about missed chances or instability. It suggests poor planning, delays, or short-term thinking. Where are you letting fear block your abundance? Reevaluate your foundation and start again."
   },
   {
     "name": "Two of Pentacles",
-    "keywords": ["balance", "adaptability", "choices", "flexibility"],
-    "upright": "This card is all about balance and juggling priorities. Upright, it suggests adaptability, choices, or multitasking. Reflection: Where are you being asked to juggle more than one thing? Action: Prioritize and stay flexible.",
-    "reversed": "This card reversed is all about imbalance or poor time management. It suggests disorganization, stress, or overcommitment. Reflection: Where are you stretched too thin? Action: Simplify your responsibilities."
+    "keywords": [
+      "balance",
+      "adaptability",
+      "choices",
+      "flexibility"
+    ],
+    "upright": "Two of Pentacles is all about balance and juggling priorities. Upright, it suggests adaptability, choices, or multitasking. Where are you being asked to juggle more than one thing? Prioritize and stay flexible.",
+    "reversed": "Two of Pentacles reversed is all about imbalance or poor time management. It suggests disorganization, stress, or overcommitment. Where are you stretched too thin? Simplify your responsibilities."
   },
   {
     "name": "Three of Pentacles",
-    "keywords": ["teamwork", "collaboration", "skill", "effort"],
-    "upright": "This card is all about teamwork and shared effort. Upright, it suggests collaboration, learning, or skill building. Reflection: Where could cooperation bring better results? Action: Ask for help or contribute your unique skills.",
-    "reversed": "This card reversed is all about lack of teamwork or miscommunication. It suggests disorganization, poor effort, or working at cross-purposes. Reflection: Where is teamwork breaking down? Action: Rebuild trust and communication."
+    "keywords": [
+      "teamwork",
+      "collaboration",
+      "skill",
+      "effort"
+    ],
+    "upright": "Three of Pentacles is all about teamwork and shared effort. Upright, it suggests collaboration, learning, or skill building. Where could cooperation bring better results? Ask for help or contribute your unique skills.",
+    "reversed": "Three of Pentacles reversed is all about lack of teamwork or miscommunication. It suggests disorganization, poor effort, or working at cross-purposes. Where is teamwork breaking down? Rebuild trust and communication."
   },
   {
     "name": "Four of Pentacles",
-    "keywords": ["control", "security", "possession", "stability"],
-    "upright": "This card is all about security and control. Upright, it suggests saving, protecting, or holding on tightly. Reflection: Where are you clinging too tightly? Action: Balance security with generosity.",
-    "reversed": "This card reversed is all about release or greed. It suggests overspending, fear, or letting go. Reflection: What are you afraid to release? Action: Loosen your grip and trust abundance."
+    "keywords": [
+      "control",
+      "security",
+      "possession",
+      "stability"
+    ],
+    "upright": "Four of Pentacles is all about security and control. Upright, it suggests saving, protecting, or holding on tightly. Where are you clinging too tightly? Balance security with generosity.",
+    "reversed": "Four of Pentacles reversed is all about release or greed. It suggests overspending, fear, or letting go. What are you afraid to release? Loosen your grip and trust abundance."
   },
   {
     "name": "Five of Pentacles",
-    "keywords": ["loss", "hardship", "poverty", "struggle"],
-    "upright": "This card is all about hardship and loss. Upright, it suggests poverty, exclusion, or difficulty. Reflection: Where are you feeling left out in the cold? Action: Reach out for support and trust help is available.",
-    "reversed": "This card reversed is all about recovery or hope. It suggests improvement, relief, or overcoming hardship. Reflection: Where are things beginning to turn around? Action: Accept help and move toward healing."
+    "keywords": [
+      "loss",
+      "hardship",
+      "poverty",
+      "struggle"
+    ],
+    "upright": "Five of Pentacles is all about hardship and loss. Upright, it suggests poverty, exclusion, or difficulty. Where are you feeling left out in the cold? Reach out for support and trust help is available.",
+    "reversed": "Five of Pentacles reversed is all about recovery or hope. It suggests improvement, relief, or overcoming hardship. Where are things beginning to turn around? Accept help and move toward healing."
   },
   {
     "name": "Six of Pentacles",
-    "keywords": ["generosity", "charity", "support", "balance"],
-    "upright": "This card is all about giving and receiving. Upright, it suggests generosity, fairness, or support. Reflection: Where can you give or receive more openly? Action: Offer help or accept it graciously.",
-    "reversed": "This card reversed is all about inequality or hidden motives. It suggests exploitation, debt, or strings attached. Reflection: Where is giving or receiving out of balance? Action: Reevaluate the exchange honestly."
+    "keywords": [
+      "generosity",
+      "charity",
+      "support",
+      "balance"
+    ],
+    "upright": "Six of Pentacles is all about giving and receiving. Upright, it suggests generosity, fairness, or support. Where can you give or receive more openly? Offer help or accept it graciously.",
+    "reversed": "Six of Pentacles reversed is all about inequality or hidden motives. It suggests exploitation, debt, or strings attached. Where is giving or receiving out of balance? Reevaluate the exchange honestly."
   },
   {
     "name": "Seven of Pentacles",
-    "keywords": ["patience", "investment", "assessment", "growth"],
-    "upright": "This card is all about patience and long-term growth. Upright, it suggests evaluation, persistence, or investment. Reflection: Where are you planting seeds for the future? Action: Stay patient and keep tending your efforts.",
-    "reversed": "This card reversed is all about impatience or wasted effort. It suggests poor returns, frustration, or lack of planning. Reflection: Where are you expecting results too soon? Action: Adjust your approach and stay steady."
+    "keywords": [
+      "patience",
+      "investment",
+      "assessment",
+      "growth"
+    ],
+    "upright": "Seven of Pentacles is all about patience and long-term growth. Upright, it suggests evaluation, persistence, or investment. Where are you planting seeds for the future? Stay patient and keep tending your efforts.",
+    "reversed": "Seven of Pentacles reversed is all about impatience or wasted effort. It suggests poor returns, frustration, or lack of planning. Where are you expecting results too soon? Adjust your approach and stay steady."
   },
   {
     "name": "Eight of Pentacles",
-    "keywords": ["skill", "apprenticeship", "dedication", "practice"],
-    "upright": "This card is all about dedication and practice. Upright, it suggests mastery, focus, or developing skills. Reflection: Where are you honing your craft? Action: Commit to steady practice and improvement.",
-    "reversed": "This card reversed is all about lack of focus or poor effort. It suggests mediocrity, shortcuts, or burnout. Reflection: Where are you cutting corners? Action: Recommit to quality and patience."
+    "keywords": [
+      "skill",
+      "apprenticeship",
+      "dedication",
+      "practice"
+    ],
+    "upright": "Eight of Pentacles is all about dedication and practice. Upright, it suggests mastery, focus, or developing skills. Where are you honing your craft? Commit to steady practice and improvement.",
+    "reversed": "Eight of Pentacles reversed is all about lack of focus or poor effort. It suggests mediocrity, shortcuts, or burnout. Where are you cutting corners? Recommit to quality and patience."
   },
   {
     "name": "Nine of Pentacles",
-    "keywords": ["independence", "luxury", "success", "self-sufficiency"],
-    "upright": "This card is all about independence and abundance. Upright, it suggests self-sufficiency, success, or luxury. Reflection: Where can you celebrate your independence? Action: Indulge in a reward you’ve earned.",
-    "reversed": "This card reversed is all about overindulgence or dependence. It suggests financial setbacks, co-dependence, or lack of self-worth. Reflection: Where are you leaning too much on others? Action: Build your own foundation of stability."
+    "keywords": [
+      "independence",
+      "luxury",
+      "success",
+      "self-sufficiency"
+    ],
+    "upright": "Nine of Pentacles is all about independence and abundance. Upright, it suggests self-sufficiency, success, or luxury. Where can you celebrate your independence? Indulge in a reward you’ve earned.",
+    "reversed": "Nine of Pentacles reversed is all about overindulgence or dependence. It suggests financial setbacks, co-dependence, or lack of self-worth. Where are you leaning too much on others? Build your own foundation of stability."
   },
   {
     "name": "Ten of Pentacles",
-    "keywords": ["legacy", "wealth", "family", "long-term"],
-    "upright": "This card is all about legacy and stability. Upright, it suggests family, inheritance, or long-term success. Reflection: What legacy are you building? Action: Invest in the future for yourself and others.",
-    "reversed": "This card reversed is all about instability or conflict. It suggests financial strain, family disputes, or short-term focus. Reflection: Where is long-term security being ignored? Action: Rebuild stability piece by piece."
+    "keywords": [
+      "legacy",
+      "wealth",
+      "family",
+      "long-term"
+    ],
+    "upright": "Ten of Pentacles is all about legacy and stability. Upright, it suggests family, inheritance, or long-term success. What legacy are you building? Invest in the future for yourself and others.",
+    "reversed": "Ten of Pentacles reversed is all about instability or conflict. It suggests financial strain, family disputes, or short-term focus. Where is long-term security being ignored? Rebuild stability piece by piece."
   },
   {
     "name": "Page of Pentacles",
-    "keywords": ["opportunity", "study", "ambition", "focus"],
-    "upright": "This card is all about new opportunities and learning. Upright, it suggests ambition, curiosity, or practical beginnings. Reflection: What skill or goal excites you now? Action: Start studying or practicing it.",
-    "reversed": "This card reversed is all about lack of progress or procrastination. It suggests short attention, poor planning, or missed chances. Reflection: Where are you stalling growth? Action: Take a small step to restart momentum."
+    "keywords": [
+      "opportunity",
+      "study",
+      "ambition",
+      "focus"
+    ],
+    "upright": "Page of Pentacles is all about new opportunities and learning. Upright, it suggests ambition, curiosity, or practical beginnings. What skill or goal excites you now? Start studying or practicing it.",
+    "reversed": "Page of Pentacles reversed is all about lack of progress or procrastination. It suggests short attention, poor planning, or missed chances. Where are you stalling growth? Take a small step to restart momentum."
   },
   {
     "name": "Knight of Pentacles",
-    "keywords": ["responsibility", "routine", "patience", "diligence"],
-    "upright": "This card is all about patience and responsibility. Upright, it suggests steady progress, reliability, or discipline. Reflection: Where is consistency paying off? Action: Stick with the routine, even if it feels slow.",
-    "reversed": "This card reversed is all about stagnation or boredom. It suggests laziness, stubbornness, or lack of progress. Reflection: Where are you resisting steady work? Action: Recommit to persistence in small ways."
+    "keywords": [
+      "responsibility",
+      "routine",
+      "patience",
+      "diligence"
+    ],
+    "upright": "Knight of Pentacles is all about patience and responsibility. Upright, it suggests steady progress, reliability, or discipline. Where is consistency paying off? Stick with the routine, even if it feels slow.",
+    "reversed": "Knight of Pentacles reversed is all about stagnation or boredom. It suggests laziness, stubbornness, or lack of progress. Where are you resisting steady work? Recommit to persistence in small ways."
   },
   {
     "name": "Queen of Pentacles",
-    "keywords": ["nurturing", "abundance", "practicality", "comfort"],
-    "upright": "This card is all about abundance and nurturing. Upright, it suggests practicality, comfort, or generosity. Reflection: Where can you create more comfort and security? Action: Do one thing that nurtures your environment.",
-    "reversed": "This card reversed is all about imbalance or neglect. It suggests dependence, materialism, or poor self-care. Reflection: Where are you neglecting your well-being? Action: Prioritize stability and self-nurturing."
+    "keywords": [
+      "nurturing",
+      "abundance",
+      "practicality",
+      "comfort"
+    ],
+    "upright": "Queen of Pentacles is all about abundance and nurturing. Upright, it suggests practicality, comfort, or generosity. Where can you create more comfort and security? Do one thing that nurtures your environment.",
+    "reversed": "Queen of Pentacles reversed is all about imbalance or neglect. It suggests dependence, materialism, or poor self-care. Where are you neglecting your well-being? Prioritize stability and self-nurturing."
   },
   {
     "name": "King of Pentacles",
-    "keywords": ["wealth", "stability", "success", "security"],
-    "upright": "This card is all about abundance and leadership. Upright, it suggests success, prosperity, or mastery. Reflection: Where are you stepping into stability and power? Action: Take responsibility and lead with generosity.",
-    "reversed": "This card reversed is all about greed or instability. It suggests arrogance, loss, or misuse of resources. Reflection: Where is power turning into control? Action: Realign with generosity and integrity."
+    "keywords": [
+      "wealth",
+      "stability",
+      "success",
+      "security"
+    ],
+    "upright": "King of Pentacles is all about abundance and leadership. Upright, it suggests success, prosperity, or mastery. Where are you stepping into stability and power? Take responsibility and lead with generosity.",
+    "reversed": "King of Pentacles reversed is all about greed or instability. It suggests arrogance, loss, or misuse of resources. Where is power turning into control? Realign with generosity and integrity."
   }
-]
-
-
-
 ]
