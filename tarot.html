@@ -4,89 +4,49 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tarot Reading</title>
+    <title>Whimsical Tarot Reading</title>
     <link rel="stylesheet" href="tarot.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0e0e0f">
-
-<!-- iOS safe area support -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#f4efff" />
 </head>
 
 <body>
-    <div class="tarot-layout">
-        <div class="tarot-left">
-            <div class="spreadselector">
-                <div id="spreadOptions" class="icon-radio-group">
-                    <!-- Select (does not deal yet) -->
-                    <div class="icon-option" data-value="threeCard" title="Three Card">
-                        <img src="icons/three-cards.png" alt="Three Card">
-                    </div>
-                    <div class="icon-option" data-value="celticCross" title="Celtic Cross">
-                        <img src="icons/celtic-cross.png" alt="Celtic Cross">
-                    </div>
-                    <div class="icon-option" data-value="crossSpread" title="Cross Spread">
-                        <img src="icons/cross-spread.png" alt="Cross Spread">
-                    </div>
-                    <div class="icon-option" data-value="horseshoe" title="Horseshoe">
-                        <img src="icons/horseshoe.png" alt="Horseshoe">
-                    </div>
-                    <div class="icon-option" data-value="pentagram" title="Pentagram">
-                        <img src="icons/pentagram.png" alt="Pentagram">
-                    </div>
-                    <div class="icon-option" data-value="eightCards" title="Eight Cards">
-                        <img src="icons/eight-cards.png" alt="Eight Cards">
-                    </div>
-                    <div class="icon-option" data-value="sixCards" title="Six Cards">
-                        <img src="icons/six-cards.png" alt="Six Cards">
-                    </div>
-                    <div class="icon-option" data-value="loveSpread" title="Love Spread">
-                        <img src="icons/love-spread.png" alt="Love Spread">
-                    </div>
+    <div class="tarot-app">
+        <header class="app-header">
+            <h1>🔮 Your Tarot Journey</h1>
+        </header>
 
-                    <!-- Freeform examples (coords-based) -->
-                    <div class="icon-option" data-value="diamond7" title="Diamond 7">
-                        <img src="icons/diamond7.png" alt="Diamond 7">
-                    </div>
-                    <div class="icon-option" data-value="staff9" title="Staff 9">
-                        <img src="icons/staff9.png" alt="Staff 9">
-                    </div>
+        <main class="tarot-layout">
+            <aside class="tarot-left">
+                <label for="spreadSelect" class="toggle">Spread</label>
+                <select id="spreadSelect" class="control" aria-label="Choose spread">
+                    <option value="threeCard">Three Card</option>
+                    <option value="horseshoe">Horseshoe (7)</option>
+                    <option value="celticCross">Celtic Cross (10)</option>
+                </select>
+
+                <!-- Controls live between the hands via CSS -->
+                <div class="controls" aria-label="Tarot controls">
+                    <button id="drawBtn" class="btn primary">🔮 Draw Cards</button>
+                    <button id="reshuffleBtn" class="btn" disabled>🔄 Reshuffle</button>
+                    <button id="resetBtn" class="btn" disabled>♻️ Reset</button>
+
+                    <label class="toggle">
+                        <input id="guidesToggle" type="checkbox" />
+                        <span>Show guides</span>
+                    </label>
                 </div>
-            </div>
+            </aside>
 
-            <!-- Hidden field tracks selected spread; starts empty to force a choice -->
-            <input type="hidden" id="spreadSelect" name="spread" value="">
+            <section class="tarot-right">
+                <div id="deck" aria-live="polite"></div>
+            </section>
+        </main>
 
-            <div class="controls">
-                <button id="drawBtn" class="btn primary" disabled>🔮 Draw Cards</button>
-                <button id="reshuffleBtn" class="btn" disabled>🔄 Reshuffle</button>
-                <button id="resetBtn" class="btn" disabled>♻️ Reset</button>
-                <label class="toggle">
-                    <input id="guidesToggle" type="checkbox">
-                    <span>Show guides</span>
-                </label>
-            </div>
-
-            <div id="spreadDescriptions" class="spread-descriptions"></div>
-        </div>
-
-        <div class="tarot-right">
-            <!-- Board -->
-            <div id="deck" aria-live="polite"></div>
-
-            <!-- Animation overlay -->
-            <div id="dealLayer" aria-hidden="true">
-                <div id="deckPile" title="Deck pile"></div>
-            </div>
-        </div>
+        <footer class="app-footer">Powered by stardust and intention ✨</footer>
     </div>
 
-    <div id="cardModal" class="modal" role="dialog" aria-modal="true" aria-label="Card details">
-        <div class="modal-content"><!-- injected --></div>
-    </div>
-
-    <script src="tarot.js"></script>
+    <script src="tarot.js" defer></script>
 </body>
 
 </html>

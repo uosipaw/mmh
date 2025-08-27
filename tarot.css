@@ -1,45 +1,76 @@
-/* ================================
-   Tarot.css — mobile-first rebuild
-   ================================ */
+/* ==========================================================
+   Tarot.css — Collage / Paper-Craft skin for your new deck
+   - Works with your current HTML & tarot.js
+   - Light, whimsical, textured; buttons centered between hands
+   ========================================================== */
 
-:root{
-  --bg:#0b0c0e;
-  --surface:#12131a;
-  --surface-2:#17181c;
-  --fg:#f5f5f7;
-  --muted:#a7a7ad;
-  --accent:#b48cff;
+/* Fonts (safe to keep in CSS so you don't have to edit HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Special+Elite&display=swap');
 
-  --card-w:clamp(66px, 16vw, 122px);
-  --card-ratio: 2 / 3; /* width / height */
-  --radius:10px;
+:root {
+  /* Palette inspired by the card art */
+  --ink: #2a2226;
+  --paper: #fffaf2;
+  /* warm paper */
+  --paper-2: #fff3e1;
+  /* kraft tint */
+  --sky: #c9e7ff;
+  --rose: #ffd5e5;
+  --mango: #ffd483;
+  --mint: #bff3e0;
+  --violet: #a98cff;
+  --gold: #d9a441;
 
-  --space:clamp(8px, 2.5vw, 16px);
-  --gap:clamp(8px, 2.2vw, 14px);
+  /* UI */
+  --fg: var(--ink);
+  --muted: #6f6169;
+  --accent: var(--gold);
+
+  /* Cards */
+  --card-w: clamp(74px, 16.5vw, 148px);
+  --card-ratio: 2 / 3;
+  --radius: 14px;
+
+  /* Spacing */
+  --space: clamp(10px, 2.6vw, 22px);
+  --gap: clamp(10px, 2.2vw, 18px);
 
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* ===== Base / Reset ===== */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-  color: var(--fg);
-  background: var(--bg);
-  line-height: 1.35;
+* {
+  box-sizing: border-box;
 }
 
-img, svg, canvas { display:block; max-width:100%; }
+html,
+body {
+  height: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--fg);
+  line-height: 1.5;
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+
+  /* dreamy background with your art */
+  background: url("tarott.png") center / cover fixed no-repeat;
+  z-index: 100;
+}
 
 /* Remove blue tap highlight on iOS */
-* { -webkit-tap-highlight-color: transparent; }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* ===== App Shell ===== */
-.tarot-app{
+.tarot-app {
   min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -48,240 +79,489 @@ img, svg, canvas { display:block; max-width:100%; }
 }
 
 /* ===== Header ===== */
-.app-header{
+.app-header {
   position: sticky;
   top: 0;
   z-index: 20;
   padding: 0 var(--space) var(--space);
-  background: linear-gradient(to bottom, rgba(11,12,14,0.9), rgba(11,12,14,0));
-  backdrop-filter: saturate(120%) blur(4px);
-}
-.app-header h1{
-  margin: 0 0 6px;
-  font-size: clamp(18px, 4.5vw, 28px);
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  display: grid;
+  place-items: center;
+  /* glassy strip like taped vellum */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .65), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(6px) saturate(120%);
 }
 
-/* Controls row */
-.controls{
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: var(--gap);
-  align-items: center;
-}
-.control{
-  appearance: none;
-  font: inherit;
+.app-header h1 {
+  margin: 0 0 6px;
+  font-size: clamp(20px, 5vw, 34px);
+  font-weight: 700;
+  letter-spacing: .4px;
   color: var(--fg);
-  background: var(--surface-2);
-  border: 1px solid #292a30;
+  text-shadow: 0 1px 0 #fff7;
+}
+
+.app-header h1::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 6px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 999px;
+  opacity: .6;
+}
+
+/* ===== Layout columns (your existing markup) ===== */
+.tarot-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: var(--gap);
+  padding: 0 var(--space);
+}
+
+@media (max-width: 980px) {
+  .tarot-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left rail (icons + controls) becomes mostly decorative; we center controls later */
+.tarot-left {
+  position: relative;
+  min-height: 120px;
+}
+
+/* Icon radio group: make them feel like stickers */
+.icon-radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 12px;
+}
+
+.icon-option {
+  position: relative;
+  background: #fff9;
+  border: 1px dashed #00000022;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  transform: rotate(calc(var(--rot, -1deg)));
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, .08),
+    0 2px 0 #fff inset;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+
+.icon-option img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.icon-option:hover {
+  transform: translateY(-2px) rotate(calc(var(--rot, -1deg)));
+}
+
+.icon-option.selected {
+  border-color: var(--gold);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, .12),
+    0 0 0 3px #fffa inset,
+    0 0 0 2px color-mix(in oklab, var(--gold) 62%, black 8%) inset;
+}
+
+/* ===== Controls — centered between the hands ===== */
+.controls {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  /* tune if you need */
+  transform: translate(-50%, -50%) rotate(-0.6deg);
+  z-index: 10;
+
+  display: grid;
+  grid-auto-flow: row;
+  gap: 10px;
+  justify-items: center;
+
+  /* frosted paper card with washi tape corners */
+  padding: 16px 18px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, #ffffffc9, #fff6),
+    repeating-linear-gradient(0deg, #0000 0 8px, #00000004 8px 9px);
+  /* paper fibers */
+  border: 1px solid #00000012;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, .15),
+    0 1px 0 #fff inset;
+  backdrop-filter: blur(8px);
+}
+
+.controls::before,
+.controls::after {
+  content: "";
+  position: absolute;
+  width: 68px;
+  height: 16px;
+  background:
+    linear-gradient(90deg, #ffd5e5 0 50%, #bfe9ff 50% 100%);
+  opacity: .75;
+  filter: saturate(1.1);
+  top: -10px;
+  border-radius: 4px;
+  transform: rotate(-4deg);
+  box-shadow: 0 2px 0 #0000001a;
+}
+
+.controls::after {
+  top: auto;
+  bottom: -10px;
+  left: auto;
+  right: 8px;
+  transform: rotate(6deg);
+}
+
+/* Buttons: kraft-paper chips with typewriter labels */
+.btn,
+.control {
+  appearance: none;
+  font: 600 16px/1 "Special Elite", "Fraunces", ui-serif, Georgia, serif;
+  letter-spacing: .3px;
+  color: var(--fg);
+  padding: 10px 16px;
+  min-height: 44px;
   border-radius: 10px;
-  padding: 12px 14px;
-  min-height: 44px; /* thumb-friendly */
-  touch-action: manipulation;
+  border: 1px solid #00000022;
+  background:
+    linear-gradient(180deg, #fffdf7, #fff2dd),
+    repeating-linear-gradient(0deg, #0000 0 6px, #00000006 6px 7px);
+  box-shadow:
+    0 1px 0 #fff inset,
+    0 10px 14px rgba(0, 0, 0, .10);
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, filter .2s ease;
 }
-.control:focus-visible{
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+
+.btn:hover,
+.control:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, .14);
 }
-.control.primary{
-  border-color: #3d2a6f;
-  background: linear-gradient(180deg, #2a2144, #1a1530);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+
+.btn:active,
+.control:active {
+  transform: translateY(0) scale(.99);
 }
-.control[disabled]{
-  opacity: .5;
+
+.btn.primary {
+  background:
+    linear-gradient(180deg, #fff7d8, #ffe5a6),
+    repeating-linear-gradient(0deg, #0000 0 6px, #00000004 6px 7px);
+  border-color: #b38a2d66;
+  box-shadow: 0 1px 0 #fff inset, 0 10px 16px rgba(217, 164, 65, .22);
+}
+
+.btn[disabled] {
+  opacity: .55;
   cursor: not-allowed;
 }
 
-/* ===== Stage & Spread ===== */
-.stage{
+/* Toggle */
+.toggle {
+  font: 600 13px/1 "Special Elite", "Fraunces", serif;
+  color: var(--muted);
+}
+
+/* ===== Right / Board ===== */
+.tarot-right {
   position: relative;
-  overflow: hidden;
+  min-height: min(70vh, 78dvh);
+  border-radius: 18px;
   padding: var(--space);
-  display: grid;
-  place-items: center;
 }
 
-/* The frame is what we scale (via transform on .spread) to fit viewport */
-.spread-frame{
+/* The grid where cards land (coords or named) */
+#deck {
+  --accent: var(--gold);
   position: relative;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  image-rendering: -webkit-optimize-contrast; /* crisper scaled content */
-}
-
-/* Default spread uses auto-fit grid that wraps nicely on phones */
-.spread{
   display: grid;
   gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-w), 1fr));
   justify-items: center;
   align-items: start;
-  transform-origin: center center;
-  will-change: transform;
 }
 
-/* ===== Card ===== */
-.card{
+#deck.freegrid {
+  grid-auto-rows: 1fr;
+}
+
+/* Optional placement guide dots/frames */
+.slot-marker {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 2px dashed color-mix(in oklab, var(--accent) 68%, white 32%);
+  background:
+    radial-gradient(closest-side, #fff8 0 30%, #0000 40% 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+#deck.show-guides .slot-marker {
+  opacity: .7;
+}
+
+/* ===== Cards ===== */
+.card {
   position: relative;
   width: var(--card-w);
   aspect-ratio: var(--card-ratio);
-  perspective: 800px;
+  perspective: 900px;
   border-radius: var(--radius);
-  touch-action: manipulation;
   user-select: none;
+  touch-action: manipulation;
 }
 
-/* 3D inner for flips */
-.card-inner{
-  position: absolute; inset: 0;
+.card-inner {
+  position: absolute;
+  inset: 0;
   transform-style: preserve-3d;
   border-radius: inherit;
-  transition: transform 480ms cubic-bezier(.2,.8,.2,1);
+  transition: transform 520ms cubic-bezier(.2, .8, .2, 1);
   will-change: transform;
 }
-.card.is-flipped .card-inner{ transform: rotateY(180deg); }
 
-/* Card faces */
-.card-face{
-  position: absolute; inset: 0;
+.card.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
   backface-visibility: hidden;
   overflow: hidden;
   border-radius: inherit;
+  /* soft matte with lifted paper shadow */
   box-shadow:
-    0 1px 1px rgba(0,0,0,.35),
-    0 6px 18px rgba(0,0,0,.35);
+    0 1px 0 #fff inset,
+    0 12px 28px rgba(0, 0, 0, .18),
+    0 1.5px 2px rgba(0, 0, 0, .12);
 }
 
-/* Back first (visible) */
-.card-back{
-  background: radial-gradient(120% 120% at 50% 10%, #232435, #12131a 60%, #0c0d11 100%);
-  border: 1px solid #2c2d36;
+/* Back: starry indigo with gold pinstripe, if back image fails */
+.card-back {
+  background:
+    linear-gradient(180deg, #2a2a50, #171733);
+  border: 1px solid #2a2a5033;
   display: grid;
   place-items: center;
   padding: 6px;
 }
-.card-back img{
+
+.card-back img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Front (revealed on flip) */
-.card-front{
+/* Front: white mat so art pops; faint border like printed cards */
+.card-front {
   transform: rotateY(180deg);
-  background: #111;
-  border: 1px solid #2c2d36;
+  background: #fffdf8;
+  border: 1px solid #00000018;
   display: grid;
   place-items: center;
-  padding: 6px;
+  padding: 8px;
 }
-.card-front img{
+
+.card-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: calc(var(--radius) - 6px);
+  box-shadow: 0 0 0 1px #00000010 inset;
 }
 
-/* Deal-in animation */
-@keyframes deal-in{
-  from { transform: translateY(12vh) scale(.95); opacity: 0; }
-  to   { transform: translateY(0)    scale(1);   opacity: 1; }
+/* Reversed tag flair (optional) */
+.card.is-reversed::after {
+  content: "rev";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font: 700 10px/1 "Special Elite", monospace;
+  color: #0008;
+  background: #fff7;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid #0001;
 }
-.card.deal{
+
+/* Deal-in animation: gentle float with paper wobble */
+@keyframes deal-in {
+  from {
+    transform: translateY(14vh) rotate(-1.6deg) scale(.96);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(-6px) rotate(.4deg) scale(1.01);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+.card.deal {
   opacity: 0;
-  animation: deal-in 600ms cubic-bezier(.16,.84,.44,1) both;
+  animation: deal-in 680ms cubic-bezier(.16, .84, .44, 1) both;
   animation-delay: var(--delay, 0ms);
 }
 
-/* Optional inline meaning bubble (shown via long-press JS) */
-.card .meaning{
+/* Inline meaning bubble */
+.card .meaning {
   position: absolute;
-  left: 8px; right: 8px; bottom: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
   padding: 8px 10px;
-  font-size: 12px;
-  color: var(--muted);
-  background: rgba(15,16,20,0.82);
-  border: 1px solid #272832;
+  font: 600 12px/1.35 "Special Elite", serif;
+  color: var(--fg);
+  background:
+    linear-gradient(#fffdf8ee, #fff9e6dd),
+    repeating-linear-gradient(0deg, #0000 0 7px, #00000005 7px 8px);
+  border: 1px solid #00000018;
   border-radius: 8px;
   display: none;
+  box-shadow: 0 10px 16px rgba(0, 0, 0, .12);
 }
-.card.show-meaning .meaning{ display:block; }
+
+.card.show-meaning .meaning {
+  display: block;
+}
+
+/* ===== Dealing overlay (flying cards) ===== */
+#dealLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.flying-card {
+  position: absolute;
+  will-change: transform, opacity;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .18);
+}
+
+#deckPile {
+  position: absolute;
+  left: 6%;
+  bottom: 10%;
+  width: 86px;
+  aspect-ratio: var(--card-ratio);
+  border-radius: var(--radius);
+  background: #fff7;
+  border: 1px solid #00000012;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+}
+
+/* ===== Modal ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: color-mix(in oklab, #000 35%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 50;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  max-width: min(720px, 92vw);
+  max-height: 86dvh;
+  overflow: auto;
+  background:
+    linear-gradient(#fffdf8, #fff7ea),
+    repeating-linear-gradient(0deg, #0000 0 7px, #00000005 7px 8px);
+  border: 1px solid #00000018;
+  border-radius: 16px;
+  padding: 16px;
+  position: relative;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .22);
+}
+
+.close-modal {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #0008;
+}
 
 /* ===== Footer ===== */
-.app-footer{
+.app-footer {
   padding: 6px var(--space) 0;
   color: var(--muted);
-  font-size: 12px;
+  font: 600 12px/1.4 "Special Elite", serif;
   text-align: center;
 }
 
-/* ===== Named Spread Layouts (optional) =====
-   Add .spread--{name} on .tarot-app to activate.
-   Example: Celtic Cross that scales cleanly.
-*/
-.spread--celtic .spread{
-  /* A canvas with known intrinsic width/height so JS can scale it */
-  grid-template-columns: repeat(6, var(--card-w));
-  grid-auto-rows: calc(var(--card-w) / (var(--card-ratio)));
-  gap: var(--gap);
-  width: calc(6 * var(--card-w) + 5 * var(--gap));  /* intrinsic width */
-  height: calc(4 * (var(--card-w) / (var(--card-ratio))) + 3 * var(--gap)); /* intrinsic height */
-  justify-items: center;
-}
-
-/* Cross (center 3x3 area) — adjust to your card order */
-.spread--celtic .card:nth-child(1){ grid-column: 2; grid-row: 2; }               /* Significator */
-.spread--celtic .card:nth-child(2){ grid-column: 2; grid-row: 2; transform: rotate(90deg); } /* Crossing */
-.spread--celtic .card:nth-child(3){ grid-column: 2; grid-row: 1; }               /* Above */
-.spread--celtic .card:nth-child(4){ grid-column: 2; grid-row: 3; }               /* Below */
-.spread--celtic .card:nth-child(5){ grid-column: 1; grid-row: 2; }               /* Past */
-.spread--celtic .card:nth-child(6){ grid-column: 3; grid-row: 2; }               /* Future */
-
-/* Staff (right column) */
-.spread--celtic .card:nth-child(7) { grid-column: 5; grid-row: 1; }
-.spread--celtic .card:nth-child(8) { grid-column: 5; grid-row: 2; }
-.spread--celtic .card:nth-child(9) { grid-column: 5; grid-row: 3; }
-.spread--celtic .card:nth-child(10){ grid-column: 5; grid-row: 4; }
-
-/* Simple 3-card override (optional)
-   Add .spread--three to .tarot-app to center a tidy row */
-.spread--three .spread{
-  grid-template-columns: repeat(3, var(--card-w));
-  grid-auto-rows: calc(var(--card-w) / (var(--card-ratio)));
-  width: calc(3 * var(--card-w) + 2 * var(--gap));
-  height: calc(1 * (var(--card-w) / (var(--card-ratio))));
-}
-
 /* ===== Utilities ===== */
-.hidden{ display:none !important; }
+.hidden {
+  display: none !important;
+}
 
 /* ===== Larger screens ===== */
-@media (min-width: 768px){
-  :root{
-    --card-w: clamp(84px, 10vw, 160px);
+@media (min-width: 768px) {
+  :root {
+    --card-w: clamp(92px, 11vw, 180px);
   }
-  .controls{ grid-template-columns: 1fr auto auto; }
 }
 
 /* iPhone landscape / very short viewports */
-@media (orientation: landscape) and (max-height: 480px){
-  :root{ --card-w: clamp(58px, 12vh, 96px); }
-  .app-header h1{ font-size: 16px; }
-  .control{ padding: 8px 10px; min-height: 40px; }
+@media (orientation: landscape) and (max-height: 480px) {
+  :root {
+    --card-w: clamp(70px, 12vh, 120px);
+  }
+
+  .app-header h1 {
+    font-size: 18px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    min-height: 40px;
+  }
 }
 
 /* ===== Motion & Accessibility ===== */
-@media (prefers-reduced-motion: reduce){
-  .card-inner{ transition: none; }
-  .card.deal{ animation: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .card-inner {
+    transition: none;
+  }
+
+  .card.deal {
+    animation: none;
+    opacity: 1;
+  }
 }
 
-/* Focus ring for keyboard users on interactive cards (if you add tabindex) */
-.card:focus-visible{
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+/* Focus ring on interactive cards (if tabindex added) */
+.card:focus-visible {
+  outline: 2px dashed var(--gold);
+  outline-offset: 4px;
 }

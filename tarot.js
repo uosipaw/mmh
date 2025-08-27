@@ -1,60 +1,37 @@
-/* ===========================
-   Tarot App — Face-down first + Celtic Cross (coords)
-   - Select a spread, then Draw
-   - Animated deal from pile
-   - Cards land face-down; click reveals; second click opens modal
-   - Named-area + freeform (coords) layouts
-   =========================== */
+/* ==========================================================
+   Tarot App — stable build
+   - Fixes duplicate ID issue
+   - Proper card flip (back shows first, face on click)
+   - Defensive DOM wiring + image path handling
+   ========================================================== */
 
-// ----- DOM
+// ---------- DOM
 const deckEl = document.getElementById("deck");
-const spreadSelect = document.getElementById("spreadSelect");
-const spreadDescriptionsDiv = document.getElementById("spreadDescriptions");
 const drawBtn = document.getElementById("drawBtn");
 const reshuffleBtn = document.getElementById("reshuffleBtn");
 const resetBtn = document.getElementById("resetBtn");
 const guidesToggle = document.getElementById("guidesToggle");
-const dealLayer = document.getElementById("dealLayer");
-const deckPile = document.getElementById("deckPile");
+const spreadSelect = document.getElementById("spreadSelect");
 
-if (!deckEl || !spreadSelect || !drawBtn || !dealLayer || !deckPile) {
-  throw new Error(
-    "Required DOM elements not found. Check your HTML structure."
-  );
+if (!deckEl || !drawBtn || !spreadSelect) {
+  console.error("Required elements missing in HTML.");
 }
 
-// ----- State
+// ---------- Config
+const IMG_BASE = "./images/tarot/"; // folder with your card images
+const BACK_IMAGE = IMG_BASE + "back.png"; // card-back image
+const DATA_URL = "./tarot-cards.json"; // JSON with {id,name,description}
+
+// ---------- State
 let fullDeck = [];
 let dataReady = false;
 let dealing = false;
 
-// ----- Utility
-const areaName = (label) =>
-  (label || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+let currentSpreadKey = "threeCard";
+let currentDraw = null; // {cards: [], orientations: [], spreadKey: "..."}
 
-const themesFallback = {
-  threeCard: ["#B35CFF", "#1B1622"],
-  celticCross: ["#47B5FF", "#0F1722"], // used by your screenshot version too
-  crossSpread: ["#FFB23D", "#1A1310"],
-  horseshoe: ["#40D17A", "#0E1513"],
-  pentagram: ["#FF7052", "#1A1311"],
-  eightCards: ["#5DB7FF", "#0F1822"],
-  sixCards: ["#FF76CE", "#17121A"],
-  loveSpread: ["#FF5570", "#1A1012"],
-  diamond7: ["#5DB7FF", "#0F1822"],
-  staff9: ["#FFB23D", "#1A1310"],
-};
-
-const pickTheme = (key, spread) => {
-  const [accent, bgDark] = spread?.theme ||
-    themesFallback[key] || ["#8AA0FF", "#111"];
-  deckEl.style.setProperty("--accent", accent);
-  deckEl.style.setProperty(
-    "--bg",
-    `linear-gradient(180deg, ${bgDark}, color-mix(in oklab, ${bgDark} 88%, black 12%))`
-  );
-};
-
+// ---------- Utils
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const shuffle = (arr) => {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -64,291 +41,58 @@ const shuffle = (arr) => {
   return a;
 };
 
-// ----- Spreads (named-area)
+// ---------- Spreads
 const namedSpreads = {
-  // Kept for others; Celtic Cross is replaced below with coords to match your image
   threeCard: {
+    mode: "areas",
     numCards: 3,
     columns: 3,
     rows: 1,
-    positions: {
-      1: { label: "Past" },
-      2: { label: "Present" },
-      3: { label: "Future" },
-    },
-  },
-  crossSpread: {
-    numCards: 5,
-    columns: 3,
-    rows: 3,
-    positions: {
-      1: { label: "Center" },
-      2: { label: "Top" },
-      3: { label: "Right" },
-      4: { label: "Bottom" },
-      5: { label: "Left" },
-    },
+    positions: [{ label: "Past" }, { label: "Present" }, { label: "Future" }],
   },
   horseshoe: {
+    mode: "areas",
     numCards: 7,
     columns: 7,
     rows: 3,
-    positions: {
-      1: { label: "Past" },
-      2: { label: "Present" },
-      3: { label: "Hidden" },
-      4: { label: "Obstacles" },
-      5: { label: "Environment" },
-      6: { label: "Advice" },
-      7: { label: "Outcome" },
-    },
-  },
-  pentagram: {
-    numCards: 5,
-    columns: 3,
-    rows: 4,
-    positions: {
-      1: { label: "Spirit" },
-      2: { label: "Air" },
-      3: { label: "Water" },
-      4: { label: "Fire" },
-      5: { label: "Earth" },
-    },
-  },
-  eightCards: {
-    numCards: 8,
-    columns: 3,
-    rows: 4,
-    positions: {
-      1: { label: "Card1" },
-      2: { label: "Card2" },
-      3: { label: "Card3" },
-      4: { label: "Card4" },
-      5: { label: "Card5" },
-      6: { label: "Card6" },
-      7: { label: "Card7" },
-      8: { label: "Card8" },
-    },
-  },
-  sixCards: {
-    numCards: 6,
-    columns: 3,
-    rows: 3,
-    positions: {
-      1: { label: "Card1" },
-      2: { label: "Card2" },
-      3: { label: "Card3" },
-      4: { label: "Card4" },
-      5: { label: "Card5" },
-      6: { label: "Card6" },
-    },
-  },
-  loveSpread: {
-    numCards: 8,
-    columns: 3,
-    rows: 3,
-    positions: {
-      1: { label: "Card1" },
-      2: { label: "Card2" },
-      3: { label: "Card3" },
-      4: { label: "Card4" },
-      5: { label: "Card5" },
-      6: { label: "Card6" },
-      7: { label: "Card7" },
-      8: { label: "Card8" },
-    },
+    positions: [
+      { label: "Past" },
+      { label: "Present" },
+      { label: "Hidden" },
+      { label: "Obstacles" },
+      { label: "Environment" },
+      { label: "Advice" },
+      { label: "Outcome" },
+    ],
   },
 };
 
-let currentGridOffset = { baseCol: 1, baseRow: 1, cols: 12, rows: 12 };
-
-// ----- Freeform (coords on 12x12)
-// Includes your Celtic Cross as pictured (10 cards).
-// Labels are #1..#10 by default; tell me your preferred names/order and I’ll swap them.
-const freeformSpreads = {
+const coordsSpreads = {
   celticCross: {
     mode: "coords",
     grid: [12, 12],
     numCards: 10,
     positions: [
-      { label: "#1", col: 4, row: 2 }, // top-left
-      { label: "#2", col: 10, row: 2 }, // top-right (staff top)
-      { label: "#3", col: 4, row: 5 }, // mid-left
-      { label: "#4", col: 6, row: 5, emphasis: true }, // center
-      { label: "#5", col: 8, row: 5 }, // mid-right
-      { label: "#6", col: 6, row: 8 }, // bottom-center
-      { label: "#7", col: 10, row: 4 }, // right staff 2
-      { label: "#8", col: 10, row: 7 }, // right staff 3
-      { label: "#9", col: 10, row: 9 }, // right staff 4
-      { label: "#10", col: 10, row: 11 }, // right staff 5 (bottom)
+      { label: "#1", col: 4, row: 2 },
+      { label: "#2", col: 10, row: 2 },
+      { label: "#3", col: 4, row: 5 },
+      { label: "#4", col: 6, row: 5, emphasis: true },
+      { label: "#5", col: 8, row: 5 },
+      { label: "#6", col: 6, row: 8 },
+      { label: "#7", col: 10, row: 4 },
+      { label: "#8", col: 10, row: 7 },
+      { label: "#9", col: 10, row: 9 },
+      { label: "#10", col: 10, row: 11 },
     ],
-    theme: ["#47B5FF", "#0F1722"],
-  },
-
-  // Examples from earlier (keep or remove)
-  diamond7: {
-    mode: "coords",
-    grid: [12, 12],
-    numCards: 7,
-    positions: [
-      { label: "Top", col: 6, row: 2 },
-      { label: "Left-1", col: 4, row: 4 },
-      { label: "Right-1", col: 8, row: 4 },
-      { label: "Center", col: 6, row: 6, emphasis: true },
-      { label: "Left-2", col: 4, row: 8 },
-      { label: "Right-2", col: 8, row: 8 },
-      { label: "Bottom", col: 6, row: 10 },
-    ],
-    theme: ["#5DB7FF", "#0F1822"],
-  },
-
-  staff9: {
-    mode: "coords",
-    grid: [12, 12],
-    numCards: 9,
-    positions: [
-      { label: "Top-L", col: 4, row: 2 },
-      { label: "Top-R", col: 9, row: 2 },
-      { label: "Mid-L", col: 3, row: 5 },
-      { label: "Center", col: 6, row: 5, emphasis: true },
-      { label: "Mid-R", col: 9, row: 5 },
-      { label: "Bottom-C", col: 6, row: 8 },
-      { label: "Staff-Top", col: 10, row: 4 },
-      { label: "Staff-Mid", col: 10, row: 7 },
-      { label: "Staff-Bot", col: 10, row: 10 },
-    ],
-    theme: ["#FFB23D", "#1A1310"],
   },
 };
 
-// Combined registry
-const spreadLayouts = { ...namedSpreads, ...freeformSpreads };
-const isCoords = (spread) => spread.mode === "coords";
+const spreads = { ...namedSpreads, ...coordsSpreads };
+const isCoords = (s) => s.mode === "coords";
 
-// ----- Sizing (gap-aware, coords-aware)
-function calculateCardSize(spread, containerWidth, containerHeight) {
-  const box = isCoords(spread)
-    ? getUsedGrid(spread)
-    : { cols: spread.columns, rows: spread.rows };
+// ---------- Board helpers
+let currentGridBox = { baseCol: 1, baseRow: 1, cols: 1, rows: 1 };
 
-  const cols = box.cols,
-    rows = box.rows;
-
-  const styles = window.getComputedStyle(deckEl);
-  const gapX = parseFloat(styles.columnGap || styles.gap || "12") || 12;
-  const gapY = parseFloat(styles.rowGap || styles.gap || String(gapX)) || gapX;
-
-  const horizontalPadding = 0.02 * containerWidth;
-  const verticalPadding = Math.min(
-    0.02 * containerHeight,
-    window.innerHeight * 0.05
-  );
-
-  const availableWidth = containerWidth - horizontalPadding;
-  const availableHeight = Math.min(
-    containerHeight - verticalPadding,
-    window.innerHeight * 0.98
-  );
-
-  const totalGapWidth = gapX * (cols - 1);
-  const totalGapHeight = gapY * (rows - 1);
-
-  const maxWidth = (availableWidth - totalGapWidth) / cols;
-  const maxHeight = (availableHeight - totalGapHeight) / rows;
-
-  const aspect = 343 / 480;
-  let width = maxWidth;
-  let height = width / aspect;
-  if (height > maxHeight) {
-    height = maxHeight;
-    width = height * aspect;
-  }
-
-  // clamp but allow bigger than before since we now fit to bbox
-  width = Math.max(48, Math.min(width, 320));
-  height = Math.max(68, Math.min(height, 448));
-
-  return { width, height };
-}
-
-// ----- Build card element (FACE-DOWN FIRST)
-function createCardElement(cardData, orientation, label, size) {
-  const card = document.createElement("div");
-  card.className = "card flipped"; // start face-down
-  card.tabIndex = 0;
-  card.style.width = `${size.width}px`;
-  card.style.height = `${size.height}px`;
-  card.setAttribute("data-label", label || cardData.name);
-
-  const inner = document.createElement("div");
-  inner.className = "card-inner";
-
-  const front = document.createElement("div");
-  front.className = "card-front";
-  const face = document.createElement("img");
-  face.src = `./images/tarot/${cardData.id}.png`;
-  face.alt = cardData.name;
-  face.onerror = function () {
-    this.src = "./images/tarot/back.png";
-    this.alt = "Image not found";
-  };
-  front.appendChild(face);
-
-  const back = document.createElement("div");
-  back.className = "card-back";
-  const backImg = document.createElement("img");
-  backImg.src = "./images/tarot/back.png";
-  backImg.alt = "Back of card";
-  back.appendChild(backImg);
-
-  inner.appendChild(front);
-  inner.appendChild(back);
-  card.appendChild(inner);
-
-  const cardDescription =
-    cardData.description?.[orientation] || cardData.meaning;
-  face.style.transform = orientation === "reversed" ? "rotate(180deg)" : "none";
-  if (orientation === "reversed") card.classList.add("is-reversed");
-
-  // CLICK: first click reveals; later clicks open modal
-  card.addEventListener("click", () => {
-    if (card.classList.contains("flipped")) {
-      card.classList.remove("flipped"); // reveal the face
-      setTimeout(
-        () =>
-          addCardDescription(
-            { ...cardData, description: { [orientation]: cardDescription } },
-            orientation,
-            label
-          ),
-        600
-      );
-    } else {
-      showModal(
-        { ...cardData, description: { [orientation]: cardDescription } },
-        orientation
-      );
-    }
-  });
-
-  return card;
-}
-
-function addCardDescription(cardData, orientation, label = "") {
-  const descBlock = document.createElement("div");
-  descBlock.className = "card-desc-block";
-  descBlock.innerHTML = `
-    <div class="card-desc-label">${label} (${orientation})</div>
-    <div class="card-desc-text">${
-      cardData.description?.[orientation] || cardData.meaning
-    }</div>
-  `;
-  spreadDescriptionsDiv.appendChild(descBlock);
-}
-
-// Track current normalization so card placement can mirror the markers
-
-/** Compute the tightest bounding box of a coords spread (min/max with spans). */
 function getUsedGrid(spread) {
   if (!isCoords(spread)) {
     return { baseCol: 1, baseRow: 1, cols: spread.columns, rows: spread.rows };
@@ -375,439 +119,281 @@ function getUsedGrid(spread) {
   };
 }
 
-// ----- Guides / Slot markers
-function clearMarkers() {
-  deckEl.querySelectorAll(".slot-marker").forEach((n) => n.remove());
-}
+function setupBoard(spread) {
+  // Clear existing cards + markers
+  Array.from(deckEl.querySelectorAll(".slot-marker")).forEach((el) =>
+    el.remove()
+  );
+  deckEl.innerHTML = "";
 
-function createSlotMarkers(spread) {
-  clearMarkers();
+  deckEl.classList.remove("freegrid");
+  deckEl.style.gridTemplateColumns = "";
+  deckEl.style.gridTemplateRows = "";
+
   if (isCoords(spread)) {
-    // normalize to the used bounding box so cards get bigger
     const box = getUsedGrid(spread);
-    currentGridOffset = box;
-
+    currentGridBox = box;
     deckEl.classList.add("freegrid");
     deckEl.style.gridTemplateColumns = `repeat(${box.cols}, 1fr)`;
     deckEl.style.gridTemplateRows = `repeat(${box.rows}, minmax(0, 1fr))`;
-
+    // optional markers
     spread.positions.forEach((p, idx) => {
       const m = document.createElement("div");
       m.className = "slot-marker";
+      m.style.gridColumn = `${p.col - box.baseCol + 1} / span ${
+        p.colSpan || 1
+      }`;
+      m.style.gridRow = `${p.row - box.baseRow + 1} / span ${p.rowSpan || 1}`;
       m.dataset.idx = String(idx);
-      m.dataset.emphasis = !!p.emphasis;
-
-      const col = p.col - box.baseCol + 1;
-      const row = p.row - box.baseRow + 1;
-      const colSpan = p.colSpan || 1;
-      const rowSpan = p.rowSpan || 1;
-
-      m.style.gridColumn = `${col} / span ${colSpan}`;
-      m.style.gridRow = `${row} / span ${rowSpan}`;
       deckEl.appendChild(m);
     });
   } else {
-    deckEl.classList.remove("freegrid");
-    deckEl.style.gridTemplateColumns = "";
-    deckEl.style.gridTemplateRows = "";
-    Object.values(spread.positions).forEach((p) => {
-      const m = document.createElement("div");
-      m.className = "slot-marker";
-      m.style.gridArea = areaName(p.label);
-      deckEl.appendChild(m);
-    });
+    deckEl.style.gridTemplateColumns = `repeat(${spread.columns}, minmax(0, 1fr))`;
+    deckEl.style.gridTemplateRows = `repeat(${spread.rows}, minmax(0, 1fr))`;
   }
+
+  deckEl.classList.toggle(
+    "show-guides",
+    !!(guidesToggle && guidesToggle.checked)
+  );
 }
 
-// ----- Animation
-function animateDeal(flying, fromCenter, toCenter, i) {
-  const dx = toCenter.x - fromCenter.x;
-  const dy = toCenter.y - fromCenter.y;
-  const rot = Math.random() * 10 - 5;
-  const pop = flying.animate(
-    [
-      {
-        transform: `translate3d(0px,0px,0) scale(.92) rotate(${rot}deg)`,
-        opacity: 0.0,
-        offset: 0,
-      },
-      {
-        transform: `translate3d(0px,-14px,0) scale(1) rotate(${rot}deg)`,
-        opacity: 1,
-        offset: 0.25,
-      },
-      {
-        transform: `translate3d(${dx * 0.25}px, ${
-          dy * 0.25
-        }px, 0) rotate(${rot}deg)`,
-        opacity: 1,
-        offset: 0.45,
-      },
-      {
-        transform: `translate3d(${dx}px, ${dy}px, 0) rotate(${rot}deg)`,
-        opacity: 1,
-        offset: 1,
-      },
-    ],
-    {
-      duration: 700,
-      delay: i * 120,
-      easing: "cubic-bezier(.16,1,.3,1)",
-      fill: "forwards",
+function measureContainerRect() {
+  const container =
+    document.querySelector(".tarot-right") || deckEl.parentElement || deckEl;
+  return container.getBoundingClientRect();
+}
+
+function calculateCardSize(spread) {
+  const rect = measureContainerRect();
+  const styles = window.getComputedStyle(deckEl);
+  const gap = parseFloat(styles.gap || "14") || 14;
+
+  const box = isCoords(spread)
+    ? getUsedGrid(spread)
+    : { cols: spread.columns, rows: spread.rows };
+  const cols = box.cols,
+    rows = box.rows;
+
+  const totalGapW = gap * (cols - 1);
+  const totalGapH = gap * (rows - 1);
+
+  const availW = rect.width - totalGapW - 12;
+  const availH =
+    Math.max(rect.height, window.innerHeight * 0.48) - totalGapH - 12;
+
+  const aspect = 2 / 3; // width / height
+  let w = availW / cols;
+  let h = w / aspect;
+  if (h > availH / rows) {
+    h = availH / rows;
+    w = h * aspect;
+  }
+  return { width: clamp(w, 72, 320), height: clamp(h, 108, 480) };
+}
+
+// ---------- Cards
+function createCardElement(cardData, orientation, label, size) {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.style.width = `${size.width}px`;
+  card.style.height = `${size.height}px`;
+  card.tabIndex = 0;
+  if (orientation === "reversed") card.classList.add("is-reversed");
+
+  const inner = document.createElement("div");
+  inner.className = "card-inner";
+
+  const back = document.createElement("div");
+  back.className = "card-face card-back";
+  const backImg = document.createElement("img");
+  backImg.src = BACK_IMAGE;
+  backImg.alt = "Back of card";
+  back.appendChild(backImg);
+
+  const front = document.createElement("div");
+  front.className = "card-face card-front";
+  const face = document.createElement("img");
+  face.src = `${IMG_BASE}${cardData.id}.png`;
+  face.alt = cardData.name || label || "Tarot card";
+  face.style.transform = orientation === "reversed" ? "rotate(180deg)" : "none";
+  face.onerror = function () {
+    this.src = BACK_IMAGE;
+    this.alt = "Image not found";
+  };
+  front.appendChild(face);
+
+  // IMPORTANT: back first, then front — so we actually see the back initially
+  inner.appendChild(back);
+  inner.appendChild(front);
+  card.appendChild(inner);
+
+  // First click flips; second click opens modal with meaning
+  card.addEventListener("click", () => {
+    if (!card.classList.contains("is-flipped")) {
+      card.classList.add("is-flipped");
+    } else {
+      showModal(cardData, orientation);
     }
-  );
-  return new Promise((res) =>
-    pop.addEventListener("finish", res, { once: true })
-  );
+  });
+
+  // Gentle deal animation
+  card.style.setProperty("--delay", `${Math.floor(Math.random() * 60)}ms`);
+  card.classList.add("deal");
+
+  return card;
 }
 
-function placeCardInGrid(
-  cardData,
-  orientation,
-  label,
-  areaOrCoords,
-  cardSize,
-  spread
-) {
-  const card = createCardElement(cardData, orientation, label, cardSize);
+function placeCard(card, spread, pos, index) {
   if (isCoords(spread)) {
-    const box = currentGridOffset;
-    const col = areaOrCoords.col - box.baseCol + 1;
-    const row = areaOrCoords.row - box.baseRow + 1;
-    const colSpan = areaOrCoords.colSpan || 1;
-    const rowSpan = areaOrCoords.rowSpan || 1;
+    const box = currentGridBox;
+    const col = pos.col - box.baseCol + 1;
+    const row = pos.row - box.baseRow + 1;
+    const colSpan = pos.colSpan || 1;
+    const rowSpan = pos.rowSpan || 1;
     card.style.gridColumn = `${col} / span ${colSpan}`;
     card.style.gridRow = `${row} / span ${rowSpan}`;
-  } else {
-    const area = areaOrCoords; // named area string
-    card.style.gridArea = area;
-    card.setAttribute("data-area", area);
   }
   deckEl.appendChild(card);
+  card.style.setProperty("--delay", `${index * 110}ms`);
+  // restart animation
+  card.classList.remove("deal");
+  void card.offsetWidth;
+  card.classList.add("deal");
 }
 
-// ----- Deal orchestration
-async function dealCardsAnimated(cardPool) {
-  if (dealing) return;
+// ---------- Deal orchestration
+async function dealCards(pool, keepOrder = false) {
+  if (dealing || !dataReady) return;
   dealing = true;
-  document.body.classList.add("dealing");
   drawBtn.disabled = true;
   reshuffleBtn.disabled = true;
 
-  const layoutKey = spreadSelect.value;
-  const spread = spreadLayouts[layoutKey];
-  if (!spread) {
-    dealing = false;
-    return;
-  }
+  const key =
+    (spreadSelect && spreadSelect.value) || currentSpreadKey || "threeCard";
+  const spread = spreads[key] || spreads.threeCard;
 
-  // Theme + grid class
-  deckEl.className = layoutKey;
-  pickTheme(layoutKey, spread);
+  setupBoard(spread);
+  const size = calculateCardSize(spread);
+  const take = spread.numCards;
 
-  // Size
-  const rightPanel = document.querySelector(".tarot-right");
-  let containerWidth = rightPanel
-    ? rightPanel.clientWidth
-    : window.innerWidth * 0.6;
-  let containerHeight = rightPanel
-    ? rightPanel.clientHeight
-    : window.innerHeight;
-  if (window.innerWidth < 900) {
-    containerWidth = window.innerWidth * 0.95;
-    containerHeight = window.innerHeight * 0.48;
-  }
-  const cardSize = calculateCardSize(spread, containerWidth, containerHeight);
-
-  // Prepare board
-  deckEl.innerHTML = "";
-  spreadDescriptionsDiv.innerHTML = "";
-  createSlotMarkers(spread);
-  deckEl.classList.toggle("show-guides", guidesToggle.checked);
-
-  // Precompute geometry
-  const dealRect = dealLayer.getBoundingClientRect();
-  const pileRect = deckPile.getBoundingClientRect();
-  const pileCenter = {
-    x: pileRect.left + pileRect.width / 2,
-    y: pileRect.top + pileRect.height / 2,
-  };
-
-  // Target centers
-  let targetCenters = [];
-  if (isCoords(spread)) {
-    const markers = [...deckEl.querySelectorAll(".slot-marker")].sort(
-      (a, b) => +a.dataset.idx - +b.dataset.idx
-    );
-    targetCenters = markers.map((m) => {
-      const r = m.getBoundingClientRect();
-      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-    });
+  // choose cards/orientations
+  let chosen, orientations;
+  if (
+    keepOrder &&
+    currentDraw &&
+    currentDraw.cards.length === take &&
+    currentDraw.spreadKey === key
+  ) {
+    chosen = currentDraw.cards;
+    orientations = currentDraw.orientations;
   } else {
-    const markers = [...deckEl.querySelectorAll(".slot-marker")];
-    const labels = Object.values(spread.positions).map((p) =>
-      areaName(p.label)
+    const fresh = shuffle(pool);
+    chosen = fresh.slice(0, take);
+    orientations = Array.from({ length: take }, () =>
+      Math.random() < 0.5 ? "upright" : "reversed"
     );
-    targetCenters = labels.map((area) => {
-      const m = markers.find((mk) => mk.style.gridArea === area);
-      if (!m) return null;
-      const r = m.getBoundingClientRect();
-      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-    });
+    currentDraw = { cards: chosen, orientations, spreadKey: key };
   }
 
-  const selectedCards = cardPool.slice(0, spread.numCards);
-  const promises = selectedCards.map((cardData, i) => {
-    const pos = isCoords(spread)
-      ? spread.positions[i]
-      : spread.positions[i + 1];
-    const label = pos?.label || cardData.name;
-
-    const target = targetCenters[i];
-    if (!target) return Promise.resolve();
-
-    // Flying card (back)
-    const flying = document.createElement("div");
-    flying.className = "flying-card";
-    flying.style.width = `${cardSize.width}px`;
-    flying.style.height = `${cardSize.height}px`;
-    flying.style.left = `${
-      pileCenter.x - dealRect.left - cardSize.width / 2
-    }px`;
-    flying.style.top = `${pileCenter.y - dealRect.top - cardSize.height / 2}px`;
-    flying.innerHTML = `<img src="./images/tarot/back.png" width="${cardSize.width}" height="${cardSize.height}" alt="" />`;
-    dealLayer.appendChild(flying);
-
-    // Animate -> then place interactive card (which is face-down initially)
-    return animateDeal(flying, pileCenter, target, i).then(() => {
-      flying.remove();
-      const orientation = Math.random() > 0.5 ? "upright" : "reversed";
-      if (isCoords(spread)) {
-        placeCardInGrid(cardData, orientation, label, pos, cardSize, spread);
-      } else {
-        const area = areaName(label);
-        placeCardInGrid(cardData, orientation, label, area, cardSize, spread);
-      }
-    });
-  });
-
-  await Promise.all(promises);
+  for (let i = 0; i < take; i++) {
+    const cardData = chosen[i];
+    const pos = spread.positions?.[i] || {};
+    const label = pos?.label || cardData.name || `Card ${i + 1}`;
+    const orientation = orientations[i];
+    const el = createCardElement(cardData, orientation, label, size);
+    placeCard(el, spread, pos, i);
+  }
 
   reshuffleBtn.disabled = false;
   resetBtn.disabled = false;
+  drawBtn.disabled = false;
   dealing = false;
-  document.body.classList.remove("dealing");
 }
 
-// ----- Events
-
-// Select a spread by clicking an icon
-document.querySelectorAll(".icon-option").forEach((option) => {
-  option.addEventListener("click", () => {
-    document
-      .querySelectorAll(".icon-option")
-      .forEach((opt) => opt.classList.remove("selected"));
-    option.classList.add("selected");
-    spreadSelect.value = option.dataset.value || "";
-    drawBtn.disabled = !spreadSelect.value;
+// ---------- Modal
+function showModal(cardData, orientation = "upright") {
+  let modal = document.getElementById("cardModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "cardModal";
+    modal.className = "modal";
+    modal.innerHTML = `<div class="modal-content"></div>`;
+    document.body.appendChild(modal);
+  }
+  const content = modal.querySelector(".modal-content");
+  content.innerHTML = `
+    <span class="close-modal" tabindex="0" aria-label="Close">&times;</span>
+    <img src="${IMG_BASE}${cardData.id}.png"
+         alt="${cardData.name || "Card"}"
+         style="max-width:100%;height:auto;transform:${
+           orientation === "reversed" ? "rotate(180deg)" : "none"
+         }"
+         onerror="this.src='${BACK_IMAGE}';this.alt='Image not found';" />
+    <h2 style="margin:12px 0 6px">${cardData.name || ""} ${
+    orientation ? `(${orientation})` : ""
+  }</h2>
+    <p>${cardData.description?.[orientation] || ""}</p>
+  `;
+  const close = () => modal.classList.remove("show");
+  content.querySelector(".close-modal").addEventListener("click", close);
+  document.addEventListener("keydown", (e) => e.key === "Escape" && close(), {
+    once: true,
   });
+  modal.addEventListener("click", (e) => e.target === modal && close());
+  modal.classList.add("show");
+}
+
+// ---------- Events
+window.addEventListener("resize", () => {
+  if (!currentDraw) return;
+  // Re-deal same cards to recalibrate size
+  dealCards(currentDraw.cards, true);
 });
 
-// Draw button (deal animation)
-drawBtn.addEventListener("click", () => {
-  if (!dataReady || !spreadSelect.value) return;
-  const pool = shuffle(fullDeck);
-  dealCardsAnimated(pool);
+if (guidesToggle) {
+  guidesToggle.addEventListener("change", () => {
+    deckEl.classList.toggle("show-guides", !!guidesToggle.checked);
+  });
+}
+
+if (spreadSelect) {
+  spreadSelect.addEventListener("change", () => {
+    currentSpreadKey = spreadSelect.value || "threeCard";
+    // Changing spread invalidates current selection (fresh draw recommended)
+    currentDraw = null;
+  });
+}
+
+drawBtn?.addEventListener("click", () => {
+  if (!dataReady) return;
+  dealCards(fullDeck, false);
 });
 
-// Reshuffle (same animation, same selected spread)
-reshuffleBtn.addEventListener("click", () => {
-  if (!dataReady || !spreadSelect.value) return;
-  const pool = shuffle(fullDeck);
-  dealCardsAnimated(pool);
+reshuffleBtn?.addEventListener("click", () => {
+  if (!dataReady || !currentDraw) return;
+  // Re-deal same selection/orientation (fresh animation & positions)
+  dealCards(fullDeck, true);
 });
 
-// Reset board
-resetBtn.addEventListener("click", () => {
+resetBtn?.addEventListener("click", () => {
+  currentDraw = null;
   deckEl.innerHTML = "";
-  spreadDescriptionsDiv.innerHTML = "";
-  clearMarkers();
   reshuffleBtn.disabled = true;
   resetBtn.disabled = true;
 });
 
-// Guides toggle
-guidesToggle.addEventListener("change", () => {
-  deckEl.classList.toggle("show-guides", guidesToggle.checked);
-});
-
-// Load JSON (no auto-deal)
-fetch("tarot-cards.json")
-  .then((res) => res.json())
-  .then((data) => {
-    fullDeck = Array.isArray(data) ? data : data.cards || [];
-    dataReady = true;
-  })
-  .catch((err) => console.error("Error loading JSON:", err));
-
-// ----- Modal (with blur)
-function showModal(cardData, orientation = "upright") {
-  const modal = document.getElementById("cardModal");
-  if (!modal) return;
-  modal.classList.add("show");
-  document.body.classList.add("modal-bg-blur");
-
-  const content = modal.querySelector(".modal-content");
-  if (!content) return;
-  content.innerHTML = `
-    <span class="close-modal" tabindex="0" aria-label="Close">&times;</span>
-    <img src="./images/tarot/${cardData.id}.png" 
-         alt="${cardData.name}" 
-         style="max-width: 100%; height:auto; transform: ${
-           orientation === "reversed" ? "rotate(180deg)" : "none"
-         };"
-         onerror="this.src='./images/tarot/back.png';this.alt='Image not found';" />
-    <h2 style="margin:12px 0 6px">${cardData.name} (${orientation})</h2>
-    <p>${cardData.description?.[orientation] || cardData.meaning}</p>
-  `;
-
-  const close = () => {
-    modal.classList.remove("show");
-    document.body.classList.remove("modal-bg-blur");
-    window.removeEventListener("keydown", onKey);
-  };
-  const onKey = (e) => {
-    if (e.key === "Escape") close();
-  };
-
-  const closeBtn = content.querySelector(".close-modal");
-  if (closeBtn) {
-    closeBtn.onclick = close;
-    closeBtn.onkeydown = (e) => {
-      if (e.key === "Enter" || e.key === " ") close();
-    };
+// ---------- Boot
+(async function boot() {
+  try {
+    const res = await fetch(DATA_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed to load ${DATA_URL}`);
+    const data = await res.json();
+    fullDeck = Array.isArray(data) ? data : [];
+    dataReady = fullDeck.length > 0;
+    drawBtn.disabled = !dataReady;
+  } catch (err) {
+    console.error(err);
+    drawBtn.disabled = true;
   }
-
-  modal.onclick = (e) => {
-    if (e.target === modal) close();
-  };
-  window.addEventListener("keydown", onKey);
-}
-
-// --- CONFIG ---
-const SAFE_PADDING = 16; // extra px inside stage
-
-function $(sel, root=document){ return root.querySelector(sel); }
-function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
-
-const spreadFrame = $('#spreadFrame');
-const spreadEl = $('#spread');
-const dealBtn = $('#dealBtn');
-const resetBtn = $('#resetBtn');
-const spreadSelect = $('#spreadSelect');
-
-// 1) Fit the spread to the viewport by scaling the frame contents
-function fitSpreadToViewport() {
-  if (!spreadEl || !spreadFrame) return;
-
-  // natural bounding box of the spread’s children
-  const cards = $all('.card', spreadEl);
-  // If you set an intrinsic width on the spread (via CSS), we can use its box directly:
-  const stageRect = spreadFrame.getBoundingClientRect();
-  const spreadRect = spreadEl.getBoundingClientRect();
-
-  // Compute scale so spread fits within frame (minus safe padding)
-  const availW = stageRect.width  - SAFE_PADDING * 2;
-  const availH = stageRect.height - SAFE_PADDING * 2;
-
-  const scaleX = availW / spreadRect.width;
-  const scaleY = availH / spreadRect.height;
-  const scale = Math.min(scaleX, scaleY, 1); // never upscale beyond 1 for sharpness
-
-  spreadEl.style.transform = `scale(${scale})`;
-}
-
-// Debounce resize for performance
-let resizeT;
-function onResize() {
-  clearTimeout(resizeT);
-  resizeT = setTimeout(fitSpreadToViewport, 60);
-}
-window.addEventListener('resize', onResize, { passive: true });
-window.addEventListener('orientationchange', onResize);
-
-// 2) Flip on tap
-function enableFlips() {
-  spreadEl.addEventListener('click', (e) => {
-    const card = e.target.closest('.card');
-    if (!card) return;
-    card.classList.toggle('is-flipped');
-  }, { passive: true });
-}
-
-// 3) Optional: long‑press to show meaning
-(function enableLongPressMeanings(){
-  let pressTimer = null;
-  spreadEl.addEventListener('touchstart', (e) => {
-    const card = e.target.closest('.card');
-    if (!card) return;
-    pressTimer = setTimeout(() => card.classList.add('show-meaning'), 450);
-  }, { passive: true });
-
-  ['touchend','touchcancel'].forEach(ev =>
-    spreadEl.addEventListener(ev, () => { clearTimeout(pressTimer); }, { passive: true })
-  );
 })();
-
-// 4) Deal animation with stagger
-function animateDeal() {
-  const cards = $all('.card', spreadEl);
-  cards.forEach((card, i) => {
-    card.style.setProperty('--delay', `${i * 90}ms`);
-    card.classList.remove('deal'); // restart
-    // force reflow
-    void card.offsetWidth;
-    card.classList.add('deal');
-  });
-}
-
-// 5) Example: build cards programmatically (use your existing logic)
-async function buildSpread(kind) {
-  // Add/remove a class on app or body so CSS can target layouts
-  document.querySelector('.tarot-app')?.classList.remove(
-    'spread--celtic','spread--three','spread--horseshoe'
-  );
-  document.querySelector('.tarot-app')?.classList.add(`spread--${kind}`);
-
-  // ... your existing code to pick and place cards goes here ...
-  // Ensure each card DOM looks like:
-  // <div class="card"><div class="card-inner"><div class="card-face card-back">...</div><div class="card-face card-front">IMG/TEXT</div></div></div>
-
-  // After DOM updates:
-  requestAnimationFrame(() => {
-    fitSpreadToViewport();
-    animateDeal();
-  });
-}
-
-// Hook up controls
-dealBtn?.addEventListener('click', () => {
-  const kind = spreadSelect?.value || 'three';
-  buildSpread(kind);
-});
-
-resetBtn?.addEventListener('click', () => {
-  $all('.card', spreadEl).forEach(c => c.remove());
-  fitSpreadToViewport();
-});
-
-// Initial
-document.addEventListener('DOMContentLoaded', () => {
-  enableFlips();
-  fitSpreadToViewport();
-  // Optionally auto-build a default spread:
-  // buildSpread('three');
-});
-
-// Improve touch responsiveness
-document.body.style.touchAction = 'manipulation';
