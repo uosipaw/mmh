@@ -7,6 +7,7 @@ const spreadSelect = document.getElementById("spread-select");
 const modal = document.getElementById("card-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalDesc = document.getElementById("modal-desc");
+const modalImg = document.getElementById("modal-img");
 const modalClose = document.getElementById("modal-close");
 const searchInput = document.getElementById("search-input");
 const searchResults = document.getElementById("search-results");
@@ -111,7 +112,13 @@ function dealSpread(type) {
     cardEl.addEventListener("click", () => {
       if (!cardEl.classList.contains("flipped")) {
         cardEl.classList.add("flipped");
-        cardEl.dataset.reversed = Math.random() < 0.5 ? "true" : "false";
+        const isReversed = Math.random() < 0.5;
+        cardEl.dataset.reversed = isReversed ? "true" : "false";
+        if (isReversed) {
+          front.classList.add("reversed");
+        } else {
+          front.classList.remove("reversed");
+        }
         // Optional: preflight check to surface missing images in console
         preload(imgUrl).catch(() => {
           console.warn(
@@ -128,6 +135,12 @@ function dealSpread(type) {
 
 function showCardModal(card, reversed) {
   modalTitle.textContent = `${card.name}${reversed ? " (Reversed)" : ""}`;
+  // Set card image
+  if (modalImg) {
+    modalImg.src = `/images/tarot/${card.id}.png`;
+    modalImg.alt = `${card.name} card image`;
+    modalImg.style.transform = reversed ? "rotate(180deg)" : "";
+  }
   // Expecting description like: { upright: "...", reversed: "..." }
   const uprightText =
     card?.description?.upright || card?.upright || card?.meaning_up || "";
