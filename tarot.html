@@ -4,49 +4,34 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Whimsical Tarot Reading</title>
-    <link rel="stylesheet" href="tarot.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet" />
-    <meta name="theme-color" content="#f4efff" />
+    <title>Tarot Card Reader</title>
+    <link rel="stylesheet" href="./tarot.css" />
 </head>
 
 <body>
-    <div class="tarot-app">
-        <header class="app-header">
-            <h1>🔮 Your Tarot Journey</h1>
-        </header>
-
-        <main class="tarot-layout">
-            <aside class="tarot-left">
-                <label for="spreadSelect" class="toggle">Spread</label>
-                <select id="spreadSelect" class="control" aria-label="Choose spread">
-                    <option value="threeCard">Three Card</option>
-                    <option value="horseshoe">Horseshoe (7)</option>
-                    <option value="celticCross">Celtic Cross (10)</option>
-                </select>
-
-                <!-- Controls live between the hands via CSS -->
-                <div class="controls" aria-label="Tarot controls">
-                    <button id="drawBtn" class="btn primary">🔮 Draw Cards</button>
-                    <button id="reshuffleBtn" class="btn" disabled>🔄 Reshuffle</button>
-                    <button id="resetBtn" class="btn" disabled>♻️ Reset</button>
-
-                    <label class="toggle">
-                        <input id="guidesToggle" type="checkbox" />
-                        <span>Show guides</span>
-                    </label>
-                </div>
-            </aside>
-
-            <section class="tarot-right">
-                <div id="deck" aria-live="polite"></div>
-            </section>
-        </main>
-
-        <footer class="app-footer">Powered by stardust and intention ✨</footer>
+    <div class="controls">
+        <label for="spread-select">Choose a spread:</label>
+        <select id="spread-select">
+            <option value="3">Three-Card Spread</option>
+            <option value="celtic">Celtic Cross</option>
+        </select>
+        <button id="deal-btn">Deal Cards</button>
+        <input type="text" id="search-input" placeholder="Search card..." />
+        <div id="search-results" role="listbox" aria-label="Card matches"></div>
     </div>
 
-    <script src="tarot.js" defer></script>
+    <div id="cards-container" aria-live="polite"></div>
+
+    <!-- Modal -->
+    <div id="card-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button id="modal-close" class="close" aria-label="Close">&times;</button>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+        </div>
+    </div>
+
+    <script src="./tarot.js" defer></script>
 </body>
 
 </html>
