@@ -1,5 +1,6 @@
 let tarotDeck = [];
 
+// DOM
 const cardsContainer = document.getElementById("cards-container");
 const dealBtn = document.getElementById("deal-btn");
 const spreadSelect = document.getElementById("spread-select");
@@ -10,43 +11,30 @@ const modalClose = document.getElementById("modal-close");
 const searchInput = document.getElementById("search-input");
 const searchResults = document.getElementById("search-results");
 
-// Prevent double-binding
-let dealBtnHandler = null;
-
-// Disable deal button until deck is loaded
+// Disable deal until data loads
 dealBtn.disabled = true;
 
-// Use RELATIVE path; run from a local server for fetch to work
+// --- Load deck JSON (same folder as this HTML) ---
 fetch("./tarot-cards.json")
-  .then((res) => {
-    if (!res.ok) throw new Error("Failed to fetch tarot-cards.json");
-    return res.json();
+  .then((r) => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
   })
   .then((data) => {
-    if (!Array.isArray(data) || !data.length) {
-      alert("Tarot deck data is empty or invalid.");
-      return;
-    }
+    if (!Array.isArray(data) || !data.length) throw new Error("Empty deck");
     tarotDeck = data;
     dealBtn.disabled = false;
-
-    if (dealBtnHandler) dealBtn.removeEventListener("click", dealBtnHandler);
-    dealBtnHandler = () => {
-      if (!tarotDeck.length) {
-        alert("Tarot deck not loaded yet.");
-        return;
-      }
-      dealSpread(spreadSelect.value);
-    };
-    dealBtn.addEventListener("click", dealBtnHandler);
   })
   .catch((err) => {
-    dealBtn.disabled = true;
-    alert("Could not load tarot data: " + err.message);
-    console.error("Could not load tarot data:", err);
+    console.error("Failed to load tarot-cards.json:", err);
+    alert(
+      "Could not load tarot data. Make sure tarot-cards.json is in the same folder and you're using a local server."
+    );
   });
 
-// Modal close interactions
+// --- Events ---
+dealBtn.addEventListener("click", () => dealSpread(spreadSelect.value));
+
 modalClose.addEventListener("click", () => modal.classList.add("hidden"));
 modal.addEventListener("click", (e) => {
   if (e.target === modal) modal.classList.add("hidden");
@@ -55,84 +43,108 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") modal.classList.add("hidden");
 });
 
-// Search
+// Search (by name)
 searchInput.addEventListener("input", () => {
-  const term = searchInput.value.trim().toLowerCase();
-  if (!term) {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
     searchResults.style.display = "none";
     searchResults.innerHTML = "";
     return;
   }
-  const matches = tarotDeck.filter((c) => c.name.toLowerCase().includes(term));
+  const matches = tarotDeck.filter((c) =>
+    (c.name || "").toLowerCase().includes(q)
+  );
   searchResults.innerHTML = matches
     .map(
       (c, i) =>
-        `<div role="option" aria-selected="${
-          i === 0 ? "true" : "false"
-        }" data-name="${c.name}">${c.name}</div>`
+        `<div role="option" aria-selected="${i === 0}" data-name="${c.name}">${
+          c.name
+        }</div>`
     )
     .join("");
   searchResults.style.display = matches.length ? "block" : "none";
 });
 
 searchResults.addEventListener("click", (e) => {
-  const target = e.target.closest("[data-name]");
-  if (!target) return;
-  const cardName = target.dataset.name;
-  const card = tarotDeck.find((c) => c.name === cardName);
-  if (card) showCardModal(card, false); // upright by default
+  const el = e.target.closest("[data-name]");
+  if (!el) return;
+  const card = tarotDeck.find((c) => c.name === el.dataset.name);
+  if (card) showCardModal(card, false);
   searchResults.style.display = "none";
   searchInput.value = "";
 });
 
-// Deal & render
+// --- Core ---
 function dealSpread(type) {
-  if (!Array.isArray(tarotDeck) || tarotDeck.length === 0) {
-    alert("Tarot deck is empty. Please reload the page.");
-    return;
-  }
-  cardsContainer.innerHTML = "";
-  cardsContainer.className = ""; // clear previous layout
+  if (!tarotDeck.length) return;
 
-  const count = type === "3" ? 3 : type === "celtic" ? 10 : 3;
+  cardsContainer.className = "";
+  cardsContainer.innerHTML = "";
+
+  const count = type === "3" ? 3 : 10;
   const shuffled = [...tarotDeck]
     .sort(() => Math.random() - 0.5)
     .slice(0, count);
 
   cardsContainer.classList.add(type === "3" ? "spread-3" : "spread-celtic");
 
-  shuffled.forEach((card) => {
+  for (const card of shuffled) {
     const cardEl = document.createElement("div");
     cardEl.className = "card";
-    cardEl.dataset.card = card.name;
-
-    const front = document.createElement("div");
-    front.className = "front";
-    // USE RELATIVE PATH HERE
-    front.style.background = `url("./tarot/${card.id}.png") center/cover no-repeat`;
+    cardEl.title = "Click to flip, click again for details";
 
     const back = document.createElement("div");
-    back.className = "back";
+    back.className = "face back";
+
+    const front = document.createElement("div");
+    front.className = "face front";
+
+    // 1:1 mapping here — MUST exist at /images/tarot/{id}.png
+    const imgUrl = `/images/tarot/${card.id}.png`;
+    front.style.backgroundImage = `url("${imgUrl}")`;
 
     cardEl.append(back, front);
     cardsContainer.append(cardEl);
 
+    // First click: flip + set reversed (random)
+    // Second click (when flipped): open modal with upright/reversed meaning
     cardEl.addEventListener("click", () => {
       if (!cardEl.classList.contains("flipped")) {
         cardEl.classList.add("flipped");
-        const reversed = Math.random() < 0.5;
-        cardEl.dataset.reversed = String(reversed);
+        cardEl.dataset.reversed = Math.random() < 0.5 ? "true" : "false";
+        // Optional: preflight check to surface missing images in console
+        preload(imgUrl).catch(() => {
+          console.warn(
+            `[tarot] Missing image for id ${card.id}. Expected: ${imgUrl}`
+          );
+        });
       } else {
-        showCardModal(card, cardEl.dataset.reversed === "true");
+        const reversed = cardEl.dataset.reversed === "true";
+        showCardModal(card, reversed);
       }
     });
-  });
+  }
 }
 
 function showCardModal(card, reversed) {
   modalTitle.textContent = `${card.name}${reversed ? " (Reversed)" : ""}`;
+  // Expecting description like: { upright: "...", reversed: "..." }
+  const uprightText =
+    card?.description?.upright || card?.upright || card?.meaning_up || "";
+  const reversedText =
+    card?.description?.reversed || card?.reversed || card?.meaning_rev || "";
   modalDesc.textContent = reversed
-    ? (card.description && card.description.reversed) || "No reversed meaning."
-    : (card.description && card.description.upright) || "No upright meaning.";
+    ? reversedText || "No reversed meaning."
+    : uprightText || "No upright meaning.";
   modal.classList.remove("hidden");
+}
+
+// Small helper: preloads image and rejects if not found
+function preload(url) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => res();
+    img.onerror = () => rej(new Error("Image not found"));
+    img.src = url;
+  });
 }

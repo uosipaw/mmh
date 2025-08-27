@@ -1,8 +1,9 @@
-/* Base */
 :root {
-  --bg: #f9f5f1;
-  --fg: #333;
-  --border: #ccc;
+  --bg: #f7f4f0;
+  --fg: #222;
+  --muted: #666;
+  --accent: #6b4eff;
+  --border: #ddd;
   --overlay: rgba(0, 0, 0, .6);
 }
 
@@ -11,109 +12,74 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: var(--bg);
-  color: var(--fg);
   margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--fg);
+  background-image: url("./images/tarott.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.appbar {
+  padding: 14px 20px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.appbar h1 {
+  margin: 0;
+  font-size: 20px;
 }
 
 .controls {
-  margin: 20px;
   position: relative;
-  /* anchor search dropdown */
-}
-
-/* Cards container now provides perspective for 3D flip */
-#cards-container {
+  /* anchors search dropdown */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px;
-  perspective: 1000px;
-}
-
-.card {
-  width: 120px;
-  height: 200px;
-  margin: 10px;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
-}
-
-.card.flipped {
-  transform: rotateY(180deg);
-}
-
-.card .front,
-.card .back {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: 6px;
-  background-size: cover;
-  background-position: center;
-}
-
-/* USE RELATIVE PATH HERE */
-.card .back {
-  background: url("./back0.png") center/cover no-repeat;
-}
-
-.card .front {
-  transform: rotateY(180deg);
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  inset: 0;
-  background-color: var(--overlay);
-  display: flex;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  padding: 16px 20px;
 }
 
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: clamp(280px, 90vw, 420px);
-  text-align: left;
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  right: 12px;
-  top: 10px;
-  font-size: 1.5em;
-  cursor: pointer;
-  background: transparent;
+#deal-btn {
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #fff;
   border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-/* Search results dropdown */
+#deal-btn:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+}
+
+#search-input {
+  flex: 1 1 240px;
+  min-width: 220px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+#search-input:focus {
+  border-color: var(--accent);
+}
+
 #search-results {
   position: absolute;
-  top: 60px;
-  left: 0;
-  right: 0;
+  top: calc(100% - 6px);
+  left: 20px;
+  right: 20px;
   background: #fff;
   border: 1px solid var(--border);
-  max-height: 220px;
+  border-radius: 6px;
+  max-height: 240px;
   overflow-y: auto;
   display: none;
   z-index: 10;
-  text-align: left;
 }
 
 #search-results div {
@@ -122,15 +88,57 @@ body {
 }
 
 #search-results div:hover {
-  background: #eee;
+  background: #f2f2f2;
 }
 
-/* Layouts */
+#cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  perspective: 1000px;
+  /* gives 3D depth for flips */
+}
+
+.card {
+  width: 120px;
+  height: 200px;
+  position: relative;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  transition: transform .6s;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .07);
+  background: #fff;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card .face {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.card .back {
+  /* RELATIVE path for the back image */
+  background-image: url("./back0.png");
+}
+
+.card .front {
+  transform: rotateY(180deg);
+}
+
 .spread-3 {
   display: grid;
   grid-template-columns: repeat(3, 120px);
-  gap: 20px;
-  justify-content: center;
+  gap: 16px;
 }
 
 .spread-celtic {
@@ -143,10 +151,8 @@ body {
     ". . card9 . ."
     ". . card10 . .";
   grid-template-columns: repeat(5, 120px);
-  grid-template-rows: repeat(6, auto);
-  gap: 10px;
+  gap: 10px 14px;
   justify-content: center;
-  align-items: center;
 }
 
 .spread-celtic .card:nth-child(1) {
@@ -189,8 +195,43 @@ body {
   grid-area: card10;
 }
 
-/* Small screens: slightly smaller cards */
-@media (max-width: 420px) {
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay);
+}
+
+.modal:not(.hidden) {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: clamp(280px, 90vw, 460px);
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px 22px;
+}
+
+.close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size: 22px;
+  line-height: 1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 450px) {
   .card {
     width: 100px;
     height: 170px;
