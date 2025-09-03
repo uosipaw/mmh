@@ -211,7 +211,7 @@ body {
 
 .card .back {
   /* RELATIVE path for the back image */
-  background-image: url("images/tarot/back1.png");
+  background-image: url("images/tarot/back0.png");
   background-color: #ffe7e000;
 }
 

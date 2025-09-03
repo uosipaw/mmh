@@ -4,8 +4,8 @@
     "name": "The Fool",
     "keywords": ["beginnings", "innocence", "trust", "potential"],
     "description": {
-      "upright": "The Fool is all about new beginnings and trust in the unknown. Upright, it suggests curiosity, fresh starts, and the courage to take a leap. Where are you being invited to start fresh? Take one small step toward something that excites you.",
-      "reversed": "The Fool reversed is all about hesitation or recklessness. It suggests ignoring red flags, acting carelessly, or fearing the unknown. Are you holding back because of fear, or rushing ahead without a plan? Slow down, check your footing, then move forward mindfully."
+      "upright": "The Fool is all about new beginnings and trust in the unknown. Upright, it suggests curiosity, fresh starts, and the courage to take a leap. Where are you being invited to start fresh? Take one small step toward something that excites you. Tap into your sense of adventure, wonder and curiosity. Now is a good time to try new things.",
+      "reversed": "The Fool reversed is a sign of hesitation or recklessness. It suggests ignoring red flags, acting carelessly, or fearing the unknown. Are you holding back because of fear, or rushing ahead without a plan? Slow down, check your footing, then move forward mindfully."
     }
   },
   {
@@ -13,8 +13,8 @@
     "name": "The Magician",
     "keywords": ["power", "focus", "manifestation", "skills"],
     "description": {
-      "upright": "The Magician is all about personal power and focused intention. Upright, it suggests that you have the tools and talents to make things happen. How can you channel your skills into something meaningful right now? Pick one idea and take the first tangible step toward it today.",
-      "reversed": "The Magician reversed is all about misused potential or scattered focus. It suggests manipulation, wasted talent, or lack of clear direction. Where might you be letting your power slip through your fingers? Regain clarity by choosing one priority and cutting the distractions."
+      "upright": "The Magician embodies personal power and focused intention. Upright, it suggests that you have the tools and talents to make things happen. How can you channel your skills into something meaningful right now? Pick one idea and take the first tangible step toward it today. Create the world you want to see.",
+      "reversed": "The Magician reversed is all about misused potential, energy without focus or a lack of clarity regarding your goals. It may also suggest healthy ambition has turned to ruthless manipulation. Where might you be letting your power slip through your fingers? Regain control by choosing one priority and cutting the distractions."
     }
   },
   {
@@ -22,8 +22,8 @@
     "name": "The High Priestess",
     "keywords": ["intuition", "mystery", "wisdom", "subconscious"],
     "description": {
-      "upright": "The High Priestess is all about intuition, hidden knowledge, and inner wisdom. Upright, it suggests listening to your gut and trusting what you sense beneath the surface. What is your intuition whispering that you\u2019ve been ignoring? Take quiet time alone to reconnect with your inner voice.",
-      "reversed": "The High Priestess reversed is all about blocked intuition or secrets kept. It suggests denial, confusion, or ignoring your instincts. Where are you second-guessing yourself? Clear the noise\u2014limit outside opinions and trust what you already know."
+      "upright": "The High Priestess represents intuition, hidden knowledge, and inner wisdom. Upright, it suggests listening to your gut and trusting what you sense beneath the surface. What is your intuition whispering that you've been ignoring? Take quiet time alone to reconnect with your inner voice. The answers you seek can be found within. Pay attention to your dreams.",
+      "reversed": "The High Priestess reversed suggests blocked intuition or secrets kept. There may be denial, confusion, or you may be ignoring your instincts. A change needs to be made. Where are you second-guessing yourself? Clear the noise. Limit outside opinions and trust what you already know."
     }
   },
   {
@@ -31,8 +31,8 @@
     "name": "The Empress",
     "keywords": ["nurturing", "creativity", "abundance", "fertility"],
     "description": {
-      "upright": "The Empress is all about creativity, abundance, and nurturing energy. Upright, it suggests growth, fertility, or enjoying life\u2019s pleasures. Where in your life do you need to give yourself more care or creative freedom? Do one thing today that feeds your body or your imagination.",
-      "reversed": "The Empress reversed is all about neglect, burnout, or blocked creativity. It suggests smothering energy or lack of self-care. Are you giving too much without refilling your own cup? Step back, rest, and create space for inspiration to flow back in."
+      "upright": "The Empress is the embodiment of divine feminine energy, abundance, creativity and nurturing. Upright, she suggests growth, fertility, or enjoying life’s pleasures. Where in your life do you need to give yourself more care or creative freedom? Do one thing today that feeds your soul. Nurture your friends. Venture into nature to feel more rooted in your body.",
+      "reversed": "The Empress reversed is a sign of neglect, burnout, or blocked creativity. It suggests smothering energy or lack of self-care. Are you giving too much without refilling your own cup? Step back, rest, and create space for inspiration to flow back in."
     }
   },
   {
@@ -40,8 +40,8 @@
     "name": "The Emperor",
     "keywords": ["authority", "structure", "discipline", "boundaries"],
     "description": {
-      "upright": "The Emperor is all about structure, authority, and discipline. Upright, it suggests stability, clear rules, and leadership. Where would boundaries or structure make your life easier right now? Commit to one system or boundary that keeps you grounded.",
-      "reversed": "The Emperor reversed is all about control gone too far or lack of order. It suggests rigidity, power struggles, or chaos. Where are you clinging too tightly\u2014or not stepping up at all? Loosen your grip where you\u2019re being too rigid, or take responsibility where you\u2019ve been passive."
+      "upright": "The Emperor is the Father of the Tarot, creating structure, authority, and discipline. Upright, it suggests stability, clear rules, and leadership. Where would boundaries or structure make your life easier right now? Commit to one system or boundary that keeps you grounded. Find where a firm hand can be beneficial.",
+      "reversed": "The Emperor reversed is all about control gone too far or lack of order. It suggests rigidity, power struggles, or chaos. Where are you clinging too tightly, or not stepping up at all? Loosen your grip where you’re being too rigid, or take responsibility where you’ve been passive. Establish and guard your boundaries."
     }
   },
   {
@@ -49,7 +49,7 @@
     "name": "The Hierophant",
     "keywords": ["tradition", "guidance", "spirituality", "learning"],
     "description": {
-      "upright": "The Hierophant is all about tradition, spiritual wisdom, and guidance. Upright, it suggests learning, mentorship, or aligning with community values. Where could tradition or guidance support you? Seek advice from someone wise or lean into your own spiritual practice.",
+      "upright": "The Hierophant upholds the social structures that keep the Universe in order. He is all about tradition, institutions, and status quo. Upright, it is a sign of learning, mentorship, or aligning with community values. Where could tradition or guidance support you? Seek advice from someone wise, study something new, or lean into your own spiritual practice.",
       "reversed": "The Hierophant reversed is all about rebellion or breaking away. It suggests challenging tradition, questioning authority, or creating your own path. What rule or tradition no longer fits you? Give yourself permission to redefine your own beliefs."
     }
   },
@@ -58,8 +58,8 @@
     "name": "The Lovers",
     "keywords": ["union", "choice", "values", "harmony"],
     "description": {
-      "upright": "The Lovers is all about connection, choice, and alignment with your values. Upright, it suggests harmony, love, or a meaningful decision. What choices are you facing that could bring you closer to your authentic path? Have one honest conversation\u2014with yourself or someone else\u2014that brings clarity.",
-      "reversed": "The Lovers reversed is all about disharmony or misalignment. It suggests imbalance, bad choices, or denial of your truth. Where are you ignoring what you know is right for you? Make one decision today that honors your true values."
+      "upright": "The Lovers is all about connection, and pure unconditional love. Upright, we find harmony, love, and balance. What choices are you facing that could bring you closer to your authentic path? Think about the relationships in your life that are truly fulfilling. It is time to commit.",
+      "reversed": "A relationship is no longer in harmony. The Lovers reversed is a sign of disharmony or misalignment. It suggests imbalance, bad choices, or denial of your truth. Are you avoiding a difficult decision? Ask how you can use love to restore harmony with yourself and others."
     }
   },
   {
@@ -76,8 +76,8 @@
     "name": "Strength",
     "keywords": ["courage", "patience", "resilience", "inner power"],
     "description": {
-      "upright": "Strength is all about courage, patience, and inner strength. Upright, it suggests compassion, persistence, and quiet power. Where can you bring more gentleness and patience into your life? Face one challenge calmly instead of forcing it.",
-      "reversed": "Strength reversed is all about doubt, fear, or weakness. It suggests insecurity, avoidance, or lack of self-belief. Where are you underestimating your own strength? Practice small acts of self-trust until confidence grows."
+      "upright": "Strength is all about courage, patience, and inner strength. Upright, it suggests compassion, persistence, and quiet power. Where can you bring more gentleness and patience into your life? Face one challenge calmly instead of forcing it. Channel your animal impulses into constructive action.",
+      "reversed": "Strength reversed is all about doubt, fear, or weakness. It suggests insecurity, avoidance, or lack of self-belief. Where are you underestimating your own strength? Practice small acts of self-trust until confidence grows. Identify self-destructive behaviors."
     }
   },
   {
@@ -85,7 +85,7 @@
     "name": "The Hermit",
     "keywords": ["introspection", "solitude", "wisdom", "truth"],
     "description": {
-      "upright": "The Hermit is all about introspection and inner guidance. Upright, it suggests solitude, reflection, or spiritual searching. What answers are waiting within you if you get quiet? Take intentional alone time today to listen inward.",
+      "upright": "The Hermit shines a light on the uncomfortable places inside of us. Some answers only come when the quiet settles in. Upright, it suggests solitude, reflection, or spiritual searching. What answers are waiting within you? Take intentional alone time today to listen inward.",
       "reversed": "The Hermit reversed is all about isolation or avoidance. It suggests withdrawal, loneliness, or ignoring inner truths. Where are you hiding instead of facing yourself? Reconnect with others or step back into the light."
     }
   },
@@ -104,7 +104,7 @@
     "keywords": ["truth", "fairness", "law", "cause and effect"],
     "description": {
       "upright": "Justice is all about truth, fairness, and accountability. Upright, it suggests honesty, balance, or legal matters. Where are you being called to act with fairness? Take responsibility and choose integrity today.",
-      "reversed": "Justice reversed is all about dishonesty or unfairness. It suggests denial, corruption, or lack of accountability. Where are you avoiding the truth? Face the facts, even if they\u2019re uncomfortable."
+      "reversed": "Justice reversed is all about dishonesty or unfairness. It suggests denial, corruption, or lack of accountability. Where are you avoiding the truth? Face the facts, even if they're uncomfortable."
     }
   },
   {
@@ -112,8 +112,8 @@
     "name": "The Hanged Man",
     "keywords": ["pause", "surrender", "perspective", "patience"],
     "description": {
-      "upright": "The Hanged Man is all about surrender, new perspective, and patience. Upright, it suggests pausing, letting go, or seeing things differently. Where do you need to release control? Stop forcing and allow a shift in perspective.",
-      "reversed": "The Hanged Man reversed is all about stagnation or resistance. It suggests delays, indecision, or wasted time. Where are you refusing to let go? Make a choice and release what\u2019s holding you back."
+      "upright": "The Hanged Man is all about surrender, new perspective, and patience. Upright, it suggests pausing, letting go, or seeing things differently. Where do you need to release control? Allow yourself to see things from a new perspective.",
+      "reversed": "The Hanged Man reversed is all about stagnation or resistance. It suggests delays, indecision, or wasted time. Where are you refusing to let go? Make a choice and release what’s holding you back."
     }
   },
   {
@@ -121,8 +121,8 @@
     "name": "Death",
     "keywords": ["endings", "transformation", "rebirth", "release"],
     "description": {
-      "upright": "Death is all about endings and transformation. Upright, it suggests rebirth, closure, or a major shift. What are you ready to shed so you can grow? Let go of what no longer serves you and allow space for the new.",
-      "reversed": "Death reversed is all about resistance to change. It suggests stagnation, fear, or dragging out endings. Where are you clinging to what\u2019s over? Accept the ending and step into your next chapter."
+      "upright": "Death is a sign of rebirth. There will be a transformation. Be prepared for a major shift. What are you ready to shed so you can grow? Let go of what no longer serves you and allow space for the new.",
+      "reversed": "Death reversed is all about resistance to change. It suggests stagnation, fear, or dragging out endings. Where are you clinging to what’s over? Accept the ending and step into your next chapter."
     }
   },
   {
@@ -139,7 +139,7 @@
     "name": "The Devil",
     "keywords": ["addiction", "materialism", "bondage", "temptation"],
     "description": {
-      "upright": "The Devil is all about temptation, attachment, and unhealthy patterns. Upright, it suggests addiction, control, or obsession. What\u2019s holding you in chains right now? Identify one pattern you\u2019re ready to break.",
+      "upright": "The Devil is a symbol of temptation, attachment, and unhealthy patterns. Upright, it suggests addiction, control, or obsession. Confront your shadow self. What's holding you in chains right now? Identify one pattern you’re ready to break.",
       "reversed": "The Devil reversed is all about release and freedom. It suggests breaking free, awareness, or reclaiming power. Where are you ready to cut ties? Take one step toward liberation."
     }
   },
@@ -149,7 +149,7 @@
     "keywords": ["chaos", "upheaval", "revelation", "awakening"],
     "description": {
       "upright": "The Tower is all about sudden change, upheaval, and revelation. Upright, it suggests disruption, shock, or truth revealed. What structure is crumbling so something better can rise? Trust the breakdown is part of rebuilding.",
-      "reversed": "The Tower reversed is all about avoiding disaster or prolonging the inevitable. It suggests resistance, denial, or clinging to false stability. Where are you afraid to let things fall apart? Release control and face the truth."
+      "reversed": "The Tower reversed is a sign of avoiding disaster or prolonging the inevitable. It suggests resistance, denial, or clinging to false stability. Where are you afraid to let things fall apart? Release control and face the truth."
     }
   },
   {
@@ -180,12 +180,12 @@
     }
   },
   {
-    "id": "judgement",
-    "name": "Judgement",
+    "id": "judgment",
+    "name": "Judgment",
     "keywords": ["awakening", "rebirth", "truth", "redemption"],
     "description": {
-      "upright": "Judgement is all about awakening, truth, and renewal. Upright, it suggests clarity, second chances, or big realizations. What is rising within you now? Answer the call to step into your higher self.",
-      "reversed": "Judgement reversed is all about doubt or avoidance. It suggests self-criticism, denial, or ignoring a wake-up call. Where are you refusing to hear the call? Be honest and take responsibility for your path."
+      "upright": "Judgment is all about awakening, truth, and renewal. Upright, it suggests clarity, second chances, or big realizations. What is rising within you now? Answer the call to step into your higher self.",
+      "reversed": "Judgment reversed is all about doubt or avoidance. It suggests self-criticism, denial, or ignoring a wake-up call. Where are you refusing to hear the call? Be honest and take responsibility for your path."
     }
   },
   {
@@ -193,7 +193,7 @@
     "name": "The World",
     "keywords": ["completion", "success", "integration", "wholeness"],
     "description": {
-      "upright": "The World is all about completion, success, and fulfillment. Upright, it suggests achievement, integration, or wholeness. What cycle in your life is reaching its close? Celebrate your progress and honor the ending.",
+      "upright": "The World is a sign of completion, success, and fulfillment. Upright, it suggests achievement, integration, or wholeness. What cycle in your life is reaching its close? Celebrate your progress and honor the ending.",
       "reversed": "The World reversed is all about delays or incompletion. It suggests loose ends, lack of closure, or unfinished business. What needs tying up before you can move forward? Finish what you started so you can step into the new."
     }
   },
@@ -202,8 +202,8 @@
     "name": "Ace of Wands",
     "keywords": ["inspiration", "potential", "creation", "energy"],
     "description": {
-      "upright": "Ace of Wands is all about fresh inspiration and creative sparks. Upright, it suggests new beginnings, motivation, or raw energy. What excites you right now? Say yes to one new idea and explore it.",
-      "reversed": "Ace of Wands reversed is all about delays or blocked inspiration. It suggests false starts, wasted energy, or hesitation. Where are you second-guessing your fire? Reignite by taking one small, passionate step forward."
+      "upright": "Ace of Wands is a sign of fresh inspiration and creative sparks. Upright, it suggests new beginnings, motivation, or raw energy. What excites you right now? Say yes to one new idea and explore it.",
+      "reversed": "Ace of Wands signifies delays or blocked inspiration. It suggests false starts, wasted energy, or hesitation. Where are you second-guessing your fire? Reignite your inner flame by taking one small, passionate step forward."
     }
   },
   {
@@ -211,7 +211,7 @@
     "name": "Two of Wands",
     "keywords": ["planning", "decisions", "expansion", "possibility"],
     "description": {
-      "upright": "Two of Wands is all about planning and looking forward. Upright, it suggests choices, new horizons, or future growth. What path feels most expansive for you? Make a plan and take the first step toward it.",
+      "upright": "Two of Wands is all about planning and looking forward. You hold the power to take flight into a new direction. What path feels most expansive for you? Make a plan and take the first step toward it.",
       "reversed": "Two of Wands reversed is all about fear of the unknown or poor planning. It suggests hesitation, delays, or shrinking from possibility. Where are you playing small instead of stepping out? Expand your vision, even if it scares you."
     }
   },
@@ -220,8 +220,8 @@
     "name": "Three of Wands",
     "keywords": ["vision", "progress", "exploration", "growth"],
     "description": {
-      "upright": "Three of Wands is all about vision, progress, and expansion. Upright, it suggests opportunities, long-term growth, and foresight. What bigger picture are you starting to glimpse? Take action that supports your long-term vision.",
-      "reversed": "Three of Wands reversed is all about delays or lack of foresight. It suggests missed opportunities, obstacles, or short-sightedness. Where are you limiting your own horizon? Open up and think bigger."
+      "upright": "Three of Wands is a symbol of expansion, progress and momentum. Upright, it suggests opportunities, long-term growth, and foresight. What bigger picture are you starting to glimpse? Take action that supports your long-term vision. Expand your vision and celebrate your achievements.",
+      "reversed": "Three of Wands reversed is all about delays or lack of foresight. It suggests missed opportunities, obstacles, or short-sightedness. Where are you limiting your own horizon? Learn from your missteps and change your expectations. Open up and think bigger."
     }
   },
   {
@@ -229,8 +229,8 @@
     "name": "Four of Wands",
     "keywords": ["celebration", "harmony", "community", "home"],
     "description": {
-      "upright": "Four of Wands is all about celebration, home, and community. Upright, it suggests joy, milestones, or stability. What accomplishment deserves recognition? Celebrate your wins with people who matter.",
-      "reversed": "Four of Wands reversed is all about instability or lack of harmony. It suggests tension, unfinished projects, or feeling unwelcome. Where is your foundation shaky? Strengthen your support system."
+      "upright": "Four of Wands is all about celebration, home, and community. Upright, it suggests joy, milestones, or stability. What accomplishment deserves recognition? Celebrate your wins with people who matter. Say thank you to the people who got you there.",
+      "reversed": "Four of Wands reversed is all about instability or lack of harmony. It suggests tension at home, family discord, or feeling unwelcome. Where is your foundation shaky? Strengthen your support system."
     }
   },
   {
@@ -238,8 +238,8 @@
     "name": "Five of Wands",
     "keywords": ["conflict", "competition", "tension", "challenge"],
     "description": {
-      "upright": "Five of Wands is all about conflict and competition. Upright, it suggests tension, rivalry, or challenges. Where are you clashing with others? Channel your energy into collaboration instead of chaos.",
-      "reversed": "Five of Wands reversed is all about avoidance or inner conflict. It suggests resolution, compromise, or suppressed tension. Where are you avoiding a fight that needs airing out? Face conflict directly but calmly."
+      "upright": "Five of Wands is a sign of arguments, disputes, or conflicts. Upright, it suggests tension, rivalry, or challenges. Where are you clashing with others? Find common ground. Channel your energy into collaboration instead of chaos.",
+      "reversed": "Five of Wands reversed could suggest two things; either the avoidance of conflict or the resolution of it. Where are you avoiding a fight that needs airing out? Or has the disagreement been settled and if so, what did you learn from it? Reassess how you handle conflict."
     }
   },
   {
@@ -247,8 +247,8 @@
     "name": "Six of Wands",
     "keywords": ["victory", "recognition", "success", "achievement"],
     "description": {
-      "upright": "Six of Wands is all about recognition and success. Upright, it suggests achievement, celebration, or public acknowledgment. Where have you earned recognition? Accept praise and own your accomplishments.",
-      "reversed": "Six of Wands reversed is all about pride or lack of recognition. It suggests self-doubt, failure, or arrogance. Where are you depending too much on others\u2019 approval? Celebrate your wins privately if needed."
+      "upright": "Six of Wands wants you to revel in your success. Upright, it suggests achievement, celebration, or public acknowledgment. Enjoy the praise and recognition. Share your happiness with the people who helped you succeed. Accept praise and own your accomplishments.",
+      "reversed": "Six of Wands reversed is all about pride or lack of recognition. It is a sign of self-doubt, failure, or lack of rewards. Are you depending too much on others’ approval? Create your own measurement of success. Celebrate your wins privately if needed."
     }
   },
   {
