@@ -36,6 +36,27 @@
             <p id="modal-desc"></p>
         </div>
     </div>
+    
+    <nav class="nav-collage">
+  <a href="#">Home</a><a href="#">Spreads</a><a href="#">Guide</a>
+</nav>
+
+<div class="spread">
+  <div class="card flip" onclick="this.classList.toggle('is-flipped')">
+    <div class="front"><img src="/images/tarot/the-fool.jpg" alt=""></div>
+    <div class="back"></div>
+  </div>
+  <!-- duplicate .card as needed -->
+</div>
+
+<dialog id="cardModal" class="card-modal">
+  <div class="sheet">
+    <button class="close" onclick="cardModal.close()">✕</button>
+    <h2>The Fool</h2>
+    <img class="modal-img" src="/images/tarot/the-fool.jpg" alt="">
+    <p>Short upright/reversed meaning here.</p>
+  </div>
+</dialog>
 
     <script src="./tarot.js" defer></script>
 </body>
