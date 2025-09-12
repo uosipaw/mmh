@@ -1,3 +1,85 @@
+.card-modal-bg {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  height: auto;
+  width: auto;
+}
+
+.card-modal-image-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  pointer-events: none;
+}
+
+.card-modal-image-only {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+  border-radius: 22px;
+  transition: transform 0.4s;
+  pointer-events: none;
+}
+
+.card-modal-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 40%, rgba(7,7,7,0.97) 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0 0 22px 22px;
+}
+
+.card-modal-desc-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  pointer-events: auto;
+}
+
+.card-modal-desc-wrapper p {
+  margin: 30px 20px 0;
+  padding: 14px 18px 18px;
+  color: #fcf4f2;
+  font-size: 1.2em;
+  font-family: 'A Font With Serifs', serif;
+  text-shadow: 0 2px 8px #0f010999;
+}
+
+.card-modal-image-bg h2 {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 12px #000a, 0 1px 0 #fff8fc99;
+  z-index: 2;
+  font-size: 1.5em;
+  font-family: 'Abassy', serif;
+  margin: 0;
+  pointer-events: none;
+}
+
 @font-face {
   font-family: 'My Happy Ending';
   src: url('./fonts/MyHappyEnding.ttf') format('truetype');
@@ -28,7 +110,7 @@
   --muted: #ecec75;
   --accent: #7aa4ff99;
   --border: #e0c3fc;
-  --overlay: rgba(80, 0, 80, .18);
+  --overlay: rgba(26, 5, 26, 0.61);
 
 }
 
@@ -119,7 +201,7 @@ body {
   border-radius: 16px;
   outline: none;
   background: #fff8fc;
-  font-family: 'My Happy Ending';
+  font-family: 'sticky notes', cursive, system-ui;
   font-size: 1.3em;
   transition: border-color 0.2s;
 }
@@ -205,13 +287,34 @@ body {
   backface-visibility: hidden;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 2px 8px #e0c3fc33;
 }
+
+
+
+
+/* ===== Page base ===== */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background-blend-mode: overlay, multiply, normal, normal, normal;
+}
+
+/* Make everything feel a little “printed” */
+img {
+  image-rendering: auto;
+}
+
 
 
 .card .back {
   /* RELATIVE path for the back image */
-  background-image: url("images/tarot/back0.png");
+  background-image: url("images/tarot/back1.png");
   background-color: #ffe7e000;
 }
 
@@ -219,7 +322,7 @@ body {
 .card .front {
   transform: rotateY(180deg);
   border: 2px solid #b5c6ff27;
-  background-color: #fff8fc00;
+  background-color: #16040f81;
   transition: transform 0.6s cubic-bezier(.7, 1.7, .5, 1);
 }
 
@@ -299,6 +402,7 @@ body {
   background: var(--overlay);
   z-index: 100;
   animation: fadeIn 0.4s;
+  color: #f3e6c8;
 }
 
 @keyframes fadeIn {
@@ -318,14 +422,21 @@ body {
 
 .modal-content {
   position: relative;
-  width: clamp(280px, 90vw, 480px);
-  background: linear-gradient(120deg, #fff8fc 60%, #ae8ccd88 100%);
-  border-radius: 22px;
-  padding: 24px 26px 28px;
-  box-shadow: 0 8px 32px #e0c3fc55;
+  width: 420px;
+  max-width: 96vw;
+  height: 70vh;
+  max-height: 80vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  box-shadow: 0 8px 32px #1e0e2e55;
   font-family: 'A Font With Serifs', serif;
   font-size: 1.1em;
-  border: 2px solid #f5edf4;
+  background: none;
+  border-radius: 22px;
+  overflow: hidden;
 }
 
 
@@ -343,7 +454,8 @@ body {
 }
 
 .close:hover {
-  color: #b5c6ff;
+  color: #3b4b7e;
+  transform: scale(1.1) rotate(10deg);
 }
 
 
@@ -368,331 +480,115 @@ body {
   .modal-content {
     padding: 14px 8px 18px;
   }
-}
-/* =============== Collage Tarot Theme =============== */
-/* Image & theme variables — point these at your assets */
-:root {
-  /* Textures */
-  --bg-paper: url("/images/textures/recycled-paper.jpg");
-  --bg-noise: url("/images/textures/subtle-noise.png"); /* optional */
-  --torn-mask: url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>\
-    <path d='M0,0 C150,100 350,-40 600,40 C850,120 1050,0 1200,60 L1200,120 L0,120 Z' fill='black'/>\
-  </svg>");
 
-  /* UI stickers/doodles/tape */
-  --washi-tape: url("/images/ui/washi-tape.png");
-  --scribble-01: url("/images/ui/scribble-01.svg");
-  --scribble-02: url("/images/ui/scribble-02.svg");
-  --polaroid-frame: url("/images/ui/polaroid-frame.png"); /* optional frame */
+  /* Hover “comes to life” */
+  .card:hover {
+    transform: translateY(-2px) rotate(0deg);
+    box-shadow: var(--shadow-lg);
+  }
 
-  /* Modal notebook / paper textures (swap these!) */
-  --modal-bg-img: url("/images/textures/notebook-lined.jpg");
-  --modal-pin-img: url("/images/ui/pushpin.png");
+  .card:hover .halo {
+    opacity: .22;
+    transform: scale(1.06);
+  }
 
-  /* Colors */
-  --ink: #1f1b1a;
-  --ink-muted: #5b5856;
-  --accent: #6b4eff;         /* keep one clean accent for focus states */
-  --tape-shadow: rgba(0,0,0,.25);
-  --paper-shadow: rgba(0,0,0,.16);
+  /* Doodle halo behind card on hover */
+  .card .halo {
+    content: "";
+    position: absolute;
+    inset: -8%;
+    background:
+      radial-gradient(closest-side, rgba(255, 255, 180, .6), transparent 70%),
+      var(--scribble-01) center/contain no-repeat;
+    mix-blend-mode: multiply;
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .2s ease, transform .25s ease;
+    pointer-events: none;
+  }
 
-  /* Shadows */
-  --shadow-sm: 0 2px 6px var(--paper-shadow);
-  --shadow-md: 0 8px 24px var(--paper-shadow);
-  --shadow-lg: 0 16px 40px rgba(0,0,0,.28);
+  /* ===== Card faces (for your JS flip logic) ===== */
+  .card .face {
+    position: absolute;
+    border-radius: var(--card-radius);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
 
-  /* Card sizing */
-  --card-w: clamp(90px, 16vw, 160px);
-  --card-h: calc(var(--card-w) * 1.62);
-  --card-radius: 10px;
-}
+  /* facedown generic back */
+  .card .back {
+    background:
+      linear-gradient(135deg, rgba(0, 0, 0, .06), rgba(0, 0, 0, .02)),
+      url("/images/tarot/back1.png") center/cover no-repeat,
+      #f1efe9;
+    border: 1px solid rgba(0, 0, 0, .08);
+  }
 
-/* ===== Page base ===== */
-html, body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background:
-    var(--bg-noise),
-    var(--bg-paper),
-    radial-gradient(1200px 800px at 10% -10%, rgba(255,255,255,0.7), transparent 60%),
-    radial-gradient(900px 700px at 90% 110%, rgba(255,255,255,0.5), transparent 60%),
-    #f6f2ed;
-  background-blend-mode: overlay, multiply, normal, normal, normal;
-}
+  /* faceup image (your card art) */
+  .card .front {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .1);
+  }
 
-/* Make everything feel a little “printed” */
-img {
-  image-rendering: auto;
-}
+  .card .front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-/* ===== Collage Navigation Tabs ===== */
-.nav-collage {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  box-shadow: var(--shadow-sm);
-}
-.nav-collage .tabs {
-  display: flex;
-  gap: 12px;
-  padding: 12px clamp(12px, 4vw, 28px);
-  list-style: none;
-  margin: 0;
-}
-.nav-collage .tabs a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 14px 12px;
-  background: #fff;
-  border: 1px solid #e1dfdb;
-  border-radius: 6px 6px 0 0;
-  text-decoration: none;
-  color: var(--ink);
-  box-shadow: 0 2px 0 #e1dfdb;
-}
-.nav-collage .tabs a::after {
-  /* torn bottom edge */
-  content: "";
-  position: absolute;
-  left: -1px;
-  right: -1px;
-  bottom: -8px;
-  height: 14px;
-  -webkit-mask: var(--torn-mask) center/100% 100% no-repeat;
-  mask: var(--torn-mask) center/100% 100% no-repeat;
-  background: #fff;
-}
-.nav-collage .tabs a:focus-visible {
-  outline: 2px dashed var(--accent);
-  outline-offset: 2px;
-}
+  /* flip animation class (toggle .is-flipped via JS) */
+  .card.flip {
+    perspective: 1200px;
+  }
 
-/* ===== Ripped Sections ===== */
-.section-ripped {
-  position: relative;
-  padding: clamp(16px, 3vw, 28px);
-}
-.section-ripped::before,
-.section-ripped::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  height: 24px;
-  background: #fff;
-  z-index: 0;
-  -webkit-mask: var(--torn-mask) center/100% 100% no-repeat;
-  mask: var(--torn-mask) center/100% 100% no-repeat;
-}
-.section-ripped::before {
-  top: -12px;
-}
-.section-ripped::after {
-  bottom: -12px;
-  transform: rotate(180deg);
-}
-.section-ripped > * {
-  position: relative;
-  z-index: 1;
-}
+  .card.flip .front {
+    transform: rotateY(0deg);
+  }
 
-/* ===== Spread Canvas (scattered Polaroid vibe) ===== */
-.spread-canvas {
-  --gap: clamp(10px, 2.5vw, 22px);
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-w), 1fr));
-  gap: var(--gap);
-  padding: clamp(10px, 3vw, 32px);
-}
+  .card.flip .back {
+    transform: rotateY(180deg);
+  }
 
-/* Add a faint scribble layer behind the canvas */
-.spread-canvas::before {
-  content: "";
-  position: absolute; inset: 0;
-  background:
-    var(--scribble-01) 7% 12% / 160px 160px no-repeat,
-    var(--scribble-02) 92% 85% / 180px 180px no-repeat;
-  opacity: .15;
-  pointer-events: none;
-}
+  .card.flip.is-flipped .front {
+    transform: rotateY(180deg);
+  }
 
-/* “Broken grid” — subtle per-card tilt/jitter so it feels human */
-.spread-canvas > .card {
-  transform-origin: center;
-}
-.spread-canvas > .card:nth-child(3n)   { transform: rotate(-2.5deg) translateY(1px); }
-.spread-canvas > .card:nth-child(4n)   { transform: rotate(1.8deg) translateX(1px); }
-.spread-canvas > .card:nth-child(5n)   { transform: rotate(-1.2deg); }
-.spread-canvas > .card:nth-child(7n)   { transform: rotate(2.1deg) translateY(-1px); }
-.spread-canvas > .card:nth-child(11n)  { transform: rotate(-3.2deg) translateX(-1px); }
+  .card.flip.is-flipped .back {
+    transform: rotateY(360deg);
+  }
 
-/* ===== Card (polaroid w/ tape) ===== */
-.card {
-  width: var(--card-w);
-  height: var(--card-h);
-  margin-inline: auto;
-  position: relative;
-  border-radius: calc(var(--card-radius) + 6px);
-  background: #fff;
-  box-shadow: var(--shadow-md);
-  transition: transform .15s ease, box-shadow .2s ease;
-  display: grid;
-  place-items: center;
-  overflow: visible;
-  isolation: isolate;
-}
+  .card.flip .face {
+    transition: transform .5s cubic-bezier(.22, .61, .36, 1);
+  }
 
-/* Optional polaroid frame overlay */
-.card::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: var(--polaroid-frame) center/cover no-repeat;
-  opacity: .9;
-  pointer-events: none;
-  border-radius: inherit;
-  mix-blend-mode: multiply;
-}
-
-/* Washi tape corners */
-.card::after {
-  content: "";
-  position: absolute;
-  top: -12px; left: 8%;
-  width: 84px; height: 26px;
-  background: var(--washi-tape) center/cover no-repeat;
-  transform: rotate(-6deg);
-  filter: drop-shadow(0 4px 6px var(--tape-shadow));
-  pointer-events: none;
-}
-.card .tape-btm {
-  content: "";
-  position: absolute;
-  bottom: -10px; right: 10%;
-  width: 84px; height: 24px;
-  background: var(--washi-tape) center/cover no-repeat;
-  transform: rotate(4deg);
-  filter: drop-shadow(0 3px 4px var(--tape-shadow));
-  pointer-events: none;
-}
-
-/* Hover “comes to life” */
-.card:hover {
-  transform: translateY(-2px) rotate(0deg);
-  box-shadow: var(--shadow-lg);
-}
-.card:hover .halo {
-  opacity: .22;
-  transform: scale(1.06);
-}
-
-/* Doodle halo behind card on hover */
-.card .halo {
-  content: "";
-  position: absolute; inset: -8%;
-  background:
-    radial-gradient(closest-side, rgba(255,255,180,.6), transparent 70%),
-    var(--scribble-01) center/contain no-repeat;
-  mix-blend-mode: multiply;
-  border-radius: 18px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity .2s ease, transform .25s ease;
-  pointer-events: none;
-}
-
-/* ===== Card faces (for your JS flip logic) ===== */
-.card .face {
-  position: absolute; inset: 12px;
-  border-radius: var(--card-radius);
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-/* facedown generic back */
-.card .back {
-  background:
-    linear-gradient(135deg, rgba(0,0,0,.06), rgba(0,0,0,.02)),
-    url("/images/tarot/card-back.png") center/cover no-repeat,
-    #f1efe9;
-  border: 1px solid rgba(0,0,0,.08);
-}
-
-/* faceup image (your card art) */
-.card .front {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,.1);
-}
-.card .front img {
-  width: 100%; height: 100%; object-fit: cover;
-  display: block;
-}
-
-/* flip animation class (toggle .is-flipped via JS) */
-.card.flip {
-  perspective: 1200px;
-}
-.card.flip .front { transform: rotateY(0deg); }
-.card.flip .back  { transform: rotateY(180deg); }
-.card.flip.is-flipped .front { transform: rotateY(180deg); }
-.card.flip.is-flipped .back  { transform: rotateY(360deg); }
-.card.flip .face {
-  transition: transform .5s cubic-bezier(.22,.61,.36,1);
-}
-
-/* Reversed tag (optional tiny sticker) */
-.card .rev-sticker {
-  position: absolute;
-  top: 8px; right: -6px;
-  padding: 4px 7px;
-  background: #ffeaa7;
-  border: 1px dashed #d7c37a;
-  transform: rotate(8deg);
-  font-size: 12px;
-  letter-spacing: .3px;
-}
-
-/* ===== Search bar (hand-drawn underline) ===== */
-.search-collage {
-  display: flex;
-  gap: 8px;
-  margin: 6px 12px 14px;
-}
-.search-collage input[type="search"] {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #d9d6cf;
-  background: #fff;
-  box-shadow: inset 0 1px 0 rgba(0,0,0,.03);
-  position: relative;
-}
-.search-collage input[type="search"]::after {
-  content: "";
-  position: absolute; left: 10px; right: 10px; bottom: -8px; height: 14px;
-  background: var(--scribble-02) center/contain no-repeat;
+  /* Reversed tag (optional tiny sticker) */
+  .card .rev-sticker {
+    position: absolute;
+    top: 8px;
+    right: -6px;
+    padding: 4px 7px;
+    background: #ffeaa7;
+    border: 1px dashed #d7c37a;
+    transform: rotate(8deg);
+    font-size: 12px;
+    letter-spacing: .3px;
+  }
 }
 
 /* ===== Card Modal (looks like a pinned notebook page) ===== */
 .card-modal {
-  /* Use <dialog> for accessibility; JS: showModal() / close() */
-  width: min(820px, 92vw);
   border: 0;
   padding: 0;
   background: transparent;
 }
 
 .card-modal::backdrop {
-  background: rgba(10, 8, 6, .45);
+  background: rgba(10, 8, 6, 0.897);
 }
 
 .card-modal .sheet {
@@ -701,7 +597,7 @@ img {
   background:
     var(--modal-bg-img) center/cover no-repeat,
     #fff;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, .15);
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
   padding: clamp(16px, 3vw, 28px);
@@ -712,16 +608,19 @@ img {
 .card-modal .sheet::before {
   content: "";
   position: absolute;
-  top: -16px; left: 48%;
-  width: 42px; height: 42px;
+  top: -16px;
+  left: 48%;
+  width: 42px;
+  height: 42px;
   background: var(--modal-pin-img) center/contain no-repeat;
-  filter: drop-shadow(0 8px 8px rgba(0,0,0,.28));
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.582));
 }
 
 /* Doodled border */
 .card-modal .sheet::after {
   content: "";
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: var(--scribble-01) center/60% no-repeat;
   opacity: .08;
   pointer-events: none;
@@ -734,11 +633,13 @@ img {
   gap: 12px;
   margin-bottom: 10px;
 }
+
 .card-modal h2 {
   margin: 0;
   font-size: clamp(18px, 2.6vw, 26px);
   letter-spacing: .3px;
 }
+
 .card-modal .close-btn {
   appearance: none;
   border: 1px solid #d2cfc8;
@@ -748,6 +649,7 @@ img {
   box-shadow: var(--shadow-sm);
   cursor: pointer;
 }
+
 .card-modal .close-btn:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
@@ -760,64 +662,57 @@ img {
   gap: clamp(12px, 3vw, 22px);
   align-items: start;
 }
+
 .card-modal .content .card-illustration {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   background: #fff;
-  border: 1px solid rgba(0,0,0,.08);
+  border: 1px solid rgba(0, 0, 0, .08);
 }
+
 .card-modal .content .card-illustration img {
-  display: block; width: 100%; height: auto;
+  display: block;
+  width: 100%;
+  height: auto;
 }
+
 .card-modal .content .meaning {
   line-height: 1.6;
   color: var(--ink);
 }
+
 .card-modal .chips {
-  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 50px;
 }
+
 .card-modal .chip {
   padding: 6px 9px;
-  border: 1px dashed #cfc7b8;
   border-radius: 16px;
   background: #fffdf6;
   font-size: 12px;
 }
 
-/* ===== Footer strips (magazine clippings) ===== */
-.footer-strips {
-  margin-top: 40px;
-  background: #fff;
-  border-top: 1px solid #e9e6df;
-  position: relative;
-  padding: 18px clamp(12px, 3vw, 28px);
-}
-.footer-strips .strips {
-  display: flex; gap: 10px; flex-wrap: wrap;
-}
-.footer-strips .strip {
-  padding: 6px 10px;
-  border: 1px solid #e2dfd7;
-  background: #fff;
-  transform: rotate(calc(-2deg + (var(--i, 0) * .4deg)));
-  box-shadow: var(--shadow-sm);
-  border-radius: 4px;
-}
+
 
 /* ===== Accessibility & Mobile ===== */
 @media (max-width: 720px) {
   .spread-canvas {
     grid-template-columns: repeat(auto-fit, minmax(calc(var(--card-w) * .8), 1fr));
   }
-  .card::after, .card .tape-btm {
-    display: none; /* less clutter on small screens */
-  }
+
+
   .card-modal .content {
     grid-template-columns: 1fr;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }

@@ -100,9 +100,9 @@ function dealSpread(type) {
     const front = document.createElement("div");
     front.className = "face front";
 
-    // 1:1 mapping here — MUST exist at /images/tarot/{id}.png
-    const imgUrl = `/images/tarot/${card.id}.png`;
-    front.style.backgroundImage = `url("${imgUrl}")`;
+    // 1:1 mapping here — MUST exist at ./images/tarot/{id}.png
+    const imgUrl = `./images/tarot/${card.id}.png`;
+    front.style.backgroundImage = `url('${imgUrl}')`;
 
     cardEl.append(back, front);
     cardsContainer.append(cardEl);
@@ -124,6 +124,8 @@ function dealSpread(type) {
           console.warn(
             `[tarot] Missing image for id ${card.id}. Expected: ${imgUrl}`
           );
+          // Optionally, show a fallback image or style
+          front.style.backgroundImage = "url('./images/tarot/back0.png')";
         });
       } else {
         const reversed = cardEl.dataset.reversed === "true";
@@ -135,13 +137,32 @@ function dealSpread(type) {
 
 function showCardModal(card, reversed) {
   modalTitle.textContent = `${card.name}${reversed ? " (Reversed)" : ""}`;
-  // Set card image
-  if (modalImg) {
-    modalImg.src = `/images/tarot/${card.id}.png`;
-    modalImg.alt = `${card.name} card image`;
-    modalImg.style.transform = reversed ? "rotate(180deg)" : "";
+  // Set card image as background on the image-only div
+  const modalBg = document.querySelector(".card-modal-image-bg");
+  const modalImgOnly = document.querySelector(".card-modal-image-only");
+  if (modalImgOnly) {
+    let imgUrl = `./images/tarot/${card.id}.png`;
+    modalImgOnly.style.backgroundImage = `url('${imgUrl}')`;
+    modalImgOnly.style.backgroundSize = "cover";
+    modalImgOnly.style.backgroundPosition = "center top";
+    modalImgOnly.style.position = "absolute";
+    modalImgOnly.style.inset = "0";
+    modalImgOnly.style.zIndex = "0";
+    modalImgOnly.style.borderRadius = "22px";
+    modalImgOnly.style.transition = "transform 0.4s";
+    if (reversed) {
+      modalImgOnly.style.transform = "rotate(180deg)";
+    } else {
+      modalImgOnly.style.transform = "";
+    }
+    // fallback for missing image
+    const testImg = new window.Image();
+    testImg.onerror = function () {
+      modalImgOnly.style.backgroundImage = "url('./images/tarot/back0.png')";
+    };
+    testImg.src = imgUrl;
   }
-  // Expecting description like: { upright: "...", reversed: "..." }
+  // Set description
   const uprightText =
     card?.description?.upright || card?.upright || card?.meaning_up || "";
   const reversedText =

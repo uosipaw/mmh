@@ -9,7 +9,7 @@
     <link rel="preload" href="./fonts/MyHappyEnding.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
     <!-- Preload additional critical fonts for consistency and performance -->
     <link rel="preload" href="./fonts/a_font_with_serifs.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-    <link rel="preload" href="./fonts/Sticky Notes.ttf" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./fonts/Sticky Notes.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -24,39 +24,23 @@
         <div id="search-results" role="listbox" aria-label="Card matches"></div>
     </div>
 
+
     <div id="cards-container" aria-live="polite"></div>
 
     <!-- Modal -->
     <div id="card-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content">
+        <div class="modal-content card-modal-bg">
             <button id="modal-close" class="close" aria-label="Close">&times;</button>
-            <h2 id="modal-title"></h2>
-            <img id="modal-img" src="" alt=""
-                style="display:block;margin:0 auto 18px;max-width:120px;max-height:200px;border-radius:14px;box-shadow:0 2px 12px #e0c3fc55;" />
-            <p id="modal-desc"></p>
+            <div class="card-modal-image-bg">
+                <div class="card-modal-image-only"></div>
+                <h2 id="modal-title"></h2>
+                <div class="card-modal-fade"></div>
+                <div class="card-modal-desc-wrapper">
+                    <p id="modal-desc"></p>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <nav class="nav-collage">
-  <a href="#">Home</a><a href="#">Spreads</a><a href="#">Guide</a>
-</nav>
-
-<div class="spread">
-  <div class="card flip" onclick="this.classList.toggle('is-flipped')">
-    <div class="front"><img src="/images/tarot/the-fool.jpg" alt=""></div>
-    <div class="back"></div>
-  </div>
-  <!-- duplicate .card as needed -->
-</div>
-
-<dialog id="cardModal" class="card-modal">
-  <div class="sheet">
-    <button class="close" onclick="cardModal.close()">✕</button>
-    <h2>The Fool</h2>
-    <img class="modal-img" src="/images/tarot/the-fool.jpg" alt="">
-    <p>Short upright/reversed meaning here.</p>
-  </div>
-</dialog>
 
     <script src="./tarot.js" defer></script>
 </body>
