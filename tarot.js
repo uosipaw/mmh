@@ -36,12 +36,21 @@ fetch("./tarot-cards.json")
 // --- Events ---
 dealBtn.addEventListener("click", () => dealSpread(spreadSelect.value));
 
-modalClose.addEventListener("click", () => modal.classList.add("hidden"));
+modalClose.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+});
 modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
+  if (e.target === modal) {
+    modal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  }
 });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") modal.classList.add("hidden");
+  if (e.key === "Escape") {
+    modal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  }
 });
 
 // Search (by name)
@@ -136,7 +145,29 @@ function dealSpread(type) {
 }
 
 function showCardModal(card, reversed) {
-  modalTitle.textContent = `${card.name}${reversed ? " (Reversed)" : ""}`;
+  modalTitle.textContent = card.name;
+  // Set reversed label
+  const modalReversed = document.getElementById("modal-reversed");
+  if (modalReversed) {
+    if (reversed) {
+      modalReversed.textContent = "(Reversed)";
+      modalReversed.style.display = "block";
+    } else {
+      modalReversed.textContent = "";
+      modalReversed.style.display = "none";
+    }
+  }
+  // Set keywords
+  const modalKeywords = document.getElementById("modal-keywords");
+  if (modalKeywords) {
+    if (Array.isArray(card.keywords) && card.keywords.length) {
+      modalKeywords.textContent = card.keywords.join(", ");
+      modalKeywords.style.display = "block";
+    } else {
+      modalKeywords.textContent = "";
+      modalKeywords.style.display = "none";
+    }
+  }
   // Set card image as background on the image-only div
   const modalBg = document.querySelector(".card-modal-image-bg");
   const modalImgOnly = document.querySelector(".card-modal-image-only");
@@ -171,6 +202,7 @@ function showCardModal(card, reversed) {
     ? reversedText || "No reversed meaning."
     : uprightText || "No upright meaning.";
   modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
 }
 
 // Small helper: preloads image and rejects if not found

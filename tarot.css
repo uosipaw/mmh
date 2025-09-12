@@ -1,85 +1,3 @@
-.card-modal-bg {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  background: none;
-  height: auto;
-  width: auto;
-}
-
-.card-modal-image-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: stretch;
-  pointer-events: none;
-}
-
-.card-modal-image-only {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center top;
-  z-index: 0;
-  border-radius: 22px;
-  transition: transform 0.4s;
-  pointer-events: none;
-}
-
-.card-modal-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 60%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 40%, rgba(7, 7, 7, 0.97) 100%);
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 0 0 22px 22px;
-}
-
-.card-modal-desc-wrapper {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  pointer-events: auto;
-}
-
-.card-modal-desc-wrapper p {
-  margin: 30px 20px 0;
-  padding: 14px 18px 18px;
-  color: #fcf4f2;
-  font-size: 1.2em;
-  font-family: 'A Font With Serifs', serif;
-  text-shadow: 0 2px 8px #0f010999;
-}
-
-.card-modal-image-bg h2 {
-  position: absolute;
-  top: 24px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 2px 12px #000a, 0 1px 0 #fff8fc99;
-  z-index: 2;
-  font-size: 1.5em;
-  font-family: 'Abassy', serif;
-  margin: 0;
-  pointer-events: none;
-}
-
 @font-face {
   font-family: 'My Happy Ending';
   src: url('./fonts/MyHappyEnding.ttf') format('truetype');
@@ -259,7 +177,6 @@ body {
   width: 240px;
   height: 400px;
   position: relative;
-  border-radius: 18px;
   transform-style: preserve-3d;
   transition: transform .6s cubic-bezier(.7, 1.7, .5, 1), box-shadow 0.2s;
   cursor: pointer;
@@ -283,13 +200,119 @@ body {
 .card .face {
   position: absolute;
   inset: 0;
-  border-radius: 18px;
   backface-visibility: hidden;
   background-size: cover;
   background-position: center;
 }
 
+.card-modal-bg {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  height: auto;
+  width: auto;
+}
 
+.card-modal-image-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  pointer-events: none;
+}
+
+.card-modal-image-only {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+  transition: transform 0.4s;
+  pointer-events: none;
+}
+
+.card-modal-image-only::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2.5px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-modal-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 40%, rgba(7, 7, 7, 0.97) 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0 0 22px 22px;
+}
+
+.card-modal-desc-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  pointer-events: auto;
+}
+
+.card-modal-desc-wrapper p {
+  margin: 30px 20px 0;
+  padding: 14px 18px 18px;
+  color: #fcf4f2;
+  font-size: 1.5em;
+  font-family: 'A Font With Serifs', serif;
+  text-shadow: 0 2px 3px #0f0109;
+}
+
+.card-modal-image-bg h2 {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.95),
+    0 2px 8px #16010d,
+    0 18px 48px #000,
+    0 0px 2px #000;
+  z-index: 2;
+  font-size: 2em;
+  font-family: 'Abassy', serif;
+  margin: 0;
+  pointer-events: none;
+}
+
+.modal-keywords {
+  text-align: center;
+  margin: 0.5em 0 0.5em 0;
+  font-size: 1em;
+  font-family: 'Sticky Notes', 'A Font With Serifs', serif;
+  color: #ffe7e0;
+  opacity: 0.92;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
+  z-index: 2;
+  position: static;
+  background: none;
+}
 
 
 /* ===== Page base ===== */
@@ -435,7 +458,6 @@ img {
   font-family: 'A Font With Serifs', serif;
   font-size: 1.1em;
   background: none;
-  border-radius: 22px;
   overflow: hidden;
 }
 
@@ -483,7 +505,7 @@ img {
 
   /* Hover “comes to life” */
   .card:hover {
-    transform: translateY(-2px) rotate(0deg);
+    transform: translateY(-2px) rotate(10deg);
     box-shadow: var(--shadow-lg);
   }
 
@@ -501,7 +523,6 @@ img {
       radial-gradient(closest-side, rgba(255, 255, 180, .6), transparent 70%),
       var(--scribble-01) center/contain no-repeat;
     mix-blend-mode: multiply;
-    border-radius: 18px;
     z-index: -1;
     opacity: 0;
     transition: opacity .2s ease, transform .25s ease;
@@ -511,7 +532,6 @@ img {
   /* ===== Card faces (for your JS flip logic) ===== */
   .card .face {
     position: absolute;
-    border-radius: var(--card-radius);
     backface-visibility: hidden;
     transform-style: preserve-3d;
     display: grid;
@@ -645,7 +665,6 @@ img {
   border: 1px solid #d2cfc8;
   background: #fff;
   padding: 8px 10px;
-  border-radius: 8px;
   box-shadow: var(--shadow-sm);
   cursor: pointer;
 }
@@ -664,7 +683,6 @@ img {
 }
 
 .card-modal .content .card-illustration {
-  border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   background: #fff;
@@ -696,6 +714,17 @@ img {
   font-size: 12px;
 }
 
+.modal-reversed-label {
+  display: block;
+  font-size: 0.6em;
+  font-family: 'A Font With Serifs', serif;
+  color: #ffe7e0;
+  opacity: 0.85;
+  margin-top: 0.15em;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
+}
+
 
 
 /* ===== Accessibility & Mobile ===== */
@@ -715,4 +744,18 @@ img {
     transition: none !important;
     animation: none !important;
   }
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+body.modal-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  backdrop-filter: blur(6px) brightness(0.92);
+  -webkit-backdrop-filter: blur(6px) brightness(0.92);
 }
