@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: 'Abassy';
-  src: url('./fonts/Abbasy\ Calligraphy\ Typeface.ttf') format('truetype');
+  src: url('./fonts/Abbasy%20Calligraphy%20Typeface.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -51,7 +51,7 @@ body {
   background-image: url("./images/tarott.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-blend-mode: overlay, multiply, normal, normal, normal;
+  background-blend-mode: overlay;
 }
 
 /* App Header */
@@ -194,7 +194,7 @@ body {
 }
 
 .card .back {
-  background-image: url("images/tarot/back1.png");
+  background-image: url("./images/tarot/back1.png");
   background-color: #ffe7e000;
 }
 
@@ -281,9 +281,10 @@ body {
   color: #f3e6c8;
   background: rgba(0, 0, 0, 0.55);
   /* dim backdrop so clicks land on modal */
-  height: 100%;
-  width: 100%;
-  padding: 16px;
+  height: 100vh;
+  width: 100vw;
+  padding: 15px;
+  /* allow edge-to-edge on wide screens */
   /* breathing room on small screens */
 }
 
@@ -307,18 +308,13 @@ body {
 /* Modal Content */
 .modal-content {
   position: relative;
-  margin: 50px auto;
-  width: 96vw;
-  /* nearly full viewport width */
-  max-width: 100vw;
-  min-width: 320px;
+  margin: 10%;
+  padding: 24px;
+  width: 80vw;
   height: 92vh;
-  /* nearly full viewport height */
-  max-height: 100vh;
-  min-height: 320px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: stretch;
   box-shadow: 0 8px 32px #1e0e2e55;
   font-family: 'A Font With Serifs', serif;
@@ -340,6 +336,11 @@ body {
     max-height: 92vh;
     border-radius: 16px;
     font-size: 1em;
+  }
+
+  .modal {
+    padding: 16px 10px;
+    /* restore breathing room on small screens */
   }
 }
 
@@ -405,7 +406,7 @@ body {
 
 .modal-reversed-label {
   display: block;
-  font-size: 0.6em;
+  font-size: 0.9em;
   font-family: 'A Font With Serifs', serif;
   color: #ffe7e0;
   opacity: 0.85;
@@ -428,7 +429,6 @@ body {
   /* keep header visible and allow long text */
   overflow-y: auto;
   overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
 }
 
 .card-modal-desc-wrapper p {
@@ -457,6 +457,7 @@ body {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(2.5px);
   backdrop-filter: blur(2.5px);
   z-index: 1;
   pointer-events: none;
@@ -494,8 +495,8 @@ body.modal-open::before {
   inset: 0;
   z-index: 99;
   pointer-events: none;
-  backdrop-filter: blur(6px) brightness(0.92);
   -webkit-backdrop-filter: blur(6px) brightness(0.92);
+  backdrop-filter: blur(6px) brightness(0.92);
 }
 
 /* Responsive */
@@ -566,7 +567,7 @@ Use this class for modal or card content sections that require a side-by-side ar
 }
 
 .modal-close-btn::after {
-  content: "×";
+  content: "\00D7";
   font-size: 20px;
   line-height: 1;
 }
@@ -577,9 +578,4 @@ Use this class for modal or card content sections that require a side-by-side ar
 
 .modal-close-btn:focus {
   outline: 2px solid #fff;
-}
-
-/* override: ensure correct close icon glyph */
-.modal-close-btn::after {
-  content: "\00D7";
 }
