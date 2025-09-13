@@ -29,27 +29,32 @@
   --accent: #7aa4ff99;
   --border: #e0c3fc;
   --overlay: rgba(26, 5, 26, 0.61);
-
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: 'My Happy Ending', 'Abbasy', 'A Font With Serifs', 'Sticky Notes';
+  min-height: 100vh;
+  font-size: larger;
+  letter-spacing: 0.02em;
+  font-family: 'My Happy Ending', 'Abbasy', 'A Font With Serifs', 'Sticky Notes', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--fg);
   background: var(--bg);
   background-image: url("./images/tarott.png");
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  letter-spacing: 0.02em;
-  font-size: larger;
+  background-blend-mode: overlay, multiply, normal, normal, normal;
 }
 
-
+/* App Header */
 .appbar {
   padding: 14px 20px;
   background: rgba(255, 255, 255, 0.85);
@@ -63,7 +68,7 @@ body {
   font-size: 20px;
 }
 
-
+/* Controls Panel */
 .controls {
   position: relative;
   display: flex;
@@ -78,7 +83,6 @@ body {
   font-size: 1.1em;
 }
 
-
 #deal-btn {
   padding: 10px 18px;
   background: linear-gradient(90deg, #ffb6f9 0%, #b5c6ff 100%);
@@ -92,25 +96,16 @@ body {
   transition: transform 0.15s, box-shadow 0.15s;
 }
 
-.modal-content h2 {
-  font-family: 'Abassy';
-  font-size: 1.5em;
-  font-weight: lighter;
-  margin-bottom: 0.5em;
-}
-
 #deal-btn:hover:not(:disabled) {
   transform: scale(1.08) rotate(-2deg);
   box-shadow: 0 4px 16px #ffb6f955;
 }
-
 
 #deal-btn:disabled {
   background: #e0e0e0;
   color: #aaa;
   cursor: not-allowed;
 }
-
 
 #search-input {
   flex: 1 1 240px;
@@ -119,17 +114,15 @@ body {
   border-radius: 16px;
   outline: none;
   background: #fff8fc;
-  font-family: 'sticky notes', cursive, system-ui;
+  font-family: 'Sticky Notes', cursive, system-ui;
   font-size: 1.3em;
   transition: border-color 0.2s;
 }
-
 
 #search-input:focus {
   border-color: #0000005d;
   background: #fff0fa;
 }
-
 
 #search-results {
   position: absolute;
@@ -145,7 +138,6 @@ body {
   box-shadow: 0 2px 12px #e0c3fc33;
 }
 
-
 #search-results div {
   padding: 10px 14px;
   cursor: pointer;
@@ -155,12 +147,11 @@ body {
   transition: background 0.15s;
 }
 
-
 #search-results div:hover {
   background: #ffe7e0;
 }
 
-
+/* Cards Layout */
 #cards-container {
   display: flex;
   justify-content: center;
@@ -171,7 +162,6 @@ body {
   position: relative;
   min-height: 260px;
 }
-
 
 .card {
   width: 240px;
@@ -191,11 +181,9 @@ body {
   z-index: 2;
 }
 
-
 .card.flipped {
   transform: rotateY(180deg) scale(1.06);
 }
-
 
 .card .face {
   position: absolute;
@@ -205,142 +193,10 @@ body {
   background-position: center;
 }
 
-.card-modal-bg {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  background: none;
-  height: auto;
-  width: auto;
-}
-
-.card-modal-image-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: stretch;
-  pointer-events: none;
-}
-
-.card-modal-image-only {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center top;
-  z-index: 0;
-  transition: transform 0.4s;
-  pointer-events: none;
-}
-
-.card-modal-image-only::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(2.5px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.card-modal-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 40%, rgba(7, 7, 7, 0.97) 100%);
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 0 0 22px 22px;
-}
-
-.card-modal-desc-wrapper {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  pointer-events: auto;
-}
-
-.card-modal-desc-wrapper p {
-  margin: 30px 20px 0;
-  padding: 14px 18px 18px;
-  color: #fcf4f2;
-  font-size: 1.5em;
-  font-family: 'A Font With Serifs', serif;
-  text-shadow: 0 2px 3px #0f0109;
-}
-
-.card-modal-image-bg h2 {
-  position: absolute;
-  top: 24px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  text-shadow:
-    0 10px 32px rgba(0, 0, 0, 0.95),
-    0 2px 8px #16010d,
-    0 18px 48px #000,
-    0 0px 2px #000;
-  z-index: 2;
-  font-size: 2em;
-  font-family: 'Abassy', serif;
-  margin: 0;
-  pointer-events: none;
-}
-
-.modal-keywords {
-  text-align: center;
-  margin: 0.5em 0 0.5em 0;
-  font-size: 1em;
-  font-family: 'Sticky Notes', 'A Font With Serifs', serif;
-  color: #ffe7e0;
-  opacity: 0.92;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
-  z-index: 2;
-  position: static;
-  background: none;
-}
-
-
-/* ===== Page base ===== */
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background-blend-mode: overlay, multiply, normal, normal, normal;
-}
-
-/* Make everything feel a little “printed” */
-img {
-  image-rendering: auto;
-}
-
-
-
 .card .back {
-  /* RELATIVE path for the back image */
   background-image: url("images/tarot/back1.png");
   background-color: #ffe7e000;
 }
-
 
 .card .front {
   transform: rotateY(180deg);
@@ -353,13 +209,12 @@ img {
   transform: rotateY(180deg) rotate(180deg);
 }
 
-
+/* Spread Layouts */
 .spread-3 {
   display: grid;
   grid-template-columns: repeat(3, 120px);
   gap: 24px;
 }
-
 
 .spread-celtic {
   display: grid;
@@ -415,17 +270,26 @@ img {
   grid-area: card10;
 }
 
-
+/* Modal Overlay */
 .modal {
   position: fixed;
   inset: 0;
+  /* ensure full-viewport coverage */
   display: none;
-  align-items: center;
   justify-content: center;
-  background: var(--overlay);
   z-index: 100;
-  animation: fadeIn 0.4s;
   color: #f3e6c8;
+  background: rgba(0, 0, 0, 0.55);
+  /* dim backdrop so clicks land on modal */
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  /* breathing room on small screens */
+}
+
+.modal:not(.hidden) {
+  display: flex;
+  animation: fadeIn 0.25s ease-out;
 }
 
 @keyframes fadeIn {
@@ -438,51 +302,221 @@ img {
   }
 }
 
-.modal:not(.hidden) {
-  display: flex;
-}
+/* duplicate state rule removed to avoid redundancy */
 
-
+/* Modal Content */
 .modal-content {
   position: relative;
-  width: 420px;
-  max-width: 96vw;
-  height: 70vh;
-  max-height: 80vh;
-  margin: 0 auto;
+  margin: 50px auto;
+  width: 96vw;
+  /* nearly full viewport width */
+  max-width: 100vw;
+  min-width: 320px;
+  height: 92vh;
+  /* nearly full viewport height */
+  max-height: 100vh;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: stretch;
   box-shadow: 0 8px 32px #1e0e2e55;
   font-family: 'A Font With Serifs', serif;
-  font-size: 1.1em;
+  font-size: 1.18em;
   background: none;
+  overflow: hidden;
+  /* inner sections manage their own scroll */
+  border-radius: 24px;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    width: 96vw;
+    max-width: 96vw;
+    min-width: 0;
+    height: 92vh;
+    /* keep near-full height on mobile too */
+    min-height: 0;
+    max-height: 92vh;
+    border-radius: 16px;
+    font-size: 1em;
+  }
+}
+
+.card-modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 2.5em;
+  margin-bottom: 1.2em;
+  z-index: 2;
+  pointer-events: auto;
+  position: relative;
+}
+
+.card-modal-header h2,
+.card-modal-header .modal-keywords,
+.card-modal-header .modal-reversed-label {
+  margin: 0.2em 0;
+  text-align: center;
+}
+
+/* Enforce visual order: title, keywords, reversed */
+.card-modal-header h2 {
+  order: 1;
+}
+
+.card-modal-header .modal-keywords {
+  order: 2;
+}
+
+.card-modal-header .modal-reversed-label {
+  order: 3;
+}
+
+.card-modal-image-bg {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  pointer-events: auto;
+}
+
+/* duplicate image overlay rules removed */
+
+.modal-keywords {
+  text-align: center;
+  margin: 0.5em 0 0.5em 0;
+  font-size: 1em;
+  font-family: 'Sticky Notes', 'A Font With Serifs', serif;
+  color: #ffe7e0;
+  opacity: 0.92;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
+  z-index: 2;
+  position: static;
+  background: none;
+}
+
+.modal-reversed-label {
+  display: block;
+  font-size: 0.6em;
+  font-family: 'A Font With Serifs', serif;
+  color: #ffe7e0;
+  opacity: 0.85;
+  margin-top: 0.15em;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
+}
+
+.card-modal-desc-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  pointer-events: auto;
+  max-height: 90%;
+  /* keep header visible and allow long text */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card-modal-desc-wrapper p {
+  margin: 30px 20px 0;
+  padding: 14px 18px 18px;
+  color: #fcf4f2;
+  font-size: 1.2em;
+  font-family: 'A Font With Serifs', serif;
+  text-shadow: 0 2px 3px #0f0109;
+}
+
+.card-modal-image-only {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+  transition: transform 0.4s;
+  pointer-events: none;
+}
+
+.card-modal-image-only::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2.5px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-modal-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 40%, rgba(7, 7, 7, 0.97) 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0 0 22px 22px;
+}
+
+.card-modal-bg {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  height: auto;
+  width: auto;
+}
+
+/* Sticky Modal Helpers */
+body.modal-open {
   overflow: hidden;
 }
 
-
-.close {
-  position: absolute;
-  right: 16px;
-  top: 12px;
-  font-size: 28px;
-  line-height: 1;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #1c032f;
-  transition: color 0.2s;
+body.modal-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  backdrop-filter: blur(6px) brightness(0.92);
+  -webkit-backdrop-filter: blur(6px) brightness(0.92);
 }
 
-.close:hover {
-  color: #3b4b7e;
-  transform: scale(1.1) rotate(10deg);
+/* Responsive */
+@media (max-width: 720px) {
+  .spread-canvas {
+    grid-template-columns: repeat(auto-fit, minmax(calc(var(--card-w) * .8), 1fr));
+  }
+
+  .card-modal .content {
+    grid-template-columns: 1fr;
+  }
 }
 
-
-.hidden {
-  display: none !important;
+/*
+The .content class defines a two-column grid layout.
+Use this class for modal or card content sections that require a side-by-side arrangement.
+*/
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
 @media (max-width: 450px) {
@@ -502,241 +536,6 @@ img {
   .modal-content {
     padding: 14px 8px 18px;
   }
-
-  /* Hover “comes to life” */
-  .card:hover {
-    transform: translateY(-2px) rotate(10deg);
-    box-shadow: var(--shadow-lg);
-  }
-
-  .card:hover .halo {
-    opacity: .22;
-    transform: scale(1.06);
-  }
-
-  /* Doodle halo behind card on hover */
-  .card .halo {
-    content: "";
-    position: absolute;
-    inset: -8%;
-    background:
-      radial-gradient(closest-side, rgba(255, 255, 180, .6), transparent 70%),
-      var(--scribble-01) center/contain no-repeat;
-    mix-blend-mode: multiply;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity .2s ease, transform .25s ease;
-    pointer-events: none;
-  }
-
-  /* ===== Card faces (for your JS flip logic) ===== */
-  .card .face {
-    position: absolute;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-  }
-
-  /* facedown generic back */
-  .card .back {
-    background:
-      linear-gradient(135deg, rgba(0, 0, 0, .06), rgba(0, 0, 0, .02)),
-      url("/images/tarot/back1.png") center/cover no-repeat,
-      #f1efe9;
-    border: 1px solid rgba(0, 0, 0, .08);
-  }
-
-  /* faceup image (your card art) */
-  .card .front {
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, .1);
-  }
-
-  .card .front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* flip animation class (toggle .is-flipped via JS) */
-  .card.flip {
-    perspective: 1200px;
-  }
-
-  .card.flip .front {
-    transform: rotateY(0deg);
-  }
-
-  .card.flip .back {
-    transform: rotateY(180deg);
-  }
-
-  .card.flip.is-flipped .front {
-    transform: rotateY(180deg);
-  }
-
-  .card.flip.is-flipped .back {
-    transform: rotateY(360deg);
-  }
-
-  .card.flip .face {
-    transition: transform .5s cubic-bezier(.22, .61, .36, 1);
-  }
-
-  /* Reversed tag (optional tiny sticker) */
-  .card .rev-sticker {
-    position: absolute;
-    top: 8px;
-    right: -6px;
-    padding: 4px 7px;
-    background: #ffeaa7;
-    border: 1px dashed #d7c37a;
-    transform: rotate(8deg);
-    font-size: 12px;
-    letter-spacing: .3px;
-  }
-}
-
-/* ===== Card Modal (looks like a pinned notebook page) ===== */
-.card-modal {
-  border: 0;
-  padding: 0;
-  background: transparent;
-}
-
-.card-modal::backdrop {
-  background: rgba(10, 8, 6, 0.897);
-}
-
-.card-modal .sheet {
-  position: relative;
-  margin: 6vh auto;
-  background:
-    var(--modal-bg-img) center/cover no-repeat,
-    #fff;
-  border: 1px solid rgba(0, 0, 0, .15);
-  border-radius: 12px;
-  box-shadow: var(--shadow-lg);
-  padding: clamp(16px, 3vw, 28px);
-  overflow: hidden;
-}
-
-/* Pin at the top */
-.card-modal .sheet::before {
-  content: "";
-  position: absolute;
-  top: -16px;
-  left: 48%;
-  width: 42px;
-  height: 42px;
-  background: var(--modal-pin-img) center/contain no-repeat;
-  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.582));
-}
-
-/* Doodled border */
-.card-modal .sheet::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--scribble-01) center/60% no-repeat;
-  opacity: .08;
-  pointer-events: none;
-}
-
-.card-modal header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.card-modal h2 {
-  margin: 0;
-  font-size: clamp(18px, 2.6vw, 26px);
-  letter-spacing: .3px;
-}
-
-.card-modal .close-btn {
-  appearance: none;
-  border: 1px solid #d2cfc8;
-  background: #fff;
-  padding: 8px 10px;
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-}
-
-.card-modal .close-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Modal content grid: image + text */
-.card-modal .content {
-  display: grid;
-  grid-template-columns: minmax(140px, 1fr) 2fr;
-  gap: clamp(12px, 3vw, 22px);
-  align-items: start;
-}
-
-.card-modal .content .card-illustration {
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, .08);
-}
-
-.card-modal .content .card-illustration img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.card-modal .content .meaning {
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-.card-modal .chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 50px;
-}
-
-.card-modal .chip {
-  padding: 6px 9px;
-  border-radius: 16px;
-  background: #fffdf6;
-  font-size: 12px;
-}
-
-.modal-reversed-label {
-  display: block;
-  font-size: 0.6em;
-  font-family: 'A Font With Serifs', serif;
-  color: #ffe7e0;
-  opacity: 0.85;
-  margin-top: 0.15em;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
-}
-
-
-
-/* ===== Accessibility & Mobile ===== */
-@media (max-width: 720px) {
-  .spread-canvas {
-    grid-template-columns: repeat(auto-fit, minmax(calc(var(--card-w) * .8), 1fr));
-  }
-
-
-  .card-modal .content {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -746,16 +545,41 @@ img {
   }
 }
 
-body.modal-open {
-  overflow: hidden;
+/* Close button */
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0;
+  /* hide any stray text; use ::after for icon */
 }
 
-body.modal-open::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 99;
-  pointer-events: none;
-  backdrop-filter: blur(6px) brightness(0.92);
-  -webkit-backdrop-filter: blur(6px) brightness(0.92);
+.modal-close-btn::after {
+  content: "×";
+  font-size: 20px;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-close-btn:focus {
+  outline: 2px solid #fff;
+}
+
+/* override: ensure correct close icon glyph */
+.modal-close-btn::after {
+  content: "\00D7";
 }

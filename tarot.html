@@ -7,7 +7,6 @@
     <title>Tarot Card Reader</title>
     <link rel="stylesheet" href="./tarot.css" />
     <link rel="preload" href="./fonts/MyHappyEnding.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-    <!-- Preload additional critical fonts for consistency and performance -->
     <link rel="preload" href="./fonts/a_font_with_serifs.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
     <link rel="preload" href="./fonts/Sticky Notes.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 </head>
@@ -24,22 +23,23 @@
         <div id="search-results" role="listbox" aria-label="Card matches"></div>
     </div>
 
-
     <div id="cards-container" aria-live="polite"></div>
 
     <!-- Modal -->
     <div id="card-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content card-modal-bg">
-            <button id="modal-close" class="close" aria-label="Close">&times;</button>
+            <button id="modal-close" class="modal-close-btn" aria-label="Close dialog">✕</button>
             <div class="card-modal-image-bg">
                 <div class="card-modal-image-only"></div>
-                <h2 id="modal-title"></h2>
-                <div id="modal-reversed" class="modal-reversed-label"></div>
-                <div id="modal-keywords" class="modal-keywords"></div>
-                <div class="card-modal-fade"></div>
+                <div class="card-modal-header">
+                    <h2 id="modal-title"></h2>
+                    <div id="modal-reversed" class="modal-reversed-label"></div>
+                    <div id="modal-keywords" class="modal-keywords"></div>
+                </div>
                 <div class="card-modal-desc-wrapper">
                     <p id="modal-desc"></p>
                 </div>
+                <div class="card-modal-fade"></div>
             </div>
         </div>
     </div>
