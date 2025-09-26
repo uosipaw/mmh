@@ -1,0 +1,495 @@
+/* Cleaned and unified coming-soon stylesheet
+   - Reduced redundancy, flattened rules
+   - Harmonized card + booking panel styles
+   - Improved spacing, focus states and readability
+*/
+
+:root {
+    --bg-0: #061026;
+    --bg-1: #071226;
+    --accent: #7c3aed;
+    --accent-2: #5b21b6;
+    --muted: #9aa8b8;
+    --glass: rgba(255, 255, 255, 0.03);
+    --panel-border: rgba(255, 255, 255, 0.04);
+    --text: #e6eef8;
+    --radius: 12px;
+    --gap: 20px;
+    --shadow: 0 10px 30px rgba(2, 6, 23, 0.55);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+    min-height: 100vh;
+    background-color: var(--bg-0);
+}
+
+/* Background image with a subtle fade overlay. Using a pseudo-element keeps markup clean */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('gulfside/images/pierbg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: saturate(0.9) contrast(0.95) brightness(0.75);
+}
+
+/* top-to-bottom fade overlay for readable content */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(6, 10, 22, 0.55) 0%, rgba(6, 10, 22, 0.25) 35%, rgba(6, 10, 22, 0.45) 100%);
+    pointer-events: none;
+}
+
+/* Ensure page content sits above the background layers */
+.wrap {
+    position: relative;
+    z-index: 2
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    gap: var(--gap);
+    align-items: flex-start;
+    padding: 12px;
+}
+
+/* Shared panel styles for .card and .container */
+.card,
+.container {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    color: var(--text);
+}
+
+.card {
+    flex: 1 1 520px;
+}
+
+.container {
+    width: 380px;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.logo {
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    color: var(--muted);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.animated-text {
+    font-size: clamp(36px, 7.5vw, 72px);
+    margin: 0;
+    display: flex;
+    gap: 14px;
+    line-height: 1;
+}
+
+.animated-text .word {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.animated-text .word:first-child {
+    transform-origin: center right;
+    animation: popInLeft 900ms cubic-bezier(.2, .9, .2, 1) both;
+}
+
+.animated-text .word:last-child {
+    transform-origin: center left;
+    animation: popInRight 900ms 120ms cubic-bezier(.2, .9, .2, 1) both;
+}
+
+@keyframes popInLeft {
+    0% {
+        transform: translateX(-36px) scale(.96);
+        opacity: 0
+    }
+
+    60% {
+        transform: translateX(6px) scale(1.02);
+        opacity: 1
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1
+    }
+}
+
+@keyframes popInRight {
+    0% {
+        transform: translateX(36px) scale(.96);
+        opacity: 0
+    }
+
+    60% {
+        transform: translateX(-6px) scale(1.02);
+        opacity: 1
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1
+    }
+}
+
+.countdown {
+    display: flex;
+    gap: 14px;
+    margin-top: 6px;
+}
+
+.time {
+    background: var(--glass);
+    padding: 12px 16px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 84px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.number {
+    display: block;
+    font-weight: 700;
+    font-size: 26px;
+    color: #fff;
+}
+
+.label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px
+}
+
+.note {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center
+}
+
+.container h1 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text)
+}
+
+.form-group {
+    margin-bottom: 12px
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 6px
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+    transition: box-shadow .15s ease, transform .12s ease;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.08);
+    transform: translateY(-1px);
+}
+
+button {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #fff;
+    box-shadow: 0 6px 18px rgba(92, 33, 182, 0.18);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(.98);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.foot {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center
+}
+
+/* Minimal nav / popup styling kept simple */
+.nav {
+    position: fixed;
+    right: 18px;
+    top: 18px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.popup {
+    position: fixed;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.social-icons a {
+    margin: 8px 0;
+    display: block
+}
+
+.social-icons i {
+    font-size: 20px;
+    color: #333;
+    transition: transform .18s ease
+}
+
+.social-icons i:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    .wrap {
+        flex-direction: column;
+        max-width: 720px;
+    }
+
+    .container {
+        width: 100%;
+        min-width: auto
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 20px
+    }
+
+    .card,
+    .container {
+        padding: 18px
+    }
+
+    .animated-text {
+        font-size: clamp(28px, 12vw, 48px);
+    }
+
+    .countdown {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center
+    }
+
+    .time {
+        min-width: 72px;
+        padding: 10px 12px
+    }
+}
+
+/* Slide-out sidebar styles */
+.menu-toggle {
+    position: fixed;
+    left: 18px;
+    top: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1200;
+}
+
+.menu-toggle .hamburger {
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+    position: relative;
+}
+
+.menu-toggle .hamburger:before,
+.menu-toggle .hamburger:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+}
+
+.menu-toggle .hamburger:before {
+    top: -6px
+}
+
+.menu-toggle .hamburger:after {
+    top: 6px
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease;
+}
+
+.overlay[hidden] {
+    opacity: 0;
+    visibility: hidden
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 85vw;
+    transform: translateX(-110%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-right: 1px solid var(--panel-border);
+    padding: 28px;
+    z-index: 1150;
+    transition: transform .28s cubic-bezier(.2, .9, .25, 1);
+    box-shadow: 6px 0 30px rgba(2, 6, 23, 0.6);
+}
+
+.sidebar[aria-hidden="false"] {
+    transform: translateX(0)
+}
+
+.sidebar-close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font-size: 28px;
+    cursor: pointer
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 36px 0 0 0;
+    margin: 0
+}
+
+.sidebar-nav li {
+    margin: 10px 0
+}
+
+.sidebar-nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 8px 6px;
+    border-radius: 8px
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus {
+    background: rgba(124, 58, 237, 0.06);
+    color: #fff
+}
+
+@media (min-width: 900px) {
+    .menu-toggle {
+        left: 28px
+    }
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Coming Soon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Griffy&display=swap');
+    </style>
+    <link rel="stylesheet" href="coming-soon.css">
+</head>
+
+<body>
+    <main class="wrap">
+        <div class="card">
+            <h1 class="logo">gulfside management group</h1>
+
+            <div class="hero">
+                <h2 class="animated-text" aria-hidden="true">
+                    <span class="word">coming</span>
+                    <span class="word">soon</span>
+                </h2>
+                <div class="countdown" aria-live="polite">
+                    <div class="time">
+                        <span class="number" id="days">00</span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="time">
+                        <span class="number" id="hours">00</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="time">
+                        <span class="number" id="minutes">00</span>
+                        <span class="label">Minutes</span>
+                    </div>
+                    <div class="time">
+                        <span class="number" id="seconds">00</span>
+                        <span class="label">Seconds</span>
+                    </div>
+                </div>
+                <p class="note">We're launching on <strong id="target-date">TBD</strong></p>
+            </div>
+            <!-- Menu toggle and slide-out sidebar -->
+            <button id="menu-toggle" class="menu-toggle" aria-controls="sidebar" aria-expanded="false"
+                aria-label="Open menu">
+                <span class="hamburger" aria-hidden="true"></span>
+            </button>
+
+            <aside id="sidebar" class="sidebar" role="navigation" aria-hidden="true">
+                <button id="sidebar-close" class="sidebar-close" aria-label="Close menu">×</button>
+                <nav class="sidebar-nav" aria-label="Primary">
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">What We Do</a></li>
+                        <li><a href="#">Work With Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <div id="overlay" class="overlay" hidden></div>
+
+            <footer class="foot">Follow us for updates</footer>
+        </div>
+
+        <div class="container" id="booking-container">
+            <h1>Request a Callback</h1>
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <button type="submit">Lock in Time</button>
+            </form>
+            <div id="message"></div>
+        </div>
+
+        <div id="popup" class="popup sticky">
+            <div class="popup-content">
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="coming-soon.js"></script>
+</body>
+
+</html>
