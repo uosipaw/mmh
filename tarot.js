@@ -19,6 +19,48 @@ const modalImgOnly = document.querySelector(".card-modal-image-only");
 // Disable deal until data loads
 dealBtn.disabled = true;
 
+/**
+ * Convert HTML-ish strings (e.g., "<br>") into plain text safely.
+ * Keeps line breaks, strips other tags.
+ */
+function htmlishToText(raw) {
+  return String(raw || "")
+    .replace(/\r\n/g, "\n")
+    .replace(/<br\s*\/?>/gi, "\n") // keep line breaks
+    .replace(/<\/?[^>]+>/g, "") // strip any other tags
+    .trim();
+}
+
+/**
+ * Normalize meaning text so it displays nicely in a <p> via textContent.
+ * - Converts <br> to real newlines
+ * - Removes markdown headings (## etc.) if present
+ * - Converts simple list markers to bullets
+ */
+function normalizeMeaning(raw) {
+  return htmlishToText(raw)
+    .replace(/^\s*#{1,6}\s*/gm, "") // remove markdown headings if present
+    .replace(/^\s*[-*]\s+/gm, "• ") // list bullets
+    .replace(/\n{3,}/g, "\n\n") // collapse huge gaps
+    .trim();
+}
+
+/**
+ * Optional: extract keywords from the first line of upright description
+ * if it looks like: "a - b - c<br>..."
+ */
+function extractKeywordsFromDescription(uprightRaw) {
+  const text = String(uprightRaw || "");
+  const [beforeBreak] = text.split(/<br\s*\/?>/i);
+  const parts = beforeBreak
+    .split(/\s*-\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  // Heuristic: treat as keywords only if it looks like a chain
+  return parts.length >= 3 ? parts : [];
+}
+
 // --- Load deck JSON (same folder as this HTML) ---
 fetch("./tarot-cards.json")
   .then((r) => {
@@ -55,12 +97,13 @@ dealBtn.addEventListener("click", () => dealSpread(spreadSelect.value));
 // Modal helpers: open/close with focus management and focus trap
 let lastFocusedElement = null;
 let _modalFocusable = [];
+
 function openModal() {
   if (!modal) return;
   lastFocusedElement = document.activeElement;
   modal.classList.remove("hidden");
   document.body.classList.add("modal-open");
-  // focus the close button for keyboard users
+
   // collect focusable elements inside modal for trapping
   _modalFocusable = Array.from(
     modal.querySelectorAll(
@@ -69,7 +112,11 @@ function openModal() {
   );
   if (modalClose && _modalFocusable.indexOf(modalClose) === -1)
     _modalFocusable.unshift(modalClose);
-  if (_modalFocusable.length) {
+
+  // Prefer focusing the title if it's focusable; otherwise close button
+  if (modalTitle && modalTitle.tabIndex >= 0) {
+    modalTitle.focus();
+  } else if (_modalFocusable.length) {
     _modalFocusable[0].focus();
   } else if (modalClose) {
     modalClose.focus();
@@ -80,6 +127,7 @@ function closeModal() {
   if (!modal) return;
   modal.classList.add("hidden");
   document.body.classList.remove("modal-open");
+
   // remove any image rotation so modal content is clean next open
   if (modalImgOnly) {
     modalImgOnly.style.transform = "none";
@@ -89,9 +137,10 @@ function closeModal() {
 
 // Close interactions
 if (modalClose) modalClose.addEventListener("click", closeModal);
-if (modal) modal.addEventListener("click", (e) => {
-  if (e.target === modal) closeModal();
-});
+if (modal)
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
 
 // Basic focus trap: keep focus inside modal when open
 document.addEventListener("keydown", (e) => {
@@ -100,6 +149,7 @@ document.addEventListener("keydown", (e) => {
     return;
   }
   if (!modal || modal.classList.contains("hidden")) return;
+
   if (e.key === "Tab") {
     const focusable =
       _modalFocusable && _modalFocusable.length
@@ -107,12 +157,15 @@ document.addEventListener("keydown", (e) => {
         : modal.querySelectorAll(
             'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
           );
+
     if (!focusable || !focusable.length) {
       e.preventDefault();
       return;
     }
+
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
+
     if (e.shiftKey) {
       if (document.activeElement === first) {
         e.preventDefault();
@@ -127,26 +180,31 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Search (by name)
+// Search (by name) — safer rendering (no innerHTML)
+function renderSearchResults(matches) {
+  searchResults.textContent = "";
+  matches.forEach((c, i) => {
+    const row = document.createElement("div");
+    row.setAttribute("role", "option");
+    row.setAttribute("aria-selected", String(i === 0));
+    row.dataset.name = c.name;
+    row.textContent = c.name || "(Unnamed card)";
+    searchResults.appendChild(row);
+  });
+  searchResults.style.display = matches.length ? "block" : "none";
+}
+
 searchInput.addEventListener("input", () => {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) {
     searchResults.style.display = "none";
-    searchResults.innerHTML = "";
+    searchResults.textContent = "";
     return;
   }
   const matches = tarotDeck.filter((c) =>
     (c.name || "").toLowerCase().includes(q)
   );
-  searchResults.innerHTML = matches
-    .map(
-      (c, i) =>
-        `<div role="option" aria-selected="${i === 0}" data-name="${c.name}">${
-          c.name
-        }</div>`
-    )
-    .join("");
-  searchResults.style.display = matches.length ? "block" : "none";
+  renderSearchResults(matches);
 });
 
 searchResults.addEventListener("click", (e) => {
@@ -212,7 +270,6 @@ function dealSpread(type) {
         } else {
           front.classList.remove("reversed");
         }
-        // image already preloaded; fallback remains the back image if missing
       } else {
         const reversed = cardEl.dataset.reversed === "true";
         showCardModal(card, reversed);
@@ -235,10 +292,15 @@ function showCardModal(card, reversed) {
     }
   }
 
-  // Set keywords
+  // Set keywords (prefer explicit keywords; otherwise infer from upright description)
+  let kws = Array.isArray(card.keywords) ? card.keywords : [];
+  if (!kws.length && card?.description?.upright) {
+    kws = extractKeywordsFromDescription(card.description.upright);
+  }
+
   if (modalKeywords) {
-    if (Array.isArray(card.keywords) && card.keywords.length) {
-      modalKeywords.textContent = card.keywords.join(", ");
+    if (kws.length) {
+      modalKeywords.textContent = kws.join(", ");
       modalKeywords.style.display = "block";
     } else {
       modalKeywords.textContent = "";
@@ -250,11 +312,8 @@ function showCardModal(card, reversed) {
   if (modalImgOnly) {
     const imgUrl = `./images/tarot/${card.id}.png`;
     modalImgOnly.style.backgroundImage = `url('${imgUrl}')`;
-    if (reversed) {
-      modalImgOnly.style.transform = "rotate(180deg)";
-    } else {
-      modalImgOnly.style.transform = "none";
-    }
+    modalImgOnly.style.transform = reversed ? "rotate(180deg)" : "none";
+
     // fallback for missing image
     const testImg = new window.Image();
     testImg.onerror = function () {
@@ -262,16 +321,24 @@ function showCardModal(card, reversed) {
     };
     testImg.src = imgUrl;
   }
-  // aria-describedby is set at init to include keywords/description
 
-  const uprightText =
-    card?.description?.upright || card?.upright || card?.meaning_up || "";
-  const reversedText =
+  // Meanings: upright/reversed; fallback to card.meaning for upright if needed
+  const uprightRaw =
+    card?.description?.upright ||
+    card?.upright ||
+    card?.meaning_up ||
+    card?.meaning ||
+    "";
+
+  const reversedRaw =
     card?.description?.reversed || card?.reversed || card?.meaning_rev || "";
+
+  const chosenRaw = reversed ? reversedRaw : uprightRaw;
+  const cleaned = normalizeMeaning(chosenRaw);
+
   if (modalDesc) {
-    modalDesc.textContent = reversed
-      ? reversedText || "No reversed meaning."
-      : uprightText || "No upright meaning.";
+    modalDesc.textContent =
+      cleaned || (reversed ? "No reversed meaning." : "No upright meaning.");
   }
 
   // open modal via centralized helper so focus is managed
