@@ -1,16 +1,57 @@
 :root {
-  /* --- Theme Colors --- */
-  --bg-gradient: linear-gradient(135deg, #fdfbf7 0%, #ffe7e0 100%);
+  /* --- Theme Colors (Light Mode) --- */
+  --bg-gradient-1: #fdfbf7;
+  --bg-gradient-2: #ffe7e0;
+  --bg-gradient-3: #ffd4c4;
+  --bg-gradient-4: #fff0eb;
   --text-main: #2d1b2e;
   --accent: #9d72ff;
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.5);
 
   /* --- Deck Skins (Default: Classic) --- */
-  --card-back-img: url('./images/tarot/back1.png');
+  --card-back-img: none;
   --card-radius: 12px;
   --card-width: 140px;
   --card-height: 230px;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --bg-gradient-1: #1a1a2e;
+  --bg-gradient-2: #2d1b3d;
+  --bg-gradient-3: #3d2555;
+  --bg-gradient-4: #2b1540;
+  --text-main: #e8dff5;
+  --glass-bg: rgba(20, 10, 30, 0.85);
+  --glass-border: rgba(157, 114, 255, 0.3);
+}
+
+@keyframes morphGradient {
+  0% {
+    background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+    background-size: 400% 400%;
+  }
+
+  25% {
+    background: linear-gradient(120deg, var(--bg-gradient-2) 0%, var(--bg-gradient-3) 50%, var(--bg-gradient-1) 100%);
+    background-size: 400% 400%;
+  }
+
+  50% {
+    background: linear-gradient(240deg, var(--bg-gradient-3) 0%, var(--bg-gradient-1) 50%, var(--bg-gradient-4) 100%);
+    background-size: 400% 400%;
+  }
+
+  75% {
+    background: linear-gradient(320deg, var(--bg-gradient-4) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-1) 100%);
+    background-size: 400% 400%;
+  }
+
+  100% {
+    background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+    background-size: 400% 400%;
+  }
 }
 
 /* --- Font Loading --- */
@@ -45,7 +86,10 @@ body {
   /* Prevent scroll during animations */
   font-family: 'A Font With Serifs', serif;
   color: var(--text-main);
-  background: var(--bg-gradient);
+  background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+  background-size: 400% 400%;
+  animation: morphGradient 15s ease infinite;
+  transition: color 0.3s ease;
 }
 
 /* --- UI Controls --- */

@@ -43,17 +43,17 @@ document.addEventListener("keydown", (e) => {
 // Deck Skin Switcher
 deckSelect.addEventListener("change", (e) => {
   const root = document.documentElement;
-  let backUrl = "./images/tarot/back1.png"; // Default
+  let backUrl = "none"; // No background image
 
-  // In a real app, you would have different image files.
-  // Here we simulate it by using the same back but you can easily swap URLs
+  // Apply dark theme for "Midnight Gold" option
   if (e.target.value === "dark") {
-    // Example: root.style.setProperty('--card-back-img', "url('./images/tarot/back_gold.png')");
-    // For now we keep default to prevent 404s, but this is where you change it.
-    alert("Deck design changed to Midnight Gold (Visual placeholder)");
-  } else if (e.target.value === "botanical") {
-    alert("Deck design changed to Botanical (Visual placeholder)");
+    root.setAttribute("data-theme", "dark");
+  } else {
+    // Light mode for other options
+    root.removeAttribute("data-theme");
   }
+
+  root.style.setProperty("--card-back-img", backUrl);
 });
 
 // Search Logic
