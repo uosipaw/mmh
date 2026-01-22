@@ -1,4 +1,5 @@
 let tarotDeck = [];
+let selectedDeck = "classic"; // Track selected deck
 
 // --- DOM Elements ---
 const cardsContainer = document.getElementById("cards-container");
@@ -43,6 +44,7 @@ document.addEventListener("keydown", (e) => {
 // Deck Skin Switcher
 deckSelect.addEventListener("change", (e) => {
   const root = document.documentElement;
+  selectedDeck = e.target.value; // Store selected deck
   let backUrl = "none"; // No background image
 
   // Apply dark theme for "Midnight Gold" option
@@ -121,8 +123,15 @@ function startDealAnimation() {
     const faceBack = document.createElement("div");
     faceBack.className = "card-face back"; // The actual tarot image
 
+    // Determine image path based on selected deck
+    let imgUrl;
+    if (selectedDeck === "rwdeck") {
+      imgUrl = `./images/tarot/rwdeck/${cardData.id}.png`;
+    } else {
+      imgUrl = `./images/tarot/${cardData.id}.png`;
+    }
+
     // Preload real image
-    const imgUrl = `./images/tarot/${cardData.id}.png`;
     const imgObj = new Image();
     imgObj.src = imgUrl;
     imgObj.onload = () => {
@@ -144,7 +153,7 @@ function startDealAnimation() {
 
     // Click Interaction
     slot.addEventListener("click", () =>
-      handleCardClick(slot, inner, cardData)
+      handleCardClick(slot, inner, cardData),
     );
   });
 
