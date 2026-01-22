@@ -19,6 +19,11 @@
   --card-radius: 12px;
   --card-width: 140px;
   --card-height: 230px;
+
+  /* --- Responsive Sizes --- */
+  --header-padding: 1rem 2rem;
+  --control-gap: 2rem;
+  --card-container-padding: 20px;
 }
 
 /* Dark Mode */
@@ -104,26 +109,31 @@ body {
   left: 0;
   right: 0;
   z-index: 50;
-  padding: 1rem 2rem;
+  padding: var(--header-padding);
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #e0c3fc;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: center;
+  max-height: 15vh;
+  overflow-y: auto;
 }
 
 .controls-group {
   display: flex;
-  gap: 2rem;
+  gap: var(--control-gap);
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
 }
 
 .control-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  white-space: nowrap;
 }
 
 label {
@@ -142,6 +152,7 @@ input {
   background: #fff;
   font-family: inherit;
   font-size: 1rem;
+  min-width: 140px;
 }
 
 /* --- The Stage --- */
@@ -218,7 +229,7 @@ input {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--card-container-padding);
   justify-content: center;
   align-content: center;
   /* Default generic grid */
@@ -516,10 +527,90 @@ input {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+  :root {
+    --header-padding: 0.75rem 1rem;
+    --control-gap: 0.75rem;
+    --card-container-padding: 12px;
+    --card-width: 100px;
+    --card-height: 160px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .app-ui {
+    max-height: 18vh;
+  }
+
+  .controls-group {
+    gap: var(--control-gap);
+  }
+
+  .control-item {
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  label {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  select,
+  input {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    min-width: auto;
+  }
+
+  .spread-container {
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .spread-1 {
+    gap: 15px;
+  }
+
+  .spread-3 {
+    gap: 15px;
+  }
+
   .spread-celtic {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .deck-area {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .deck-pile {
+    width: 90px;
+    height: 140px;
+    border: 3px solid white;
+    box-shadow:
+      0 1px 0 #bbb,
+      0 2px 0 #bbb,
+      0 3px 0 #bbb,
+      0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .deck-label {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    letter-spacing: 1px;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 16px;
   }
 
   .modal-split {
@@ -527,17 +618,133 @@ input {
   }
 
   .modal-visual {
-    height: 200px;
+    height: 180px;
     flex: none;
+    padding: 15px;
   }
 
   .modal-card-display {
-    width: 100px;
-    height: 160px;
+    width: 80px;
+    height: 130px;
+    border-radius: 8px;
+  }
+
+  .modal-info {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .modal-header h2 {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+  }
+
+  .modal-body {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .modal-tags {
+    font-size: 0.9rem;
+    margin: 8px 0 15px 0;
+  }
+
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  #search-results {
+    max-height: 150px;
+    font-size: 0.9rem;
+  }
+
+  #search-results div {
+    padding: 6px 10px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  :root {
+    --header-padding: 0.5rem 0.75rem;
+    --control-gap: 0.5rem;
+    --card-container-padding: 8px;
+    --card-width: 80px;
+    --card-height: 130px;
+  }
+
+  body {
+    font-size: 12px;
+  }
+
+  .app-ui {
+    max-height: 20vh;
+  }
+
+  .control-item {
+    min-width: 100px;
+  }
+
+  label {
+    font-size: 0.65rem;
+  }
+
+  select,
+  input {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+  }
+
+  .spread-container {
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    min-height: 50vh;
   }
 
   .deck-area {
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .deck-pile {
+    width: 70px;
+    height: 110px;
+    border: 2px solid white;
+    box-shadow:
+      0 1px 0 #bbb,
+      0 2px 0 #bbb,
+      0 3px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .deck-label {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .modal-info {
+    padding: 15px;
+  }
+
+  .modal-body {
+    font-size: 0.9rem;
+  }
+
+  #search-results {
+    max-height: 120px;
+    font-size: 0.85rem;
   }
 }
