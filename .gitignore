@@ -1,2 +1,26 @@
-images/stake.png~RFd008987.TMP
-images/ihg.png~RFd591139.TMP
+# System Files
+.DS_Store
+Thumbs.db
+*.tmp
+~*
+
+# Temporary Files
+images/*.TMP
+images/*~
+
+# IDE/Editor Files
+.vscode/launch.json.bak
+.idea/
+*.swp
+*.swo
+
+# OS Backup Files
+*.bak
+*.backup
+
+# Node modules (if needed)
+node_modules/
+
+# Build output
+dist/
+build/
