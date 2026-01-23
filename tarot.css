@@ -372,6 +372,8 @@ input {
 
 .card-face.back {
   background-color: var(--white);
+  background-size: cover;
+  background-position: center;
   transform: rotateY(180deg);
   display: flex;
   align-items: center;

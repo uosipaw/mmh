@@ -126,9 +126,9 @@ function startDealAnimation() {
     // Determine image path based on selected deck
     let imgUrl;
     if (selectedDeck === "rwdeck") {
-      imgUrl = `./images/tarot/rwdeck/${cardData.id}.png`;
+      imgUrl = `./images/tarot/rwdeck/${cardData.id}.jpg`;
     } else {
-      imgUrl = `./images/tarot/${cardData.id}.png`;
+      imgUrl = `./images/tarot/${cardData.id}.jpg`;
     }
 
     // Preload real image
@@ -223,7 +223,13 @@ function openCardModal(card, isReversed) {
     modalImg.style.transform = "none";
   }
 
-  const imgUrl = `./images/tarot/${card.id}.png`;
+  // Use selectedDeck for image path
+  let imgUrl;
+  if (selectedDeck === "rwdeck") {
+    imgUrl = `./images/tarot/rwdeck/${card.id}.jpg`;
+  } else {
+    imgUrl = `./images/tarot/${card.id}.jpg`;
+  }
   modalImg.style.backgroundImage = `url('${imgUrl}')`;
 
   modal.classList.remove("hidden");
