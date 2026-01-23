@@ -86,5 +86,14 @@
   "diffEditor.wordWrap": "on",
 
   // Error Detection
-  "problems.showCurrentInStatus": true
+  "problems.showCurrentInStatus": true,
+
+  // Auto Commit Configuration
+  "autoCommit.enable": true,
+  "autoCommit.commitInterval": 3,
+  "autoCommit.pushInterval": 5,
+  "autoCommit.commitMessageFormat": "auto: ${changes} - ${date:yyyy-MM-dd HH:mm:ss}",
+  "autoCommit.pullBeforePush": true,
+  "autoCommit.pushOnCommit": true,
+  "autoCommit.showStatusBarMessage": true
 }
