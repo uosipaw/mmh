@@ -1,43 +1,74 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mdsn ✨</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scattered Links + Gooey Nav</title>
+    <meta name="description"
+        content="Floating scattered image links with hover effects and a gooey expanding navigation menu." />
+    <link href="style.css" rel="stylesheet" />
+
 </head>
 
 <body>
-    <div class="background">
-    </div>
+    <!-- SVG filter for the gooey effect -->
+    <svg style="position:absolute; width:0; height:0" aria-hidden="true" focusable="false">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 24 -12" result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
 
-    <div class="link-zone">
-        <a href="https://uosipaw.lol/myth" class="sticker btn-1">
-            <img src="./images/stickers/myth.png" alt="Myth">
-        </a>
-        <a href="https://uosipaw.lol/tarot" class="sticker btn-2">
-            <img src="./images/stickers/dino.png" alt="tarot">
-        </a>
-        <a href="https://uosipaw.lol/food" class="sticker btn-3">
-            <img src="./images/stickers/food.png" alt="Food">
-        </a>
-        <a href="https://uosipaw.lol/quotes" class="sticker btn-4">
-            <img src="./images/stickers/quotes.png" alt="Quotes">
-        </a>
-        <a href="https://uosipaw.lol/paint" class="sticker btn-5">
-            <img src="./images/stickers/fun.png" alt="paint">
-        </a>
-        <a href="https://uosipaw.lol/about" class="sticker btn-6">
-            <img src="./images/stickers/about.png" alt="About">
-        </a>
-        <a href="https://uosipaw.lol/howto" class="sticker btn-7">
-            <img src="./images/stickers/howto.png" alt="How To">
-        </a>
-        <a href="https://uosipaw.lol/casino" class="sticker btn-8">
-            <img src="./images/stickers/casino.png" alt="Casino">
-        </a>
-    </div>
+    <div class="shell">
+        <header>
+            <h1>Interactive Scatter + Gooey Menu</h1>
+            <p class="hint">Tap/hover items • Open the menu</p>
+        </header>
 
+        <section class="scatter-frame" aria-label="Floating links area">
+            <div class="items" id="items">
+                <!-- 7 image links (placeholders) -->
+                <a class="item" href="https://uosipaw.lol/casino" aria-label="Placeholder Link 1">
+                    <img alt="Placeholder 1" src="/images/dice.png" />
+                </a>
+                <a class="item" href="https://uosipaw.lol/tarot" aria-label="Placeholder Link 2">
+                    <img alt="Placeholder 2" src="/images/smiley.png" />
+                </a>
+                <a class="item" href="https://uosipaw.lol/myth" aria-label="Placeholder Link 3">
+                    <img alt="Placeholder 3" src="/images/cool.png" />
+                </a>
+                <a class="item" href="https://uosipaw.lol/paint" aria-label="Placeholder Link 4">
+                    <img alt="Placeholder 4" src="/images/pce.png" />
+                </a>
+
+                <!-- The nav trigger (styled like other items) -->
+                <button class="item menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="gooey-nav"></button>
+
+                <!-- Gooey nav (expands from the trigger) -->
+                <div class="gooey-wrap" aria-hidden="true">
+                    <nav class="gooey-nav" id="gooey-nav" aria-label="Quick navigation">
+                        <a class="gooey-link l1" href="#"><span>Home</span></a>
+                        <a class="gooey-link l2" href="#"><span>Work</span></a>
+                        <a class="gooey-link l3" href="#"><span>About</span></a>
+                        <a class="gooey-link l4" href="#"><span>Contact</span></a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Replace the <em>href</em> values and images with your own links & media.
+        </footer>
+    </div>
+    <!-- Main interaction script -->
     <script src="script.js"></script>
 </body>
 

@@ -1,169 +1,259 @@
-/* Reset and font */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      /* =====================
+        Design Tokens / Theme
+        ===================== */
+      :root {
+        --bg: #0f1220;
+        --card: #171a2b;
+        --ink: #e9ecf1;
+        --accent: #7bdeff;
+        --accent-2: #ff72b6;
+        --glow: 0 12px 35px rgba(123, 222, 255, .25);
+        --radius: 16px;
+        --gap: 10vmin;
+        /* visual breathing room so items never touch the border */
+      }
 
-body {
-  background: url('tarott.png') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Playfair Display', 'Georgia', serif;
-  color: var(--fg);
-  line-height: 1.6;
-  margin: 0;
-}
+      /* ============
+        Page layout
+        ============ */
+      html,
+      body {
+        height: 100%;
+      }
 
-/* Collage BG */
-.background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: url('./images/mdsn-banner.png') no-repeat center center;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  animation: zoomPulse 20s infinite alternate ease-in-out;
-}
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+        color: var(--ink);
+        background: url(/images/bg.png) no-repeat center center / cover;
+        display: grid;
+        place-items: center;
+        padding: clamp(12px, 2vw, 28px);
+      }
 
-@keyframes zoomPulse {
-  from {
-    transform: scale(1);
-  }
+      .shell {}
 
-  to {
-    transform: scale(1.03);
-  }
-}
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: clamp(10px, 2vh, 20px);
+      }
 
-/* Sticker Container */
-.link-zone {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+      h1 {
+        font-size: clamp(18px, 2.2vw + 10px, 34px);
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: .4px;
+      }
 
-/* Sticker Buttons */
-.sticker {
-  position: absolute;
-  display: block;
-  width: 320px;
-  height: auto;
-  transform-origin: center;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
+      .hint {
+        font-size: clamp(12px, 1.2vw + 8px, 16px);
+        opacity: .8;
+        margin: 0;
+      }
 
-.sticker img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.3));
-}
+      /* ===============================
+        Scatter Stage Container Frame
+        =============================== */
 
-.sticker:hover {
-  transform: scale(1.12) rotate(3deg);
-  z-index: 10;
-}
+      /* The absolutely-positioned items live inside this padded area */
+      .items {
+        position: absolute;
+        inset: var(--gap);
+      }
 
-.sticker:hover img {
-  filter: drop-shadow(3px 3px 12px rgba(0, 255, 255, 0.6));
-}
+      /* =====================================================
+        Floating Items (images + menu trigger share styling)
+        ===================================================== */
+      .item {
+        position: absolute;
+        width: auto;
+        border-radius: 14px;
+        overflow: visible;
+        transform: translate(-50%, -50%) translateZ(0);
+        will-change: transform, filter;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .35);
+        transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+        animation: floatY 6s ease-in-out infinite;
+      }
 
-/* Scattered Layout */
-.btn-1 {
-  top: 10%;
-  left: 12%;
-  transform: rotate(-6deg);
-}
+      /* slight variation so they don't all bob in sync */
+      .item:nth-child(odd) {
+        animation-duration: 7.5s;
+      }
 
-.btn-2 {
-  top: 22%;
-  right: 16%;
-  transform: rotate(7deg);
-}
+      .item:nth-child(3n) {
+        animation-duration: 8.5s;
+      }
 
-.btn-3 {
-  top: 38%;
-  left: 8%;
-  transform: rotate(-4deg);
-}
+      .item:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+      }
 
-.btn-4 {
-  top: 30%;
-  right: 24%;
-  transform: rotate(6deg);
-}
+      /* Images */
+      .item>img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.02);
+        filter: saturate(1.05) contrast(1.05);
+        transition: transform .35s ease, filter .35s ease;
+      }
 
-.btn-5 {
-  top: 58%;
-  left: 18%;
-  transform: rotate(-5deg);
-}
+      /* Hover/tap feedback */
+      .item:hover,
+      .item:focus-visible {
+        transform: translate(-50%, -50%) translateY(-6px) scale(1.04);
+        box-shadow: var(--glow);
+        z-index: 2;
+      }
 
-.btn-6 {
-  top: 48%;
-  right: 10%;
-  transform: rotate(3deg);
-}
+      .item:hover>img,
+      .item:focus-visible>img {
+        transform: scale(1.08) rotate(.5deg);
+        filter: saturate(1.2) brightness(1.03);
+      }
 
-.btn-7 {
-  top: 72%;
-  left: 32%;
-  transform: rotate(9deg);
-}
+      /* =============================
+        Gooey Menu Trigger (button)
+        ============================= */
+      .menu-trigger {
+        display: grid;
+        place-items: center;
+        background: radial-gradient(120% 120% at 25% 20%, #1d2446, #12172c 60%);
+        border: 1px solid #2a2f55;
+        color: #dfe9ff;
+        font-weight: 700;
+        font-size: clamp(12px, 1.8vw, 16px);
+        letter-spacing: .3px;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+      }
 
-.btn-8 {
-  top: 68%;
-  right: 28%;
-  transform: rotate(-2deg);
-}
+      .menu-trigger:after {
+        content: "Menu";
+      }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .sticker {
-    width: 80px;
-  }
-}
+      /* ==========================================
+        Gooey Menu (filtered wrapper + nav links)
+        ========================================== */
+      .gooey-wrap {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        /* only clickable when open */
+        filter: url(#gooey);
+      }
 
-.tarot-left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--space);
-}
+      .gooey-nav {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.25);
-  padding: 20px 24px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(12px);
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-}
+      .gooey-link {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #081018;
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(123, 222, 255, .35);
+        --closed-scale: .25;
+        transform: translate(-50%, -50%) scale(var(--closed-scale));
+        opacity: 0;
+        transition: transform .45s cubic-bezier(.2, .9, .2, 1), opacity .25s ease;
+      }
 
-.control,
-.btn {
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #c3aed6;
-  background: linear-gradient(to right, #e8dff5, #d0e7f9);
-  color: #4b3f63;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
+      .gooey-link:focus-visible {
+        outline: 3px solid #fff;
+      }
 
-.control:hover,
-.btn:hover {
-  background: linear-gradient(to right, #f0e6ff, #e3f1fb);
-  transform: scale(1.05);
-}
+      /* When open, the four links spring out around the trigger */
+      .menu-open .gooey-wrap {
+        pointer-events: auto;
+      }
+
+      .menu-open .gooey-link {
+        opacity: 1;
+        transform: translate(var(--tx), var(--ty)) scale(1);
+      }
+
+      /* Link radial offsets: position each bubble around trigger */
+      .gooey-link.l1 {
+        --tx: -140px;
+        --ty: -10px;
+      }
+
+      .gooey-link.l2 {
+        --tx: 140px;
+        --ty: 12px;
+      }
+
+      .gooey-link.l3 {
+        --tx: -10px;
+        --ty: -140px;
+      }
+
+      .gooey-link.l4 {
+        --tx: -6px;
+        --ty: 140px;
+      }
+
+      /* Small labels on gooey links */
+      .gooey-link span {
+        font-size: 12px;
+      }
+
+      /* =================
+        Float animation
+        ================= */
+      @keyframes floatY {
+
+        0%,
+        100% {
+          transform: translate(-50%, -50%) translateY(-2px);
+        }
+
+        50% {
+          transform: translate(-50%, -50%) translateY(6px);
+        }
+      }
+
+      /* =====================================
+        Reduced Motion Accessibility Handling
+        ===================================== */
+      @media (prefers-reduced-motion: reduce) {
+        .item {
+          animation: none;
+        }
+
+        .item,
+        .item>img {
+          transition: none;
+        }
+
+        .gooey-link {
+          transition: none;
+        }
+      }
+
+      /* ===========
+        Footer note
+        =========== */
+      footer {
+        margin-top: 14px;
+        opacity: .7;
+        font-size: 12px;
+        text-align: center;
+      }

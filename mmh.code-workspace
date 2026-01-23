@@ -1,7 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"uri": "vscode-vfs://github/uosipaw/mmh"
+		},
+		{
+			"uri": "vscode-vfs://github/uosipaw/mmh/images/tarot"
 		}
 	],
 	"settings": {}
