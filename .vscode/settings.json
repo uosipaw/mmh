@@ -95,5 +95,6 @@
   "autoCommit.commitMessageFormat": "auto: ${changes} - ${date:yyyy-MM-dd HH:mm:ss}",
   "autoCommit.pullBeforePush": true,
   "autoCommit.pushOnCommit": true,
-  "autoCommit.showStatusBarMessage": true
+  "autoCommit.showStatusBarMessage": true,
+  "workbench.editor.tabActionLocation": "right"
 }
