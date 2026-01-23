@@ -21,6 +21,15 @@ const modalClose = document.getElementById("modal-close");
 // --- Initialization ---
 dealBtn.disabled = true;
 
+// Helper function to determine correct image extension
+function getImageUrl(deckName, cardId) {
+  // Try .png first, fallback to .jpg
+  return {
+    primary: `./images/tarot/${deckName}/${cardId}.png`,
+    fallback: `./images/tarot/${deckName}/${cardId}.jpg`,
+  };
+}
+
 // 1. Fetch Data
 fetch("./tarot-cards.json")
   .then((r) => r.json())
@@ -123,24 +132,27 @@ function startDealAnimation() {
     const faceBack = document.createElement("div");
     faceBack.className = "card-face back"; // The actual tarot image
 
-    // Determine image path based on selected deck
-    let imgUrl;
-    if (selectedDeck === "rwdeck") {
-      imgUrl = `./images/tarot/rwdeck/${cardData.id}.jpg`;
-    } else {
-      imgUrl = `./images/tarot/${cardData.id}.jpg`;
-    }
+    // Get image paths with fallback
+    const imagePaths = getImageUrl(selectedDeck, cardData.id);
 
-    // Preload real image
+    // Preload real image with fallback
     const imgObj = new Image();
-    imgObj.src = imgUrl;
+    imgObj.src = imagePaths.primary;
     imgObj.onload = () => {
-      faceBack.style.backgroundImage = `url('${imgUrl}')`;
+      faceBack.style.backgroundImage = `url('${imagePaths.primary}')`;
     };
-    // Fallback
     imgObj.onerror = () => {
-      faceBack.style.backgroundColor = "#fff";
-      faceBack.innerText = cardData.name;
+      // Try fallback extension
+      const fallbackImg = new Image();
+      fallbackImg.src = imagePaths.fallback;
+      fallbackImg.onload = () => {
+        faceBack.style.backgroundImage = `url('${imagePaths.fallback}')`;
+      };
+      fallbackImg.onerror = () => {
+        // Final fallback: show card name
+        faceBack.style.backgroundColor = "#fff";
+        faceBack.innerText = cardData.name;
+      };
     };
 
     inner.appendChild(faceFront);
@@ -223,14 +235,23 @@ function openCardModal(card, isReversed) {
     modalImg.style.transform = "none";
   }
 
-  // Use selectedDeck for image path
-  let imgUrl;
-  if (selectedDeck === "rwdeck") {
-    imgUrl = `./images/tarot/rwdeck/${card.id}.jpg`;
-  } else {
-    imgUrl = `./images/tarot/${card.id}.jpg`;
-  }
-  modalImg.style.backgroundImage = `url('${imgUrl}')`;
+  // Use selectedDeck folder for image path with fallback
+  const imagePaths = getImageUrl(selectedDeck, card.id);
+
+  // Try primary extension first
+  const imgObj = new Image();
+  imgObj.src = imagePaths.primary;
+  imgObj.onload = () => {
+    modalImg.style.backgroundImage = `url('${imagePaths.primary}')`;
+  };
+  imgObj.onerror = () => {
+    // Try fallback extension
+    const fallbackImg = new Image();
+    fallbackImg.src = imagePaths.fallback;
+    fallbackImg.onload = () => {
+      modalImg.style.backgroundImage = `url('${imagePaths.fallback}')`;
+    };
+  };
 
   modal.classList.remove("hidden");
 }

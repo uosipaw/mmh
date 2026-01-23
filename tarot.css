@@ -10,9 +10,9 @@
   --glass-border: rgba(255, 255, 255, 0.5);
 
   /* --- Fonts --- */
-  --font-body: 'A Font With Serifs', serif;
-  --font-heading: 'My Happy Ending', cursive;
-  --font-ui: 'Sticky Notes', sans-serif;
+  --font-body: "A Font With Serifs", serif;
+  --font-heading: "My Happy Ending", cursive;
+  --font-ui: "Sticky Notes", sans-serif;
 
   /* --- Common Colors --- */
   --border-light: #e0c3fc;
@@ -25,8 +25,8 @@
   /* --- Deck Skins (Default: Classic) --- */
   --card-back-img: none;
   --card-radius: 12px;
-  --card-width: 140px;
-  --card-height: 230px;
+  --card-width: 180px;
+  --card-height: 290px;
 
   /* --- Responsive Sizes --- */
   --header-padding: 1rem 2rem;
@@ -47,47 +47,72 @@
 
 @keyframes morphGradient {
   0% {
-    background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+    background: linear-gradient(
+      45deg,
+      var(--bg-gradient-1) 0%,
+      var(--bg-gradient-2) 50%,
+      var(--bg-gradient-3) 100%
+    );
     background-size: 400% 400%;
   }
 
   25% {
-    background: linear-gradient(120deg, var(--bg-gradient-2) 0%, var(--bg-gradient-3) 50%, var(--bg-gradient-1) 100%);
+    background: linear-gradient(
+      120deg,
+      var(--bg-gradient-2) 0%,
+      var(--bg-gradient-3) 50%,
+      var(--bg-gradient-1) 100%
+    );
     background-size: 400% 400%;
   }
 
   50% {
-    background: linear-gradient(240deg, var(--bg-gradient-3) 0%, var(--bg-gradient-1) 50%, var(--bg-gradient-4) 100%);
+    background: linear-gradient(
+      240deg,
+      var(--bg-gradient-3) 0%,
+      var(--bg-gradient-1) 50%,
+      var(--bg-gradient-4) 100%
+    );
     background-size: 400% 400%;
   }
 
   75% {
-    background: linear-gradient(320deg, var(--bg-gradient-4) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-1) 100%);
+    background: linear-gradient(
+      320deg,
+      var(--bg-gradient-4) 0%,
+      var(--bg-gradient-2) 50%,
+      var(--bg-gradient-1) 100%
+    );
     background-size: 400% 400%;
   }
 
   100% {
-    background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+    background: linear-gradient(
+      45deg,
+      var(--bg-gradient-1) 0%,
+      var(--bg-gradient-2) 50%,
+      var(--bg-gradient-3) 100%
+    );
     background-size: 400% 400%;
   }
 }
 
 /* --- Font Loading --- */
 @font-face {
-  font-family: 'My Happy Ending';
-  src: url('./fonts/MyHappyEnding.ttf');
+  font-family: "My Happy Ending";
+  src: url("./fonts/MyHappyEnding.ttf");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'A Font With Serifs';
-  src: url('./fonts/a_font_with_serifs.ttf');
+  font-family: "A Font With Serifs";
+  src: url("./fonts/a_font_with_serifs.ttf");
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Sticky Notes';
-  src: url('./fonts/Sticky Notes.ttf');
+  font-family: "Sticky Notes";
+  src: url("./fonts/Sticky Notes.ttf");
   font-display: swap;
 }
 
@@ -104,7 +129,12 @@ body {
   /* Prevent scroll during animations */
   font-family: var(--font-body);
   color: var(--text-main);
-  background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+  background: linear-gradient(
+    45deg,
+    var(--bg-gradient-1) 0%,
+    var(--bg-gradient-2) 50%,
+    var(--bg-gradient-3) 100%
+  );
   background-size: 400% 400%;
   animation: morphGradient 15s ease infinite;
   transition: color 0.3s ease;
@@ -173,6 +203,7 @@ input {
   grid-template-rows: 1fr auto;
   /* Grid pushes deck to bottom or manages layout */
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* --- The Deck Pile (Source of Animation) --- */
@@ -196,7 +227,9 @@ input {
     0 5px 0 #bbb,
     0 10px 20px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -374,6 +407,7 @@ input {
   background-color: var(--white);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
@@ -410,7 +444,6 @@ input {
 #search-results div:hover {
   background: var(--hover-light);
 }
-
 
 /* --- Modal --- */
 .modal {
@@ -483,6 +516,7 @@ input {
   height: 340px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -530,9 +564,9 @@ input {
   :root {
     --header-padding: 0.75rem 1rem;
     --control-gap: 0.75rem;
-    --card-container-padding: 12px;
-    --card-width: 100px;
-    --card-height: 160px;
+    --card-container-padding: 10px;
+    --card-width: 90px;
+    --card-height: 140px;
   }
 
   body {
@@ -666,9 +700,9 @@ input {
   :root {
     --header-padding: 0.5rem 0.75rem;
     --control-gap: 0.5rem;
-    --card-container-padding: 8px;
-    --card-width: 80px;
-    --card-height: 130px;
+    --card-container-padding: 6px;
+    --card-width: 70px;
+    --card-height: 110px;
   }
 
   body {
@@ -695,7 +729,7 @@ input {
 
   .spread-container {
     gap: 8px;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     min-height: 50vh;
   }
 
