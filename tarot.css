@@ -1,581 +1,738 @@
+:root {
+  /* --- Theme Colors (Light Mode) --- */
+  --bg-gradient-1: #fdfbf7;
+  --bg-gradient-2: #ffe7e0;
+  --bg-gradient-3: #ffd4c4;
+  --bg-gradient-4: #fff0eb;
+  --text-main: #2d1b2e;
+  --accent: #9d72ff;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.5);
+
+  /* --- Fonts --- */
+  --font-body: 'A Font With Serifs', serif;
+  --font-heading: 'My Happy Ending', cursive;
+  --font-ui: 'Sticky Notes', sans-serif;
+
+  /* --- Common Colors --- */
+  --border-light: #e0c3fc;
+  --border-input: #dcdcdc;
+  --white: #fff;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --modal-bg-dark: #1a0f1a;
+  --hover-light: #f0f0f0;
+
+  /* --- Deck Skins (Default: Classic) --- */
+  --card-back-img: none;
+  --card-radius: 12px;
+  --card-width: 140px;
+  --card-height: 230px;
+
+  /* --- Responsive Sizes --- */
+  --header-padding: 1rem 2rem;
+  --control-gap: 2rem;
+  --card-container-padding: 20px;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --bg-gradient-1: #1a1a2e;
+  --bg-gradient-2: #2d1b3d;
+  --bg-gradient-3: #3d2555;
+  --bg-gradient-4: #2b1540;
+  --text-main: #e8dff5;
+  --glass-bg: rgba(20, 10, 30, 0.85);
+  --glass-border: rgba(157, 114, 255, 0.3);
+}
+
+@keyframes morphGradient {
+  0% {
+    background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+    background-size: 400% 400%;
+  }
+
+  25% {
+    background: linear-gradient(120deg, var(--bg-gradient-2) 0%, var(--bg-gradient-3) 50%, var(--bg-gradient-1) 100%);
+    background-size: 400% 400%;
+  }
+
+  50% {
+    background: linear-gradient(240deg, var(--bg-gradient-3) 0%, var(--bg-gradient-1) 50%, var(--bg-gradient-4) 100%);
+    background-size: 400% 400%;
+  }
+
+  75% {
+    background: linear-gradient(320deg, var(--bg-gradient-4) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-1) 100%);
+    background-size: 400% 400%;
+  }
+
+  100% {
+    background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+    background-size: 400% 400%;
+  }
+}
+
+/* --- Font Loading --- */
 @font-face {
   font-family: 'My Happy Ending';
-  src: url('./fonts/MyHappyEnding.ttf') format('truetype');
+  src: url('./fonts/MyHappyEnding.ttf');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'A Font With Serifs';
-  src: url('./fonts/a_font_with_serifs.ttf') format('truetype');
+  src: url('./fonts/a_font_with_serifs.ttf');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Sticky Notes';
-  src: url('./fonts/Sticky Notes.ttf') format('truetype');
+  src: url('./fonts/Sticky Notes.ttf');
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Abassy';
-  src: url('./fonts/Abbasy%20Calligraphy%20Typeface.ttf') format('truetype');
-  font-display: swap;
-}
-
-:root {
-  --bg: linear-gradient(135deg, #f7e8ff 0%, #ffe7e0 100%);
-  --fg: #0f0315;
-  --muted: #ecec75;
-  --accent: #7aa4ff99;
-  --border: #e0c3fc;
-  --overlay: rgba(26, 5, 26, 0.61);
-}
-
+/* --- Global Reset --- */
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 body {
   margin: 0;
-  min-height: 100vh;
-  font-size: larger;
-  letter-spacing: 0.02em;
-  font-family: 'My Happy Ending', 'Abbasy', 'A Font With Serifs', 'Sticky Notes', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  color: var(--fg);
-  background: var(--bg);
-  background-image: url("./images/tarott.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: overlay;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  /* Prevent scroll during animations */
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: linear-gradient(45deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+  background-size: 400% 400%;
+  animation: morphGradient 15s ease infinite;
+  transition: color 0.3s ease;
 }
 
-/* App Header */
-.appbar {
-  padding: 14px 20px;
-  background: rgba(255, 255, 255, 0.85);
-  border-bottom: 1px solid var(--border);
-  border-radius: 0 0 24px 24px;
-  box-shadow: 0 4px 24px 0 #e0c3fc44;
-}
-
-.appbar h1 {
-  margin: 0;
-  font-size: 20px;
-}
-
-/* Controls Panel */
-.controls {
-  position: relative;
+/* --- UI Controls --- */
+.app-ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: var(--header-padding);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px var(--shadow-light);
   display: flex;
-  gap: 14px;
+  justify-content: center;
+  max-height: 15vh;
+  overflow-y: auto;
+}
+
+.controls-group {
+  display: flex;
+  gap: var(--control-gap);
   align-items: center;
   flex-wrap: wrap;
-  padding: 18px 22px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 0 0 32px 32px;
-  box-shadow: 0 2px 16px 0 #e0c3fc33;
-  font-family: 'Sticky Notes', 'My Happy Ending', cursive, system-ui;
-  font-size: 1.1em;
+  width: 100%;
+  justify-content: center;
 }
 
-#deal-btn {
-  padding: 10px 18px;
-  background: linear-gradient(90deg, #ffb6f9 0%, #b5c6ff 100%);
-  color: #fff;
-  border: none;
-  border-radius: 18px;
+.control-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+label {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+select,
+input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-input);
+  background: var(--white);
+  font-family: inherit;
+  font-size: 1rem;
+  min-width: 140px;
+}
+
+/* --- The Stage --- */
+.stage {
+  height: 100%;
+  width: 100%;
+  padding-top: 100px;
+  /* Space for header */
+  display: grid;
+  grid-template-rows: 1fr auto;
+  /* Grid pushes deck to bottom or manages layout */
+  overflow-y: auto;
+}
+
+/* --- The Deck Pile (Source of Animation) --- */
+.deck-area {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  z-index: 40;
+}
+
+.deck-pile {
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-radius);
+  border: 4px solid var(--white);
+  box-shadow:
+    0 1px 0 #bbb,
+    0 2px 0 #bbb,
+    0 3px 0 #bbb,
+    0 4px 0 #bbb,
+    0 5px 0 #bbb,
+    0 10px 20px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  font-size: 1.1em;
-  font-family: 'Sticky Notes', 'My Happy Ending', cursive, system-ui;
-  box-shadow: 0 2px 8px #e0c3fc55;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#deal-btn:hover:not(:disabled) {
-  transform: scale(1.08) rotate(-2deg);
-  box-shadow: 0 4px 16px #ffb6f955;
+.deck-pile:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 1px 0 #bbb,
+    0 2px 0 #bbb,
+    0 3px 0 #bbb,
+    0 4px 0 #bbb,
+    0 5px 0 #bbb,
+    0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
-#deal-btn:disabled {
-  background: #e0e0e0;
-  color: #aaa;
-  cursor: not-allowed;
+.deck-pile:disabled {
+  filter: grayscale(1);
+  cursor: wait;
 }
 
-#search-input {
-  flex: 1 1 240px;
-  min-width: 220px;
-  padding: 9px 12px;
-  border-radius: 16px;
-  outline: none;
-  background: #fff8fc;
-  font-family: 'Sticky Notes', cursive, system-ui;
-  font-size: 1.3em;
-  transition: border-color 0.2s;
+.deck-label {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-ui);
+  letter-spacing: 2px;
+  pointer-events: none;
 }
 
-#search-input:focus {
-  border-color: #0000005d;
-  background: #fff0fa;
+/* --- Card Grid Layouts --- */
+.spread-container {
+  display: grid;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--card-container-padding);
+  justify-content: center;
+  align-content: center;
+  /* Default generic grid */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  min-height: 60vh;
+}
+
+.spread-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spread-3 {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Celtic Cross (Grid) */
+.spread-celtic {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 900px;
+}
+
+/* Celtic Positioning Logic via :nth-child */
+.spread-celtic .card-slot:nth-child(1) {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  z-index: 1;
+}
+
+/* Center 1 */
+.spread-celtic .card-slot:nth-child(2) {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  z-index: 2;
+  transform: rotate(90deg);
+}
+
+/* Center 2 (Cross) */
+.spread-celtic .card-slot:nth-child(3) {
+  grid-column: 2 / 4;
+  grid-row: 4;
+}
+
+/* Bottom */
+.spread-celtic .card-slot:nth-child(4) {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  align-self: center;
+}
+
+/* Left */
+.spread-celtic .card-slot:nth-child(5) {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+/* Top */
+.spread-celtic .card-slot:nth-child(6) {
+  grid-column: 4;
+  grid-row: 2 / 4;
+  align-self: center;
+}
+
+/* Right */
+.spread-celtic .card-slot:nth-child(7) {
+  grid-column: 6;
+  grid-row: 4;
+}
+
+/* Staff Bottom */
+.spread-celtic .card-slot:nth-child(8) {
+  grid-column: 6;
+  grid-row: 3;
+}
+
+.spread-celtic .card-slot:nth-child(9) {
+  grid-column: 6;
+  grid-row: 2;
+}
+
+.spread-celtic .card-slot:nth-child(10) {
+  grid-column: 6;
+  grid-row: 1;
+}
+
+/* --- The Card Object --- */
+.card-slot {
+  width: var(--card-width);
+  height: var(--card-height);
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-radius: var(--card-radius);
+}
+
+.card-slot:hover .card-inner {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+
+.card-slot.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Faces */
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-face.front {
+  background-image: var(--card-back-img);
+}
+
+.card-face.back {
+  background-color: var(--white);
+  background-size: cover;
+  background-position: center;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-face.back.reversed {
+  transform: rotateY(180deg) rotate(180deg);
+}
+
+/* --- Search Dropdown --- */
+.search-wrapper {
+  position: relative;
 }
 
 #search-results {
   position: absolute;
-  top: calc(100% - 6px);
-  left: 20px;
-  right: 20px;
-  background: #fff8fc;
-  border-radius: 16px;
-  max-height: 240px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
   overflow-y: auto;
   display: none;
-  z-index: 10;
-  box-shadow: 0 2px 12px #e0c3fc33;
 }
 
 #search-results div {
-  padding: 10px 14px;
+  padding: 8px 12px;
   cursor: pointer;
-  font-family: 'Abassy', cursive;
-  font-size: 1.05em;
-  border-radius: 10px;
-  transition: background 0.15s;
 }
 
 #search-results div:hover {
-  background: #ffe7e0;
+  background: var(--hover-light);
 }
 
-/* Cards Layout */
-#cards-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  padding: 32px 20px 20px 20px;
-  perspective: 1200px;
-  position: relative;
-  min-height: 260px;
-}
 
-.card {
-  width: 240px;
-  height: 400px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform .6s cubic-bezier(.7, 1.7, .5, 1), box-shadow 0.2s;
-  cursor: pointer;
-  box-shadow: 0 8px 32px 0 #e0c3fc55, 0 2px 8px #fff8fc0a;
-  background: linear-gradient(135deg, #fff8fc21 60%, #e0c3fc2f 100%);
-  overflow: visible;
-}
-
-.card:hover {
-  transform: scale(1.06) rotate(-2deg) rotateY(8deg);
-  box-shadow: 0 16px 48px 0 #ffb6f955, 0 2px 8px #fff8fc;
-  z-index: 2;
-}
-
-.card.flipped {
-  transform: rotateY(180deg) scale(1.06);
-}
-
-.card .face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  background-size: cover;
-  background-position: center;
-}
-
-.card .back {
-  background-image: url("./images/tarot/back1.png");
-  background-color: #ffe7e000;
-}
-
-.card .front {
-  transform: rotateY(180deg);
-  border: 2px solid #b5c6ff27;
-  background-color: #16040f81;
-  transition: transform 0.6s cubic-bezier(.7, 1.7, .5, 1);
-}
-
-.card .front.reversed {
-  transform: rotateY(180deg) rotate(180deg);
-}
-
-/* Spread Layouts */
-.spread-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 120px);
-  gap: 24px;
-}
-
-.spread-celtic {
-  display: grid;
-  grid-template-areas:
-    ". card1 . card2 ."
-    ". card1 . card3 ."
-    "card4 card1 card5 card6 card7"
-    ". . card8 . ."
-    ". . card9 . ."
-    ". . card10 . .";
-  grid-template-columns: repeat(5, 120px);
-  gap: 16px 20px;
-  justify-content: center;
-}
-
-.spread-celtic .card:nth-child(1) {
-  grid-area: card1;
-}
-
-.spread-celtic .card:nth-child(2) {
-  grid-area: card2;
-}
-
-.spread-celtic .card:nth-child(3) {
-  grid-area: card3;
-}
-
-.spread-celtic .card:nth-child(4) {
-  grid-area: card4;
-}
-
-.spread-celtic .card:nth-child(5) {
-  grid-area: card5;
-}
-
-.spread-celtic .card:nth-child(6) {
-  grid-area: card6;
-}
-
-.spread-celtic .card:nth-child(7) {
-  grid-area: card7;
-}
-
-.spread-celtic .card:nth-child(8) {
-  grid-area: card8;
-}
-
-.spread-celtic .card:nth-child(9) {
-  grid-area: card9;
-}
-
-.spread-celtic .card:nth-child(10) {
-  grid-area: card10;
-}
-
-/* Modal Overlay */
+/* --- Modal --- */
 .modal {
   position: fixed;
   inset: 0;
-  /* ensure full-viewport coverage */
-  display: none;
-  justify-content: center;
   z-index: 100;
-  color: #f3e6c8;
-  background: rgba(0, 0, 0, 0.55);
-  /* dim backdrop so clicks land on modal */
-  height: 100vh;
-  width: 100vw;
-  padding: 15px;
-  /* allow edge-to-edge on wide screens */
-  /* breathing room on small screens */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
 }
 
 .modal:not(.hidden) {
-  display: flex;
-  animation: fadeIn 0.25s ease-out;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
 }
 
-/* duplicate state rule removed to avoid redundancy */
-
-/* Modal Content */
 .modal-content {
   position: relative;
-  margin: 10%;
-  padding: 24px;
-  width: 80vw;
-  height: 92vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  box-shadow: 0 8px 32px #1e0e2e55;
-  font-family: 'A Font With Serifs', serif;
-  font-size: 1.18em;
-  background: none;
+  background: var(--white);
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  /* inner sections manage their own scroll */
-  border-radius: 24px;
-}
-
-@media (max-width: 600px) {
-  .modal-content {
-    width: 96vw;
-    max-width: 96vw;
-    min-width: 0;
-    height: 92vh;
-    /* keep near-full height on mobile too */
-    min-height: 0;
-    max-height: 92vh;
-    border-radius: 16px;
-    font-size: 1em;
-  }
-
-  .modal {
-    padding: 16px 10px;
-    /* restore breathing room on small screens */
-  }
-}
-
-.card-modal-header {
   display: flex;
   flex-direction: column;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.modal-split {
+  display: flex;
+  height: 100%;
+}
+
+.modal-visual {
+  flex: 2;
+  background: var(--modal-bg-dark);
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-top: 2.5em;
-  margin-bottom: 1.2em;
-  z-index: 2;
-  pointer-events: auto;
-  position: relative;
+  justify-content: center;
+  padding: 20px;
 }
 
-.card-modal-header h2,
-.card-modal-header .modal-keywords,
-.card-modal-header .modal-reversed-label {
-  margin: 0.2em 0;
-  text-align: center;
-}
-
-/* Enforce visual order: title, keywords, reversed */
-.card-modal-header h2 {
-  order: 1;
-}
-
-.card-modal-header .modal-keywords {
-  order: 2;
-}
-
-.card-modal-header .modal-reversed-label {
-  order: 3;
-}
-
-.card-modal-image-bg {
-  position: relative;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  pointer-events: auto;
-}
-
-/* duplicate image overlay rules removed */
-
-.modal-keywords {
-  text-align: center;
-  margin: 0.5em 0 0.5em 0;
-  font-size: 1em;
-  font-family: 'Sticky Notes', 'A Font With Serifs', serif;
-  color: #ffe7e0;
-  opacity: 0.92;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
-  z-index: 2;
-  position: static;
-  background: none;
-}
-
-.modal-reversed-label {
-  display: block;
-  font-size: 0.9em;
-  font-family: 'A Font With Serifs', serif;
-  color: #ffe7e0;
-  opacity: 0.85;
-  margin-top: 0.15em;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 8px #000, 0 0px 2px #000;
-}
-
-.card-modal-desc-wrapper {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  pointer-events: auto;
-  max-height: 90%;
-  /* keep header visible and allow long text */
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.card-modal-desc-wrapper p {
-  margin: 30px 20px 0;
-  padding: 14px 18px 18px;
-  color: #fcf4f2;
-  font-size: 1.2em;
-  font-family: 'A Font With Serifs', serif;
-  text-shadow: 0 2px 3px #0f0109;
-}
-
-.card-modal-image-only {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.modal-card-display {
+  width: 200px;
+  height: 340px;
   background-size: cover;
-  background-position: center top;
-  z-index: 0;
-  transition: transform 0.4s;
-  pointer-events: none;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.card-modal-image-only::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  -webkit-backdrop-filter: blur(2.5px);
-  backdrop-filter: blur(2.5px);
-  z-index: 1;
-  pointer-events: none;
+.modal-info {
+  flex: 3;
+  padding: 30px;
+  overflow-y: auto;
 }
 
-.card-modal-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 40%, rgba(7, 7, 7, 0.97) 100%);
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 0 0 22px 22px;
+.modal-header h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin: 0;
+  color: var(--text-main);
 }
 
-.card-modal-bg {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  background: none;
-  height: auto;
-  width: auto;
+.badge {
+  display: inline-block;
+  background: var(--border-light);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Sticky Modal Helpers */
-body.modal-open {
-  overflow: hidden;
+.badge.hidden {
+  display: none;
 }
 
-body.modal-open::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 99;
-  pointer-events: none;
-  -webkit-backdrop-filter: blur(6px) brightness(0.92);
-  backdrop-filter: blur(6px) brightness(0.92);
+.modal-tags {
+  margin: 10px 0 20px 0;
+  font-family: var(--font-ui);
+  color: var(--accent);
 }
 
-/* Responsive */
-@media (max-width: 720px) {
-  .spread-canvas {
-    grid-template-columns: repeat(auto-fit, minmax(calc(var(--card-w) * .8), 1fr));
+.modal-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  :root {
+    --header-padding: 0.75rem 1rem;
+    --control-gap: 0.75rem;
+    --card-container-padding: 12px;
+    --card-width: 100px;
+    --card-height: 160px;
   }
 
-  .card-modal .content {
-    grid-template-columns: 1fr;
-  }
-}
-
-/*
-The .content class defines a two-column grid layout.
-Use this class for modal or card content sections that require a side-by-side arrangement.
-*/
-.content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-@media (max-width: 450px) {
-  .card {
-    width: 90px;
-    height: 150px;
+  body {
+    font-size: 14px;
   }
 
-  .spread-3 {
-    grid-template-columns: repeat(3, 90px);
+  .app-ui {
+    max-height: 18vh;
+  }
+
+  .control-item {
+    gap: 2px;
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  label {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  select,
+  input {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    min-width: auto;
+  }
+
+  .spread-container {
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 
   .spread-celtic {
-    grid-template-columns: repeat(5, 90px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .deck-area {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .deck-pile {
+    width: 90px;
+    height: 140px;
+    border: 3px solid white;
+    box-shadow:
+      0 1px 0 #bbb,
+      0 2px 0 #bbb,
+      0 3px 0 #bbb,
+      0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .deck-label {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    letter-spacing: 1px;
   }
 
   .modal-content {
-    padding: 14px 8px 18px;
+    width: 95%;
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  .modal-split {
+    flex-direction: column;
+  }
+
+  .modal-visual {
+    height: 180px;
+    flex: none;
+    padding: 15px;
+  }
+
+  .modal-card-display {
+    width: 80px;
+    height: 130px;
+    border-radius: 8px;
+  }
+
+  .modal-info {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .modal-header h2 {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+  }
+
+  .modal-body {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .modal-tags {
+    font-size: 0.9rem;
+    margin: 8px 0 15px 0;
+  }
+
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  #search-results {
+    max-height: 150px;
+    font-size: 0.9rem;
+  }
+
+  #search-results div {
+    padding: 6px 10px;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
+/* Extra small devices */
+@media (max-width: 480px) {
+  :root {
+    --header-padding: 0.5rem 0.75rem;
+    --control-gap: 0.5rem;
+    --card-container-padding: 8px;
+    --card-width: 80px;
+    --card-height: 130px;
   }
-}
 
-/* Close button */
-.modal-close-btn {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  z-index: 3;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  border: none;
-  width: 36px;
-  height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0;
-  /* hide any stray text; use ::after for icon */
-}
+  body {
+    font-size: 12px;
+  }
 
-.modal-close-btn::after {
-  content: "\00D7";
-  font-size: 20px;
-  line-height: 1;
-}
+  .app-ui {
+    max-height: 20vh;
+  }
 
-.modal-close-btn:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
+  .control-item {
+    min-width: 100px;
+  }
 
-.modal-close-btn:focus {
-  outline: 2px solid #fff;
+  label {
+    font-size: 0.65rem;
+  }
+
+  select,
+  input {
+    padding: 5px 8px;
+    font-size: 0.85rem;
+  }
+
+  .spread-container {
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    min-height: 50vh;
+  }
+
+  .deck-area {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .deck-pile {
+    width: 70px;
+    height: 110px;
+    border: 2px solid white;
+    box-shadow:
+      0 1px 0 #bbb,
+      0 2px 0 #bbb,
+      0 3px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .deck-label {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .modal-info {
+    padding: 15px;
+  }
+
+  .modal-body {
+    font-size: 0.9rem;
+  }
+
+  #search-results {
+    max-height: 120px;
+    font-size: 0.85rem;
+  }
 }
