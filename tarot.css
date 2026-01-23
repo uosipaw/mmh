@@ -50,7 +50,19 @@
     background: linear-gradient(
       45deg,
       var(--bg-gradient-1) 0%,
-      var(--bg-gradient-2) 50%,
+      var(--bg-gradient-2) 35%,
+      var(--bg-gradient-3) 65%,
+      var(--bg-gradient-4) 100%
+    );
+    background-size: 400% 400%;
+  }
+
+  12.5% {
+    background: linear-gradient(
+      85deg,
+      var(--bg-gradient-2) 0%,
+      var(--bg-gradient-1) 25%,
+      var(--bg-gradient-4) 60%,
       var(--bg-gradient-3) 100%
     );
     background-size: 400% 400%;
@@ -59,8 +71,20 @@
   25% {
     background: linear-gradient(
       120deg,
-      var(--bg-gradient-2) 0%,
-      var(--bg-gradient-3) 50%,
+      var(--bg-gradient-3) 0%,
+      var(--bg-gradient-2) 30%,
+      var(--bg-gradient-1) 70%,
+      var(--bg-gradient-4) 100%
+    );
+    background-size: 400% 400%;
+  }
+
+  37.5% {
+    background: linear-gradient(
+      160deg,
+      var(--bg-gradient-4) 0%,
+      var(--bg-gradient-3) 40%,
+      var(--bg-gradient-2) 70%,
       var(--bg-gradient-1) 100%
     );
     background-size: 400% 400%;
@@ -68,10 +92,22 @@
 
   50% {
     background: linear-gradient(
-      240deg,
-      var(--bg-gradient-3) 0%,
-      var(--bg-gradient-1) 50%,
-      var(--bg-gradient-4) 100%
+      225deg,
+      var(--bg-gradient-1) 0%,
+      var(--bg-gradient-4) 25%,
+      var(--bg-gradient-3) 60%,
+      var(--bg-gradient-2) 100%
+    );
+    background-size: 400% 400%;
+  }
+
+  62.5% {
+    background: linear-gradient(
+      280deg,
+      var(--bg-gradient-2) 0%,
+      var(--bg-gradient-1) 35%,
+      var(--bg-gradient-4) 65%,
+      var(--bg-gradient-3) 100%
     );
     background-size: 400% 400%;
   }
@@ -79,8 +115,20 @@
   75% {
     background: linear-gradient(
       320deg,
+      var(--bg-gradient-3) 0%,
+      var(--bg-gradient-4) 30%,
+      var(--bg-gradient-1) 70%,
+      var(--bg-gradient-2) 100%
+    );
+    background-size: 400% 400%;
+  }
+
+  87.5% {
+    background: linear-gradient(
+      35deg,
       var(--bg-gradient-4) 0%,
-      var(--bg-gradient-2) 50%,
+      var(--bg-gradient-2) 40%,
+      var(--bg-gradient-3) 70%,
       var(--bg-gradient-1) 100%
     );
     background-size: 400% 400%;
@@ -90,8 +138,9 @@
     background: linear-gradient(
       45deg,
       var(--bg-gradient-1) 0%,
-      var(--bg-gradient-2) 50%,
-      var(--bg-gradient-3) 100%
+      var(--bg-gradient-2) 35%,
+      var(--bg-gradient-3) 65%,
+      var(--bg-gradient-4) 100%
     );
     background-size: 400% 400%;
   }
@@ -132,11 +181,12 @@ body {
   background: linear-gradient(
     45deg,
     var(--bg-gradient-1) 0%,
-    var(--bg-gradient-2) 50%,
-    var(--bg-gradient-3) 100%
+    var(--bg-gradient-2) 35%,
+    var(--bg-gradient-3) 65%,
+    var(--bg-gradient-4) 100%
   );
   background-size: 400% 400%;
-  animation: morphGradient 15s ease infinite;
+  animation: morphGradient 25s ease infinite;
   transition: color 0.3s ease;
 }
 
