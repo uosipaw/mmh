@@ -36,6 +36,19 @@ fetch("./tarot-cards.json")
   .then((data) => {
     tarotDeck = data;
     dealBtn.disabled = false;
+
+    // Set default back image based on initial deck selection
+    const root = document.documentElement;
+    const initialDeck = deckSelect.value;
+    let backUrl = "none";
+
+    if (initialDeck === "rwdeck") {
+      backUrl = `url('./images/tarot/rwdeck/back.jpg')`;
+    } else if (initialDeck === "mdsndeck") {
+      backUrl = `url('./images/tarot/mdsndeck/back.png')`;
+    }
+
+    root.style.setProperty("--card-back-img", backUrl);
   })
   .catch((err) => console.error("Error loading deck:", err));
 
@@ -55,6 +68,13 @@ deckSelect.addEventListener("change", (e) => {
   const root = document.documentElement;
   selectedDeck = e.target.value; // Store selected deck
   let backUrl = "none"; // No background image
+
+  // Set back image based on selected deck
+  if (e.target.value === "rwdeck") {
+    backUrl = `url('./images/tarot/rwdeck/back.jpg')`;
+  } else if (e.target.value === "mdsndeck") {
+    backUrl = `url('./images/tarot/mdsndeck/back.png')`;
+  }
 
   // Apply dark theme for "Midnight Gold" option
   if (e.target.value === "dark") {

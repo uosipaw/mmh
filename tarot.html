@@ -1,84 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Tarot Reader</title>
     <link rel="stylesheet" href="./tarot.css" />
-    <link rel="preload" href="./fonts/MyHappyEnding.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
-</head>
+    <link
+      rel="preload"
+      href="./fonts/MyHappyEnding.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header class="app-ui">
-        <div class="controls-group">
-            <div class="control-item">
-                <label for="deck-select">Deck Design</label>
-                <select id="deck-select">
-                    <option value="classic">Classic Blue</option>
-                    <option value="dark">Midnight Gold</option>
-                    <option value="botanical">Botanical</option>
-                    <option value="rwdeck">Rider-Waite-Smith</option>
-                    <option value="mdsndeck">@mdsnmchll</option>
-                </select>
-            </div>
-
-            <div class="control-item">
-                <label for="spread-select">Spread</label>
-                <select id="spread-select">
-                    <option value="1">Daily Draw (1 Card)</option>
-                    <option value="3">Past, Present, Future (3 Cards)</option>
-                    <option value="celtic">Celtic Cross (10 Cards)</option>
-                </select>
-            </div>
-
-            <div class="control-item search-wrapper">
-                <input type="text" id="search-input" placeholder="Find a card..." aria-label="Search cards" />
-                <div id="search-results" role="listbox"></div>
-            </div>
+      <div class="controls-group">
+        <div class="control-item">
+          <label for="deck-select">Deck Design</label>
+          <select id="deck-select">
+            <option value="classic">Classic Blue</option>
+            <option value="dark">Midnight Gold</option>
+            <option value="botanical">Botanical</option>
+            <option value="rwdeck">Rider-Waite-Smith</option>
+            <option value="mdsndeck">@mdsnmchll</option>
+          </select>
         </div>
+
+        <div class="control-item">
+          <label for="spread-select">Spread</label>
+          <select id="spread-select">
+            <option value="1">Daily Draw (1 Card)</option>
+            <option value="3">Past, Present, Future (3 Cards)</option>
+            <option value="celtic">Celtic Cross (10 Cards)</option>
+          </select>
+        </div>
+
+        <div class="control-item search-wrapper">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Find a card..."
+            aria-label="Search cards"
+            title="Search cards"
+          />
+          <div id="search-results" role="listbox" aria-label="Search results"></div>
+        </div>
+      </div>
     </header>
 
     <main class="stage">
-        <div class="deck-area">
-            <button id="deal-btn" class="deck-pile" aria-label="Deal Cards">
-                <div class="deck-label">DEAL</div>
-            </button>
-        </div>
+      <div class="deck-area">
+        <button id="deal-btn" class="deck-pile" aria-label="Deal Cards">
+          <div class="deck-label">DEAL</div>
+        </button>
+      </div>
 
-        <div id="cards-container" class="spread-container"></div>
+      <div id="cards-container" class="spread-container"></div>
     </main>
 
     <div id="card-modal" class="modal hidden" role="dialog" aria-modal="true">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <button id="modal-close" class="modal-close-btn" aria-label="Close">✕</button>
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <button id="modal-close" class="modal-close-btn" aria-label="Close">
+          ✕
+        </button>
 
-            <div class="modal-split">
-                <div class="modal-visual">
-                    <div id="modal-card-image" class="modal-card-display"></div>
-                </div>
+        <div class="modal-split">
+          <div class="modal-visual">
+            <div id="modal-card-image" class="modal-card-display"></div>
+          </div>
 
-                <div class="modal-info">
-                    <div class="modal-header">
-                        <h2 id="modal-title">Card Name</h2>
-                        <span id="modal-reversed" class="badge reversed hidden">Reversed</span>
-                    </div>
-
-                    <div class="modal-tags">
-                        <span id="modal-keywords"></span>
-                    </div>
-
-                    <div class="modal-body">
-                        <p id="modal-desc">Description goes here...</p>
-                    </div>
-                </div>
+          <div class="modal-info">
+            <div class="modal-header">
+              <h2 id="modal-title">Card Name</h2>
+              <span id="modal-reversed" class="badge reversed hidden"
+                >Reversed</span
+              >
             </div>
+
+            <div class="modal-tags">
+              <span id="modal-keywords"></span>
+            </div>
+
+            <div class="modal-body">
+              <p id="modal-desc">Description goes here...</p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="./tarot.js" defer></script>
-</body>
-
+  </body>
 </html>

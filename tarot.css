@@ -13,6 +13,7 @@
   --font-body: "A Font With Serifs", serif;
   --font-heading: "My Happy Ending", cursive;
   --font-ui: "Sticky Notes", sans-serif;
+  --font-card-name: "Zaslia", serif;
 
   /* --- Common Colors --- */
   --border-light: #e0c3fc;
@@ -45,104 +46,21 @@
   --glass-border: rgba(157, 114, 255, 0.3);
 }
 
+/* --- Font Imports --- */
+@font-face {
+  font-family: "Zaslia";
+  src: url("./fonts/zaslia/Zaslia.otf") format("opentype");
+}
+
 @keyframes morphGradient {
   0% {
-    background: linear-gradient(
-      45deg,
-      var(--bg-gradient-1) 0%,
-      var(--bg-gradient-2) 35%,
-      var(--bg-gradient-3) 65%,
-      var(--bg-gradient-4) 100%
-    );
-    background-size: 400% 400%;
+    background-position: 0% 50%;
   }
-
-  12.5% {
-    background: linear-gradient(
-      85deg,
-      var(--bg-gradient-2) 0%,
-      var(--bg-gradient-1) 25%,
-      var(--bg-gradient-4) 60%,
-      var(--bg-gradient-3) 100%
-    );
-    background-size: 400% 400%;
-  }
-
-  25% {
-    background: linear-gradient(
-      120deg,
-      var(--bg-gradient-3) 0%,
-      var(--bg-gradient-2) 30%,
-      var(--bg-gradient-1) 70%,
-      var(--bg-gradient-4) 100%
-    );
-    background-size: 400% 400%;
-  }
-
-  37.5% {
-    background: linear-gradient(
-      160deg,
-      var(--bg-gradient-4) 0%,
-      var(--bg-gradient-3) 40%,
-      var(--bg-gradient-2) 70%,
-      var(--bg-gradient-1) 100%
-    );
-    background-size: 400% 400%;
-  }
-
   50% {
-    background: linear-gradient(
-      225deg,
-      var(--bg-gradient-1) 0%,
-      var(--bg-gradient-4) 25%,
-      var(--bg-gradient-3) 60%,
-      var(--bg-gradient-2) 100%
-    );
-    background-size: 400% 400%;
+    background-position: 100% 50%;
   }
-
-  62.5% {
-    background: linear-gradient(
-      280deg,
-      var(--bg-gradient-2) 0%,
-      var(--bg-gradient-1) 35%,
-      var(--bg-gradient-4) 65%,
-      var(--bg-gradient-3) 100%
-    );
-    background-size: 400% 400%;
-  }
-
-  75% {
-    background: linear-gradient(
-      320deg,
-      var(--bg-gradient-3) 0%,
-      var(--bg-gradient-4) 30%,
-      var(--bg-gradient-1) 70%,
-      var(--bg-gradient-2) 100%
-    );
-    background-size: 400% 400%;
-  }
-
-  87.5% {
-    background: linear-gradient(
-      35deg,
-      var(--bg-gradient-4) 0%,
-      var(--bg-gradient-2) 40%,
-      var(--bg-gradient-3) 70%,
-      var(--bg-gradient-1) 100%
-    );
-    background-size: 400% 400%;
-  }
-
   100% {
-    background: linear-gradient(
-      45deg,
-      var(--bg-gradient-1) 0%,
-      var(--bg-gradient-2) 35%,
-      var(--bg-gradient-3) 65%,
-      var(--bg-gradient-4) 100%
-    );
-    background-size: 400% 400%;
+    background-position: 0% 50%;
   }
 }
 
@@ -186,6 +104,7 @@ body {
     var(--bg-gradient-4) 100%
   );
   background-size: 400% 400%;
+  background-position: 0% 50%;
   animation: morphGradient 25s ease infinite;
   transition: color 0.3s ease;
 }
@@ -199,6 +118,7 @@ body {
   z-index: 50;
   padding: var(--header-padding);
   background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
   box-shadow: 0 4px 20px var(--shadow-light);
@@ -468,6 +388,16 @@ input {
   transform: rotateY(180deg) rotate(180deg);
 }
 
+.card-face.back {
+  font-family: var(--font-card-name);
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text-main);
+  text-align: center;
+  padding: 20px;
+  word-wrap: break-word;
+}
+
 /* --- Search Dropdown --- */
 .search-wrapper {
   position: relative;
@@ -517,6 +447,7 @@ input {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -578,7 +509,7 @@ input {
 }
 
 .modal-header h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font-card-name);
   font-size: 2.5rem;
   margin: 0;
   color: var(--text-main);
