@@ -52,17 +52,6 @@
   src: url("./fonts/zaslia/Zaslia.otf") format("opentype");
 }
 
-@keyframes morphGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
 
 /* --- Font Loading --- */
 @font-face {
@@ -96,17 +85,6 @@ body {
   /* Prevent scroll during animations */
   font-family: var(--font-body);
   color: var(--text-main);
-  background: linear-gradient(
-    45deg,
-    var(--bg-gradient-1) 0%,
-    var(--bg-gradient-2) 35%,
-    var(--bg-gradient-3) 65%,
-    var(--bg-gradient-4) 100%
-  );
-  background-size: 400% 400%;
-  background-position: 0% 50%;
-  animation: morphGradient 25s ease infinite;
-  transition: color 0.3s ease;
 }
 
 /* --- Background Overlay --- */
@@ -198,7 +176,7 @@ html {
     transform: translateY(-2000px);
   }
 }
-    
+
 
 /* --- UI Controls --- */
 .app-ui {
@@ -209,6 +187,7 @@ html {
   z-index: 50;
   padding: var(--header-padding);
   background: var(--glass-bg);
+  background-clip: text;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
