@@ -119,6 +119,8 @@ searchInput.addEventListener("input", (e) => {
 function startDealAnimation() {
   if (!tarotDeck.length) return;
 
+  document.body.classList.add("cards-dealt");
+
   // Clear board
   cardsContainer.innerHTML = "";
 

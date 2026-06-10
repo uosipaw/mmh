@@ -97,7 +97,8 @@ html {
 }
 
 /* Starfield background using static box-shadow values */
-#stars, #stars:after {
+#stars,
+#stars:after {
   width: 1px;
   height: 1px;
   background: transparent;
@@ -109,12 +110,14 @@ html {
     1100px 1200px #FFF, 1300px 1400px #FFF, 1500px 1600px #FFF, 1700px 1800px #FFF, 1900px 1950px #FFF;
   animation: animStar 50s linear infinite;
 }
+
 #stars:after {
   content: " ";
   top: 2000px;
 }
 
-#stars2, #stars2:after {
+#stars2,
+#stars2:after {
   width: 2px;
   height: 2px;
   background: transparent;
@@ -126,12 +129,14 @@ html {
     1150px 1300px #FFF, 1350px 1500px #FFF, 1550px 1700px #FFF, 1750px 1900px #FFF, 1950px 1980px #FFF;
   animation: animStar 100s linear infinite;
 }
+
 #stars2:after {
   content: " ";
   top: 2000px;
 }
 
-#stars3, #stars3:after {
+#stars3,
+#stars3:after {
   width: 3px;
   height: 3px;
   background: transparent;
@@ -143,6 +148,7 @@ html {
     1200px 1400px #FFF, 1400px 1600px #FFF, 1600px 1800px #FFF, 1800px 1950px #FFF, 1950px 1990px #FFF;
   animation: animStar 150s linear infinite;
 }
+
 #stars3:after {
   content: " ";
   top: 2000px;
@@ -155,13 +161,14 @@ html {
   right: 0;
   color: #FFF;
   text-align: center;
-  font-family: 'lato',sans-serif;
+  font-family: 'lato', sans-serif;
   font-weight: 300;
   font-size: 50px;
   letter-spacing: 10px;
   margin-top: -60px;
   padding-left: 10px;
 }
+
 #title span {
   background: -webkit-linear-gradient(white, #38495a);
   -webkit-background-clip: text;
@@ -172,6 +179,7 @@ html {
   from {
     transform: translateY(0px);
   }
+
   to {
     transform: translateY(-2000px);
   }
@@ -249,9 +257,19 @@ input {
 /* --- The Deck Pile (Source of Animation) --- */
 .deck-area {
   position: fixed;
-  bottom: 30px;
-  right: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 40;
+  transition: top 0.4s ease, left 0.4s ease, right 0.4s ease, bottom 0.4s ease, transform 0.4s ease;
+}
+
+body.cards-dealt .deck-area {
+  top: auto;
+  left: auto;
+  right: 40px;
+  bottom: 30px;
+  transform: none;
 }
 
 .deck-pile {
@@ -658,8 +676,19 @@ input {
   }
 
   .deck-area {
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
+  }
+
+  body.cards-dealt .deck-area {
     bottom: 15px;
     right: 15px;
+    top: auto;
+    left: auto;
+    transform: none;
   }
 
   .deck-pile {
@@ -785,8 +814,11 @@ input {
   }
 
   .deck-area {
-    bottom: 10px;
-    right: 10px;
+    top: 50%;
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translate(-50%, -50%);
   }
 
   .deck-pile {
