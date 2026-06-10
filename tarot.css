@@ -56,13 +56,13 @@
 /* --- Font Loading --- */
 @font-face {
   font-family: "My Happy Ending";
-  src: url("./fonts/MyHappyEnding.ttf");
+  src: url("./fonts/My Happy Ending - TTF.ttf");
   font-display: swap;
 }
 
 @font-face {
   font-family: "A Font With Serifs";
-  src: url("./fonts/a_font_with_serifs.ttf");
+  src: url("./fonts/A_Font_with_Serifs.ttf");
   font-display: swap;
 }
 

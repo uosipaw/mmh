@@ -9,6 +9,8 @@ images/*.TMP
 images/*~
 
 # IDE/Editor Files
+.vscode/
+*.code-workspace
 .vscode/launch.json.bak
 .idea/
 *.swp
