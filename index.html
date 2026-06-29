@@ -1,75 +1,136 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Scattered Links + Gooey Nav</title>
-    <meta name="description"
-        content="Floating scattered image links with hover effects and a gooey expanding navigation menu." />
-    <link href="style.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>My Space</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <!-- SVG filter for the gooey effect -->
-    <svg style="position:absolute; width:0; height:0" aria-hidden="true" focusable="false">
-        <defs>
-            <filter id="gooey">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"></feGaussianBlur>
-                <feColorMatrix in="blur" mode="matrix" values="
-            1 0 0 0 0
-            0 1 0 0 0
-            0 0 1 0 0
-            0 0 0 24 -12" result="goo"></feColorMatrix>
-                <feBlend in="SourceGraphic" in2="goo"></feBlend>
-            </filter>
-        </defs>
+    <svg width="0" height="0" aria-hidden="true">
+        <filter id="roughen">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" />
+        </filter>
     </svg>
 
-    <div class="shell">
-        <header>
-            <h1>Interactive Scatter + Gooey Menu</h1>
-            <p class="hint">Tap/hover items • Open the menu</p>
+    <main class="site-shell">
+        <header class="top-bar">
+            <a class="logo-tape" href="#top" aria-label="Home">
+                <span>my space</span>
+                <span>★</span>
+            </a>
+
+            <div class="nav-actions">
+                <button class="icon-button" id="soundButton" type="button" aria-label="Toggle sound">
+                    🔇
+                </button>
+
+                <button class="icon-button" id="shuffleButton" type="button" aria-label="Shuffle the board">
+                    ✦
+                </button>
+            </div>
         </header>
 
-        <section class="scatter-frame" aria-label="Floating links area">
-            <div class="items" id="items">
-                <!-- 7 image links (placeholders) -->
-                <a class="item" href="https://uosipaw.lol/casino" aria-label="Placeholder Link 1">
-                    <img alt="Placeholder 1" src="/images/dice.png" />
-                </a>
-                <a class="item" href="https://uosipaw.lol/tarot" aria-label="Placeholder Link 2">
-                    <img alt="Placeholder 2" src="/images/smiley.png" />
-                </a>
-                <a class="item" href="https://uosipaw.lol/myth" aria-label="Placeholder Link 3">
-                    <img alt="Placeholder 3" src="/images/cool.png" />
-                </a>
-                <a class="item" href="https://uosipaw.lol/paint" aria-label="Placeholder Link 4">
-                    <img alt="Placeholder 4" src="/images/pce.png" />
-                </a>
+        <section class="hero" id="top">
+            <div class="board" id="board" aria-label="Interactive junk drawer landing page">
+                <div class="checker" style="top: 18px; left: -20px; --r: -8deg;"></div>
+                <div class="checker" style="right: -38px; bottom: 86px; --r: 7deg;"></div>
 
-                <!-- The nav trigger (styled like other items) -->
-                <button class="item menu-trigger" id="menuBtn" aria-expanded="false" aria-controls="gooey-nav"></button>
+                <div class="doodle" style="top: 96px; left: 18px; --r: -14deg;">★</div>
+                <div class="doodle" style="top: 126px; right: 24px; --r: 12deg;">♡</div>
+                <div class="doodle" style="bottom: 210px; left: 22px; --r: 5deg;">⚡</div>
+                <div class="doodle" style="bottom: 196px; right: 34px; --r: -10deg;">✹</div>
 
-                <!-- Gooey nav (expands from the trigger) -->
-                <div class="gooey-wrap" aria-hidden="true">
-                    <nav class="gooey-nav" id="gooey-nav" aria-label="Quick navigation">
-                        <a class="gooey-link l1" href="#"><span>Home</span></a>
-                        <a class="gooey-link l2" href="#"><span>Work</span></a>
-                        <a class="gooey-link l3" href="#"><span>About</span></a>
-                        <a class="gooey-link l4" href="#"><span>Contact</span></a>
-                    </nav>
+                <div class="sticker bouncy" style="top: 74px; left: 22px;">☻</div>
+                <div class="sticker square" style="top: 92px; right: 18px;">rad</div>
+                <div class="sticker star" style="bottom: 105px; left: 28px;"></div>
+                <div class="sticker" style="bottom: 116px; right: 24px;">8</div>
+
+                <div class="intro">
+                    <h1 class="headline ransom" aria-label="my space">
+                        <span>m</span><span>y</span><br />
+                        <span>s</span><span>p</span><span>a</span><span>c</span><span>e</span>
+                    </h1>
+
+                    <p class="tagline">
+                        a little bit of <span class="highlight">everything</span>, all in one place.
+                    </p>
                 </div>
-            </div>
-        </section>
 
-        <footer>
-            Replace the <em>href</em> values and images with your own links & media.
-        </footer>
-    </div>
-    <!-- Main interaction script -->
-    <script src="script.js"></script>
+                <nav class="card-grid" id="cardGrid" aria-label="Main page links"></nav>
+
+                <aside class="drawer" id="drawer">
+                    <button class="drawer-toggle" id="drawerToggle" type="button">
+                        <span>hidden drawer</span>
+                        <span>pull me ↓</span>
+                    </button>
+
+                    <div class="drawer-content">
+                        <p>
+                            this is a secret box
+                        </p>
+
+                        <div class="mini-buttons">
+                            <button class="mini-button" type="button"
+                                data-secret="You found the first weird little secret.">
+                                secret 1
+                            </button>
+
+                            <button class="mini-button" type="button"
+                                data-secret="This could open a newsletter signup later.">
+                                signup
+                            </button>
+
+                            <button class="mini-button" type="button"
+                                data-secret="This could become a random featured project.">
+                                random thing
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <aside class="side-panel" aria-label="Interaction notes">
+                <h2 class="side-title">interactive junk drawer</h2>
+
+                <div class="feature-list">
+                    <div class="feature" style="--accent: var(--hot-pink); --r: -1deg;">
+                        <h3>tap</h3>
+                        <p>Tap a card to bounce, click, and enter that page.</p>
+                    </div>
+
+                    <div class="feature" style="--accent: var(--aqua); --r: 1deg;">
+                        <h3>drag</h3>
+                        <p>Cards and stickers can be dragged around like a messy bulletin board.</p>
+                    </div>
+
+                    <div class="feature" style="--accent: var(--purple); --r: -1.5deg;">
+                        <h3>flip</h3>
+                        <p>Double tap any card to flip it and reveal a tiny note.</p>
+                    </div>
+
+                    <div class="feature" style="--accent: var(--acid-yellow); --r: 1.5deg;">
+                        <h3>sound</h3>
+                        <p>Optional little clicks and bloops give it that extremely unserious 90s internet feeling.</p>
+                    </div>
+
+                    <div class="feature" style="--accent: var(--orange); --r: -0.5deg;">
+                        <h3>images later</h3>
+                        <p>Every image card is a placeholder. Swap in your real image files when you have them.</p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 
 </html>
