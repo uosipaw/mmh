@@ -15,52 +15,71 @@
 <body>
     <svg width="0" height="0" aria-hidden="true">
         <filter id="roughen">
-            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.7" />
         </filter>
     </svg>
 
     <main class="site-shell">
         <header class="top-bar">
-            <a class="logo-tape" href="#top" aria-label="Home">
+            <a class="logo-mark" href="#top" aria-label="Home">
+                <span class="logo-symbol">✦</span>
                 <span>my space</span>
-                <span>★</span>
             </a>
 
             <div class="nav-actions">
                 <button class="icon-button" id="soundButton" type="button" aria-label="Toggle sound">
-                    🔇
+                    sound off
                 </button>
 
-                <button class="icon-button" id="shuffleButton" type="button" aria-label="Shuffle the board">
-                    ✦
+                <button class="icon-button" id="shuffleButton" type="button" aria-label="Shuffle board">
+                    shuffle
                 </button>
             </div>
         </header>
 
         <section class="hero" id="top">
-            <div class="board" id="board" aria-label="Interactive junk drawer landing page">
-                <div class="checker" style="top: 18px; left: -20px; --r: -8deg;"></div>
-                <div class="checker" style="right: -38px; bottom: 86px; --r: 7deg;"></div>
+            <div class="board" id="board" aria-label="Interactive collage landing page">
+                <div class="baroque-corner corner-one"></div>
+                <div class="baroque-corner corner-two"></div>
 
-                <div class="doodle" style="top: 96px; left: 18px; --r: -14deg;">★</div>
-                <div class="doodle" style="top: 126px; right: 24px; --r: 12deg;">♡</div>
-                <div class="doodle" style="bottom: 210px; left: 22px; --r: 5deg;">⚡</div>
-                <div class="doodle" style="bottom: 196px; right: 34px; --r: -10deg;">✹</div>
+                <div class="paper-strip strip-one">field notes / found things / strange little treasures</div>
+                <div class="paper-strip strip-two">skate zine energy with antique science homework</div>
 
-                <div class="sticker bouncy" style="top: 74px; left: 22px;">☻</div>
-                <div class="sticker square" style="top: 92px; right: 18px;">rad</div>
-                <div class="sticker star" style="bottom: 105px; left: 28px;"></div>
-                <div class="sticker" style="bottom: 116px; right: 24px;">8</div>
+                <div class="specimen specimen-moth"
+                    data-secret="moth note: drawn from absolutely questionable field research.">
+                    <span>moth</span>
+                </div>
+
+                <div class="specimen specimen-beetle" data-secret="beetle note: tiny armored weirdo. respected.">
+                    <span>beetle</span>
+                </div>
+
+                <div class="specimen specimen-snake" data-secret="snake note: ancient, stylish, impossible to manage.">
+                    <span>snake</span>
+                </div>
+
+                <div class="sticker sticker-smile" data-secret="a 90s sticker survived the Victorian séance.">☻</div>
+                <div class="sticker sticker-skate"
+                    data-secret="pretend this sticker came free with a skateboard magazine.">SK8</div>
+                <div class="sticker sticker-wax" data-secret="fake wax seal, real drama.">M</div>
+
+                <div class="scribble scribble-one">★</div>
+                <div class="scribble scribble-two">♡</div>
+                <div class="scribble scribble-three">✺</div>
+                <div class="scribble scribble-four">↯</div>
 
                 <div class="intro">
-                    <h1 class="headline ransom" aria-label="my space">
-                        <span>m</span><span>y</span><br />
+                    <p class="eyebrow">a personal junk drawer</p>
+
+                    <h1 class="headline" aria-label="my space">
+                        <span>m</span><span>y</span>
                         <span>s</span><span>p</span><span>a</span><span>c</span><span>e</span>
                     </h1>
 
                     <p class="tagline">
-                        a little bit of <span class="highlight">everything</span>, all in one place.
+                        90s hippie skate scraps, antique animal drawings, baroque thrift drama,
+                        and whatever else is rattling around in here.
                     </p>
                 </div>
 
@@ -69,62 +88,63 @@
                 <aside class="drawer" id="drawer">
                     <button class="drawer-toggle" id="drawerToggle" type="button">
                         <span>hidden drawer</span>
-                        <span>pull me ↓</span>
+                        <span>pull ↓</span>
                     </button>
 
                     <div class="drawer-content">
                         <p>
-                            this is a secret box
+                            A little secret compartment for updates, freebies, featured pieces,
+                            newsletter bait, or weird notes people only find if they poke around.
                         </p>
 
                         <div class="mini-buttons">
                             <button class="mini-button" type="button"
-                                data-secret="You found the first weird little secret.">
-                                secret 1
+                                data-secret="This could become a rotating featured item.">
+                                featured thing
                             </button>
 
                             <button class="mini-button" type="button"
-                                data-secret="This could open a newsletter signup later.">
-                                signup
+                                data-secret="This could open an email signup without making it ugly.">
+                                mailing list
                             </button>
 
                             <button class="mini-button" type="button"
-                                data-secret="This could become a random featured project.">
-                                random thing
+                                data-secret="This could reveal a discount code, hidden print, or secret page.">
+                                secret
                             </button>
                         </div>
                     </div>
                 </aside>
             </div>
 
-            <aside class="side-panel" aria-label="Interaction notes">
-                <h2 class="side-title">interactive junk drawer</h2>
+            <aside class="side-panel" aria-label="Design notes">
+                <h2>field guide to the mess</h2>
 
                 <div class="feature-list">
-                    <div class="feature" style="--accent: var(--hot-pink); --r: -1deg;">
+                    <article class="feature">
                         <h3>tap</h3>
-                        <p>Tap a card to bounce, click, and enter that page.</p>
-                    </div>
+                        <p>Cards lift like taped photos and then open the page.</p>
+                    </article>
 
-                    <div class="feature" style="--accent: var(--aqua); --r: 1deg;">
+                    <article class="feature">
                         <h3>drag</h3>
-                        <p>Cards and stickers can be dragged around like a messy bulletin board.</p>
-                    </div>
+                        <p>Cards and stickers can be moved around like a real board.</p>
+                    </article>
 
-                    <div class="feature" style="--accent: var(--purple); --r: -1.5deg;">
-                        <h3>flip</h3>
-                        <p>Double tap any card to flip it and reveal a tiny note.</p>
-                    </div>
+                    <article class="feature">
+                        <h3>double tap</h3>
+                        <p>Flip cards to reveal notes, descriptions, or secret details.</p>
+                    </article>
 
-                    <div class="feature" style="--accent: var(--acid-yellow); --r: 1.5deg;">
-                        <h3>sound</h3>
-                        <p>Optional little clicks and bloops give it that extremely unserious 90s internet feeling.</p>
-                    </div>
+                    <article class="feature">
+                        <h3>specimens</h3>
+                        <p>Victorian animal-study elements can hide little interactive notes.</p>
+                    </article>
 
-                    <div class="feature" style="--accent: var(--orange); --r: -0.5deg;">
+                    <article class="feature">
                         <h3>images later</h3>
-                        <p>Every image card is a placeholder. Swap in your real image files when you have them.</p>
-                    </div>
+                        <p>Swap in your own photos, art, scans, product shots, or collages.</p>
+                    </article>
                 </div>
             </aside>
         </section>
