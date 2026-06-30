@@ -1,1094 +1,1094 @@
-﻿[
-    {
-        "id":  "thefool",
-        "name":  "The Fool",
-        "keywords":  [
-                         "beginnings",
-                         "innocence",
-                         "trust",
-                         "potential"
-                     ],
-        "description":  {
-                            "upright":  "A sky-wide breath before the first step. The Fool trusts the road without demanding a map. Curiosity, play, and a beginner\u0027s heart open doors that planning can\u0027t. Dare to learn in public and let surprise be your teacher.",
-                            "reversed":  "Hesitation knots the laces or you bolt ahead without shoes. Fear of looking foolish or thrill-seeking for its own sake both blur the horizon. Name the risk that matters -- and the one that\u0027s just noise -- then choose a step you can live with."
-                        }
-    },
-    {
-        "id":  "themagician",
-        "name":  "The Magician",
-        "keywords":  [
-                         "power",
-                         "focus",
-                         "manifestation",
-                         "skills"
-                     ],
-        "description":  {
-                            "upright":  "Attention is a wand. The Magician gathers scattered sparks into a single flame. Skill, voice, and timing align when you commit your focus. Translate one intention into a concrete act and let momentum argue your case.",
-                            "reversed":  "Talent leaks when divided by distraction or bent by ego. Half-truths, shortcuts, and vanity projects dilute your craft. Return to the workbench: fewer tools, cleaner aims, honest measures."
-                        }
-    },
-    {
-        "id":  "thehighpriestess",
-        "name":  "The High Priestess",
-        "keywords":  [
-                         "intuition",
-                         "mystery",
-                         "wisdom",
-                         "subconscious"
-                     ],
-        "description":  {
-                            "upright":  "Quiet is an instrument. Behind the curtain, patterns form. The High Priestess invites you to listen between words, to trust the soft certainty in your ribs. Let the answer arrive at its own pace.",
-                            "reversed":  "Noise masquerades as certainty. Second-guessing drowns a subtle knowing, or secrets calcify into distance. Step back from opinions you\u0027re borrowing. Keep one confidence with yourself and watch clarity surface."
-                        }
-    },
-    {
-        "id":  "theempress",
-        "name":  "The Empress",
-        "keywords":  [
-                         "nurturing",
-                         "creativity",
-                         "abundance",
-                         "fertility"
-                     ],
-        "description":  {
-                            "upright":  "Life wants to grow through you. Warmth, art, body, and belonging take up space here. Nourish what is tender and let pleasure be a guide back to aliveness. Beauty counts as evidence.",
-                            "reversed":  "Care curdles into depletion when you never sip from the cup you pour. Creativity stalls under comparison and overgiving. Rest is a responsible action; receive before you resume."
-                        }
-    },
-    {
-        "id":  "theemperor",
-        "name":  "The Emperor",
-        "keywords":  [
-                         "authority",
-                         "structure",
-                         "discipline",
-                         "boundaries"
-                     ],
-        "description":  {
-                            "upright":  "A good structure is a kindness. The Emperor builds walls with windows: boundaries that let light in. Decide the rules you can keep and leadership will follow from consistency, not force.",
-                            "reversed":  "Control grips too hard or not at all. Rigidity smothers initiative; absence breeds confusion. Choose where to be firm and where to be human. Authority grows when it protects, not dominates."
-                        }
-    },
-    {
-        "id":  "thehierophant",
-        "name":  "The Hierophant",
-        "keywords":  [
-                         "tradition",
-                         "guidance",
-                         "spirituality",
-                         "learning"
-                     ],
-        "description":  {
-                            "upright":  "You stand in a long line. Tradition, lineage, and shared language can steady the hand. Learn the form so you can carry it with integrity -- or evolve it with respect.",
-                            "reversed":  "Dogma without soul. Outgrown roles itch until you shed them. Give yourself permission to question the script, keep what blesses, and compost the rest."
-                        }
-    },
-    {
-        "id":  "thelovers",
-        "name":  "The Lovers",
-        "keywords":  [
-                         "union",
-                         "choice",
-                         "values",
-                         "harmony"
-                     ],
-        "description":  {
-                            "upright":  "Love is a verb of alignment. Connection, choice, and values mirror back who you are becoming. Say yes with your whole voice -- or say no that frees everyone involved.",
-                            "reversed":  "Mixed signals tangle commitment. People-pleasing, triangles, or value drift erode trust. Choose coherence over chemistry. Let honesty do its inconvenient healing."
-                        }
-    },
-    {
-        "id":  "thechariot",
-        "name":  "The Chariot",
-        "keywords":  [
-                         "willpower",
-                         "direction",
-                         "determination",
-                         "control"
-                     ],
-        "description":  {
-                            "upright":  "Direction is power made practical. Harness your drives to pull one way. Discipline becomes freedom when momentum has a purpose. Name the destination and mean it.",
-                            "reversed":  "Wheels spin -- either from haste or avoidance. Ego races ahead while the heart lags, or doubt cuts the engine. Realign your team of instincts before you press the pedal."
-                        }
-    },
-    {
-        "id":  "strength",
-        "name":  "Strength",
-        "keywords":  [
-                         "courage",
-                         "patience",
-                         "resilience",
-                         "inner power"
-                     ],
-        "description":  {
-                            "upright":  "Gentleness with spine. Strength strokes the lion, it doesn\u0027t cage it. Courage here looks like steady breath, soft hands, and unshaken dignity in the face of heat.",
-                            "reversed":  "Force without tenderness breaks what it tries to protect. Or you shrink from your own power. Befriend your animal; neither muzzle nor unleash -- befriend."
-                        }
-    },
-    {
-        "id":  "thehermit",
-        "name":  "The Hermit",
-        "keywords":  [
-                         "introspection",
-                         "solitude",
-                         "wisdom",
-                         "truth"
-                     ],
-        "description":  {
-                            "upright":  "Solitude becomes a lantern, not a wall. Step away to hear the true signal. Let a smaller circle and a slower pace reveal what matters.",
-                            "reversed":  "Isolation starts pretending to be wisdom. Hiding, ghosting, or hoarding insight keeps you stuck. Open the door a crack; share one sentence of the truth you found."
-                        }
-    },
-    {
-        "id":  "wheeloffortune",
-        "name":  "Wheel of Fortune",
-        "keywords":  [
-                         "cycles",
-                         "fate",
-                         "luck",
-                         "change"
-                     ],
-        "description":  {
-                            "upright":  "Seasons turn and you turn with them. Chance favors the prepared and the flexible. Participate in your luck: say yes when the door swings open.",
-                            "reversed":  "White-knuckling the wheel won\u0027t stop the weather. Stagnation, denial, or fatalism breed more of themselves. Change one habit at the hinge and let the cycle move."
-                        }
-    },
-    {
-        "id":  "justice",
-        "name":  "Justice",
-        "keywords":  [
-                         "truth",
-                         "fairness",
-                         "law",
-                         "cause and effect"
-                     ],
-        "description":  {
-                            "upright":  "Scales seek balance, not revenge. Consequence, context, and accountability create clean lines. Tell the whole story and act in proportion to it.",
-                            "reversed":  "Avoided truth tilts the table. Bias, omission, or delayed decisions corrode trust. Correct the record; repair is a form of justice too."
-                        }
-    },
-    {
-        "id":  "thehangedman",
-        "name":  "The Hanged Man",
-        "keywords":  [
-                         "pause",
-                         "surrender",
-                         "perspective",
-                         "patience"
-                     ],
-        "description":  {
-                            "upright":  "Surrender is not defeat. In suspension, something rearranges. See it upside down and the pattern unclenches. Patience is an active posture.",
-                            "reversed":  "Stuck masquerading as spiritual. Martyrdom, procrastination, or indecision keep you safely uncomfortable. Choose either sacrifice or motion -- limbo is choosing neither."
-                        }
-    },
-    {
-        "id":  "death",
-        "name":  "Death",
-        "keywords":  [
-                         "endings",
-                         "transformation",
-                         "rebirth",
-                         "release"
-                     ],
-        "description":  {
-                            "upright":  "An honest ending is a gift. Compost the old to feed the next. Grief is a teacher with clean hands; let it finish its work.",
-                            "reversed":  "Clinging hurts more than closure. Half-goodbyes, clutter, and nostalgia jam the doorway. Make space on purpose and the new will recognize you."
-                        }
-    },
-    {
-        "id":  "temperance",
-        "name":  "Temperance",
-        "keywords":  [
-                         "balance",
-                         "harmony",
-                         "moderation",
-                         "patience"
-                     ],
-        "description":  {
-                            "upright":  "Alchemy in real time. Temperance blends fire and water into a third way. Measure, mix, rest, repeat. Harmony is built, not wished.",
-                            "reversed":  "Overcorrecting swings you into the ditch on either side. Excess or abstinence without insight miss the middle. Recalibrate in small, honest increments."
-                        }
-    },
-    {
-        "id":  "thedevil",
-        "name":  "The Devil",
-        "keywords":  [
-                         "addiction",
-                         "materialism",
-                         "bondage",
-                         "temptation"
-                     ],
-        "description":  {
-                            "upright":  "Compulsion has charisma. The Devil names the bargain: comfort at the cost of choice. Seeing the chain is step one; it often falls off when you do.",
-                            "reversed":  "The spell thins. What owned you yesterday loses flavor today. Swap punishment for responsibility and walk out without theatrics."
-                        }
-    },
-    {
-        "id":  "thetower",
-        "name":  "The Tower",
-        "keywords":  [
-                         "chaos",
-                         "upheaval",
-                         "revelation",
-                         "awakening"
-                     ],
-        "description":  {
-                            "upright":  "The facade can\u0027t hold. Lightning delivers the truth you wouldn\u0027t schedule. Let it fall. Rubble is honest ground to build on.",
-                            "reversed":  "Cracks you\u0027ve managed widen. Quiet avoidance delays a louder collapse. Initiate the repair or the exit while you still get to choose."
-                        }
-    },
-    {
-        "id":  "thestar",
-        "name":  "The Star",
-        "keywords":  [
-                         "hope",
-                         "healing",
-                         "guidance",
-                         "renewal"
-                     ],
-        "description":  {
-                            "upright":  "After the storm, a clear night. The Star restores orientation with grace and slow hydration. Tender hope counts as progress.",
-                            "reversed":  "Cynicism poses as realism. Leaks in faith or self-worth dim the view. Tend to the small light you still trust and let it scale."
-                        }
-    },
-    {
-        "id":  "themoon",
-        "name":  "The Moon",
-        "keywords":  [
-                         "illusion",
-                         "intuition",
-                         "dreams",
-                         "mystery"
-                     ],
-        "description":  {
-                            "upright":  "Dreamlight distorts and reveals. The Moon asks you to feel your way, to read tides, to respect the animal and the artist in you.",
-                            "reversed":  "Confusion breeds stories that breed fear. Illusions, projections, and old anxieties crowd the path. Test your narrative against the body\u0027s truth."
-                        }
-    },
-    {
-        "id":  "thesun",
-        "name":  "The Sun",
-        "keywords":  [
-                         "joy",
-                         "success",
-                         "clarity",
-                         "vitality"
-                     ],
-        "description":  {
-                            "upright":  "Warmth without apology. The Sun says life is allowed to be good. Joy clarifies, vitality returns, and play sharpens your edge.",
-                            "reversed":  "Overexposure or performative cheer dries the roots. Protect your energy; let genuine delight be private before it is public."
-                        }
-    },
-    {
-        "id":  "judgment",
-        "name":  "Judgment",
-        "keywords":  [
-                         "awakening",
-                         "rebirth",
-                         "truth",
-                         "redemption"
-                     ],
-        "description":  {
-                            "upright":  "A bell inside rings. Awakening gathers the parts of you that were waiting for a go-ahead. Answer and rise; forgiveness is a form of momentum.",
-                            "reversed":  "Static on the line. Self-critique, avoidance, or old labels keep you small. Lay the case to rest and take the next right step."
-                        }
-    },
-    {
-        "id":  "theworld",
-        "name":  "The World",
-        "keywords":  [
-                         "completion",
-                         "success",
-                         "integration",
-                         "wholeness"
-                     ],
-        "description":  {
-                            "upright":  "A circle closes with gratitude. Integration, mastery, and belonging meet in a simple, satisfying yes. Share what you learned by living it.",
-                            "reversed":  "Loose ends ask for attention. Celebrate, but don\u0027t skip the last stitch. Completion is a practice, not a mood."
-                        }
-    },
-    {
-        "id":  "awand",
-        "name":  "Ace of Wands",
-        "keywords":  [
-                         "inspiration",
-                         "potential",
-                         "creation",
-                         "energy"
-                     ],
-        "description":  {
-                            "upright":  "A spark you can feel in your hands. This is the green light to start, even if you do not know every step yet. Follow the idea that makes your blood move and give it a small, real container today. Curiosity plus action beats over-planning every time. Start messy, learn out loud, and let the fire teach you what it needs next.",
-                            "reversed":  "The spark is there, but the kindling is damp. Maybe you are waiting for perfect conditions or scattering your energy across too many starts. Clear one tiny blocker, choose the simplest version, and light a smaller match. Progress wants friction you can actually feel, not a fantasy launch. Keep it humble, keep it moving, and let momentum dry the wood."
-                        }
-    },
-    {
-        "id":  "2wand",
-        "name":  "Two of Wands",
-        "keywords":  [
-                         "planning",
-                         "decisions",
-                         "expansion",
-                         "possibility"
-                     ],
-        "description":  {
-                            "upright":  "Big-picture thinking meets real-world planning. You can feel that there is more out there, and you are ready to stretch toward it. Pick a direction that excites you and write down one or two practical moves you will make this week. Keep your tools light, your calendar honest, and your focus steady. This is about choosing growth on purpose.",
-                            "reversed":  "Analysis paralysis is still a kind of stuck. If you keep redrawing the map, you never leave town. Shrink the choice, reduce the variables, and run one small test you can learn from quickly. You do not need a perfect plan to begin; you need a direction and a next step. Adjust as you go instead of waiting for certainty."
-                        }
-    },
-    {
-        "id":  "3wand",
-        "name":  "Three of Wands",
-        "keywords":  [
-                         "vision",
-                         "progress",
-                         "exploration",
-                         "growth"
-                     ],
-        "description":  {
-                            "upright":  "Momentum is building and your world is getting wider. Early effort is starting to pay off, and new paths are coming into view. Keep doing what works, and set up support for the bigger horizon you are moving toward. Ask for what you need, document your process, and stay curious. You are allowed to expect good things and prepare for them.",
-                            "reversed":  "Delays, detours, or a too-narrow view may be limiting results. Step back and check your assumptions - maybe the opportunity is one lane over. Update the plan with what you are learning instead of forcing an old route. Patience is not passive here; tweak the angle, clean up your signals, and give the outcome room to find you."
-                        }
-    },
-    {
-        "id":  "4wand",
-        "name":  "Four of Wands",
-        "keywords":  [
-                         "celebration",
-                         "harmony",
-                         "community",
-                         "home"
-                     ],
-        "description":  {
-                            "upright":  "Celebrate the milestone, big or small. You built something worth gathering around, and it is okay to enjoy the stability and support. Bring in the people who helped, say the thank-yous out loud, and let your nervous system feel safe for a minute. A little joy now actually fuels the next chapter. Home base matters because it lets you roam farther.",
-                            "reversed":  "If the vibe feels off at home or in your group, start with the foundation. Have the honest conversation, clean the space, or reset the shared agreements. Stability grows from small, consistent fixes, not grand gestures. A little repair now prevents a bigger crack later. You deserve a base that actually supports you."
-                        }
-    },
-    {
-        "id":  "5wand",
-        "name":  "Five of Wands",
-        "keywords":  [
-                         "conflict",
-                         "competition",
-                         "tension",
-                         "challenge"
-                     ],
-        "description":  {
-                            "upright":  "Friendly friction can sharpen you. Competing ideas, different styles, and bold opinions can all be useful when the goal is growth. Keep it playful, keep it fair, and keep it about the work, not the people. Set ground rules that make room for everyone to contribute. This is practice for bigger stages.",
-                            "reversed":  "Petty conflict eats momentum. If the noise is louder than the goal, step back and reset the rules of engagement. You can choose collaboration over chaos, or you can choose a new arena entirely. Protect your energy from performative battles. Not every argument deserves your best thinking."
-                        }
-    },
-    {
-        "id":  "6wand",
-        "name":  "Six of Wands",
-        "keywords":  [
-                         "victory",
-                         "recognition",
-                         "success",
-                         "achievement"
-                     ],
-        "description":  {
-                            "upright":  "A clean win. Take the compliment, share the credit, and let the lift carry you into your next move. Success is feedback you can bank - note what worked and repeat it with intention. Celebrate without drifting into complacency. Confidence grows from clear evidence and steady follow-through.",
-                            "reversed":  "Chasing applause instead of progress is a trap. If you are optimizing for likes or optics, the work will thin out. Return to substance: what outcomes matter, what values guide you, and what standard do you hold. Your best wins are the ones you can stand behind, not just stand in front of."
-                        }
-    },
-    {
-        "id":  "7wand",
-        "name":  "Seven of Wands",
-        "keywords":  [
-                         "defense",
-                         "perseverance",
-                         "challenge",
-                         "courage"
-                     ],
-        "description":  {
-                            "upright":  "Hold your ground without hardening your heart. You worked for this view, and it is okay to defend it with calm, clear boundaries. Say what you will and will not do, then stick to it. You do not have to fight everyone; you do have to stay aligned. Strength here is steady, not loud.",
-                            "reversed":  "Being on guard all the time is exhausting. If you are defending everything, you are protecting nothing. Choose the hills that actually matter and let the rest go by. Invite support, rest your shoulders, and remember that being right is different from being well. Save your energy for the real stand."
-                        }
-    },
-    {
-        "id":  "8wand",
-        "name":  "Eight of Wands",
-        "keywords":  [
-                         "speed",
-                         "movement",
-                         "progress",
-                         "communication"
-                     ],
-        "description":  {
-                            "upright":  "It is moving fast - in a good way. Clear your runway, send the message, and ride the current while it is strong. Direct, timely communication will keep everyone pointed the same way. When momentum and clarity agree, amazing ground gets covered. Keep it simple and keep it honest.",
-                            "reversed":  "Mixed signals and rushed actions scatter results. Slow the pace just enough to aim, then take one coordinated shot instead of six half-sent ones. Tighten the message, trim the extras, and choose the channel that actually reaches your people. Speed is helpful when direction is real. Make direction real."
-                        }
-    },
-    {
-        "id":  "9wand",
-        "name":  "Nine of Wands",
-        "keywords":  [
-                         "resilience",
-                         "boundaries",
-                         "persistence",
-                         "strength"
-                     ],
-        "description":  {
-                            "upright":  "You are tired and still here, which says a lot. Protect the ground you have gained and set boundaries that guard your effort. Rest in cycles, plan shorter pushes, and remember why you started. Resilience is not about grinding forever; it is about recovering well enough to try again. You can finish this.",
-                            "reversed":  "Running on fumes turns every task into a hill. Step back, refill, and ask for help before you need it. Your body is part of the project plan, not an afterthought. Shorten the list to what actually matters this week and let the rest wait. You will move farther once you have energy again."
-                        }
-    },
-    {
-        "id":  "10wand",
-        "name":  "Ten of Wands",
-        "keywords":  [
-                         "burden",
-                         "responsibility",
-                         "hardship",
-                         "obligation"
-                     ],
-        "description":  {
-                            "upright":  "There is a lot on your shoulders. If it truly matters, keep going - but also look for what you can delegate, delay, or drop. Structure the load so it does not own you: simpler tools, clearer priorities, more honest timelines. Busy does not always equal meaningful. Carry what is yours and set the rest down.",
-                            "reversed":  "You may be hauling more than is necessary or healthy. Perfectionism and people-pleasing add invisible weight. Recut the commitment into something a human can do, and ask for backup where it counts. A lighter load will not make you less worthy - it will make you more effective. Choose sustainable over heroic."
-                        }
-    },
-    {
-        "id":  "pwand",
-        "name":  "Page of Wands",
-        "keywords":  [
-                         "exploration",
-                         "curiosity",
-                         "energy",
-                         "adventure"
-                     ],
-        "description":  {
-                            "upright":  "Fresh spark, open road. Follow your curiosity and make something small and real today - a draft, a message, a test run. Treat this as an adventure and expect to learn as you go. Enthusiasm is a resource; spend it on action, not debate. Small beginnings compound fast when you keep showing up.",
-                            "reversed":  "You might start strong and then fade, or bounce from idea to idea before anything sticks. Give your spark a simple container - time on the calendar, a clear scope, a buddy to check in with. Let constraints be creative. Follow-through is a skill, and you can practice it in tiny, friendly ways."
-                        }
-    },
-    {
-        "id":  "nwand",
-        "name":  "Knight of Wands",
-        "keywords":  [
-                         "passion",
-                         "adventure",
-                         "action",
-                         "impulsiveness"
-                     ],
-        "description":  {
-                            "upright":  "Bold, fast, a little wild. When you aim the heat at a real target, you cover serious ground. Let passion pull you forward, and keep one eye on the map so you do not waste the sprint. Courage is contagious; your movement gives others permission to move too. Go make a dent.",
-                            "reversed":  "All gas, no map means impressive motion with fuzzy results. Slow half a beat to aim and you will actually hit something. You do not need to cool off - you need a purpose big enough to hold your speed. Choose the mission, then light it up with the same fire."
-                        }
-    },
-    {
-        "id":  "qwand",
-        "name":  "Queen of Wands",
-        "keywords":  [
-                         "confidence",
-                         "creativity",
-                         "independence",
-                         "charisma"
-                     ],
-        "description":  {
-                            "upright":  "Warm charisma and creative presence. You do not fake sunshine - you generate it by being fully yourself. Lead by inviting people in, giving them room to shine, and modeling healthy confidence. Joy is practical; it makes the work easier to do. Keep your boundaries bright and your humor handy.",
-                            "reversed":  "The smile is bright but the tank may be empty. You do not have to set yourself on fire to keep the room warm. Share the spotlight, share the workload, and let people help because they want to. Real leadership includes knowing when to rest."
-                        }
-    },
-    {
-        "id":  "kwand",
-        "name":  "King of Wands",
-        "keywords":  [
-                         "leadership",
-                         "vision",
-                         "power",
-                         "influence"
-                     ],
-        "description":  {
-                            "upright":  "Vision plus execution. You spot the opportunity, rally people around it, and take responsibility for the outcome. Make the call, explain the why, and move first. Courage grows trust, and trust multiplies results. This is what it looks like to lead from the front.",
-                            "reversed":  "Command without connection falls flat. If you want commitment, invite input, listen for what you missed, and then decide. People will run with you when they feel seen and respected. Authority is strongest when it serves the mission and the humans doing it."
-                        }
-    },
-    {
-        "id":  "acup",
-        "name":  "Ace of Cups",
-        "keywords":  [
-                         "love",
-                         "compassion",
-                         "intuition",
-                         "new beginnings"
-                     ],
-        "description":  {
-                            "upright":  "Heart online. This could be new feelings, a fresh connection, or creative flow that feels honest and easy. Let it be simple instead of trying to name it from every angle. Follow what feels nourishing and safe, and add one small ritual that keeps the channel open. You do not have to brace for the other shoe; let good be good.",
-                            "reversed":  "Either the walls are too high or the feelings are everywhere. Name one thing you feel to one safe person, and let that be enough for today. If you are overwhelmed, lower the input and raise the care. If you are numb, try a tiny act of kindness toward yourself and see what moves. The goal is not dramatic catharsis - it is connection you can actually hold."
-                        }
-    },
-    {
-        "id":  "2cup",
-        "name":  "Two of Cups",
-        "keywords":  [
-                         "partnership",
-                         "connection",
-                         "union",
-                         "harmony"
-                     ],
-        "description":  {
-                            "upright":  "Mutual interest, low-ego connection, and easy reciprocity. This can be romance, friendship, or a good creative partner - it all starts with honest presence. Keep the pace natural and let clarity grow from conversation, not guessing. When both people bring care and self-respect, the middle gets very strong. Choose to show up like that.",
-                            "reversed":  "Chemistry without clarity makes a mess. If something feels off, check expectations and timing before the story writes itself. Name what you want in simple terms and ask the other person to do the same. Alignment beats spark long-term. If it is a no, let it be a kind no and move on."
-                        }
-    },
-    {
-        "id":  "3cup",
-        "name":  "Three of Cups",
-        "keywords":  [
-                         "celebration",
-                         "friendship",
-                         "community",
-                         "joy"
-                     ],
-        "description":  {
-                            "upright":  "Friends, laughter, group wins, and easy celebration. Make space for joy that does not require a reason, and share good news without apologizing. Showing up for each other is the point; the party is the excuse. Let community refill your battery and remind you you are not doing life alone. Connection is medicine.",
-                            "reversed":  "Too much of a good thing can tip into FOMO or burnout. If the calendar is crowded but your heart feels thin, choose presence over performance. Smaller, real moments beat big, blurry ones. Say no when you need to so your yes stays sincere. Your people want the real you, not the depleted one."
-                        }
-    },
-    {
-        "id":  "4cup",
-        "name":  "Four of Cups",
-        "keywords":  [
-                         "apathy",
-                         "contemplation",
-                         "disconnection",
-                         "boredom"
-                     ],
-        "description":  {
-                            "upright":  "A meh mood is not a moral failing. You might be bored, full, or just in need of a reset. Try a small change - a walk, a different playlist, a new recipe - or take a quiet day to let your mind settle. Often the spark returns once you stop forcing it. Let the pause do its work.",
-                            "reversed":  "Apathy that lingers turns into avoidance. Shake the snow globe a bit: move your body, change the scene, or say yes to one tiny invite you would usually skip. Momentum does not need to be big to be real. Start where you are, not where you think you should be."
-                        }
-    },
-    {
-        "id":  "5cup",
-        "name":  "Five of Cups",
-        "keywords":  [
-                         "loss",
-                         "regret",
-                         "disappointment",
-                         "grief"
-                     ],
-        "description":  {
-                            "upright":  "Real grief, real disappointment. Let yourself feel it without rushing the lesson. When the first wave eases, look for what is still standing and who is still with you. Loss carves space for new honesty. You can carry it and still move.",
-                            "reversed":  "Replaying the worst parts keeps you in the loop. Gently turn toward one doable kindness - to yourself or someone else - and let that be the first stitch of repair. You do not have to be over it to take a step forward. Healing is made of small, repeated choices."
-                        }
-    },
-    {
-        "id":  "6cup",
-        "name":  "Six of Cups",
-        "keywords":  [
-                         "nostalgia",
-                         "innocence",
-                         "childhood",
-                         "memory"
-                     ],
-        "description":  {
-                            "upright":  "Sweet nostalgia and simple kindness. Remember what used to light you up and bring a small piece of it back into today. Reach out to someone from your roots or create a tradition that feels like home. Let comfort be creative. Soft does not mean stuck.",
-                            "reversed":  "Living in the highlight reel keeps you from the life in front of you. Keep the memory, but update the story with who you are now. Honor the past by building something present. The best parts of then can inform a better version of now."
-                        }
-    },
-    {
-        "id":  "7cup",
-        "name":  "Seven of Cups",
-        "keywords":  [
-                         "choices",
-                         "fantasy",
-                         "illusion",
-                         "imagination"
-                     ],
-        "description":  {
-                            "upright":  "So many options, all sparkling. Enjoy the dreaming phase, then pick one real path and test it in the light of day. Limit the menu on purpose so your choice gets the attention it deserves. Fantasy is great inspiration; action is how you learn what you actually want.",
-                            "reversed":  "Fog and wishful thinking blur the way. Ground your decision in one fact you can verify and one small experiment you can run. If a story only works in your head, it is not ready yet. Bring your imagination with you, just add evidence."
-                        }
-    },
-    {
-        "id":  "8cup",
-        "name":  "Eight of Cups",
-        "keywords":  [
-                         "transition",
-                         "search",
-                         "withdrawal",
-                         "journey"
-                     ],
-        "description":  {
-                            "upright":  "Walking away can be an act of respect - for yourself and the thing you are leaving. When it is not feeding you, leaving is growth. Go with honesty, keep the drama low, and let the empty space stay empty for a bit. The new path needs room to arrive.",
-                            "reversed":  "Avoiding the goodbye drags out the ache. Be kind and be clear, even if your voice shakes. Your energy will thank you on the other side. Closure is not a door slamming; it is you choosing a direction and taking it."
-                        }
-    },
-    {
-        "id":  "9cup",
-        "name":  "Nine of Cups",
-        "keywords":  [
-                         "contentment",
-                         "gratitude",
-                         "wishes",
-                         "satisfaction"
-                     ],
-        "description":  {
-                            "upright":  "A wish arriving, a moment of real contentment. Let yourself enjoy it without apology, and notice how satisfaction feels in your body. Use that feeling as a north star for future choices. Joy is not a finish line; it is fuel. Share it, savor it, and keep going.",
-                            "reversed":  "It looks good on paper but feels thin in your chest. Retune your goals toward what actually nourishes you, not what impresses people you do not even like. Swap a couple shoulds for wants and see what changes. Real contentment is quiet and sturdy."
-                        }
-    },
-    {
-        "id":  "10cup",
-        "name":  "Ten of Cups",
-        "keywords":  [
-                         "harmony",
-                         "family",
-                         "joy",
-                         "completion"
-                     ],
-        "description":  {
-                            "upright":  "Belonging shows up as ease. Family - chosen or given - feels aligned, and everyday life has moments of simple rightness. Name the good out loud, and do small things that keep the connections strong. Happiness does not need to be grand to be true. Protect what makes this feel like home.",
-                            "reversed":  "Surface smiles with an undercurrent of stress can happen anywhere. Talk about the tension early and kindly so it does not calcify. Choose repair over perfection, and let everyone be human. Little truths keep the roof solid."
-                        }
-    },
-    {
-        "id":  "pcup",
-        "name":  "Page of Cups",
-        "keywords":  [
-                         "creativity",
-                         "intuition",
-                         "curiosity",
-                         "dreamer"
-                     ],
-        "description":  {
-                            "upright":  "Good news, a sweet crush, or a creative ping. Lead with curiosity and let small, sincere gestures carry your message. You do not need clever - you just need honest. Stay open, keep it gentle, and let things unfold at their natural pace.",
-                            "reversed":  "Over-idealizing, mixed messages, or avoiding the real talk. Keep it specific and kind so no one has to guess what you mean. If your hopes are doing all the communication, slow down and check in with reality. Softness and clarity can coexist."
-                        }
-    },
-    {
-        "id":  "ncup",
-        "name":  "Knight of Cups",
-        "keywords":  [
-                         "romance",
-                         "charm",
-                         "idealism",
-                         "pursuit"
-                     ],
-        "description":  {
-                            "upright":  "Romantic and creative motion. Follow the feeling and keep your feet on the ground, balancing poetry with plans. Express yourself, make the gesture, and stay responsive. Heart-led does not mean headless. Your sincerity is a strength.",
-                            "reversed":  "Charm without consistency leads people in circles. Say what you mean, move at a pace you can keep, and match your words with action. If it is not a yes, do not sell it like one. Being clear is kinder than being impressive."
-                        }
-    },
-    {
-        "id":  "qcup",
-        "name":  "Queen of Cups",
-        "keywords":  [
-                         "compassion",
-                         "intuition",
-                         "nurturing",
-                         "empathy"
-                     ],
-        "description":  {
-                            "upright":  "Steady heart and strong intuition. You can hold space without holding it all. Boundaries make your care sustainable and your presence effective. Listen deeply, act kindly, and let your empathy have edges. This is emotional leadership.",
-                            "reversed":  "Taking on everyone else\u0027s weather is not the job. Protect your energy, name your limits, and step back when you start to blur. Your care goes farther when you are resourced. Let others carry their part of the sky."
-                        }
-    },
-    {
-        "id":  "kcup",
-        "name":  "King of Cups",
-        "keywords":  [
-                         "emotional balance",
-                         "wisdom",
-                         "support",
-                         "maturity"
-                     ],
-        "description":  {
-                            "upright":  "Calm in the deep end. Emotional leadership looks like steadiness, perspective, and the courage to stay present. You do not need to fix everything to be helpful. Model grounded responses and people will mirror you. This is how rooms de-escalate.",
-                            "reversed":  "Bottled-up or moody under the surface. Share what is true before it leaks sideways, and ask for what helps. Regulate first, then communicate. You get to be human and in charge at the same time."
-                        }
-    },
-    {
-        "id":  "aswd",
-        "name":  "Ace of Swords",
-        "keywords":  [
-                         "clarity",
-                         "truth",
-                         "breakthrough",
-                         "ideas"
-                     ],
-        "description":  {
-                            "upright":  "Ace of Swords is all about clarity and fresh perspective. Upright, it suggests breakthroughs, truth, or new ideas. Where is clarity breaking through for you? Speak your truth with confidence.",
-                            "reversed":  "Ace of Swords reversed is all about confusion or dishonesty. It suggests misinformation, lack of clarity, or mental blocks. Where are you clouded or misled? Seek facts before making decisions."
-                        }
-    },
-    {
-        "id":  "2swd",
-        "name":  "Two of Swords",
-        "keywords":  [
-                         "decisions",
-                         "stalemate",
-                         "balance",
-                         "choices"
-                     ],
-        "description":  {
-                            "upright":  "Two of Swords is all about difficult choices and balance. Upright, it suggests indecision, stalemate, or weighing options. Where are you avoiding a decision? Remove the blindfold and choose.",
-                            "reversed":  "Two of Swords reversed is all about confusion or delays. It suggests information overload, avoidance, or false choices. What truth are you refusing to see? Step back and simplify your decision."
-                        }
-    },
-    {
-        "id":  "3swd",
-        "name":  "Three of Swords",
-        "keywords":  [
-                         "heartbreak",
-                         "grief",
-                         "pain",
-                         "betrayal"
-                     ],
-        "description":  {
-                            "upright":  "Three of Swords is all about heartbreak and loss. Upright, it suggests grief, betrayal, or sadness. What heartbreak needs acknowledgment? Allow yourself to feel and release the pain.",
-                            "reversed":  "Three of Swords reversed is all about healing or forgiveness. It suggests recovery, reconciliation, or moving on. What hurt are you ready to release? Begin the process of healing by letting go."
-                        }
-    },
-    {
-        "id":  "4swd",
-        "name":  "Four of Swords",
-        "keywords":  [
-                         "rest",
-                         "recovery",
-                         "retreat",
-                         "stillness"
-                     ],
-        "description":  {
-                            "upright":  "Four of Swords is all about rest and recovery. Upright, it suggests retreat, stillness, or recharging. Where are you overdue for rest? Take a pause before moving forward.",
-                            "reversed":  "Four of Swords reversed is all about burnout or restlessness. It suggests avoidance, overexertion, or lack of recovery. Where are you ignoring your body’s signals? Give yourself permission to slow down."
-                        }
-    },
-    {
-        "id":  "5swd",
-        "name":  "Five of Swords",
-        "keywords":  [
-                         "conflict",
-                         "ego",
-                         "tension",
-                         "loss"
-                     ],
-        "description":  {
-                            "upright":  "Five of Swords is all about conflict and hollow victories. Upright, it suggests ego battles, deceit, or tension. Where are you fighting just to win? Choose peace over pride.",
-                            "reversed":  "Five of Swords reversed is all about reconciliation or lingering conflict. It suggests regret, compromise, or moving past tension. What fight is it time to release? Make amends or let go gracefully."
-                        }
-    },
-    {
-        "id":  "6swd",
-        "name":  "Six of Swords",
-        "keywords":  [
-                         "transition",
-                         "healing",
-                         "journey",
-                         "release"
-                     ],
-        "description":  {
-                            "upright":  "Six of Swords is all about transition and healing. Upright, it suggests moving on, travel, or finding peace. What are you ready to leave behind? Step into smoother waters with trust.",
-                            "reversed":  "Six of Swords reversed is all about resistance or stuckness. It suggests delays, baggage, or unfinished transitions. Where are you carrying the past with you? Release what no longer serves."
-                        }
-    },
-    {
-        "id":  "7swd",
-        "name":  "Seven of Swords",
-        "keywords":  [
-                         "deception",
-                         "strategy",
-                         "betrayal",
-                         "secrecy"
-                     ],
-        "description":  {
-                            "upright":  "Seven of Swords is all about strategy and secrecy. Upright, it suggests deception, hidden agendas, or clever tactics. Where is honesty missing? Bring integrity back to the table.",
-                            "reversed":  "Seven of Swords reversed is all about truth revealed. It suggests exposure, regret, or facing consequences. What truth can no longer be hidden? Step into honesty, even if it’s uncomfortable."
-                        }
-    },
-    {
-        "id":  "8swd",
-        "name":  "Eight of Swords",
-        "keywords":  [
-                         "restriction",
-                         "fear",
-                         "entrapment",
-                         "limitation"
-                     ],
-        "description":  {
-                            "upright":  "Eight of Swords is all about feeling trapped. Upright, it suggests fear, restriction, or self-imposed limitations. Where are you holding yourself hostage? Take one step toward freedom.",
-                            "reversed":  "Eight of Swords reversed is all about release or empowerment. It suggests freedom, clarity, or breaking barriers. What chains are loosening? Walk toward your liberation."
-                        }
-    },
-    {
-        "id":  "9swd",
-        "name":  "Nine of Swords",
-        "keywords":  [
-                         "anxiety",
-                         "fear",
-                         "nightmares",
-                         "worry"
-                     ],
-        "description":  {
-                            "upright":  "Nine of Swords is all about fear and sleepless nights. Upright, it suggests anxiety, nightmares, or worry. What fears keep you up at night? Write them down and release one.",
-                            "reversed":  "Nine of Swords reversed is all about recovery or acceptance. It suggests healing, hope, or facing fears. What fear is starting to lose its grip? Seek support or release guilt."
-                        }
-    },
-    {
-        "id":  "10swd",
-        "name":  "Ten of Swords",
-        "keywords":  [
-                         "betrayal",
-                         "ending",
-                         "collapse",
-                         "defeat"
-                     ],
-        "description":  {
-                            "upright":  "Ten of Swords is all about painful endings. Upright, it suggests betrayal, collapse, or finality. What cycle has reached its painful close? Accept the ending and prepare to heal.",
-                            "reversed":  "Ten of Swords reversed is all about recovery or regeneration. It suggests survival, resilience, or new beginnings. What pain are you ready to rise from? Rebuild from the ground up."
-                        }
-    },
-    {
-        "id":  "pswd",
-        "name":  "Page of Swords",
-        "keywords":  [
-                         "curiosity",
-                         "ideas",
-                         "communication",
-                         "vigilance"
-                     ],
-        "description":  {
-                            "upright":  "Page of Swords is all about curiosity and new ideas. Upright, it suggests learning, vigilance, or youthful energy. What truth are you eager to explore? Pursue knowledge with openness.",
-                            "reversed":  "Page of Swords reversed is all about gossip or deception. It suggests defensiveness, scattered thoughts, or dishonesty. Where are you speaking without clarity? Pause before reacting and seek facts."
-                        }
-    },
-    {
-        "id":  "nswd",
-        "name":  "Knight of Swords",
-        "keywords":  [
-                         "action",
-                         "ambition",
-                         "speed",
-                         "determination"
-                     ],
-        "description":  {
-                            "upright":  "Knight of Swords is all about ambition and swift action. Upright, it suggests boldness, determination, or pursuit of goals. Where are you ready to charge forward? Move with focus and clarity.",
-                            "reversed":  "Knight of Swords reversed is all about recklessness or haste. It suggests impulsiveness, scattered focus, or aggression. Where are you rushing without thought? Slow down before acting."
-                        }
-    },
-    {
-        "id":  "qswd",
-        "name":  "Queen of Swords",
-        "keywords":  [
-                         "truth",
-                         "clarity",
-                         "independence",
-                         "perception"
-                     ],
-        "description":  {
-                            "upright":  "Queen of Swords is all about honesty and clear perspective. Upright, it suggests independence, directness, or wisdom. Where do you need to cut through the fog? Speak your truth clearly.",
-                            "reversed":  "Queen of Swords reversed is all about coldness or dishonesty. It suggests bitterness, manipulation, or miscommunication. Where are you shutting down emotionally? Balance clarity with compassion."
-                        }
-    },
-    {
-        "id":  "kswd",
-        "name":  "King of Swords",
-        "keywords":  [
-                         "authority",
-                         "logic",
-                         "truth",
-                         "discipline"
-                     ],
-        "description":  {
-                            "upright":  "King of Swords is all about authority and intellect. Upright, it suggests clear thinking, wisdom, and decisive leadership. Where are you being called to lead with logic? Make decisions with clarity and fairness.",
-                            "reversed":  "King of Swords reversed is all about misuse of power or manipulation. It suggests corruption, cruelty, or abuse of authority. Where is logic being twisted into control? Realign with truth and integrity."
-                        }
-    },
-    {
-        "id":  "apent",
-        "name":  "Ace of Pentacles",
-        "keywords":  [
-                         "opportunity",
-                         "prosperity",
-                         "foundation",
-                         "growth"
-                     ],
-        "description":  {
-                            "upright":  "A real-world green light. New work, money, home, or health habit that could actually stick. Keep it practical and small so you can repeat it. Track your progress, celebrate tiny wins, and watch the foundation thicken. Reliable is exciting when you can feel it working.",
-                            "reversed":  "Delays or shaky ground are not the end; they are data. Tighten the plan, check your resources, and try again with one tweak. If you are forcing it, step back and rebuild the basics. Patience and consistency are compounding interest."
-                        }
-    },
-    {
-        "id":  "2pent",
-        "name":  "Two of Pentacles",
-        "keywords":  [
-                         "balance",
-                         "adaptability",
-                         "choices",
-                         "flexibility"
-                     ],
-        "description":  {
-                            "upright":  "You are juggling a lot and doing okay. Keep it light where you can, use a list to brain-dump the noise, and move one piece at a time. Let your schedule reflect your actual capacity, not the imaginary kind. Balance comes from boundaries and small adjustments.",
-                            "reversed":  "Too many plates leads to broken ones. Drop the least important on purpose, automate what you can, and ask for help where it matters. Busy is not a personality. You are allowed to choose ease."
-                        }
-    },
-    {
-        "id":  "3pent",
-        "name":  "Three of Pentacles",
-        "keywords":  [
-                         "teamwork",
-                         "collaboration",
-                         "skill",
-                         "effort"
-                     ],
-        "description":  {
-                            "upright":  "Teamwork that actually works. Clear roles, shared standards, and kind feedback make the build solid. Ask for help where someone is stronger and offer yours where you shine. Pride in craft is contagious. Make something you are proud to sign.",
-                            "reversed":  "Roles unclear, standards fuzzy, or feedback missing. Define done together and decide how you will know you are on track. A short check-in saves a long rework. Collaboration is a skill; practice it openly."
-                        }
-    },
-    {
-        "id":  "4pent",
-        "name":  "Four of Pentacles",
-        "keywords":  [
-                         "control",
-                         "security",
-                         "possession",
-                         "stability"
-                     ],
-        "description":  {
-                            "upright":  "Stability is a worthy goal. Save a little, tidy your systems, and cover your basics so your nervous system can breathe. Security does not make you boring; it makes you brave. Build a base you can launch from.",
-                            "reversed":  "Clutching tight squeezes the life out of growth. Loosen the grip a notch and let circulation return - to money, time, and trust. You can be responsible and generous at the same time. Holding everything forever is not the only way to feel safe."
-                        }
-    },
-    {
-        "id":  "5pent",
-        "name":  "Five of Pentacles",
-        "keywords":  [
-                         "loss",
-                         "hardship",
-                         "poverty",
-                         "struggle"
-                     ],
-        "description":  {
-                            "upright":  "Tough season, but not a verdict. Ask for help and take the help without apology. There are resources and people who actually want to show up for you. You are not a problem to be solved; you are a person to be supported. Keep moving one honest step at a time.",
-                            "reversed":  "Isolation makes it colder. Step toward community, services, or one steady friend sooner than is comfortable. Shame hates daylight; let a little in. You are allowed to need things and still respect yourself."
-                        }
-    },
-    {
-        "id":  "6pent",
-        "name":  "Six of Pentacles",
-        "keywords":  [
-                         "generosity",
-                         "charity",
-                         "support",
-                         "balance"
-                     ],
-        "description":  {
-                            "upright":  "Giving and receiving with balance. Share what you have, accept what you need, and keep dignity at the center of the exchange. Generosity goes farther when it respects boundaries. Make support a two-way street.",
-                            "reversed":  "Strings attached, uneven scales, or giving that breeds resentment. If it is not mutual, reset the terms or step back. Help that harms your own stability is not help. Try clear agreements and honest limits."
-                        }
-    },
-    {
-        "id":  "7pent",
-        "name":  "Seven of Pentacles",
-        "keywords":  [
-                         "patience",
-                         "investment",
-                         "assessment",
-                         "growth"
-                     ],
-        "description":  {
-                            "upright":  "Pause and check the garden. Progress is slow and still real, especially with long-haul goals. Adjust the plan, keep tending, and let time do its job. Patience can be active: small improvements add up. Trust the process you can see.",
-                            "reversed":  "Impatience makes you dig up seeds to see if they are growing. Set a timeline, define meaningful milestones, and hold yourself to those instead of fantasy deadlines. If the plan is weak, improve it. If it is strong, let it work."
-                        }
-    },
-    {
-        "id":  "8pent",
-        "name":  "Eight of Pentacles",
-        "keywords":  [
-                         "skill",
-                         "apprenticeship",
-                         "dedication",
-                         "practice"
-                     ],
-        "description":  {
-                            "upright":  "Reps and craft. Show up, improve tiny details, and let consistency build your confidence. Mastery is boring up close and beautiful from a distance. Document what you learn so future-you can move faster. Pride in process becomes pride in results.",
-                            "reversed":  "Busywork and perfection loops look productive but do not move the needle. Focus on the one skill that would change everything if it got 20 percent better. Ship small updates instead of polishing in private forever. Momentum beats immaculate."
-                        }
-    },
-    {
-        "id":  "9pent",
-        "name":  "Nine of Pentacles",
-        "keywords":  [
-                         "independence",
-                         "luxury",
-                         "success",
-                         "self-sufficiency"
-                     ],
-        "description":  {
-                            "upright":  "Competence pays off. Enjoy the independence you built and treat yourself like someone you respect. Make time to actually enjoy the life your effort created - a walk, a nice meal, a slow morning. Self-trust is luxury. Wear it.",
-                            "reversed":  "Self-sufficiency turning into lonely is a common trap. You can keep your standards and still ask for company or support. Let people in where it matters. Independence is stronger with a little interdependence."
-                        }
-    },
-    {
-        "id":  "10pent",
-        "name":  "Ten of Pentacles",
-        "keywords":  [
-                         "legacy",
-                         "wealth",
-                         "family",
-                         "long-term"
-                     ],
-        "description":  {
-                            "upright":  "Long game wins. Think legacy, stability, and shared resources that outlast a season. Invest in systems and relationships that support more than just you. Take pride in being a good ancestor. Solid foundations make generous futures.",
-                            "reversed":  "Tradition without flexibility turns brittle. Keep what works, update what does not, and make room for the next generation\u0027s way. Stability that refuses to evolve eventually cracks. Choose living structure over static rules."
-                        }
-    },
-    {
-        "id":  "ppent",
-        "name":  "Page of Pentacles",
-        "keywords":  [
-                         "opportunity",
-                         "study",
-                         "ambition",
-                         "focus"
-                     ],
-        "description":  {
-                            "upright":  "Beginner mind at the bank of real life. Learn by doing, take notes, and track small progress you can see. Ask the practical questions and try the practical answers. It adds up quickly when you keep it simple. Curiosity is a savings plan.",
-                            "reversed":  "Stuck in planning is still stuck. Pick one tiny experiment with a clear next step and a short feedback loop. You can always refine after reality has weighed in. Momentum belongs to the starters."
-                        }
-    },
-    {
-        "id":  "npent",
-        "name":  "Knight of Pentacles",
-        "keywords":  [
-                         "responsibility",
-                         "routine",
-                         "patience",
-                         "diligence"
-                     ],
-        "description":  {
-                            "upright":  "Steady, thorough, dependable - boring in the best way. Keep going exactly like this. Your care shows in the details and it lasts. People trust what you build because you do not cut corners.",
-                            "reversed":  "Stalled out, overcautious, or buried under the to-do list. Break the task into smaller pieces, move one across the line, and let that win pull the next one. Progress can be quiet and still count."
-                        }
-    },
-    {
-        "id":  "qpent",
-        "name":  "Queen of Pentacles",
-        "keywords":  [
-                         "nurturing",
-                         "abundance",
-                         "practicality",
-                         "comfort"
-                     ],
-        "description":  {
-                            "upright":  "Grounded care and practical comfort. You make spaces feel safe and projects feel doable. Think warm meals, clear budgets, and plans that include rest. This is leadership through hospitality and competence. Keep your own tank filled too.",
-                            "reversed":  "Overgiving or micromanaging steals your calm. Trust others with real responsibility, delegate clearly, and take your hands off. Your value is not measured in exhaustion. Choose sustainable care."
-                        }
-    },
-    {
-        "id":  "kpent",
-        "name":  "King of Pentacles",
-        "keywords":  [
-                         "wealth",
-                         "stability",
-                         "success",
-                         "security"
-                     ],
-        "description":  {
-                            "upright":  "Responsible leadership that builds systems people actually want to work in. You measure what matters, invest in people, and think long-term. Results are steady because your values are steady. Keep modeling dignity and discipline.",
-                            "reversed":  "Control without mentorship caps growth. Teach what you know, open doors, and share the wins. Authority grows when it multiplies other people\u0027s competence. Leave the place better than you found it."
-                        }
+[
+  {
+    "id": "thefool",
+    "name": "The Fool",
+    "keywords": [
+      "beginnings",
+      "innocence",
+      "trust",
+      "potential"
+    ],
+    "description": {
+      "upright": "The Fool is the first breath before the story knows what it is doing. It carries the cliff, the little bag, the open sky, and that charmingly questionable confidence that says, \"I have no proof this will work, but here we are.\" This card is about beginnings, trust, risk, and the strange intelligence of not being over-prepared.\n\nUpright, The Fool says the door is open and you are allowed to walk through it before you have a laminated five-year plan. Start clean, stay curious, and take the kind of risk that makes your life wider instead of just louder. You do not need to know the whole path yet. You need one honest step and enough sense not to pack your worst habits for the trip.",
+      "reversed": "The Fool is the first breath before the story knows what it is doing. It carries the cliff, the little bag, the open sky, and that charmingly questionable confidence that says, \"I have no proof this will work, but here we are.\" This card is about beginnings, trust, risk, and the strange intelligence of not being over-prepared.\n\nReversed, The Fool gets tangled between fear and recklessness. You may be hesitating because you are afraid to look foolish, or charging ahead with no shoes, no map, and full confidence, which is adorable but not a strategy. Name the risk that matters and the risk that is just noise. Then choose a step you can actually live with."
     }
+  },
+  {
+    "id": "themagician",
+    "name": "The Magician",
+    "keywords": [
+      "power",
+      "focus",
+      "manifestation",
+      "skills"
+    ],
+    "description": {
+      "upright": "The Magician stands at the table with every tool laid out and no real excuse left. Wand, cup, sword, and pentacle all point to the same thing: raw potential becomes power when it is directed. This card is about skill, focus, timing, and turning a bright little idea into something with legs.\n\nUpright, The Magician says your attention is the wand. Gather the scattered sparks and make them answer to one clear purpose. Use what you already know, what you already have, and what you can learn quickly. This is not the moment to wait for permission. Translate the intention into a concrete act and let momentum argue your case.",
+      "reversed": "The Magician stands at the table with every tool laid out and no real excuse left. Wand, cup, sword, and pentacle all point to the same thing: raw potential becomes power when it is directed. This card is about skill, focus, timing, and turning a bright little idea into something with legs.\n\nReversed, The Magician shows talent leaking out through distraction, ego, or cute little shortcuts that are not actually cute. You may be selling the illusion harder than you are building the thing, or letting too many ideas dilute the one that matters. Return to the workbench. Fewer tools, cleaner aim, honest measures."
+    }
+  },
+  {
+    "id": "thehighpriestess",
+    "name": "The High Priestess",
+    "keywords": [
+      "intuition",
+      "mystery",
+      "wisdom",
+      "subconscious"
+    ],
+    "description": {
+      "upright": "The High Priestess sits at the threshold between what is known and what is quietly making itself known. Her symbols point to mystery, intuition, silence, dreams, and the kind of truth that does not perform for an audience. This card does not shout. Naturally, that makes it easier to miss if you are addicted to noise.\n\nUpright, The High Priestess asks you to listen before you explain yourself out of knowing. There is information in the pause, in the body, in the pattern you keep noticing but pretending not to notice. Let the answer arrive at its own pace. Not everything needs to be announced before it is understood.",
+      "reversed": "The High Priestess sits at the threshold between what is known and what is quietly making itself known. Her symbols point to mystery, intuition, silence, dreams, and the kind of truth that does not perform for an audience. This card does not shout. Naturally, that makes it easier to miss if you are addicted to noise.\n\nReversed, The High Priestess suggests the inner signal is getting drowned out by other people's opinions, secrecy, overthinking, or plain old avoidance wearing a velvet cloak. Step back from the borrowed certainty. Keep one confidence with yourself and stop feeding every thought into the public machine. Clarity is still there. It is just under the static."
+    }
+  },
+  {
+    "id": "theempress",
+    "name": "The Empress",
+    "keywords": [
+      "nurturing",
+      "creativity",
+      "abundance",
+      "fertility"
+    ],
+    "description": {
+      "upright": "The Empress is the garden, the body, the art table, the kitchen, the soft place to land, and the stubborn life force that keeps growing through cracks. She represents creativity, abundance, fertility in every sense, care, pleasure, and beauty that is not asking to justify itself. This card is not weak because it is soft. That would be a beginner's mistake.\n\nUpright, The Empress says something wants to grow through you, and it will do better if you stop treating nourishment like a luxury item. Feed the project, the relationship, the body, the home, or the part of you that still responds to beauty. Make room for pleasure and let it be useful. Warmth counts. So does a decent snack.",
+      "reversed": "The Empress is the garden, the body, the art table, the kitchen, the soft place to land, and the stubborn life force that keeps growing through cracks. She represents creativity, abundance, fertility in every sense, care, pleasure, and beauty that is not asking to justify itself. This card is not weak because it is soft. That would be a beginner's mistake.\n\nReversed, The Empress points to overgiving, creative dryness, comparison, or care that has turned into a full-time unpaid internship. You may be pouring from an empty cup and then acting surprised when everything tastes like resentment. Receive before you resume. Rest is not a dramatic personal failure. It is maintenance."
+    }
+  },
+  {
+    "id": "theemperor",
+    "name": "The Emperor",
+    "keywords": [
+      "authority",
+      "structure",
+      "discipline",
+      "boundaries"
+    ],
+    "description": {
+      "upright": "The Emperor is structure with a spine. He represents authority, boundaries, discipline, protection, systems, and the kind of order that makes freedom possible instead of strangling it in the hallway. At his best, he builds walls with windows. At his worst, he mistakes control for leadership, which is how we get rules that smell like insecurity.\n\nUpright, The Emperor asks you to choose the rules you can actually keep. Create the schedule, name the boundary, set the standard, and follow through without turning it into a production. Real authority comes from consistency, not volume. Build something stable enough that the people and plans inside it can breathe.",
+      "reversed": "The Emperor is structure with a spine. He represents authority, boundaries, discipline, protection, systems, and the kind of order that makes freedom possible instead of strangling it in the hallway. At his best, he builds walls with windows. At his worst, he mistakes control for leadership, which is how we get rules that smell like insecurity.\n\nReversed, The Emperor warns that control may be gripping too hard, or not showing up at all. Rigidity can smother initiative, while absence leaves everyone guessing and calling that chaos \"flexibility.\" Choose where to be firm and where to be human. Authority grows when it protects. It shrinks when it needs to dominate."
+    }
+  },
+  {
+    "id": "thehierophant",
+    "name": "The Hierophant",
+    "keywords": [
+      "tradition",
+      "guidance",
+      "spirituality",
+      "learning"
+    ],
+    "description": {
+      "upright": "The Hierophant is tradition, teaching, shared language, ritual, institutions, and the old road with all its signs still standing. He can offer wisdom, structure, and belonging, but he can also hand you a script and act offended when you read it critically. This card asks what you inherited, what still feeds you, and what is just furniture in the way.\n\nUpright, The Hierophant says there is value in learning the form before you try to burn it down for ambiance. Seek guidance, study the lineage, respect the craft, and let shared practice steady your hand. You do not have to reinvent every wheel. Some wheels are fine. Some just need better paint.",
+      "reversed": "The Hierophant is tradition, teaching, shared language, ritual, institutions, and the old road with all its signs still standing. He can offer wisdom, structure, and belonging, but he can also hand you a script and act offended when you read it critically. This card asks what you inherited, what still feeds you, and what is just furniture in the way.\n\nReversed, The Hierophant points to dogma without soul, rules without relevance, or roles that itch because you have outgrown them. Question the script without making rebellion your whole personality. Keep what blesses. Compost what only controls. Your path can be sincere without being pre-approved by a committee."
+    }
+  },
+  {
+    "id": "thelovers",
+    "name": "The Lovers",
+    "keywords": [
+      "union",
+      "choice",
+      "values",
+      "harmony"
+    ],
+    "description": {
+      "upright": "The Lovers is less about looking beautiful under a tree and more about choice, alignment, intimacy, and the values that quietly run the whole show. It is the place where desire meets consequence and connection asks for honesty. Love is included, obviously, but this card is not here to doodle initials in a notebook and call it fate.\n\nUpright, The Lovers says your yes needs to come from the whole self, not just the part that likes attention or hates conflict. Choose what aligns with your values, your body, your future, and your actual truth. Connection deepens when people are honest enough to be known. Say yes clearly, or say no cleanly. Both can be sacred.",
+      "reversed": "The Lovers is less about looking beautiful under a tree and more about choice, alignment, intimacy, and the values that quietly run the whole show. It is the place where desire meets consequence and connection asks for honesty. Love is included, obviously, but this card is not here to doodle initials in a notebook and call it fate.\n\nReversed, The Lovers shows mixed signals, value drift, people-pleasing, triangles, or chemistry trying to cosplay as compatibility. Something may feel magnetic while still being a logistical nightmare with nice lighting. Choose coherence over intensity. Let honesty do its inconvenient healing before the situation starts charging rent in your nervous system."
+    }
+  },
+  {
+    "id": "thechariot",
+    "name": "The Chariot",
+    "keywords": [
+      "willpower",
+      "direction",
+      "determination",
+      "control"
+    ],
+    "description": {
+      "upright": "The Chariot is willpower with wheels. It is direction, discipline, ambition, and the hard-earned ability to make competing instincts pull the same way. The card often carries a feeling of pressure, movement, and victory, but not the lazy kind where everyone claps because you owned a vision board.\n\nUpright, The Chariot says name the destination and mean it. Harness your energy, cut the unnecessary detours, and put your body behind the decision. Discipline becomes freedom when momentum has a purpose. You do not need to wrestle every impulse into silence. You need them pulling toward the same finish line.",
+      "reversed": "The Chariot is willpower with wheels. It is direction, discipline, ambition, and the hard-earned ability to make competing instincts pull the same way. The card often carries a feeling of pressure, movement, and victory, but not the lazy kind where everyone claps because you owned a vision board.\n\nReversed, The Chariot shows spinning wheels, scattered drives, ego racing ahead while the heart lags behind, or doubt cutting the engine at every green light. Slow down long enough to realign. Speed without direction is just panic with better branding. Get the team of instincts back in formation before you press the pedal."
+    }
+  },
+  {
+    "id": "strength",
+    "name": "Strength",
+    "keywords": [
+      "courage",
+      "patience",
+      "resilience",
+      "inner power"
+    ],
+    "description": {
+      "upright": "Strength is the lion, the soft hand, the steady breath, and the choice not to turn every conflict into a cage match just because you technically could. This card is courage, patience, resilience, and emotional mastery. It is power that does not need to throw furniture to prove it owns the room.\n\nUpright, Strength says gentleness with a spine is the move. Meet the wild part of the situation without humiliating it, suppressing it, or letting it eat the furniture. Courage here looks like dignity under heat and patience that still has boundaries. You are not weak because you are calm. You are effective because you are calm.",
+      "reversed": "Strength is the lion, the soft hand, the steady breath, and the choice not to turn every conflict into a cage match just because you technically could. This card is courage, patience, resilience, and emotional mastery. It is power that does not need to throw furniture to prove it owns the room.\n\nReversed, Strength suggests force without tenderness, fear of your own power, or an inner animal that has been ignored so long it is now chewing through the drywall. Neither muzzle it nor unleash it on the nearest bystander. Befriend it. Find the need under the roar, then respond like someone who plans to live with themselves afterward."
+    }
+  },
+  {
+    "id": "thehermit",
+    "name": "The Hermit",
+    "keywords": [
+      "introspection",
+      "solitude",
+      "wisdom",
+      "truth"
+    ],
+    "description": {
+      "upright": "The Hermit carries a lantern into the quiet, not because people are terrible, although fair, but because truth sometimes needs fewer witnesses. This card is solitude, introspection, wisdom, retreat, and the kind of inner searching that cannot happen while everyone is talking over your instincts.\n\nUpright, The Hermit invites you to step back and hear the true signal. A smaller circle, a slower pace, and a little honest silence can reveal what all the noise kept smearing. This is not isolation as punishment. It is a deliberate return to your own center. Bring a lantern, not a bunker.",
+      "reversed": "The Hermit carries a lantern into the quiet, not because people are terrible, although fair, but because truth sometimes needs fewer witnesses. This card is solitude, introspection, wisdom, retreat, and the kind of inner searching that cannot happen while everyone is talking over your instincts.\n\nReversed, The Hermit warns that hiding can start pretending to be wisdom. Ghosting, withdrawing, or hoarding insight may feel safe, but it also keeps you weirdly stuck and narratively dramatic. Open the door a crack. Share one sentence of the truth you found. You do not have to rejoin the circus, just stop living under the bleachers."
+    }
+  },
+  {
+    "id": "wheeloffortune",
+    "name": "Wheel of Fortune",
+    "keywords": [
+      "cycles",
+      "fate",
+      "luck",
+      "change"
+    ],
+    "description": {
+      "upright": "The Wheel of Fortune is the spin of timing, cycles, chance, consequence, and the strange weather system we call life because apparently we needed a polite term. It reminds you that nothing stays fixed forever. Luck, change, repetition, and opportunity all move through this card, whether you feel ready or not.\n\nUpright, the Wheel says the season is turning and you are allowed to turn with it. Chance favors the prepared and the flexible, which is annoying but consistently true. Say yes when the door swings open, especially if you have been asking for a door. Participate in your luck instead of standing there critiquing the hinges.",
+      "reversed": "The Wheel of Fortune is the spin of timing, cycles, chance, consequence, and the strange weather system we call life because apparently we needed a polite term. It reminds you that nothing stays fixed forever. Luck, change, repetition, and opportunity all move through this card, whether you feel ready or not.\n\nReversed, the Wheel points to resistance, stagnation, repeated patterns, or white-knuckling the wheel as if grip strength controls weather. It does not. Look for the hinge habit, the tiny repeated choice keeping the same outcome in circulation. Change that and the cycle starts to move, sometimes slowly, sometimes with all the subtlety of a shopping cart on a hill."
+    }
+  },
+  {
+    "id": "justice",
+    "name": "Justice",
+    "keywords": [
+      "truth",
+      "fairness",
+      "law",
+      "cause and effect"
+    ],
+    "description": {
+      "upright": "Justice is the scale, the sword, the receipt, and the uncomfortable little fact that choices have consequences. This card is truth, fairness, accountability, law, proportion, and the clean line between explanation and excuse. It does not ask for revenge. It asks for the whole story and what should reasonably follow from it.\n\nUpright, Justice says tell the truth plainly and act in proportion to it. Look at context, impact, responsibility, and evidence, not just the version that makes you look adorable. Fairness is not always soft, but it should be clean. Make the decision you could defend without needing smoke, mirrors, or a suspiciously selective memory.",
+      "reversed": "Justice is the scale, the sword, the receipt, and the uncomfortable little fact that choices have consequences. This card is truth, fairness, accountability, law, proportion, and the clean line between explanation and excuse. It does not ask for revenge. It asks for the whole story and what should reasonably follow from it.\n\nReversed, Justice suggests avoided truth, bias, omission, delayed decisions, or someone playing hide-and-seek with accountability and calling it nuance. Correct the record. Repair what can be repaired. If the scales are tilted, stop decorating the table and level it. Fairness loses power when everyone knows you are editing the footage."
+    }
+  },
+  {
+    "id": "thehangedman",
+    "name": "The Hanged Man",
+    "keywords": [
+      "pause",
+      "surrender",
+      "perspective",
+      "patience"
+    ],
+    "description": {
+      "upright": "The Hanged Man is suspension, surrender, reversal, and the strange productivity of not forcing the door with your whole personality. He hangs upside down so the familiar becomes unfamiliar enough to teach something. This card is pause, sacrifice, perspective, and patience that is actually doing work under the surface.\n\nUpright, The Hanged Man says stop thrashing for a minute and let the view rearrange you. Surrender here is not defeat. It is the decision to stop wasting energy on the wrong leverage point. Let the delay show you what action missed. Patience can be active, even when it looks suspiciously like hanging around.",
+      "reversed": "The Hanged Man is suspension, surrender, reversal, and the strange productivity of not forcing the door with your whole personality. He hangs upside down so the familiar becomes unfamiliar enough to teach something. This card is pause, sacrifice, perspective, and patience that is actually doing work under the surface.\n\nReversed, The Hanged Man points to limbo dressed up as spirituality, martyrdom with better lighting, or procrastination that found a nice quote to hide behind. Choose either sacrifice or motion. Sitting in discomfort forever is not depth. It is just staying stuck with accessories. Decide what you are giving up, or decide what you are doing next."
+    }
+  },
+  {
+    "id": "death",
+    "name": "Death",
+    "keywords": [
+      "endings",
+      "transformation",
+      "rebirth",
+      "release"
+    ],
+    "description": {
+      "upright": "Death is the ending that makes the next life possible. It is not usually a literal death card, despite the drama department's best efforts. It speaks to transformation, release, closure, compost, grief, and the clean mercy of letting something finish instead of dragging it around like a haunted ottoman.\n\nUpright, Death says an honest ending is a gift, even when it hurts. Let what is done be done, and let grief do its clean, difficult work. You are not failing because the form is changing. You are making room for what can actually live now. Compost the old. Do not frame it and keep sleeping beside it.",
+      "reversed": "Death is the ending that makes the next life possible. It is not usually a literal death card, despite the drama department's best efforts. It speaks to transformation, release, closure, compost, grief, and the clean mercy of letting something finish instead of dragging it around like a haunted ottoman.\n\nReversed, Death shows clinging, half-goodbyes, clutter, nostalgia, and the exhausting art of blocking the doorway with things that already left emotionally. The pain may be less about the ending and more about refusing to admit it. Make space on purpose. Closure does not need theatrics. It needs cooperation."
+    }
+  },
+  {
+    "id": "temperance",
+    "name": "Temperance",
+    "keywords": [
+      "balance",
+      "harmony",
+      "moderation",
+      "patience"
+    ],
+    "description": {
+      "upright": "Temperance is the quiet alchemy of mixing what should not work until it does. Fire and water, patience and movement, discipline and softness, all poured back and forth until a third way appears. This card is balance, moderation, integration, timing, and the deeply unglamorous magic of not overcorrecting into a ditch.\n\nUpright, Temperance says measure, mix, rest, repeat. Do not force the blend before the ingredients know each other. Find the pace that keeps the system alive instead of impressive for three days and dead by Friday. Harmony is built, not wished into existence. Small adjustments are still alchemy if they change the outcome.",
+      "reversed": "Temperance is the quiet alchemy of mixing what should not work until it does. Fire and water, patience and movement, discipline and softness, all poured back and forth until a third way appears. This card is balance, moderation, integration, timing, and the deeply unglamorous magic of not overcorrecting into a ditch.\n\nReversed, Temperance points to extremes, impatience, imbalance, or the charming habit of fixing one problem by creating its opposite. Too much, too little, too fast, too rigid; pick your flavor. Recalibrate in small, honest increments. The middle is not boring. The middle is where the thing becomes sustainable."
+    }
+  },
+  {
+    "id": "thedevil",
+    "name": "The Devil",
+    "keywords": [
+      "addiction",
+      "materialism",
+      "bondage",
+      "temptation"
+    ],
+    "description": {
+      "upright": "The Devil is the chain, the bargain, the appetite, and the glittery little lie that says you have no choice. This card rules temptation, addiction, obsession, shame, material attachment, power games, and anything that offers comfort at the cost of freedom. It is not here to moralize. It is here to point at the trap and say, well, there it is.\n\nUpright, The Devil asks you to name the bargain honestly. What are you getting, and what is it costing you? Compulsion has charisma, which is exactly why it needs a receipt. Seeing the chain is step one, and sometimes the humiliating part is realizing it was never as locked as it looked.",
+      "reversed": "The Devil is the chain, the bargain, the appetite, and the glittery little lie that says you have no choice. This card rules temptation, addiction, obsession, shame, material attachment, power games, and anything that offers comfort at the cost of freedom. It is not here to moralize. It is here to point at the trap and say, well, there it is.\n\nReversed, The Devil says the spell is thinning. What owned you yesterday may be losing flavor today, and that is worth noticing before you romanticize the cage again. Swap punishment for responsibility. Walk out without making a whole stage production of it. Freedom does not need confetti to be real."
+    }
+  },
+  {
+    "id": "thetower",
+    "name": "The Tower",
+    "keywords": [
+      "chaos",
+      "upheaval",
+      "revelation",
+      "awakening"
+    ],
+    "description": {
+      "upright": "The Tower is the lightning strike, the cracking facade, the truth that finally quits knocking politely. It represents upheaval, revelation, collapse, awakening, and the moment a false structure stops accepting your denial as rent. It is rude, yes. It is also often correct.\n\nUpright, The Tower says something built on bad wiring cannot keep pretending to be a castle. Let the false part fall, even if it makes a mess and everyone suddenly has opinions. Rubble is honest ground. You do not have to enjoy the collapse to use what it reveals. Build next on what can survive weather.",
+      "reversed": "The Tower is the lightning strike, the cracking facade, the truth that finally quits knocking politely. It represents upheaval, revelation, collapse, awakening, and the moment a false structure stops accepting your denial as rent. It is rude, yes. It is also often correct.\n\nReversed, The Tower shows cracks you are managing, repairs you keep postponing, or a quiet avoidance campaign that is definitely not as subtle as hoped. Initiate the repair or the exit while you still get to choose the terms. A controlled demolition is still unpleasant, but it beats waiting for the ceiling to develop a personality."
+    }
+  },
+  {
+    "id": "thestar",
+    "name": "The Star",
+    "keywords": [
+      "hope",
+      "healing",
+      "guidance",
+      "renewal"
+    ],
+    "description": {
+      "upright": "The Star comes after the Tower, which is important because hope hits different when you have just crawled out of rubble. It is renewal, healing, guidance, tenderness, trust, and the slow return of orientation. This card is not toxic positivity. It is the small light that stays useful because it does not demand applause.\n\nUpright, The Star says let yourself be restored in ordinary ways. Drink water, tell the truth, sleep, create, pray, wash the dust off, look up. Hope does not need to be loud to be real. Follow the point of light that feels clean and steady. Tender progress still counts, especially when you had to earn it.",
+      "reversed": "The Star comes after the Tower, which is important because hope hits different when you have just crawled out of rubble. It is renewal, healing, guidance, tenderness, trust, and the slow return of orientation. This card is not toxic positivity. It is the small light that stays useful because it does not demand applause.\n\nReversed, The Star suggests cynicism posing as realism, low self-worth, spiritual dryness, or faith leaking out through too many disappointments. Do not demand a bonfire from a match. Tend the small light you still trust and let it scale. Healing often begins as maintenance before it becomes belief again."
+    }
+  },
+  {
+    "id": "themoon",
+    "name": "The Moon",
+    "keywords": [
+      "illusion",
+      "intuition",
+      "dreams",
+      "mystery"
+    ],
+    "description": {
+      "upright": "The Moon is dreamlight, tidewater, instinct, illusion, memory, and the weird hallway between fear and intuition. Things look strange here because they are not meant to be read under fluorescent lights. This card asks you to respect mystery without handing your whole brain to every shadow that moves.\n\nUpright, The Moon says feel your way carefully. Pay attention to dreams, body signals, patterns, and the emotional weather, but do not build a courthouse out of fog. Intuition is useful; panic is a dramatic cousin with unreliable sources. Move slowly. Let your eyes adjust before naming what is real.",
+      "reversed": "The Moon is dreamlight, tidewater, instinct, illusion, memory, and the weird hallway between fear and intuition. Things look strange here because they are not meant to be read under fluorescent lights. This card asks you to respect mystery without handing your whole brain to every shadow that moves.\n\nReversed, The Moon points to confusion clearing, old anxieties surfacing, projections getting exposed, or a story that cannot survive direct light. Test the narrative against facts, timing, and your body's quieter truth. Fear may still be present, because of course it is. But it does not get to drive just because it found the keys."
+    }
+  },
+  {
+    "id": "thesun",
+    "name": "The Sun",
+    "keywords": [
+      "joy",
+      "success",
+      "clarity",
+      "vitality"
+    ],
+    "description": {
+      "upright": "The Sun is clarity, vitality, joy, warmth, success, and the blessed relief of not needing to decode every little thing like it is a haunted crossword. It is life force returning to the body and truth becoming simple enough to feel. This card is radiant, but not shallow. Joy can be sharp. It shows you what is actually alive.\n\nUpright, The Sun says let good be good without immediately interrogating it under a desk lamp. Enjoy the win, the warmth, the clear answer, the easy laugh, the body coming back online. Visibility helps now. Play helps too, obnoxiously enough. Let joy clarify what overthinking kept making complicated.",
+      "reversed": "The Sun is clarity, vitality, joy, warmth, success, and the blessed relief of not needing to decode every little thing like it is a haunted crossword. It is life force returning to the body and truth becoming simple enough to feel. This card is radiant, but not shallow. Joy can be sharp. It shows you what is actually alive.\n\nReversed, The Sun suggests dimmed confidence, delayed happiness, burnout, or performative cheer that looks nice and tastes like cardboard. Protect your energy. Let delight be private before it becomes public. You do not have to smile harder to prove healing is happening. Real warmth returns better when you stop staging it."
+    }
+  },
+  {
+    "id": "judgment",
+    "name": "Judgment",
+    "keywords": [
+      "awakening",
+      "rebirth",
+      "truth",
+      "redemption"
+    ],
+    "description": {
+      "upright": "Judgment is the bell, the rising, the review, and the moment your old self gets called to the witness stand. It deals with awakening, reckoning, forgiveness, rebirth, and the decision to stop living under outdated labels. This card is not about being perfect. It is about answering what you now know.\n\nUpright, Judgment says the call is coming from inside the life. Listen. Something in you is ready to rise, tell the truth, make the repair, accept the lesson, and move with more honesty. Forgiveness can be momentum, not a decorative plaque. Answer the bell before you make avoidance your permanent address.",
+      "reversed": "Judgment is the bell, the rising, the review, and the moment your old self gets called to the witness stand. It deals with awakening, reckoning, forgiveness, rebirth, and the decision to stop living under outdated labels. This card is not about being perfect. It is about answering what you now know.\n\nReversed, Judgment points to self-critique, avoidance, old shame, or a refusal to let the case close because apparently suffering has excellent branding. Lay the old label down. Take the next right step, not the most dramatic one. Redemption is usually practical. It looks like changed behavior and fewer speeches."
+    }
+  },
+  {
+    "id": "theworld",
+    "name": "The World",
+    "keywords": [
+      "completion",
+      "success",
+      "integration",
+      "wholeness"
+    ],
+    "description": {
+      "upright": "The World is the closing circle, the dance at the end of the lesson, integration, completion, mastery, and belonging. It is what happens when the scattered parts finally recognize each other as one life. This card carries success, but more importantly, it carries wholeness. The confetti is optional. The integration is the point.\n\nUpright, The World says a chapter is complete and you are allowed to stand in that without rushing to the next crisis for familiar scenery. Celebrate what you have lived, learned, built, and survived. Share the wisdom by embodying it. A circle closes with gratitude, and the next one opens better because you are arriving whole.",
+      "reversed": "The World is the closing circle, the dance at the end of the lesson, integration, completion, mastery, and belonging. It is what happens when the scattered parts finally recognize each other as one life. This card carries success, but more importantly, it carries wholeness. The confetti is optional. The integration is the point.\n\nReversed, The World shows loose ends, almost-finished work, delayed closure, or the last stitch you keep skipping because it is boring and nobody claps for it. Do the closing task. Send the final note, archive the lesson, clean the edge. Completion is a practice, not a mood. Finish clean so the next beginning is not dragging old cords."
+    }
+  },
+  {
+    "id": "awand",
+    "name": "Ace of Wands",
+    "keywords": [
+      "inspiration",
+      "potential",
+      "creation",
+      "energy"
+    ],
+    "description": {
+      "upright": "The Ace of Wands is the match strike. It is raw creative force, desire, invention, heat, attraction, and the first flash of yes before logistics start wearing a visor. In symbolism, the wand is living wood, so this spark is not sterile. It wants to grow, move, burn, and become something.\n\nUpright, the Ace of Wands says follow the idea that makes your blood move and give it a small, real container today. A draft, a call, a sketch, a test run; something with fingerprints on it. Start messy and let the fire teach you what it needs next. Curiosity plus action beats over-planning with a very smug little clipboard.",
+      "reversed": "The Ace of Wands is the match strike. It is raw creative force, desire, invention, heat, attraction, and the first flash of yes before logistics start wearing a visor. In symbolism, the wand is living wood, so this spark is not sterile. It wants to grow, move, burn, and become something.\n\nReversed, the Ace of Wands says the spark is there, but the kindling is damp. Maybe you are waiting for perfect conditions, scattering energy across too many starts, or mistaking desire for follow-through. Clear one tiny blocker and light a smaller match. Progress wants friction you can actually feel, not a fantasy launch."
+    }
+  },
+  {
+    "id": "2wand",
+    "name": "Two of Wands",
+    "keywords": [
+      "planning",
+      "decisions",
+      "expansion",
+      "possibility"
+    ],
+    "description": {
+      "upright": "The Two of Wands is the map, the globe, the hand on the gate before it opens. It is vision becoming a plan, ambition stretching past the current room, and the strange tension between staying where things are known and stepping toward what might actually fit better.\n\nUpright, the Two of Wands says choose growth on purpose. You do not need to conquer the whole horizon by Tuesday, despite what your nervous system may be suggesting. Pick a direction that excites you and write down one or two practical moves. Keep your tools light, your calendar honest, and your eyes up.",
+      "reversed": "The Two of Wands is the map, the globe, the hand on the gate before it opens. It is vision becoming a plan, ambition stretching past the current room, and the strange tension between staying where things are known and stepping toward what might actually fit better.\n\nReversed, the Two of Wands shows analysis paralysis, fear of expansion, or redrawing the map so often you never leave town. Shrink the choice. Reduce the variables. Run one small test you can learn from quickly. Certainty is not required to begin. A direction and a next step will do nicely."
+    }
+  },
+  {
+    "id": "3wand",
+    "name": "Three of Wands",
+    "keywords": [
+      "vision",
+      "progress",
+      "exploration",
+      "growth"
+    ],
+    "description": {
+      "upright": "The Three of Wands is the harbor view after the first brave move has already been made. Ships are out there, plans are in motion, and the world is starting to answer. This card is vision, expansion, progress, waiting with purpose, and preparing to receive what your effort set in motion.\n\nUpright, the Three of Wands says momentum is building and your world is getting wider. Keep doing what works, but build support for the bigger horizon you are moving toward. Ask for what you need, document your process, and stay available to opportunity. You are allowed to expect good things and prepare for them like a sane person.",
+      "reversed": "The Three of Wands is the harbor view after the first brave move has already been made. Ships are out there, plans are in motion, and the world is starting to answer. This card is vision, expansion, progress, waiting with purpose, and preparing to receive what your effort set in motion.\n\nReversed, the Three of Wands points to delays, narrow vision, weak follow-through, or an opportunity one lane over that you keep missing because you are staring at the old route. Step back and update the plan with what reality is showing you. Patience is not passive here. Tweak the angle and clean up your signal."
+    }
+  },
+  {
+    "id": "4wand",
+    "name": "Four of Wands",
+    "keywords": [
+      "celebration",
+      "harmony",
+      "community",
+      "home"
+    ],
+    "description": {
+      "upright": "The Four of Wands is the garland over the doorway, the table set, the people gathered, the little proof that something has become sturdy enough to celebrate. It speaks to home, milestones, belonging, community, and the kind of joy that gives your nervous system somewhere decent to sit down.\n\nUpright, the Four of Wands says celebrate the milestone, big or small. You built something worth gathering around, and it is okay to enjoy the stability before immediately inventing another hill to climb. Bring in the people who helped. Let safety register in the body for a minute. Home base matters because it lets you roam farther.",
+      "reversed": "The Four of Wands is the garland over the doorway, the table set, the people gathered, the little proof that something has become sturdy enough to celebrate. It speaks to home, milestones, belonging, community, and the kind of joy that gives your nervous system somewhere decent to sit down.\n\nReversed, the Four of Wands suggests the vibe is off at home, in the group, or in the foundation of something that was supposed to feel supportive. Start with the base. Have the honest conversation, clean the space, or reset the shared agreements. Small repair now prevents a bigger crack later, which is rude but efficient."
+    }
+  },
+  {
+    "id": "5wand",
+    "name": "Five of Wands",
+    "keywords": [
+      "conflict",
+      "competition",
+      "tension",
+      "challenge"
+    ],
+    "description": {
+      "upright": "The Five of Wands is the practice fight, the messy brainstorm, the clatter of competing sticks and competing egos. It brings tension, challenge, rivalry, friction, and the useful kind of conflict that can sharpen everyone if nobody decides to be the main character of nonsense.\n\nUpright, the Five of Wands says friction can be useful when the goal is growth. Different ideas, bold opinions, and a little competition may make the work stronger. Keep it fair, keep it specific, and keep it about the task, not the people. This is practice for bigger stages. Try not to make it weird.",
+      "reversed": "The Five of Wands is the practice fight, the messy brainstorm, the clatter of competing sticks and competing egos. It brings tension, challenge, rivalry, friction, and the useful kind of conflict that can sharpen everyone if nobody decides to be the main character of nonsense.\n\nReversed, the Five of Wands shows petty conflict, avoidance, passive aggression, or noise that is louder than the actual goal. Reset the rules of engagement or choose a new arena entirely. You do not owe your best thinking to every argument that wanders up wearing boots. Protect the work from chaos with a microphone."
+    }
+  },
+  {
+    "id": "6wand",
+    "name": "Six of Wands",
+    "keywords": [
+      "victory",
+      "recognition",
+      "success",
+      "achievement"
+    ],
+    "description": {
+      "upright": "The Six of Wands is the return from the fight with a wreath on the horse and people acting like they always believed in you. It is victory, recognition, confidence, and public validation, but also the responsibility of knowing what actually earned the win.\n\nUpright, the Six of Wands says take the compliment without batting it away like a cursed insect. You did something well. Share the credit, note what worked, and let the lift carry you into the next move. Success is feedback you can bank. Confidence grows from clear evidence and steady follow-through.",
+      "reversed": "The Six of Wands is the return from the fight with a wreath on the horse and people acting like they always believed in you. It is victory, recognition, confidence, and public validation, but also the responsibility of knowing what actually earned the win.\n\nReversed, the Six of Wands warns against chasing applause instead of progress. If the work is thinning out because you are optimizing for optics, step away from the imaginary audience. Return to substance: the standard, the values, the outcome that matters when nobody is clapping. Your best wins are the ones you can stand behind."
+    }
+  },
+  {
+    "id": "7wand",
+    "name": "Seven of Wands",
+    "keywords": [
+      "defense",
+      "perseverance",
+      "challenge",
+      "courage"
+    ],
+    "description": {
+      "upright": "The Seven of Wands is the high ground, the raised staff, the moment after success when everyone suddenly has comments, challenges, and helpful little opinions. It is defense, perseverance, boundaries, courage, and the pressure of protecting what you have earned without turning into a porcupine.\n\nUpright, the Seven of Wands says hold your ground without hardening your whole personality. You worked for this view, and you are allowed to defend it with calm, clear boundaries. Say what you will and will not do, then stick to it. You do not have to fight everyone. You do have to stay aligned.",
+      "reversed": "The Seven of Wands is the high ground, the raised staff, the moment after success when everyone suddenly has comments, challenges, and helpful little opinions. It is defense, perseverance, boundaries, courage, and the pressure of protecting what you have earned without turning into a porcupine.\n\nReversed, the Seven of Wands says being on guard all the time is exhausting and rarely as noble as it feels at 2 a.m. If you are defending everything, you are protecting nothing. Pick the hills that actually matter. Invite support. Being right is different from being well, annoying though that may be."
+    }
+  },
+  {
+    "id": "8wand",
+    "name": "Eight of Wands",
+    "keywords": [
+      "speed",
+      "movement",
+      "progress",
+      "communication"
+    ],
+    "description": {
+      "upright": "The Eight of Wands is movement in the air, messages flying, arrows released, the point where hesitation has left the chat. It represents speed, progress, communication, travel, momentum, and the moment when timing finally stops dragging its feet.\n\nUpright, the Eight of Wands says clear the runway. Send the message, make the move, and ride the current while it is strong. Direct communication will keep everyone pointed the same way. Momentum and clarity together cover amazing ground. Keep it simple, keep it honest, and do not add twelve decorative complications.",
+      "reversed": "The Eight of Wands is movement in the air, messages flying, arrows released, the point where hesitation has left the chat. It represents speed, progress, communication, travel, momentum, and the moment when timing finally stops dragging its feet.\n\nReversed, the Eight of Wands shows mixed signals, delays, rushed actions, or six half-sent messages doing the work of zero good ones. Slow the pace just enough to aim. Tighten the message and choose the channel that actually reaches people. Speed is helpful when direction is real. Make direction real first."
+    }
+  },
+  {
+    "id": "9wand",
+    "name": "Nine of Wands",
+    "keywords": [
+      "resilience",
+      "boundaries",
+      "persistence",
+      "strength"
+    ],
+    "description": {
+      "upright": "The Nine of Wands is the wounded guard at the fence, still standing, suspicious of absolutely everyone, and not entirely wrong. It speaks to resilience, boundaries, persistence, fatigue, and the last stretch of a long struggle where endurance needs care as much as it needs grit.\n\nUpright, the Nine of Wands says you are tired and still here, which says a lot. Protect the ground you have gained and set boundaries that guard your effort. Rest in cycles, plan shorter pushes, and remember why you started. Resilience is not grinding forever. It is recovering well enough to try again.",
+      "reversed": "The Nine of Wands is the wounded guard at the fence, still standing, suspicious of absolutely everyone, and not entirely wrong. It speaks to resilience, boundaries, persistence, fatigue, and the last stretch of a long struggle where endurance needs care as much as it needs grit.\n\nReversed, the Nine of Wands suggests burnout, defensiveness, or running on fumes until every task looks like a hill with legal paperwork. Step back and ask for help before you need it. Your body is part of the project plan, not an afterthought. Shorten the list to what actually matters this week."
+    }
+  },
+  {
+    "id": "10wand",
+    "name": "Ten of Wands",
+    "keywords": [
+      "burden",
+      "responsibility",
+      "hardship",
+      "obligation"
+    ],
+    "description": {
+      "upright": "The Ten of Wands is the bundle on the back, the last mile, the point where responsibility becomes physically rude. It represents burden, obligation, overwork, duty, and the way success can quietly become a pile of sticks you agreed to carry because apparently having hands means yes.\n\nUpright, the Ten of Wands says there is a lot on your shoulders, and some of it may genuinely matter. Keep going where it counts, but look hard at what can be delegated, delayed, simplified, or dropped. Busy does not always mean meaningful. Carry what is yours. Set down what you collected out of guilt, habit, or poor project management.",
+      "reversed": "The Ten of Wands is the bundle on the back, the last mile, the point where responsibility becomes physically rude. It represents burden, obligation, overwork, duty, and the way success can quietly become a pile of sticks you agreed to carry because apparently having hands means yes.\n\nReversed, the Ten of Wands points to unnecessary weight, people-pleasing, perfectionism, or the heroic little fantasy that if you suffer enough the universe will issue a certificate. It will not. Recut the commitment into something a human can do. Ask for backup. Sustainable beats impressive, especially when rent and bones are involved."
+    }
+  },
+  {
+    "id": "pwand",
+    "name": "Page of Wands",
+    "keywords": [
+      "exploration",
+      "curiosity",
+      "energy",
+      "adventure"
+    ],
+    "description": {
+      "upright": "The Page of Wands is the bright-eyed explorer with a spark in one hand and absolutely no guarantee of follow-through, bless them. This card is curiosity, adventure, creative discovery, first attempts, and the electric feeling of wanting to try before you have overexplained the magic out of it.\n\nUpright, the Page of Wands says follow the spark into something small and real today. A draft, a message, a test run, a silly first version with potential. Treat this as an adventure and expect to learn as you go. Enthusiasm is a resource. Spend it on action, not debate.",
+      "reversed": "The Page of Wands is the bright-eyed explorer with a spark in one hand and absolutely no guarantee of follow-through, bless them. This card is curiosity, adventure, creative discovery, first attempts, and the electric feeling of wanting to try before you have overexplained the magic out of it.\n\nReversed, the Page of Wands suggests starting strong and fading, bouncing between ideas, or keeping the spark so uncontained it lights nothing useful. Give it a simple container: time on the calendar, a clear scope, a buddy to check in with. Constraints are not enemies. They are little fences that keep the fire from wandering into traffic."
+    }
+  },
+  {
+    "id": "nwand",
+    "name": "Knight of Wands",
+    "keywords": [
+      "passion",
+      "adventure",
+      "action",
+      "impulsiveness"
+    ],
+    "description": {
+      "upright": "The Knight of Wands is velocity with cheekbones. Passion, adventure, courage, risk, travel, impulse, and bold action all ride through this card, usually at a speed that makes practical people reach for a chair. It is powerful when aimed and chaotic when it confuses motion with meaning.\n\nUpright, the Knight of Wands says move boldly and let your heat serve a real target. Passion can cover serious ground when it has a mission instead of just vibes in boots. Keep one eye on the map so you do not waste the sprint. Courage is contagious. Go make a dent.",
+      "reversed": "The Knight of Wands is velocity with cheekbones. Passion, adventure, courage, risk, travel, impulse, and bold action all ride through this card, usually at a speed that makes practical people reach for a chair. It is powerful when aimed and chaotic when it confuses motion with meaning.\n\nReversed, the Knight of Wands shows all gas, no map, and impressive motion with suspiciously fuzzy results. Slow half a beat to aim and you will actually hit something. You do not need to cool off. You need purpose big enough to hold your speed. Choose the mission, then light it up."
+    }
+  },
+  {
+    "id": "qwand",
+    "name": "Queen of Wands",
+    "keywords": [
+      "confidence",
+      "creativity",
+      "independence",
+      "charisma"
+    ],
+    "description": {
+      "upright": "The Queen of Wands is warm charisma, creative confidence, independence, humor, magnetism, and the kind of presence that makes a room remember it has windows. She is generous without disappearing, bold without begging, and bright because she generates her own heat.\n\nUpright, the Queen of Wands says lead by being fully yourself and letting other people breathe around that. Your confidence works best when it invites, not intimidates. Make the thing, host the room, speak the idea, wear the color, take up the space. Joy is practical. It makes the work easier to do.",
+      "reversed": "The Queen of Wands is warm charisma, creative confidence, independence, humor, magnetism, and the kind of presence that makes a room remember it has windows. She is generous without disappearing, bold without begging, and bright because she generates her own heat.\n\nReversed, the Queen of Wands suggests the smile may be bright while the tank is empty, or confidence may be slipping into comparison, jealousy, or performance. You do not have to set yourself on fire to keep the room warm. Share the spotlight and the workload. Real leadership includes rest, which is deeply inconvenient but true."
+    }
+  },
+  {
+    "id": "kwand",
+    "name": "King of Wands",
+    "keywords": [
+      "leadership",
+      "vision",
+      "power",
+      "influence"
+    ],
+    "description": {
+      "upright": "The King of Wands is vision with command. He sees the horizon, rallies the people, and takes responsibility for the outcome instead of just enjoying the title font. This card is leadership, influence, entrepreneurial fire, courage, and the ability to turn inspiration into a working system.\n\nUpright, the King of Wands says make the call, explain the why, and move first. You are being asked to lead from the front, not from a cloud of inspirational fog. Vision matters, but execution is what earns trust. Courage multiplies results when it is paired with responsibility. Build something people can follow.",
+      "reversed": "The King of Wands is vision with command. He sees the horizon, rallies the people, and takes responsibility for the outcome instead of just enjoying the title font. This card is leadership, influence, entrepreneurial fire, courage, and the ability to turn inspiration into a working system.\n\nReversed, the King of Wands warns against command without connection, ego dressed as leadership, or big vision that leaves real humans coughing in the dust. Invite input, listen for what you missed, then decide cleanly. People run harder with leaders who see them. Authority is strongest when it serves the mission and the people doing the work."
+    }
+  },
+  {
+    "id": "acup",
+    "name": "Ace of Cups",
+    "keywords": [
+      "love",
+      "compassion",
+      "intuition",
+      "new beginnings"
+    ],
+    "description": {
+      "upright": "The Ace of Cups is the open vessel, the first spill of feeling, the heart coming online before anyone ruins it with over-analysis. It represents love, intuition, compassion, healing, creative flow, and emotional beginnings. This card is soft, but not flimsy. Water can bless, clean, flood, and absolutely rearrange the furniture.\n\nUpright, the Ace of Cups says let good feeling be simple for a minute. New love, tenderness, creative inspiration, or emotional renewal may be arriving without needing a fifteen-page explanation. Follow what feels nourishing and safe. Add one small ritual that keeps the channel open. You do not have to brace for the other shoe. Let good be good.",
+      "reversed": "The Ace of Cups is the open vessel, the first spill of feeling, the heart coming online before anyone ruins it with over-analysis. It represents love, intuition, compassion, healing, creative flow, and emotional beginnings. This card is soft, but not flimsy. Water can bless, clean, flood, and absolutely rearrange the furniture.\n\nReversed, the Ace of Cups suggests walls too high, feelings everywhere, or a heart trying to function with the emotional equivalent of bad plumbing. Name one true feeling to one safe person, and let that be enough for today. If overwhelmed, lower the input and raise the care. Connection you can actually hold beats dramatic catharsis every time."
+    }
+  },
+  {
+    "id": "2cup",
+    "name": "Two of Cups",
+    "keywords": [
+      "partnership",
+      "connection",
+      "union",
+      "harmony"
+    ],
+    "description": {
+      "upright": "The Two of Cups is the offered cup and the meeting in the middle. It represents partnership, attraction, friendship, repair, mutual care, and the kind of connection where both people are actually present, which is apparently rarer than it should be.\n\nUpright, the Two of Cups says reciprocity is the whole point. This can be romance, friendship, a creative partner, or a healing conversation where both sides show up with care and self-respect. Let clarity grow from conversation, not guessing. When both people bring honesty, the middle gets very strong.",
+      "reversed": "The Two of Cups is the offered cup and the meeting in the middle. It represents partnership, attraction, friendship, repair, mutual care, and the kind of connection where both people are actually present, which is apparently rarer than it should be.\n\nReversed, the Two of Cups shows chemistry without clarity, imbalance, crossed expectations, or one person pouring while the other admires the cup. Say what you want in simple terms and ask for the same back. Alignment beats spark long-term. If it is a no, let it be a kind no and move on before the confusion starts charging rent."
+    }
+  },
+  {
+    "id": "3cup",
+    "name": "Three of Cups",
+    "keywords": [
+      "celebration",
+      "friendship",
+      "community",
+      "joy"
+    ],
+    "description": {
+      "upright": "The Three of Cups is the circle of friends, the raised glasses, the group text that is occasionally useful, and the reminder that joy likes company. It represents friendship, community, celebration, chosen family, support, and shared happiness that does not need to apologize for being loud.\n\nUpright, the Three of Cups says gather with the people who refill you. Celebrate the win, share the good news, laugh too hard, and remember you are not doing life alone. Showing up for each other is the point. The party is just the more flattering excuse.",
+      "reversed": "The Three of Cups is the circle of friends, the raised glasses, the group text that is occasionally useful, and the reminder that joy likes company. It represents friendship, community, celebration, chosen family, support, and shared happiness that does not need to apologize for being loud.\n\nReversed, the Three of Cups can show social burnout, gossip, FOMO, exclusion, or too many events and not enough actual connection. Choose presence over performance. Smaller, real moments beat big, blurry ones. Say no when you need to so your yes stays sincere. Your people want the real you, not the depleted version wearing lip gloss and resentment."
+    }
+  },
+  {
+    "id": "4cup",
+    "name": "Four of Cups",
+    "keywords": [
+      "apathy",
+      "contemplation",
+      "disconnection",
+      "boredom"
+    ],
+    "description": {
+      "upright": "The Four of Cups is the crossed arms, the offered cup, the emotional waiting room where everything feels vaguely beige. It speaks to apathy, contemplation, boredom, disconnection, and the need to look at what you are refusing, missing, or quietly outgrowing.\n\nUpright, the Four of Cups says a meh mood is not a moral failing. You may be bored, full, overstimulated, or genuinely in need of a reset. Let the pause do its work, but keep one eye open for the cup being offered. A small change of scene may wake something up without requiring a whole personal rebrand.",
+      "reversed": "The Four of Cups is the crossed arms, the offered cup, the emotional waiting room where everything feels vaguely beige. It speaks to apathy, contemplation, boredom, disconnection, and the need to look at what you are refusing, missing, or quietly outgrowing.\n\nReversed, the Four of Cups suggests the fog is starting to lift, or that lingering apathy has turned into avoidance. Shake the snow globe a little. Move your body, change the room, answer the message, or say yes to one tiny invite you would usually skip. Momentum does not need to be dramatic to count."
+    }
+  },
+  {
+    "id": "5cup",
+    "name": "Five of Cups",
+    "keywords": [
+      "loss",
+      "regret",
+      "disappointment",
+      "grief"
+    ],
+    "description": {
+      "upright": "The Five of Cups is spilled wine, a bowed head, and the bridge still standing behind the person too hurt to turn around yet. It represents grief, regret, disappointment, loss, and the painful focus on what cannot be put back the way it was.\n\nUpright, the Five of Cups says the disappointment is real, so do not rush straight to the lesson like grief is an annoying meeting you can skip. Feel what fell. When the first wave eases, look for what is still standing and who is still with you. Loss can carve space for new honesty, but it does not need to be prettied up first.",
+      "reversed": "The Five of Cups is spilled wine, a bowed head, and the bridge still standing behind the person too hurt to turn around yet. It represents grief, regret, disappointment, loss, and the painful focus on what cannot be put back the way it was.\n\nReversed, the Five of Cups suggests the loop may be loosening. Replaying the worst part forever is not loyalty to the pain; it is just a very bleak screensaver. Turn toward one doable kindness, to yourself or someone else, and let that be the first stitch. Healing is small, repeated, and stubborn."
+    }
+  },
+  {
+    "id": "6cup",
+    "name": "Six of Cups",
+    "keywords": [
+      "nostalgia",
+      "innocence",
+      "childhood",
+      "memory"
+    ],
+    "description": {
+      "upright": "The Six of Cups is childhood, memory, sweetness, old photos, familiar places, and the weird way the past can smell like crayons, grass, and unresolved family dynamics all at once. It represents nostalgia, innocence, generosity, roots, and the gentler parts of who you used to be.\n\nUpright, the Six of Cups says return to something simple that still knows your name. Reconnect with old joy, reach out to someone from your roots, revive a tradition, or let comfort be creative. Soft does not mean stuck. Sometimes the old sweetness carries medicine that the current version of you can actually use.",
+      "reversed": "The Six of Cups is childhood, memory, sweetness, old photos, familiar places, and the weird way the past can smell like crayons, grass, and unresolved family dynamics all at once. It represents nostalgia, innocence, generosity, roots, and the gentler parts of who you used to be.\n\nReversed, the Six of Cups warns against living inside the highlight reel or letting old stories keep writing your present. Keep the memory, but update the contract. You are not who you were, and thank God, frankly. Honor the past by building something alive now, not by embalming it and calling that loyalty."
+    }
+  },
+  {
+    "id": "7cup",
+    "name": "Seven of Cups",
+    "keywords": [
+      "choices",
+      "fantasy",
+      "illusion",
+      "imagination"
+    ],
+    "description": {
+      "upright": "The Seven of Cups is the dream shelf, all glittering options and very questionable labels. It represents fantasy, imagination, choices, illusion, temptation, and the delicious but dangerous moment when everything is possible because nothing has been chosen yet.\n\nUpright, the Seven of Cups says enjoy the dreaming phase, then pick one option and test it in daylight. Limit the menu on purpose so your choice gets enough attention to become real. Fantasy is useful inspiration. Action is how you find out what you actually want, which is rude of reality but helpful.",
+      "reversed": "The Seven of Cups is the dream shelf, all glittering options and very questionable labels. It represents fantasy, imagination, choices, illusion, temptation, and the delicious but dangerous moment when everything is possible because nothing has been chosen yet.\n\nReversed, the Seven of Cups suggests fog clearing, wishful thinking exposed, or too many options making your brain act like a browser with forty-eight tabs open. Ground the decision in one verifiable fact and one small experiment. If the story only works in your head, it is not ready yet. Bring imagination. Add evidence."
+    }
+  },
+  {
+    "id": "8cup",
+    "name": "Eight of Cups",
+    "keywords": [
+      "transition",
+      "search",
+      "withdrawal",
+      "journey"
+    ],
+    "description": {
+      "upright": "The Eight of Cups is the quiet walk away under the moon, leaving stacked cups behind because full does not always mean fulfilling. It represents withdrawal, transition, searching, emotional honesty, and the decision to leave something that still exists but no longer feeds you.\n\nUpright, the Eight of Cups says walking away can be an act of respect for yourself and for the thing you are leaving. Go with honesty, keep the drama low, and let the empty space stay empty for a bit. Not every departure needs a villain. Sometimes the truth is simply that your soul has outgrown the furniture.",
+      "reversed": "The Eight of Cups is the quiet walk away under the moon, leaving stacked cups behind because full does not always mean fulfilling. It represents withdrawal, transition, searching, emotional honesty, and the decision to leave something that still exists but no longer feeds you.\n\nReversed, the Eight of Cups points to avoiding the goodbye, circling back out of fear, or staying because leaving would require an honest sentence. Be kind and be clear, even if your voice shakes. Closure is not a door slamming. It is choosing a direction and taking it without demanding that everyone enjoy the scene."
+    }
+  },
+  {
+    "id": "9cup",
+    "name": "Nine of Cups",
+    "keywords": [
+      "contentment",
+      "gratitude",
+      "wishes",
+      "satisfaction"
+    ],
+    "description": {
+      "upright": "The Nine of Cups is the satisfied figure before the full row of cups, the wish granted, the good meal, the private little yes. It represents contentment, pleasure, gratitude, satisfaction, and the moment when enough finally feels like enough, at least for five blessed minutes.\n\nUpright, the Nine of Cups says a wish may be arriving, or you may be standing inside a life you once asked for. Enjoy it without apologizing or immediately suspiciously poking it with a stick. Notice how satisfaction feels in your body. Joy is not a finish line. It is fuel, information, and occasionally dessert.",
+      "reversed": "The Nine of Cups is the satisfied figure before the full row of cups, the wish granted, the good meal, the private little yes. It represents contentment, pleasure, gratitude, satisfaction, and the moment when enough finally feels like enough, at least for five blessed minutes.\n\nReversed, the Nine of Cups suggests something may look good on paper but feel thin in your chest. Retune your goals toward what actually nourishes you, not what impresses people you do not even like. Swap a few shoulds for wants and see what changes. Real contentment is usually quieter and sturdier than applause."
+    }
+  },
+  {
+    "id": "10cup",
+    "name": "Ten of Cups",
+    "keywords": [
+      "harmony",
+      "family",
+      "joy",
+      "completion"
+    ],
+    "description": {
+      "upright": "The Ten of Cups is the rainbow over the home, the people together, the emotional ecosystem working for once without needing constant duct tape. It represents harmony, family, belonging, shared joy, emotional completion, and the kind of happiness that lives in ordinary moments when they are cared for properly.\n\nUpright, the Ten of Cups says belonging is showing up as ease. Family, chosen or given, may feel more aligned, or everyday life may be offering simple proof that love can be practical. Name the good out loud. Do small things that keep the connections strong. Happiness does not need to be grand to be true.",
+      "reversed": "The Ten of Cups is the rainbow over the home, the people together, the emotional ecosystem working for once without needing constant duct tape. It represents harmony, family, belonging, shared joy, emotional completion, and the kind of happiness that lives in ordinary moments when they are cared for properly.\n\nReversed, the Ten of Cups shows surface smiles with stress underneath, family tension, mismatched expectations, or everyone pretending the roof is fine while it drips into a mixing bowl. Talk about the tension early and kindly. Choose repair over perfection. Little truths keep the house standing better than decorative denial."
+    }
+  },
+  {
+    "id": "pcup",
+    "name": "Page of Cups",
+    "keywords": [
+      "creativity",
+      "intuition",
+      "curiosity",
+      "dreamer"
+    ],
+    "description": {
+      "upright": "The Page of Cups is the fish in the cup, the strange message from the feeling world, the soft invitation you did not schedule. It represents creativity, intuition, tenderness, crushes, apologies, emotional curiosity, and the beginner heart trying to say something sincere without tripping over its own feet.\n\nUpright, the Page of Cups says lead with curiosity and let a small, sincere gesture carry the message. This can be good news, a creative ping, a sweet crush, or a feeling worth treating gently. You do not need clever. You need honest. Stay open and let things unfold at a pace that does not scare the fish.",
+      "reversed": "The Page of Cups is the fish in the cup, the strange message from the feeling world, the soft invitation you did not schedule. It represents creativity, intuition, tenderness, crushes, apologies, emotional curiosity, and the beginner heart trying to say something sincere without tripping over its own feet.\n\nReversed, the Page of Cups points to over-idealizing, mixed signals, emotional immaturity, or hopes doing all the communication while reality sits there with a clipboard. Keep it specific and kind. Say what you mean without turning it into a poem nobody asked to decode. Softness and clarity can coexist. In fact, they should."
+    }
+  },
+  {
+    "id": "ncup",
+    "name": "Knight of Cups",
+    "keywords": [
+      "romance",
+      "charm",
+      "idealism",
+      "pursuit"
+    ],
+    "description": {
+      "upright": "The Knight of Cups is the romantic messenger, the questing heart, the person who absolutely knows the lighting matters. It represents romance, creativity, charm, idealism, emotional pursuit, and the desire to follow feeling toward something beautiful, meaningful, or at least beautifully complicated.\n\nUpright, the Knight of Cups says follow the feeling, but keep your feet on the ground where the bills and calendars live. Make the gesture, offer the invitation, write the song, pitch the dream. Heart-led does not mean headless. Your sincerity is a strength when it is paired with responsiveness and a plan with at least one working wheel.",
+      "reversed": "The Knight of Cups is the romantic messenger, the questing heart, the person who absolutely knows the lighting matters. It represents romance, creativity, charm, idealism, emotional pursuit, and the desire to follow feeling toward something beautiful, meaningful, or at least beautifully complicated.\n\nReversed, the Knight of Cups warns that charm without consistency leads people in circles. Romantic talk, creative fantasy, or big feelings may be outrunning actual follow-through. Say what you mean and move at a pace you can keep. Being clear is kinder than being impressive. The balcony scene is less cute if nobody ever shows up after."
+    }
+  },
+  {
+    "id": "qcup",
+    "name": "Queen of Cups",
+    "keywords": [
+      "compassion",
+      "intuition",
+      "nurturing",
+      "empathy"
+    ],
+    "description": {
+      "upright": "The Queen of Cups is the deep vessel, the intuitive listener, the emotional weather reader with better reception than most people deserve. She represents compassion, empathy, psychic sensitivity, nurturing, creativity, and the ability to hold feeling without being swallowed whole by it.\n\nUpright, the Queen of Cups says your sensitivity is useful when it has edges. Listen deeply, act kindly, and hold space without holding everything. Emotional leadership can be quiet and still change the room. Trust what you feel, but give it a clean channel. Care is stronger when it is not secretly bleeding out.",
+      "reversed": "The Queen of Cups is the deep vessel, the intuitive listener, the emotional weather reader with better reception than most people deserve. She represents compassion, empathy, psychic sensitivity, nurturing, creativity, and the ability to hold feeling without being swallowed whole by it.\n\nReversed, the Queen of Cups suggests taking on everyone else's weather until your own forecast disappears. Boundaries are not a betrayal of compassion. They are how compassion survives the week. Step back when you start to blur, name your limits, and let other people carry their part of the sky."
+    }
+  },
+  {
+    "id": "kcup",
+    "name": "King of Cups",
+    "keywords": [
+      "emotional balance",
+      "wisdom",
+      "support",
+      "maturity"
+    ],
+    "description": {
+      "upright": "The King of Cups is calm water with depth underneath. He represents emotional maturity, wisdom, steadiness, support, diplomacy, and the ability to stay present without making every feeling the boss of the room. This is leadership that regulates before it reacts, which sounds simple until people start being people.\n\nUpright, the King of Cups says stay calm in the deep end. You do not need to fix everything to be helpful. Model grounded responses, hold perspective, and let your steadiness create safety. Emotional control here is not numbness. It is the ability to feel fully and still choose your behavior like an adult with decent lighting.",
+      "reversed": "The King of Cups is calm water with depth underneath. He represents emotional maturity, wisdom, steadiness, support, diplomacy, and the ability to stay present without making every feeling the boss of the room. This is leadership that regulates before it reacts, which sounds simple until people start being people.\n\nReversed, the King of Cups points to bottled emotion, moodiness, manipulation, or calm that is actually just avoidance in a nice sweater. Share what is true before it leaks sideways. Regulate first, then communicate. You get to be human and in charge at the same time, but the humans around you should not have to decode the tide charts."
+    }
+  },
+  {
+    "id": "aswd",
+    "name": "Ace of Swords",
+    "keywords": [
+      "clarity",
+      "truth",
+      "breakthrough",
+      "ideas"
+    ],
+    "description": {
+      "upright": "The Ace of Swords is the blade of truth, the clean cut, the sentence that finally says what the fog kept trying to soften. It represents clarity, breakthrough, truth, strategy, language, and the kind of idea that slices through confusion without asking everyone to feel cozy about it.\n\nUpright, the Ace of Swords says the truth is available, and it is sharper than the story you were using to stay comfortable. Speak clearly, write it down, name the point, and let the clean thought do its work. This is a moment for decisions based on facts, not vibes wearing glasses. Cut through the fog and keep the blade clean.",
+      "reversed": "The Ace of Swords is the blade of truth, the clean cut, the sentence that finally says what the fog kept trying to soften. It represents clarity, breakthrough, truth, strategy, language, and the kind of idea that slices through confusion without asking everyone to feel cozy about it.\n\nReversed, the Ace of Swords shows confusion, misinformation, mental blocks, or someone using language like a smoke machine. Do not argue with fog. Seek facts, check the source, and wait until the thought is clean enough to act on. If your mind is loud but not clear, put the sword down before you start trimming the wrong thing."
+    }
+  },
+  {
+    "id": "2swd",
+    "name": "Two of Swords",
+    "keywords": [
+      "decisions",
+      "stalemate",
+      "balance",
+      "choices"
+    ],
+    "description": {
+      "upright": "The Two of Swords is the blindfold, the crossed blades, and the tense little peace of not choosing yet. It represents stalemate, avoidance, balance, guarded decisions, and the moment when both options feel inconvenient enough that pretending not to see them starts looking weirdly attractive.\n\nUpright, the Two of Swords says you may be holding the line while you gather yourself, and that can be valid for a minute. But the decision will not disappear because you are being very still near it. Remove the blindfold gently. Name the two truths you are trying not to hold at the same time, then choose the next honest move.",
+      "reversed": "The Two of Swords is the blindfold, the crossed blades, and the tense little peace of not choosing yet. It represents stalemate, avoidance, balance, guarded decisions, and the moment when both options feel inconvenient enough that pretending not to see them starts looking weirdly attractive.\n\nReversed, the Two of Swords shows information overload, delayed decisions, false choices, or avoidance that has officially become part of the decor. Simplify the question. What do you know, what do you need, and what are you refusing to admit? You do not need perfect certainty. You need enough truth to stop freezing in place."
+    }
+  },
+  {
+    "id": "3swd",
+    "name": "Three of Swords",
+    "keywords": [
+      "heartbreak",
+      "grief",
+      "pain",
+      "betrayal"
+    ],
+    "description": {
+      "upright": "The Three of Swords is the pierced heart under rain, which is subtle in the way a brick through a window is subtle. It represents grief, heartbreak, betrayal, painful truth, and the sharp moment when denial can no longer protect the soft place.\n\nUpright, the Three of Swords says the hurt needs acknowledgment, not immediate branding as growth. Let the truth land. Let the pain be real without making it your whole identity or pretending you are fine for the convenience of the room. A clean wound heals better than one hidden under glitter and a thin little no worries.",
+      "reversed": "The Three of Swords is the pierced heart under rain, which is subtle in the way a brick through a window is subtle. It represents grief, heartbreak, betrayal, painful truth, and the sharp moment when denial can no longer protect the soft place.\n\nReversed, the Three of Swords suggests the storm is beginning to pass, or at least you are ready to stop standing in the exact same puddle. Forgiveness may be part of it, but not the cheap kind that skips accountability. Release what you can, repair what is yours, and let healing be gradual instead of performative."
+    }
+  },
+  {
+    "id": "4swd",
+    "name": "Four of Swords",
+    "keywords": [
+      "rest",
+      "recovery",
+      "retreat",
+      "stillness"
+    ],
+    "description": {
+      "upright": "The Four of Swords is the quiet chapel, the resting body, the sword set down before the mind starts chewing through its own wiring. It represents rest, retreat, recovery, stillness, integration, and the necessary pause after stress, conflict, grief, or too much noise.\n\nUpright, the Four of Swords says stop treating rest like a prize you get after collapse. Withdraw, recover, sleep, pray, stare at a wall, silence the notifications, and let your system unclench. The next move will be cleaner if you stop dragging your fried little nervous system into strategy meetings.",
+      "reversed": "The Four of Swords is the quiet chapel, the resting body, the sword set down before the mind starts chewing through its own wiring. It represents rest, retreat, recovery, stillness, integration, and the necessary pause after stress, conflict, grief, or too much noise.\n\nReversed, the Four of Swords points to burnout, restlessness, overexertion, or avoiding stillness because the silence might have notes. Your body is already sending memos. Read them before it escalates to certified mail. Recovery is not laziness. It is how you become useful again without becoming unbearable first."
+    }
+  },
+  {
+    "id": "5swd",
+    "name": "Five of Swords",
+    "keywords": [
+      "conflict",
+      "ego",
+      "tension",
+      "loss"
+    ],
+    "description": {
+      "upright": "The Five of Swords is the smirk after the fight, the abandoned blades, the battlefield where someone technically won and nobody feels better. It represents conflict, ego, tension, betrayal, hollow victory, and the cost of needing to be right more than you need to be whole.\n\nUpright, the Five of Swords asks whether the win is worth what it is costing. Ego battles can make everyone look smaller, even the person holding the most swords. Choose your words carefully and your exits even more carefully. If the goal is only to win, congratulations, that is how you get a prize made of ash.",
+      "reversed": "The Five of Swords is the smirk after the fight, the abandoned blades, the battlefield where someone technically won and nobody feels better. It represents conflict, ego, tension, betrayal, hollow victory, and the cost of needing to be right more than you need to be whole.\n\nReversed, the Five of Swords suggests regret, reconciliation, walking away, or the chance to stop feeding a conflict that has become a very boring pet. Make amends where it is clean to do so. Let the rest go without needing the final courtroom monologue. Peace may not be glamorous, but it is efficient."
+    }
+  },
+  {
+    "id": "6swd",
+    "name": "Six of Swords",
+    "keywords": [
+      "transition",
+      "healing",
+      "journey",
+      "release"
+    ],
+    "description": {
+      "upright": "The Six of Swords is the boat leaving rough water, carrying passengers, baggage, and the kind of silence that comes after too much has happened. It represents transition, healing, travel, recovery, and moving toward peace before you fully feel peaceful.\n\nUpright, the Six of Swords says you are crossing into calmer water, even if the luggage is still damp. Take the help, accept the passage, and focus on the next shore. Healing does not always feel triumphant. Sometimes it feels quiet, tired, and mercifully less chaotic. That counts.",
+      "reversed": "The Six of Swords is the boat leaving rough water, carrying passengers, baggage, and the kind of silence that comes after too much has happened. It represents transition, healing, travel, recovery, and moving toward peace before you fully feel peaceful.\n\nReversed, the Six of Swords shows resistance to transition, unfinished baggage, delays, or trying to leave while emotionally dragging the whole old house behind you. Name what you are carrying and what can stay on the bank. Movement requires cooperation. Even the boat has limits, and frankly it has been very patient."
+    }
+  },
+  {
+    "id": "7swd",
+    "name": "Seven of Swords",
+    "keywords": [
+      "deception",
+      "strategy",
+      "betrayal",
+      "secrecy"
+    ],
+    "description": {
+      "upright": "The Seven of Swords is the thief, the strategy, the side exit, and the uneasy question of whether clever is still clever when integrity leaves the room. It represents secrecy, deception, strategy, self-protection, betrayal, and the gray zone between privacy and dishonesty.\n\nUpright, the Seven of Swords asks where honesty is missing and why. Sometimes strategy is necessary, especially when you are protecting yourself in a messy situation. But if the plan only works because nobody knows the truth, examine that with both eyes open. Be clever, fine. Just do not confuse slippery with smart.",
+      "reversed": "The Seven of Swords is the thief, the strategy, the side exit, and the uneasy question of whether clever is still clever when integrity leaves the room. It represents secrecy, deception, strategy, self-protection, betrayal, and the gray zone between privacy and dishonesty.\n\nReversed, the Seven of Swords suggests truth coming out, guilt surfacing, consequences arriving, or the relief of finally putting down the act. Step into honesty before it has to chase you down in public shoes. Own what is yours, correct what can be corrected, and stop making your nervous system manage a cover story."
+    }
+  },
+  {
+    "id": "8swd",
+    "name": "Eight of Swords",
+    "keywords": [
+      "restriction",
+      "fear",
+      "entrapment",
+      "limitation"
+    ],
+    "description": {
+      "upright": "The Eight of Swords is the blindfold, the bindings, the ring of blades, and the mind convincing itself the cage is complete when there are clearly gaps in the fence. It represents fear, restriction, self-limitation, anxiety, and feeling trapped by a story that may not be as solid as it feels.\n\nUpright, the Eight of Swords says you may feel boxed in, but not every wall is actually a wall. Start small. Identify one assumption, one fear, and one practical step that would give you a little more room. Freedom does not always arrive as a dramatic escape. Sometimes it begins with noticing your hands are not tied as tightly as advertised.",
+      "reversed": "The Eight of Swords is the blindfold, the bindings, the ring of blades, and the mind convincing itself the cage is complete when there are clearly gaps in the fence. It represents fear, restriction, self-limitation, anxiety, and feeling trapped by a story that may not be as solid as it feels.\n\nReversed, the Eight of Swords suggests the bindings are loosening. You may be seeing options, reclaiming agency, or realizing the old fear was loud but not law. Walk toward the opening before your mind tries to redecorate the cage. Liberation can feel awkward at first. Go anyway."
+    }
+  },
+  {
+    "id": "9swd",
+    "name": "Nine of Swords",
+    "keywords": [
+      "anxiety",
+      "fear",
+      "nightmares",
+      "worry"
+    ],
+    "description": {
+      "upright": "The Nine of Swords is the sleepless bed, the hands over the face, the 3 a.m. courtroom where your brain prosecutes you with suspicious confidence. It represents anxiety, nightmares, guilt, fear, rumination, and mental anguish that gets louder when the lights go out.\n\nUpright, the Nine of Swords says the fear is real in your body, even if the story may not be fully accurate. Write it down. Separate facts from predictions. Tell one safe person instead of letting the ceiling handle the whole conversation. You do not have to solve your entire life at 3 a.m., which is rude because that is when the brain gets theatrical.",
+      "reversed": "The Nine of Swords is the sleepless bed, the hands over the face, the 3 a.m. courtroom where your brain prosecutes you with suspicious confidence. It represents anxiety, nightmares, guilt, fear, rumination, and mental anguish that gets louder when the lights go out.\n\nReversed, the Nine of Swords suggests recovery, confession, support, or fear beginning to lose its grip. Let the light in where shame has been breeding. Ask for help, make the appointment, say the thing, or forgive the part of you that survived poorly. Healing starts when the nightmare stops being a private dictatorship."
+    }
+  },
+  {
+    "id": "10swd",
+    "name": "Ten of Swords",
+    "keywords": [
+      "betrayal",
+      "ending",
+      "collapse",
+      "defeat"
+    ],
+    "description": {
+      "upright": "The Ten of Swords is the final collapse, all the blades in the back, the sunrise on the horizon because tarot likes to be dramatic and occasionally helpful. It represents betrayal, defeat, endings, rock bottom, and the point where something is so over it has become weirdly clarifying.\n\nUpright, the Ten of Swords says this cycle has reached its painful close. Do not keep negotiating with what already showed you the ending. Let the finality be clean. Rest before rebuilding. The good news, such as it is, is that there is not much lower to fall from here, which makes the ground strangely useful.",
+      "reversed": "The Ten of Swords is the final collapse, all the blades in the back, the sunrise on the horizon because tarot likes to be dramatic and occasionally helpful. It represents betrayal, defeat, endings, rock bottom, and the point where something is so over it has become weirdly clarifying.\n\nReversed, the Ten of Swords points to survival, recovery, regeneration, or the first unglamorous signs that you are not dead, just deeply annoyed and healing. Rise slowly. Rebuild from the ground up. Do not rush to turn the wound into wisdom before the bleeding stops. Resilience can be quiet and still count."
+    }
+  },
+  {
+    "id": "pswd",
+    "name": "Page of Swords",
+    "keywords": [
+      "curiosity",
+      "ideas",
+      "communication",
+      "vigilance"
+    ],
+    "description": {
+      "upright": "The Page of Swords is the curious watcher, the student with questions, the little blade of thought still learning where to point itself. It represents curiosity, research, communication, vigilance, truth-seeking, and the early stages of learning how to use words without turning every room into a debate club.\n\nUpright, the Page of Swords says ask the question, read the fine print, take notes, and stay alert. Curiosity is your tool, not your personality replacement. Speak clearly, but stay teachable. This is a good moment for research, writing, learning, and saying, \"I do not know yet,\" which is painfully underrated.",
+      "reversed": "The Page of Swords is the curious watcher, the student with questions, the little blade of thought still learning where to point itself. It represents curiosity, research, communication, vigilance, truth-seeking, and the early stages of learning how to use words without turning every room into a debate club.\n\nReversed, the Page of Swords shows gossip, defensiveness, scattered thoughts, half-checked facts, or communication moving faster than wisdom can reasonably supervise. Pause before reacting. Verify before sharing. If you are using sharp words to cover insecurity, put the sword down and get a better sentence."
+    }
+  },
+  {
+    "id": "nswd",
+    "name": "Knight of Swords",
+    "keywords": [
+      "action",
+      "ambition",
+      "speed",
+      "determination"
+    ],
+    "description": {
+      "upright": "The Knight of Swords is the charge, the argument, the mission, the brain on horseback with wind in its hair and brakes of questionable quality. It represents ambition, speed, direct action, determination, confrontation, and the desire to cut straight to the point, even if the point ducks.\n\nUpright, the Knight of Swords says move with focus and say what needs saying. Your clarity can break through delay when it is aimed at the right target. Be brave, be direct, and keep the purpose visible. Fast is fine when the direction is clean. Do not let hesitation dress itself as wisdom if action is truly needed.",
+      "reversed": "The Knight of Swords is the charge, the argument, the mission, the brain on horseback with wind in its hair and brakes of questionable quality. It represents ambition, speed, direct action, determination, confrontation, and the desire to cut straight to the point, even if the point ducks.\n\nReversed, the Knight of Swords warns against recklessness, aggression, scattered focus, or charging into a situation with facts still putting their shoes on. Slow down before the sharp thing becomes sloppy. Aim, then act. You do not lose power by taking a breath. You gain a steering wheel."
+    }
+  },
+  {
+    "id": "qswd",
+    "name": "Queen of Swords",
+    "keywords": [
+      "truth",
+      "clarity",
+      "independence",
+      "perception"
+    ],
+    "description": {
+      "upright": "The Queen of Swords is the clear eye, the lifted blade, the woman who has learned enough the hard way to stop romanticizing fog. She represents truth, discernment, independence, wit, boundaries, and communication that can be compassionate without becoming mush.\n\nUpright, the Queen of Swords says cut through the nonsense cleanly. Speak the truth, name the boundary, ask the precise question, and do not apologize for having a working brain. Your clarity may feel sharp to people who benefit from blur. That is not automatically your problem. Keep the blade clean, not cruel.",
+      "reversed": "The Queen of Swords is the clear eye, the lifted blade, the woman who has learned enough the hard way to stop romanticizing fog. She represents truth, discernment, independence, wit, boundaries, and communication that can be compassionate without becoming mush.\n\nReversed, the Queen of Swords points to coldness, bitterness, manipulation, miscommunication, or a boundary turning into a wall with a guest list of zero. Check whether your clarity is serving truth or just protecting an old wound with excellent posture. Balance honesty with enough warmth to stay human. You can be direct without becoming winter."
+    }
+  },
+  {
+    "id": "kswd",
+    "name": "King of Swords",
+    "keywords": [
+      "authority",
+      "logic",
+      "truth",
+      "discipline"
+    ],
+    "description": {
+      "upright": "The King of Swords is law, logic, strategy, authority, and the mind disciplined enough to hold power without getting drunk on it. He represents truth, judgment, ethics, systems, expertise, and decisions made from principle rather than mood, popularity, or whatever chaos wandered in wearing shoes.\n\nUpright, the King of Swords says lead with logic, fairness, and clean standards. Make the decision, explain the reasoning, and keep your personal feelings from driving the whole municipal bus. This is a moment for strategy, documentation, and disciplined speech. Authority works best when it is accountable to truth.",
+      "reversed": "The King of Swords is law, logic, strategy, authority, and the mind disciplined enough to hold power without getting drunk on it. He represents truth, judgment, ethics, systems, expertise, and decisions made from principle rather than mood, popularity, or whatever chaos wandered in wearing shoes.\n\nReversed, the King of Swords warns of manipulation, cruelty, intellectual arrogance, abuse of authority, or logic being twisted into control. If the argument only works because empathy has been evicted, check the foundation. Realign with truth and integrity. Power without ethics is not intelligence. It is just a colder mess."
+    }
+  },
+  {
+    "id": "apent",
+    "name": "Ace of Pentacles",
+    "keywords": [
+      "opportunity",
+      "prosperity",
+      "foundation",
+      "growth"
+    ],
+    "description": {
+      "upright": "The Ace of Pentacles is the seed, the coin, the open hand from the material world saying, \"Here, try this in real life.\" It represents opportunity, money, work, home, health, resources, and beginnings that become powerful because they are practical enough to repeat.\n\nUpright, the Ace of Pentacles says a real-world green light is appearing. New work, money, a home project, a health habit, or a tangible offer could actually stick if you keep it simple. Plant it properly. Track the small wins. Reliable is exciting when you can feel it working, even if it does not arrive wearing sequins.",
+      "reversed": "The Ace of Pentacles is the seed, the coin, the open hand from the material world saying, \"Here, try this in real life.\" It represents opportunity, money, work, home, health, resources, and beginnings that become powerful because they are practical enough to repeat.\n\nReversed, the Ace of Pentacles points to delays, missed chances, weak foundations, or an opportunity that needs better soil before it can grow. This is data, not doom. Check the budget, the timing, the materials, and the practical plan. Patience and consistency are compounding interest. Rebuild the basics and try again."
+    }
+  },
+  {
+    "id": "2pent",
+    "name": "Two of Pentacles",
+    "keywords": [
+      "balance",
+      "adaptability",
+      "choices",
+      "flexibility"
+    ],
+    "description": {
+      "upright": "The Two of Pentacles is the juggler, the waves, the infinity loop, and the daily circus of keeping multiple realities in the air without pretending gravity is fake. It represents balance, flexibility, adaptation, time management, money flow, and choices under pressure.\n\nUpright, the Two of Pentacles says you are juggling a lot and doing okay, but \"okay\" still needs a system. Brain-dump the noise, move one piece at a time, and let your schedule reflect actual capacity, not the imaginary kind who wakes up hydrated and emotionally available. Balance comes from boundaries and small adjustments.",
+      "reversed": "The Two of Pentacles is the juggler, the waves, the infinity loop, and the daily circus of keeping multiple realities in the air without pretending gravity is fake. It represents balance, flexibility, adaptation, time management, money flow, and choices under pressure.\n\nReversed, the Two of Pentacles shows too many plates, weak priorities, financial wobble, or the body quietly filing complaints. Drop the least important thing on purpose before it drops itself theatrically. Automate what you can, ask for help where it matters, and stop treating busy like a personality. Ease is allowed."
+    }
+  },
+  {
+    "id": "3pent",
+    "name": "Three of Pentacles",
+    "keywords": [
+      "teamwork",
+      "collaboration",
+      "skill",
+      "effort"
+    ],
+    "description": {
+      "upright": "The Three of Pentacles is the workshop, the blueprint, the skilled hands meeting under one shared standard. It represents teamwork, collaboration, craft, apprenticeship, feedback, and the kind of effort that gets stronger when people know their roles and respect the build.\n\nUpright, the Three of Pentacles says collaboration can actually work when everyone is clear, useful, and not allergic to feedback. Ask for help where someone is stronger and offer yours where you shine. Define the standard, check the details, and make something you are proud to sign. Pride in craft is contagious.",
+      "reversed": "The Three of Pentacles is the workshop, the blueprint, the skilled hands meeting under one shared standard. It represents teamwork, collaboration, craft, apprenticeship, feedback, and the kind of effort that gets stronger when people know their roles and respect the build.\n\nReversed, the Three of Pentacles points to fuzzy roles, missing feedback, uneven effort, or teamwork that is mostly people standing around the blueprint with opinions. Define done together. Decide how you will know the work is on track. A short check-in now saves a long rework later, which is less glamorous than drama but cheaper."
+    }
+  },
+  {
+    "id": "4pent",
+    "name": "Four of Pentacles",
+    "keywords": [
+      "control",
+      "security",
+      "possession",
+      "stability"
+    ],
+    "description": {
+      "upright": "The Four of Pentacles is the clenched coin, the guarded chest, the need for security sitting very still and looking suspicious of everyone. It represents stability, saving, control, possession, scarcity fear, and the fine line between protecting what matters and gripping so tightly nothing can breathe.\n\nUpright, the Four of Pentacles says stability is a worthy goal. Save a little, organize your systems, protect your resources, and cover the basics so your nervous system can unclench. Security does not make you boring. It makes you brave. Build a base you can launch from without setting your life on fire every time.",
+      "reversed": "The Four of Pentacles is the clenched coin, the guarded chest, the need for security sitting very still and looking suspicious of everyone. It represents stability, saving, control, possession, scarcity fear, and the fine line between protecting what matters and gripping so tightly nothing can breathe.\n\nReversed, the Four of Pentacles shows either loosening a fearful grip or losing control because the grip got weird in the first place. Let circulation return to money, time, trust, and energy. You can be responsible and generous at the same time. Holding everything forever is not the only way to feel safe."
+    }
+  },
+  {
+    "id": "5pent",
+    "name": "Five of Pentacles",
+    "keywords": [
+      "loss",
+      "hardship",
+      "poverty",
+      "struggle"
+    ],
+    "description": {
+      "upright": "The Five of Pentacles is the cold walk past the lit window, the ache of need, exclusion, hardship, and the lie shame tells that help is for other people. It represents loss, poverty, struggle, illness, isolation, and the very human fear of being left outside.\n\nUpright, the Five of Pentacles says this is a tough season, not a verdict. Ask for help and take the help without apologizing for having needs. There are resources and people who actually want to show up. You are not a problem to be solved. You are a person to be supported. Keep moving one honest step at a time.",
+      "reversed": "The Five of Pentacles is the cold walk past the lit window, the ache of need, exclusion, hardship, and the lie shame tells that help is for other people. It represents loss, poverty, struggle, illness, isolation, and the very human fear of being left outside.\n\nReversed, the Five of Pentacles suggests a way back toward support, recovery, and warmth, but you may have to step toward it before it feels dignified. Shame hates daylight. Let a little in. Reach for community, services, or one steady person sooner than is comfortable. Needing things does not cancel your self-respect."
+    }
+  },
+  {
+    "id": "6pent",
+    "name": "Six of Pentacles",
+    "keywords": [
+      "generosity",
+      "charity",
+      "support",
+      "balance"
+    ],
+    "description": {
+      "upright": "The Six of Pentacles is the hand giving coins, the scales nearby, and the question of whether support is balanced or just wearing a nice coat. It represents generosity, charity, exchange, mutual aid, resources, power dynamics, and the dignity of giving and receiving well.\n\nUpright, the Six of Pentacles says share what you have, accept what you need, and keep dignity at the center of the exchange. Generosity works best when it respects boundaries instead of creating little emotional invoices. Make support a two-way street where possible. Help can be practical, clean, and free of weird strings.",
+      "reversed": "The Six of Pentacles is the hand giving coins, the scales nearby, and the question of whether support is balanced or just wearing a nice coat. It represents generosity, charity, exchange, mutual aid, resources, power dynamics, and the dignity of giving and receiving well.\n\nReversed, the Six of Pentacles points to uneven scales, strings attached, resentment, debt dynamics, or giving that quietly drains the giver dry. Reset the terms. Say what is actually available and what is not. Help that destroys your own stability is not help. It is a slow-motion invoice with feelings."
+    }
+  },
+  {
+    "id": "7pent",
+    "name": "Seven of Pentacles",
+    "keywords": [
+      "patience",
+      "investment",
+      "assessment",
+      "growth"
+    ],
+    "description": {
+      "upright": "The Seven of Pentacles is the gardener leaning on the tool, studying the crop, resisting the urge to dig everything up and interrogate the roots. It represents patience, investment, assessment, slow growth, and the mature irritation of waiting for work to become visible.\n\nUpright, the Seven of Pentacles says pause and check the garden. Progress may be slow and still completely real. Adjust the plan, keep tending, and let time do the part you cannot bully it into doing faster. Patience can be active. Small improvements add up when you stop calling them nothing.",
+      "reversed": "The Seven of Pentacles is the gardener leaning on the tool, studying the crop, resisting the urge to dig everything up and interrogate the roots. It represents patience, investment, assessment, slow growth, and the mature irritation of waiting for work to become visible.\n\nReversed, the Seven of Pentacles warns against impatience, poor investment, weak planning, or digging up seeds to see if they are growing. Define meaningful milestones and measure against those, not fantasy deadlines invented by panic. If the plan is weak, improve it. If it is strong, let it work without daily cross-examination."
+    }
+  },
+  {
+    "id": "8pent",
+    "name": "Eight of Pentacles",
+    "keywords": [
+      "skill",
+      "apprenticeship",
+      "dedication",
+      "practice"
+    ],
+    "description": {
+      "upright": "The Eight of Pentacles is the bench, the repeated coin, the craftsperson doing the work again and again until skill becomes visible. It represents practice, apprenticeship, dedication, mastery, refinement, and the quietly unsexy repetition that makes people look talented later.\n\nUpright, the Eight of Pentacles says show up for the reps. Improve the tiny details, document what you learn, and let consistency build your confidence. Mastery is boring up close and beautiful from a distance. Pride in process becomes pride in results, which is annoying because it means the process matters.",
+      "reversed": "The Eight of Pentacles is the bench, the repeated coin, the craftsperson doing the work again and again until skill becomes visible. It represents practice, apprenticeship, dedication, mastery, refinement, and the quietly unsexy repetition that makes people look talented later.\n\nReversed, the Eight of Pentacles shows busywork, perfection loops, sloppy effort, or polishing in private forever because shipping would make the whole thing real. Focus on the one skill that would change everything if it got 20 percent better. Make small improvements and release them. Momentum beats immaculate."
+    }
+  },
+  {
+    "id": "9pent",
+    "name": "Nine of Pentacles",
+    "keywords": [
+      "independence",
+      "luxury",
+      "success",
+      "self-sufficiency"
+    ],
+    "description": {
+      "upright": "The Nine of Pentacles is the garden of earned comfort, the falcon on the glove, the person who built something solid enough to enjoy slowly. It represents independence, luxury, self-sufficiency, refinement, success, and the pleasure of competence made visible.\n\nUpright, the Nine of Pentacles says enjoy the independence you built. Treat yourself like someone you respect, not just someone you assign tasks to until they turn translucent. Take the slow morning, the good meal, the clean space, the moment of pride. Self-trust is luxury. Wear it.",
+      "reversed": "The Nine of Pentacles is the garden of earned comfort, the falcon on the glove, the person who built something solid enough to enjoy slowly. It represents independence, luxury, self-sufficiency, refinement, success, and the pleasure of competence made visible.\n\nReversed, the Nine of Pentacles suggests self-sufficiency sliding into loneliness, financial overextension, imposter feelings, or a life that looks polished but does not feel supported. You can keep your standards and still let people in. Independence is stronger with a little interdependence. Very annoying. Still true."
+    }
+  },
+  {
+    "id": "10pent",
+    "name": "Ten of Pentacles",
+    "keywords": [
+      "legacy",
+      "wealth",
+      "family",
+      "long-term"
+    ],
+    "description": {
+      "upright": "The Ten of Pentacles is the family gate, the elder, the child, the dogs, the house, the lineage, and all the visible proof of long-term building. It represents legacy, wealth, inheritance, family systems, stability, shared resources, and the question of what will outlast the current season.\n\nUpright, the Ten of Pentacles says think long game. Invest in systems, relationships, assets, traditions, and choices that support more than just the immediate panic. Take pride in building something that can hold other people safely. Solid foundations make generous futures. Be a good ancestor, even if nobody has made the brochure yet.",
+      "reversed": "The Ten of Pentacles is the family gate, the elder, the child, the dogs, the house, the lineage, and all the visible proof of long-term building. It represents legacy, wealth, inheritance, family systems, stability, shared resources, and the question of what will outlast the current season.\n\nReversed, the Ten of Pentacles points to family tension, brittle tradition, unstable foundations, inheritance drama, or a structure that refuses to evolve and then acts shocked when it cracks. Keep what works. Update what does not. Stability that cannot adapt is just a museum exhibit with utilities due."
+    }
+  },
+  {
+    "id": "ppent",
+    "name": "Page of Pentacles",
+    "keywords": [
+      "opportunity",
+      "study",
+      "ambition",
+      "focus"
+    ],
+    "description": {
+      "upright": "The Page of Pentacles is the student holding the coin, studying possibility as if it might become a life if handled properly. It represents learning, opportunity, ambition, focus, practical beginnings, and the first disciplined steps toward making something real in the material world.\n\nUpright, the Page of Pentacles says learn by doing and keep your eyes on the practical details. Take notes, track small progress, ask the boring questions, and try the answers in real life. Curiosity becomes valuable when it has a method. Beginner mind is not childish. It is how competence starts.",
+      "reversed": "The Page of Pentacles is the student holding the coin, studying possibility as if it might become a life if handled properly. It represents learning, opportunity, ambition, focus, practical beginnings, and the first disciplined steps toward making something real in the material world.\n\nReversed, the Page of Pentacles shows procrastination, lack of focus, weak planning, or being so busy preparing to begin that beginning has started filing a missing-person report. Pick one tiny experiment with a clear next step and a short feedback loop. Reality can refine what imagination keeps over-decorating."
+    }
+  },
+  {
+    "id": "npent",
+    "name": "Knight of Pentacles",
+    "keywords": [
+      "responsibility",
+      "routine",
+      "patience",
+      "diligence"
+    ],
+    "description": {
+      "upright": "The Knight of Pentacles is the steady worker, the reliable route, the field plowed one row at a time. It represents responsibility, routine, diligence, patience, loyalty, and the kind of progress that looks boring until you realize it is the only thing still standing.\n\nUpright, the Knight of Pentacles says keep going exactly like this, steady and thorough. Your care shows in the details and it lasts. Build the routine, follow the checklist, pay attention to what others skip. Boring in the best way is still a compliment when the results are solid and everyone else's rush job is peeling.",
+      "reversed": "The Knight of Pentacles is the steady worker, the reliable route, the field plowed one row at a time. It represents responsibility, routine, diligence, patience, loyalty, and the kind of progress that looks boring until you realize it is the only thing still standing.\n\nReversed, the Knight of Pentacles points to stagnation, overcaution, stubbornness, or being buried under the to-do list until movement feels illegal. Break the task into smaller pieces and move one across the line. Progress can be quiet and still count. You do not need a dramatic breakthrough. You need traction."
+    }
+  },
+  {
+    "id": "qpent",
+    "name": "Queen of Pentacles",
+    "keywords": [
+      "nurturing",
+      "abundance",
+      "practicality",
+      "comfort"
+    ],
+    "description": {
+      "upright": "The Queen of Pentacles is the warm kitchen, the paid bill, the healthy plant, the body cared for, the plan that includes snacks. She represents nurturing, practicality, abundance, comfort, resourcefulness, and the ability to make life feel safe without making it sterile.\n\nUpright, the Queen of Pentacles says grounded care is powerful. Make the space workable, the budget honest, the meal nourishing, the plan realistic, and the project less terrifying. This is leadership through competence and hospitality. Keep your own tank filled too. A queen who never sits down is just unpaid staff with better jewelry.",
+      "reversed": "The Queen of Pentacles is the warm kitchen, the paid bill, the healthy plant, the body cared for, the plan that includes snacks. She represents nurturing, practicality, abundance, comfort, resourcefulness, and the ability to make life feel safe without making it sterile.\n\nReversed, the Queen of Pentacles shows overgiving, micromanaging, neglecting your own needs, or trying to keep everyone comfortable at the cost of your own calm. Delegate real responsibility and take your hands off. Your value is not measured in exhaustion. Sustainable care is still care, and frankly it ages better."
+    }
+  },
+  {
+    "id": "kpent",
+    "name": "King of Pentacles",
+    "keywords": [
+      "wealth",
+      "stability",
+      "success",
+      "security"
+    ],
+    "description": {
+      "upright": "The King of Pentacles is the established builder, the provider, the person who knows that wealth without stewardship is just a pile with lighting. He represents stability, success, business, leadership, security, discipline, and the ability to turn resources into systems that last.\n\nUpright, the King of Pentacles says lead with steadiness, dignity, and long-term sense. Measure what matters, invest in people, protect the foundation, and make decisions that still look good after the excitement wears off. Results are steady because values are steady. This is practical power, not flash with a spreadsheet.",
+      "reversed": "The King of Pentacles is the established builder, the provider, the person who knows that wealth without stewardship is just a pile with lighting. He represents stability, success, business, leadership, security, discipline, and the ability to turn resources into systems that last.\n\nReversed, the King of Pentacles warns against control without mentorship, greed, rigidity, or authority that keeps competence trapped under one crown. Teach what you know. Share the wins. Build systems that do not collapse when you leave the room. Power grows when it multiplies other people's stability, not when it hoards all the keys."
+    }
+  }
 ]
