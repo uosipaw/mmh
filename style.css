@@ -201,13 +201,12 @@ a {
 }
 
 .curtain-top {
-  left: 0;
-  right: 0;
+  left: 10%;
   top: -10px;
   z-index: 18;
   width: 105%;
-  height: 24%;
-  object-fit: fill;
+  height: 27%;
+  object-fit: cover;
   object-position: top center;
   filter: drop-shadow(0 8px 0 rgba(23, 18, 15, 0.22));
   animation: topCurtainBreath 4.8s ease-in-out infinite;
@@ -667,8 +666,12 @@ a {
 }
 
 .landing-shell {
-  background:
-    linear-gradient(180deg, #ffd8ef 0%, #fff0ba 22%, #d3fff0 42%, #5f2837 72%, #120b10 100%);
+  position: relative;
+  background-color: #17120f;
+  background-image: url("images/indexbg.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
 }
 
 .scroll-section {
@@ -679,6 +682,7 @@ a {
   gap: 18px;
   padding: 64px 18px;
   overflow: hidden;
+  background: transparent;
 }
 
 .scroll-section::before {
@@ -794,29 +798,36 @@ a {
 }
 
 .weird-zone {
-  background:
-    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.35), transparent 20%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(95, 40, 55, 0.12));
+  color: var(--ink);
 }
 
 .myth-zone {
   color: #fff3d7;
-  background:
-    radial-gradient(circle at 80% 15%, rgba(255, 63, 164, 0.2), transparent 24%),
-    linear-gradient(180deg, #59486d, #492c3a);
 }
 
 .dark-zone {
   color: #fff3d7;
-  background:
-    radial-gradient(circle at 45% 12%, rgba(255, 63, 164, 0.25), transparent 22%),
-    radial-gradient(circle at 70% 75%, rgba(204, 255, 51, 0.12), transparent 28%),
-    linear-gradient(180deg, #2a0f19, #0a0608);
 }
 
 .dark-zone .page-card,
 .myth-zone .page-card {
   color: var(--ink);
+}
+
+.scroll-section h2,
+.scroll-section>p {
+  text-shadow:
+    0 2px 0 rgba(255, 243, 215, 0.28),
+    0 4px 18px rgba(23, 18, 15, 0.28);
+}
+
+.myth-zone h2,
+.myth-zone>p,
+.dark-zone h2,
+.dark-zone>p {
+  text-shadow:
+    0 2px 0 rgba(23, 18, 15, 0.8),
+    0 4px 18px rgba(0, 0, 0, 0.55);
 }
 
 .toast {
@@ -1248,7 +1259,7 @@ a {
 .link-grid {
   grid-template-columns: 1fr;
 }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
 
