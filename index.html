@@ -6,147 +6,109 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>My Space</title>
+    <title>mdsn mchll</title>
 
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
-    <svg width="0" height="0" aria-hidden="true">
-        <filter id="roughen">
-            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.7" />
-        </filter>
-    </svg>
+    <main>
+        <section class="puppet-intro" id="top" aria-label="Paper puppet show introduction">
+            <div class="paper-noise"></div>
 
-    <main class="site-shell">
-        <header class="top-bar">
-            <a class="logo-mark" href="#top" aria-label="Home">
-                <span class="logo-symbol">✦</span>
-                <span>my space</span>
-            </a>
+            <div class="stage">
+                <div class="stage-frame">
+                    <div class="stage-label">a very official production</div>
+                </div>
 
-            <div class="nav-actions">
-                <button class="icon-button" id="soundButton" type="button" aria-label="Toggle sound">
-                    sound off
+                <div class="curtain curtain-left" aria-hidden="true">
+                    <div class="curtain-tabs"></div>
+                </div>
+
+                <div class="curtain curtain-right" aria-hidden="true">
+                    <div class="curtain-tabs"></div>
+                </div>
+
+                <div class="hanging-prop cloud cloud-one">
+                    <span class="string"></span>
+                    <div class="cloud-shape">cloud</div>
+                </div>
+
+                <div class="hanging-prop cloud cloud-two">
+                    <span class="string"></span>
+                    <div class="cloud-shape">cloud</div>
+                </div>
+
+                <button class="hanging-prop sun" id="sunButton" type="button" aria-label="Tap the sun">
+                    <span class="string"></span>
+                    <span class="sun-face">
+                        <span class="sun-eye"></span>
+                        <span class="sun-eye"></span>
+                        <span class="sun-mouth"></span>
+                    </span>
                 </button>
 
-                <button class="icon-button" id="shuffleButton" type="button" aria-label="Shuffle board">
-                    shuffle
-                </button>
-            </div>
-        </header>
-
-        <section class="hero" id="top">
-            <div class="board" id="board" aria-label="Interactive collage landing page">
-                <div class="baroque-corner corner-one"></div>
-                <div class="baroque-corner corner-two"></div>
-
-                <div class="paper-strip strip-one">field notes / found things / strange little treasures</div>
-                <div class="paper-strip strip-two">skate zine energy with antique science homework</div>
-
-                <div class="specimen specimen-moth"
-                    data-secret="moth note: drawn from absolutely questionable field research.">
-                    <span>moth</span>
-                </div>
-
-                <div class="specimen specimen-beetle" data-secret="beetle note: tiny armored weirdo. respected.">
-                    <span>beetle</span>
-                </div>
-
-                <div class="specimen specimen-snake" data-secret="snake note: ancient, stylish, impossible to manage.">
-                    <span>snake</span>
-                </div>
-
-                <div class="sticker sticker-smile" data-secret="a 90s sticker survived the Victorian séance.">☻</div>
-                <div class="sticker sticker-skate"
-                    data-secret="pretend this sticker came free with a skateboard magazine.">SK8</div>
-                <div class="sticker sticker-wax" data-secret="fake wax seal, real drama.">M</div>
-
-                <div class="scribble scribble-one">★</div>
-                <div class="scribble scribble-two">♡</div>
-                <div class="scribble scribble-three">✺</div>
-                <div class="scribble scribble-four">↯</div>
-
-                <div class="intro">
-                    <p class="eyebrow">a personal junk drawer</p>
-
-                    <h1 class="headline" aria-label="my space">
-                        <span>m</span><span>y</span>
-                        <span>s</span><span>p</span><span>a</span><span>c</span><span>e</span>
-                    </h1>
-
-                    <p class="tagline">
-                        90s hippie skate scraps, antique animal drawings, baroque thrift drama,
-                        and whatever else is rattling around in here.
-                    </p>
-                </div>
-
-                <nav class="card-grid" id="cardGrid" aria-label="Main page links"></nav>
-
-                <aside class="drawer" id="drawer">
-                    <button class="drawer-toggle" id="drawerToggle" type="button">
-                        <span>hidden drawer</span>
-                        <span>pull ↓</span>
-                    </button>
-
-                    <div class="drawer-content">
-                        <p>
-                            A little secret compartment for updates, freebies, featured pieces,
-                            newsletter bait, or weird notes people only find if they poke around.
-                        </p>
-
-                        <div class="mini-buttons">
-                            <button class="mini-button" type="button"
-                                data-secret="This could become a rotating featured item.">
-                                featured thing
-                            </button>
-
-                            <button class="mini-button" type="button"
-                                data-secret="This could open an email signup without making it ugly.">
-                                mailing list
-                            </button>
-
-                            <button class="mini-button" type="button"
-                                data-secret="This could reveal a discount code, hidden print, or secret page.">
-                                secret
-                            </button>
-                        </div>
+                <div class="hanging-prop balloon-dog" aria-hidden="true">
+                    <span class="string"></span>
+                    <div class="dog-body">
+                        <span></span><span></span><span></span><span></span>
                     </div>
-                </aside>
-            </div>
-
-            <aside class="side-panel" aria-label="Design notes">
-                <h2>field guide to the mess</h2>
-
-                <div class="feature-list">
-                    <article class="feature">
-                        <h3>tap</h3>
-                        <p>Cards lift like taped photos and then open the page.</p>
-                    </article>
-
-                    <article class="feature">
-                        <h3>drag</h3>
-                        <p>Cards and stickers can be moved around like a real board.</p>
-                    </article>
-
-                    <article class="feature">
-                        <h3>double tap</h3>
-                        <p>Flip cards to reveal notes, descriptions, or secret details.</p>
-                    </article>
-
-                    <article class="feature">
-                        <h3>specimens</h3>
-                        <p>Victorian animal-study elements can hide little interactive notes.</p>
-                    </article>
-
-                    <article class="feature">
-                        <h3>images later</h3>
-                        <p>Swap in your own photos, art, scans, product shots, or collages.</p>
-                    </article>
                 </div>
-            </aside>
+
+                <div class="title-stage">
+                    <button class="puppet-title" id="puppetTitle" type="button" aria-label="mdsn mchll"></button>
+                    <p class="title-caption">tap the name. it has been through a lot.</p>
+                </div>
+
+                <button class="enter-button" id="enterButton" type="button">
+                    pull the curtain
+                </button>
+
+                <div class="paper-arrow" aria-hidden="true">↓</div>
+            </div>
+        </section>
+
+        <section class="landing-shell" id="landing">
+            <section class="scroll-section cute-zone" data-zone="cute">
+                <p class="zone-kicker">section one</p>
+                <h2>cute little nonsense</h2>
+                <p>
+                    Balloon animals, stickers, doodles, tiny games, and harmless internet junk.
+                    At least for now.
+                </p>
+                <div class="link-grid" data-links="cute"></div>
+            </section>
+
+            <section class="scroll-section weird-zone" data-zone="weird">
+                <p class="zone-kicker">section two</p>
+                <h2>educational, allegedly</h2>
+                <p>
+                    Dinosaurs, animals, trivia, quotes, strange facts, little cabinets,
+                    and things that start getting suspiciously specific.
+                </p>
+                <div class="link-grid" data-links="weird"></div>
+            </section>
+
+            <section class="scroll-section myth-zone" data-zone="myth">
+                <p class="zone-kicker">section three</p>
+                <h2>myths, symbols, creatures</h2>
+                <p>
+                    Folklore, matching games, creature files, symbols, omens,
+                    and the part where the paper smiley faces stop blinking normally.
+                </p>
+                <div class="link-grid" data-links="myth"></div>
+            </section>
+
+            <section class="scroll-section dark-zone" data-zone="dark">
+                <p class="zone-kicker">section four</p>
+                <h2>the funhouse gets weird</h2>
+                <p>
+                    Tarot, casino lights, donation buttons, fake portals, bad omens,
+                    and the basement door nobody specifically asked for.
+                </p>
+                <div class="link-grid" data-links="dark"></div>
+            </section>
         </section>
     </main>
 

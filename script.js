@@ -1,100 +1,138 @@
 // script.js
 
-const pages = [
-  {
-    title: "about",
-    href: "about.html",
-    image: "assets/about.jpg",
-    placeholder: "about / field note",
-    accent: "#d7aa35",
-    icon: "✦",
-    note: "A weird little intro card. Personal, useful, and not painfully professional.",
-  },
-  {
-    title: "shop",
-    href: "shop.html",
-    image: "assets/shop.jpg",
-    placeholder: "shop / found goods",
-    accent: "#ccff33",
-    icon: "✺",
-    note: "Prints, furniture, weird treasures, digital things, and anything currently alive.",
-  },
-  {
-    title: "portfolio",
-    href: "portfolio.html",
-    image: "assets/portfolio.jpg",
-    placeholder: "portfolio / specimens",
-    accent: "#347f7d",
-    icon: "◎",
-    note: "A visual cabinet of finished work, experiments, and things worth showing off.",
-  },
-  {
-    title: "journal",
-    href: "journal.html",
-    image: "assets/journal.jpg",
-    placeholder: "journal / scribbles",
-    accent: "#c9798d",
-    icon: "✎",
-    note: "Thoughts, process notes, updates, scans, scraps, and mildly useful rambling.",
-  },
-  {
-    title: "contact",
-    href: "contact.html",
-    image: "assets/contact.jpg",
-    placeholder: "contact / message",
-    accent: "#8e69a8",
-    icon: "✉",
-    note: "The small doorway for messages, questions, commissions, and business.",
-  },
-];
+const titleText = "mdsn mchll";
 
-const rotations = ["-3deg", "2deg", "1.5deg", "-2deg", "2.5deg"];
+const pageGroups = {
+  cute: [
+    {
+      title: "ms paint",
+      href: "paint.html",
+      icon: "✎",
+      note: "draw something dumb",
+      color: "#ff9bd0",
+    },
+    {
+      title: "stickers",
+      href: "stickers.html",
+      icon: "☻",
+      note: "puffy sticker nonsense",
+      color: "#ffe66b",
+    },
+    {
+      title: "balloon dog",
+      href: "balloon-graveyard.html",
+      icon: "犬",
+      note: "cute, for now",
+      color: "#8bd8ff",
+    },
+  ],
 
-const cardGrid = document.getElementById("cardGrid");
-const board = document.getElementById("board");
+  weird: [
+    {
+      title: "dinosaurs",
+      href: "dinosaurs.html",
+      icon: "✦",
+      note: "ancient lizards, modern judgment",
+      color: "#9dffd2",
+    },
+    {
+      title: "animals",
+      href: "animals.html",
+      icon: "◎",
+      note: "scientific-ish creature drawer",
+      color: "#ffb15f",
+    },
+    {
+      title: "quotes",
+      href: "quotes.html",
+      icon: "❝",
+      note: "wisdom, probably fake",
+      color: "#fff2a8",
+    },
+    {
+      title: "trivia",
+      href: "trivia.html",
+      icon: "?",
+      note: "tiny trivia trap",
+      color: "#b895ff",
+    },
+  ],
+
+  myth: [
+    {
+      title: "myth match",
+      href: "myth.html",
+      icon: "☉",
+      note: "matching game for tiny gods",
+      color: "#d7aa35",
+    },
+    {
+      title: "folklore",
+      href: "folklore.html",
+      icon: "♢",
+      note: "stories from the weird drawer",
+      color: "#c9798d",
+    },
+    {
+      title: "creatures",
+      href: "creatures.html",
+      icon: "✺",
+      note: "bugs, beasts, and bad vibes",
+      color: "#8ebf9f",
+    },
+    {
+      title: "symbols",
+      href: "symbols.html",
+      icon: "⌘",
+      note: "dreamy little decoder",
+      color: "#c4a1ff",
+    },
+  ],
+
+  dark: [
+    {
+      title: "tarot reader",
+      href: "tarot.html",
+      icon: "✹",
+      note: "the big one",
+      color: "#ff3fa4",
+    },
+    {
+      title: "oracle drawer",
+      href: "oracle.html",
+      icon: "◌",
+      note: "ask something unserious",
+      color: "#ccff33",
+    },
+    {
+      title: "slot machine",
+      href: "casino.html",
+      icon: "$",
+      note: "spin the thing",
+      color: "#ff4040",
+    },
+    {
+      title: "donate",
+      href: "donate.html",
+      icon: "♡",
+      note: "feed the machine",
+      color: "#ffe66b",
+    },
+    {
+      title: "basement",
+      href: "basement.html",
+      icon: "↓",
+      note: "do not click, obviously",
+      color: "#9dffd2",
+    },
+  ],
+};
+
+const body = document.body;
+const puppetTitle = document.getElementById("puppetTitle");
+const enterButton = document.getElementById("enterButton");
+const sunButton = document.getElementById("sunButton");
 const toast = document.getElementById("toast");
-const soundButton = document.getElementById("soundButton");
-const shuffleButton = document.getElementById("shuffleButton");
-const drawer = document.getElementById("drawer");
-const drawerToggle = document.getElementById("drawerToggle");
-
-let soundOn = false;
-let audioContext;
-
-function makeCard(page, index) {
-  const card = document.createElement("a");
-
-  card.className = "nav-card";
-  card.href = page.href;
-  card.style.setProperty("--rotate", rotations[index % rotations.length]);
-  card.style.setProperty("--accent", page.accent);
-  card.style.setProperty("--img", `url("${page.image}")`);
-  card.dataset.href = page.href;
-  card.dataset.title = page.title;
-
-  card.innerHTML = `
-    <span class="pin" aria-hidden="true"></span>
-
-    <div class="photo" data-placeholder="${page.placeholder}"></div>
-
-    <div class="label">
-      <span>${page.title}</span>
-      <small>${page.icon}</small>
-    </div>
-
-    <div class="card-back">
-      <p>${page.note}<br><br>double tap to flip back</p>
-    </div>
-  `;
-
-  return card;
-}
-
-function renderCards() {
-  pages.forEach((page, index) => {
-    cardGrid.appendChild(makeCard(page, index));
-  });
-}
 
 function showToast(message) {
   toast.textContent = message;
@@ -104,239 +142,145 @@ function showToast(message) {
 
   showToast.timer = window.setTimeout(() => {
     toast.classList.remove("show");
-  }, 1900);
+  }, 1800);
 }
 
-function playSound(type = "tap") {
-  if (!soundOn) return;
+function buildHangingTitle() {
+  titleText.split("").forEach((character, index) => {
+    const letter = document.createElement("span");
 
-  audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+    letter.className = "title-letter";
 
-  const oscillator = audioContext.createOscillator();
-  const gain = audioContext.createGain();
-
-  const now = audioContext.currentTime;
-
-  const settings = {
-    tap: [420, 0.045, "square"],
-    drag: [160, 0.025, "triangle"],
-    flip: [740, 0.08, "sawtooth"],
-    secret: [980, 0.13, "square"],
-    paper: [260, 0.055, "triangle"],
-  }[type] || [420, 0.05, "square"];
-
-  oscillator.frequency.setValueAtTime(settings[0], now);
-  oscillator.type = settings[2];
-
-  gain.gain.setValueAtTime(0.001, now);
-  gain.gain.exponentialRampToValueAtTime(0.075, now + 0.01);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + settings[1]);
-
-  oscillator.connect(gain);
-  gain.connect(audioContext.destination);
-
-  oscillator.start(now);
-  oscillator.stop(now + settings[1] + 0.02);
-}
-
-function makeDraggable(element, options = {}) {
-  let pointerStartX = 0;
-  let pointerStartY = 0;
-  let startDragX = 0;
-  let startDragY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let moved = false;
-  let lastTap = 0;
-  let suppressClick = false;
-
-  element.addEventListener("pointerdown", (event) => {
-    if (event.button !== undefined && event.button !== 0) return;
-
-    pointerStartX = event.clientX;
-    pointerStartY = event.clientY;
-    startDragX = currentX;
-    startDragY = currentY;
-    moved = false;
-
-    element.classList.add("dragging");
-    element.setPointerCapture(event.pointerId);
-  });
-
-  element.addEventListener("pointermove", (event) => {
-    if (!element.classList.contains("dragging")) return;
-
-    const deltaX = event.clientX - pointerStartX;
-    const deltaY = event.clientY - pointerStartY;
-
-    currentX = startDragX + deltaX;
-    currentY = startDragY + deltaY;
-
-    if (Math.hypot(deltaX, deltaY) > 5) {
-      moved = true;
-    }
-
-    element.style.setProperty("--drag-x", `${currentX}px`);
-    element.style.setProperty("--drag-y", `${currentY}px`);
-
-    if (moved && Math.random() > 0.965) {
-      playSound("drag");
-    }
-  });
-
-  element.addEventListener("pointerup", (event) => {
-    element.classList.remove("dragging");
-
-    try {
-      element.releasePointerCapture(event.pointerId);
-    } catch {
-      // Browser already released the pointer. No problem.
-    }
-
-    const now = Date.now();
-    const isDoubleTap = now - lastTap < 280;
-    lastTap = now;
-
-    if (isDoubleTap && options.flip !== false) {
-      event.preventDefault();
-      suppressClick = true;
-      element.classList.toggle("flipped");
-      playSound("flip");
+    if (character === " ") {
+      letter.classList.add("space");
+      puppetTitle.appendChild(letter);
       return;
     }
 
-    if (!moved && element.matches(".nav-card")) {
-      event.preventDefault();
-      suppressClick = true;
-      element.classList.add("popped");
-      playSound("tap");
+    letter.style.animationDelay = `${index * 80}ms`;
 
-      window.setTimeout(() => {
-        window.location.href = element.dataset.href;
-      }, 180);
-    } else if (!moved && element.dataset.secret) {
-      playSound("secret");
-      showToast(element.dataset.secret);
-    } else if (!moved) {
-      playSound("paper");
-    }
+    letter.innerHTML = `
+      <span class="letter-paper">${character}</span>
+    `;
 
+    puppetTitle.appendChild(letter);
+  });
+}
+
+function breakOneString() {
+  const letters = [...document.querySelectorAll(".title-letter:not(.space)")];
+  const letterToBreak = letters[6] || letters[letters.length - 1];
+
+  if (!letterToBreak) return;
+
+  letterToBreak.classList.add("broken-right");
+  showToast("one string gave up. fair.");
+}
+
+function swayTitle() {
+  const letters = [...document.querySelectorAll(".title-letter:not(.space)")];
+
+  letters.forEach((letter, index) => {
     window.setTimeout(() => {
-      element.classList.remove("popped");
-    }, 320);
-  });
-
-  element.addEventListener("click", (event) => {
-    if (suppressClick || moved) {
-      event.preventDefault();
-      suppressClick = false;
-    }
-  });
-
-  element.addEventListener("pointercancel", () => {
-    element.classList.remove("dragging");
+      letter.classList.remove("sway-now");
+      void letter.offsetWidth;
+      letter.classList.add("sway-now");
+    }, index * 45);
   });
 }
 
-function enableInteractiveObjects() {
-  document.querySelectorAll(".nav-card").forEach((card) => {
-    makeDraggable(card);
-  });
+function renderCards() {
+  Object.entries(pageGroups).forEach(([groupName, pages]) => {
+    const container = document.querySelector(`[data-links="${groupName}"]`);
 
-  document.querySelectorAll(".sticker, .specimen").forEach((item) => {
-    makeDraggable(item, { flip: false });
-  });
-}
+    if (!container) return;
 
-function shuffleBoard() {
-  const cards = document.querySelectorAll(".nav-card");
+    pages.forEach((page, index) => {
+      const card = document.createElement("a");
 
-  cards.forEach((card) => {
-    const x = Math.round((Math.random() - 0.5) * 30);
-    const y = Math.round((Math.random() - 0.5) * 24);
-    const r = `${Math.round((Math.random() - 0.5) * 9)}deg`;
+      card.className = "page-card";
+      card.href = page.href;
+      card.style.setProperty("--card-accent", page.color);
+      card.style.setProperty("--card-bg", getSoftCardBackground(index));
+      card.style.setProperty("--r", `${getRotation(index)}deg`);
 
-    card.style.setProperty("--drag-x", `${x}px`);
-    card.style.setProperty("--drag-y", `${y}px`);
-    card.style.setProperty("--rotate", r);
-    card.classList.add("popped");
+      card.innerHTML = `
+        <span class="card-icon">${page.icon}</span>
+        <div>
+          <h3 class="card-title">${page.title}</h3>
+          <p class="card-note">${page.note}</p>
+        </div>
+      `;
 
-    setTimeout(() => {
-      card.classList.remove("popped");
-    }, 340);
-  });
-
-  playSound("flip");
-  showToast("the board has been respectfully messed up.");
-}
-
-function applyParallax(x, y) {
-  document.querySelectorAll(".nav-card").forEach((card, index) => {
-    const depth = (index + 1) * 0.72;
-
-    card.style.setProperty("--parallax-x", `${x * depth}px`);
-    card.style.setProperty("--parallax-y", `${y * depth}px`);
+      container.appendChild(card);
+    });
   });
 }
 
-async function toggleSound() {
-  soundOn = !soundOn;
+function getRotation(index) {
+  const rotations = [-1.8, 1.2, -0.7, 1.7, -1.1, 0.9];
+  return rotations[index % rotations.length];
+}
 
-  if (soundOn) {
-    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+function getSoftCardBackground(index) {
+  const backgrounds = [
+    "#fff3d7",
+    "#ffe1ef",
+    "#d9f5ff",
+    "#e0ffef",
+    "#fff2a8",
+    "#eadcff",
+  ];
 
-    if (audioContext.state === "suspended") {
-      await audioContext.resume();
-    }
+  return backgrounds[index % backgrounds.length];
+}
 
-    soundButton.textContent = "sound on";
-    showToast("sound on. tiny haunted skateboard noises enabled.");
-    playSound("secret");
-  } else {
-    soundButton.textContent = "sound off";
-    showToast("sound off.");
-  }
+function openIntro() {
+  window.setTimeout(() => {
+    body.classList.add("intro-open");
+  }, 450);
+
+  window.setTimeout(() => {
+    breakOneString();
+  }, 2350);
+
+  window.setTimeout(() => {
+    body.classList.add("intro-ready");
+  }, 2800);
 }
 
 function bindEvents() {
-  soundButton.addEventListener("click", toggleSound);
-  shuffleButton.addEventListener("click", shuffleBoard);
-
-  drawerToggle.addEventListener("click", () => {
-    drawer.classList.toggle("open");
-    playSound("paper");
+  puppetTitle.addEventListener("click", () => {
+    swayTitle();
   });
 
-  document.querySelectorAll("[data-secret]").forEach((button) => {
-    button.addEventListener("click", () => {
-      playSound("secret");
-      showToast(button.dataset.secret);
+  puppetTitle.addEventListener("pointerenter", () => {
+    swayTitle();
+  });
+
+  enterButton.addEventListener("click", () => {
+    document.getElementById("landing").scrollIntoView({
+      behavior: "smooth",
+      block: "start",
     });
   });
 
-  board.addEventListener("pointermove", (event) => {
-    const rect = board.getBoundingClientRect();
+  sunButton.addEventListener("click", () => {
+    sunButton.classList.remove("annoyed");
+    void sunButton.offsetWidth;
+    sunButton.classList.add("annoyed");
 
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-
-    applyParallax(x * 4, y * 4);
+    showToast("do not touch the sun.");
   });
 
-  board.addEventListener("pointerleave", () => {
-    applyParallax(0, 0);
-  });
-
-  if ("DeviceOrientationEvent" in window) {
-    window.addEventListener("deviceorientation", (event) => {
-      const gamma = Math.max(-12, Math.min(12, event.gamma || 0));
-      const beta = Math.max(-12, Math.min(12, event.beta || 0));
-
-      applyParallax(gamma / 4, beta / 6);
+  document.querySelectorAll(".page-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      card.style.transform = "translateY(4px) scale(0.98)";
     });
-  }
+  });
 }
 
+buildHangingTitle();
 renderCards();
-enableInteractiveObjects();
 bindEvents();
+openIntro();
