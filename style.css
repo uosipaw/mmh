@@ -201,13 +201,12 @@ a {
 }
 
 .curtain-top {
-  left: 10%;
-  top: -10px;
+  left: 0;
+  right: 0;
+  top: 0;
   z-index: 18;
-  width: 105%;
-  height: 27%;
-  object-fit: cover;
-  object-position: top center;
+  width: 100%;
+  height: auto;
   filter: drop-shadow(0 8px 0 rgba(23, 18, 15, 0.22));
   animation: topCurtainBreath 4.8s ease-in-out infinite;
 }
@@ -703,21 +702,6 @@ a {
   margin-right: auto;
 }
 
-.zone-kicker {
-  margin-bottom: -10px;
-  width: fit-content;
-  padding: 6px 10px;
-  border: 2px solid var(--ink);
-  background: #fff;
-  box-shadow: 3px 4px 0 var(--ink);
-  font-family: "Courier New", monospace;
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transform: rotate(-1.2deg);
-}
-
 .scroll-section h2 {
   margin: 0;
   max-width: 820px;
@@ -741,39 +725,29 @@ a {
 }
 
 .page-card {
-  --card-bg: #fff;
   --card-accent: var(--pink);
-  min-height: 158px;
   display: grid;
-  align-content: space-between;
-  padding: 14px;
-  border: 3px solid var(--ink);
-  border-radius: 18px 12px 22px 10px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.55), transparent),
-    var(--card-bg);
-  box-shadow: 5px 6px 0 var(--ink);
-  transform: rotate(var(--r, 0deg));
+  align-content: start;
+  gap: 8px;
+  padding: 14px 4px 16px;
+  border-bottom: 2px dashed currentColor;
   transition:
     transform 180ms ease,
-    box-shadow 180ms ease,
-    filter 180ms ease;
+    opacity 180ms ease;
 }
 
 .page-card:hover,
 .page-card:focus-visible {
-  outline: none;
-  filter: saturate(1.08);
-  transform: rotate(var(--r, 0deg)) translateY(-6px) scale(1.02);
-  box-shadow: 9px 11px 0 var(--ink);
+  outline: 2px dashed currentColor;
+  outline-offset: 6px;
+  opacity: 0.72;
+  transform: translateY(-3px);
 }
 
 .card-icon {
   width: fit-content;
-  padding: 6px 10px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  background: var(--card-accent);
+  color: var(--card-accent);
+  font-size: 1.4rem;
   font-weight: 900;
 }
 
@@ -811,7 +785,7 @@ a {
 
 .dark-zone .page-card,
 .myth-zone .page-card {
-  color: var(--ink);
+  color: inherit;
 }
 
 .scroll-section h2,
@@ -1166,10 +1140,6 @@ a {
 
   .intro-open .curtain-right {
     transform: translateX(70%) rotate(4deg) skewY(2deg);
-  }
-
-  .curtain-top {
-    height: 22%;
   }
 
   .stage-frame {
