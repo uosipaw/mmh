@@ -79,7 +79,7 @@
 
 html {
   min-height: 100%;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  background: url("/images/tarotbg.png") no-repeat center center fixed;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -1355,5 +1355,263 @@ body.cards-dealt .deck-area {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
+  }
+}
+
+/* --- Opening animation emergency override: global placement fix --- */
+
+.opening-sequence {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: max(22px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom));
+  overflow: hidden;
+  color: #fff7dd;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 212, 196, 0.22), transparent 24%),
+    radial-gradient(circle at 24% 24%, rgba(157, 114, 255, 0.28), transparent 22%),
+    radial-gradient(circle at 80% 76%, rgba(255, 215, 95, 0.16), transparent 24%),
+    linear-gradient(160deg, #090a0f 0%, #1a0f1a 52%, #2d1b3d 100%);
+  transition:
+    opacity 520ms ease,
+    visibility 520ms ease;
+}
+
+.opening-sequence::before,
+.opening-sequence::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+}
+
+.opening-sequence::before {
+  opacity: 0.25;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.75) 0 1px, transparent 1px 12px);
+  background-size: 42px 42px;
+  animation: introStars 14s linear infinite;
+}
+
+.opening-sequence::after {
+  opacity: 0.18;
+  background:
+    linear-gradient(90deg, transparent 0 47%, rgba(255, 255, 255, 0.28) 48% 49%, transparent 50%),
+    linear-gradient(0deg, transparent 0 47%, rgba(255, 255, 255, 0.18) 48% 49%, transparent 50%);
+  background-size: 68px 68px;
+  mix-blend-mode: screen;
+  transform: rotate(-8deg);
+}
+
+body.intro-complete .opening-sequence {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-orbit {
+  position: absolute;
+  width: min(76vw, 460px);
+  aspect-ratio: 1;
+  border: 1px dashed rgba(255, 247, 221, 0.28);
+  border-radius: 50%;
+  animation: openingOrbit 9s linear infinite;
+}
+
+.opening-sigil {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 247, 221, 0.4);
+  border-radius: 50%;
+  background: rgba(9, 10, 15, 0.48);
+  box-shadow: 0 0 22px rgba(255, 247, 221, 0.18);
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+}
+
+.opening-sigil:nth-child(1) {
+  top: -21px;
+  left: calc(50% - 21px);
+}
+
+.opening-sigil:nth-child(2) {
+  right: -21px;
+  top: calc(50% - 21px);
+}
+
+.opening-sigil:nth-child(3) {
+  bottom: -21px;
+  left: calc(50% - 21px);
+}
+
+.opening-sigil:nth-child(4) {
+  left: -21px;
+  top: calc(50% - 21px);
+}
+
+.opening-deck {
+  position: relative;
+  z-index: 2;
+  width: clamp(118px, 34vw, 178px);
+  aspect-ratio: 5 / 7.4;
+  transform: translateY(-52px);
+  animation: openingDeckDrop 900ms cubic-bezier(.2, 1.25, .35, 1) both;
+}
+
+.opening-card {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 247, 221, 0.85);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 38%),
+    repeating-linear-gradient(45deg, rgba(255, 247, 221, 0.12) 0 7px, rgba(157, 114, 255, 0.12) 7px 14px),
+    linear-gradient(160deg, #2d1b3d, #090a0f);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.42),
+    inset 0 0 0 8px rgba(255, 247, 221, 0.08);
+  transform-origin: bottom center;
+}
+
+.opening-card::before {
+  content: "✹";
+  position: absolute;
+  inset: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 247, 221, 0.38);
+  border-radius: 12px;
+  color: rgba(255, 247, 221, 0.82);
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 12vw, 4.4rem);
+}
+
+.opening-card-one {
+  animation: openingCardOne 1450ms ease 650ms both;
+}
+
+.opening-card-two {
+  animation: openingCardTwo 1450ms ease 820ms both;
+}
+
+.opening-card-three {
+  animation: openingCardThree 1450ms ease 990ms both;
+}
+
+.opening-copy {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-top: clamp(210px, 44vh, 280px);
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.62);
+  animation: openingCopyIn 780ms ease 1650ms both;
+}
+
+.opening-kicker,
+.opening-line {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: clamp(0.78rem, 3.4vw, 1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.opening-copy h1 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(3.4rem, 17vw, 7.4rem);
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+}
+
+.opening-line {
+  max-width: 28ch;
+  opacity: 0.8;
+  text-transform: lowercase;
+}
+
+.opening-skip {
+  position: absolute;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 5;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 247, 221, 0.42);
+  border-radius: 999px;
+  color: #fff7dd;
+  background: rgba(9, 10, 15, 0.42);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+@keyframes introStars {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(84px);
+  }
+}
+
+@keyframes openingOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes openingDeckDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-92px) scale(0.84) rotate(-5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-52px) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes openingCardOne {
+  to {
+    transform: translateX(-56%) rotate(-14deg);
+  }
+}
+
+@keyframes openingCardTwo {
+  to {
+    transform: translateY(-8%) rotate(2deg);
+  }
+}
+
+@keyframes openingCardThree {
+  to {
+    transform: translateX(56%) rotate(14deg);
+  }
+}
+
+@keyframes openingCopyIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
