@@ -77,23 +77,43 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  /* Prevent scroll during animations */
-  font-family: var(--font-body);
-  color: var(--text-main);
+html {
+  min-height: 100%;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* --- Background Overlay --- */
-/* n is number of stars required */
+body {
+  margin: 0;
+  min-height: 100svh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
 
-html {
-  height: 100%;
-  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+body.tarot-loading {
   overflow: hidden;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+img,
+svg,
+canvas {
+  max-width: 100%;
 }
 
 /* Starfield background using static box-shadow values */
@@ -171,6 +191,7 @@ html {
 
 #title span {
   background: -webkit-linear-gradient(white, #38495a);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -851,5 +872,488 @@ body.cards-dealt .deck-area {
   #search-results {
     max-height: 120px;
     font-size: 0.85rem;
+  }
+
+  .opening-sequence {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: grid;
+    place-items: center;
+    padding: max(22px, env(safe-area-inset-top)) 18px max(22px, env(safe-area-inset-bottom));
+    overflow: hidden;
+    color: #fff7dd;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255, 212, 196, 0.22), transparent 24%),
+      radial-gradient(circle at 24% 24%, rgba(157, 114, 255, 0.28), transparent 22%),
+      radial-gradient(circle at 80% 76%, rgba(255, 215, 95, 0.16), transparent 24%),
+      linear-gradient(160deg, #090a0f 0%, #1a0f1a 52%, #2d1b3d 100%);
+    transition:
+      opacity 520ms ease,
+      visibility 520ms ease;
+  }
+
+  .opening-sequence::before,
+  .opening-sequence::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+  }
+
+  .opening-sequence::before {
+    opacity: 0.25;
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.75) 0 1px, transparent 1px 12px);
+    background-size: 42px 42px;
+    animation: introStars 14s linear infinite;
+  }
+
+  .opening-sequence::after {
+    opacity: 0.18;
+    background:
+      linear-gradient(90deg, transparent 0 47%, rgba(255, 255, 255, 0.28) 48% 49%, transparent 50%),
+      linear-gradient(0deg, transparent 0 47%, rgba(255, 255, 255, 0.18) 48% 49%, transparent 50%);
+    background-size: 68px 68px;
+    mix-blend-mode: screen;
+    transform: rotate(-8deg);
+  }
+
+  body.intro-complete .opening-sequence {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .opening-orbit {
+    position: absolute;
+    width: min(76vw, 460px);
+    aspect-ratio: 1;
+    border: 1px dashed rgba(255, 247, 221, 0.28);
+    border-radius: 50%;
+    animation: openingOrbit 9s linear infinite;
+  }
+
+  .opening-sigil {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 247, 221, 0.4);
+    border-radius: 50%;
+    background: rgba(9, 10, 15, 0.48);
+    box-shadow: 0 0 22px rgba(255, 247, 221, 0.18);
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+  }
+
+  .opening-sigil:nth-child(1) {
+    top: -21px;
+    left: calc(50% - 21px);
+  }
+
+  .opening-sigil:nth-child(2) {
+    right: -21px;
+    top: calc(50% - 21px);
+  }
+
+  .opening-sigil:nth-child(3) {
+    bottom: -21px;
+    left: calc(50% - 21px);
+  }
+
+  .opening-sigil:nth-child(4) {
+    left: -21px;
+    top: calc(50% - 21px);
+  }
+
+  .opening-deck {
+    position: relative;
+    z-index: 2;
+    width: clamp(118px, 34vw, 178px);
+    aspect-ratio: 5 / 7.4;
+    transform: translateY(-52px);
+    animation: openingDeckDrop 900ms cubic-bezier(.2, 1.25, .35, 1) both;
+  }
+
+  .opening-card {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 247, 221, 0.85);
+    border-radius: 16px;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 38%),
+      repeating-linear-gradient(45deg, rgba(255, 247, 221, 0.12) 0 7px, rgba(157, 114, 255, 0.12) 7px 14px),
+      linear-gradient(160deg, #2d1b3d, #090a0f);
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.42),
+      inset 0 0 0 8px rgba(255, 247, 221, 0.08);
+    transform-origin: bottom center;
+  }
+
+  .opening-card::before {
+    content: "✹";
+    position: absolute;
+    inset: 14px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 247, 221, 0.38);
+    border-radius: 12px;
+    color: rgba(255, 247, 221, 0.82);
+    font-family: var(--font-heading);
+    font-size: clamp(2.3rem, 12vw, 4.4rem);
+  }
+
+  .opening-card-one {
+    animation: openingCardOne 1450ms ease 650ms both;
+  }
+
+  .opening-card-two {
+    animation: openingCardTwo 1450ms ease 820ms both;
+  }
+
+  .opening-card-three {
+    animation: openingCardThree 1450ms ease 990ms both;
+  }
+
+  .opening-copy {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    margin-top: clamp(210px, 44vh, 280px);
+    text-align: center;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.62);
+    animation: openingCopyIn 780ms ease 1650ms both;
+  }
+
+  .opening-kicker,
+  .opening-line {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: clamp(0.78rem, 3.4vw, 1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .opening-copy h1 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(3.4rem, 17vw, 7.4rem);
+    line-height: 0.78;
+    letter-spacing: -0.04em;
+  }
+
+  .opening-line {
+    max-width: 28ch;
+    opacity: 0.8;
+    text-transform: lowercase;
+  }
+
+  .opening-skip {
+    position: absolute;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    z-index: 5;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 247, 221, 0.42);
+    border-radius: 999px;
+    color: #fff7dd;
+    background: rgba(9, 10, 15, 0.42);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+
+  .opening-skip:focus-visible {
+    outline: 2px solid #fff7dd;
+    outline-offset: 4px;
+  }
+
+  /* --- Mobile Optimization Overrides --- */
+
+  .stage {
+    min-height: 100svh;
+    height: auto;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .deck-pile {
+    background-color: transparent;
+    background-image: var(--card-back-img);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-slot {
+    flex: 0 0 auto;
+  }
+
+  .card-face {
+    overflow: hidden;
+  }
+
+  .card-face.back {
+    background-size: cover;
+    background-position: center;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --header-padding: 0.65rem 0.75rem;
+      --control-gap: 0.5rem;
+      --card-container-padding: 12px;
+      --card-width: clamp(88px, 28vw, 124px);
+      --card-height: calc(var(--card-width) * 1.58);
+    }
+
+    .app-ui {
+      max-height: none;
+      padding:
+        max(0.65rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) 0.65rem max(0.75rem, env(safe-area-inset-left));
+      overflow: visible;
+    }
+
+    .controls-group {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.5rem;
+      align-items: end;
+    }
+
+    .control-item {
+      min-width: 0;
+      width: 100%;
+    }
+
+    .search-wrapper {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.68rem;
+      line-height: 1;
+    }
+
+    select,
+    input {
+      width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      font-size: 16px;
+    }
+
+    #search-results {
+      z-index: 200;
+      max-height: 34svh;
+    }
+
+    .stage {
+      padding-top: clamp(138px, 25svh, 186px);
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .spread-container {
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-width), var(--card-width)));
+      gap: 12px;
+      min-height: 0;
+      padding: 12px 8px 160px;
+      align-content: start;
+    }
+
+    .spread-1,
+    .spread-3 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .spread-celtic {
+      display: grid;
+      grid-template-columns: repeat(3, var(--card-width));
+      grid-auto-rows: var(--card-height);
+      gap: 10px;
+      max-width: 100%;
+    }
+
+    .spread-celtic .card-slot {
+      grid-column: auto !important;
+      grid-row: auto !important;
+    }
+
+    .spread-celtic .card-slot:nth-child(2) {
+      transform: rotate(90deg) scale(0.82);
+    }
+
+    body.cards-dealt .deck-area {
+      right: max(12px, env(safe-area-inset-right));
+      bottom: max(14px, env(safe-area-inset-bottom));
+    }
+
+    body.cards-dealt .deck-pile {
+      width: clamp(58px, 18vw, 78px);
+      height: calc(clamp(58px, 18vw, 78px) * 1.58);
+    }
+
+    .deck-label {
+      font-size: 0.62rem;
+    }
+
+    .modal {
+      align-items: end;
+    }
+
+    .modal-content {
+      width: min(96vw, 820px);
+      max-height: calc(100svh - 20px);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .modal-split {
+      flex-direction: column;
+    }
+
+    .modal-visual {
+      min-height: 190px;
+      height: 34svh;
+      flex: none;
+    }
+
+    .modal-card-display {
+      width: clamp(92px, 30vw, 138px);
+      height: calc(clamp(92px, 30vw, 138px) * 1.62);
+    }
+
+    .modal-info {
+      padding: 18px;
+      max-height: 46svh;
+    }
+
+    .modal-header h2 {
+      font-size: clamp(1.65rem, 8vw, 2.25rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root {
+      --card-width: clamp(78px, 29vw, 96px);
+      --card-height: calc(var(--card-width) * 1.58);
+    }
+
+    .controls-group {
+      gap: 0.42rem;
+    }
+
+    .stage {
+      padding-top: clamp(132px, 28svh, 178px);
+    }
+
+    .spread-container {
+      gap: 9px;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    .opening-copy h1 {
+      font-size: clamp(3rem, 18vw, 4.7rem);
+    }
+
+    .opening-deck {
+      width: clamp(106px, 36vw, 142px);
+      transform: translateY(-42px);
+    }
+
+    .opening-orbit {
+      width: 82vw;
+    }
+
+    .opening-skip {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      width: max-content;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .opening-sequence,
+    .opening-sequence *,
+    .card-inner,
+    .deck-area,
+    .card-slot {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  @keyframes introStars {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(84px);
+    }
+  }
+
+  @keyframes openingOrbit {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes openingDeckDrop {
+    from {
+      opacity: 0;
+      transform: translateY(-92px) scale(0.84) rotate(-5deg);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(-52px) scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes openingCardOne {
+    to {
+      transform: translateX(-56%) rotate(-14deg);
+    }
+  }
+
+  @keyframes openingCardTwo {
+    to {
+      transform: translateY(-8%) rotate(2deg);
+    }
+  }
+
+  @keyframes openingCardThree {
+    to {
+      transform: translateX(56%) rotate(14deg);
+    }
+  }
+
+  @keyframes openingCopyIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 }

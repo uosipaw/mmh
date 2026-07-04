@@ -18,6 +18,93 @@ const modalImg = document.getElementById("modal-card-image");
 const modalReversed = document.getElementById("modal-reversed");
 const modalClose = document.getElementById("modal-close");
 
+// --- Opening Sequence ---
+const openingSequence = document.getElementById("opening-sequence");
+const openingSkip = document.getElementById("opening-skip");
+const openingLine = document.getElementById("opening-line");
+
+const openingLines = [
+  "shuffling the bad omens.",
+  "asking the cards to act normal.",
+  "consulting the tiny cardboard problem committee.",
+  "opening the curtain.",
+];
+
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
+const introStorageKey = "mdsnTarotIntroSeen";
+
+function completeOpeningSequence() {
+  document.body.classList.remove("tarot-loading");
+  document.body.classList.add("intro-complete");
+
+  try {
+    sessionStorage.setItem(introStorageKey, "true");
+  } catch (error) {
+    // If storage is blocked, the intro still closes. Technology remains brave.
+  }
+
+  if (!openingSequence) return;
+
+  openingSequence.setAttribute("aria-hidden", "true");
+
+  openingSequence.addEventListener(
+    "transitionend",
+    () => {
+      openingSequence.remove();
+    },
+    { once: true },
+  );
+}
+
+function runOpeningSequence() {
+  if (!openingSequence) {
+    document.body.classList.remove("tarot-loading");
+    return;
+  }
+
+  let introAlreadySeen = false;
+
+  try {
+    introAlreadySeen = sessionStorage.getItem(introStorageKey) === "true";
+  } catch (error) {
+    introAlreadySeen = false;
+  }
+
+  if (prefersReducedMotion || introAlreadySeen) {
+    completeOpeningSequence();
+    return;
+  }
+
+  let lineIndex = 0;
+
+  const lineTimer = window.setInterval(() => {
+    lineIndex += 1;
+
+    if (!openingLine || !openingLines[lineIndex]) {
+      window.clearInterval(lineTimer);
+      return;
+    }
+
+    openingLine.textContent = openingLines[lineIndex];
+  }, 780);
+
+  openingSkip?.addEventListener(
+    "click",
+    () => {
+      window.clearInterval(lineTimer);
+      completeOpeningSequence();
+    },
+    { once: true },
+  );
+
+  window.setTimeout(() => {
+    window.clearInterval(lineTimer);
+    completeOpeningSequence();
+  }, 3600);
+}
+
 // --- Initialization ---
 dealBtn.disabled = true;
 
@@ -281,3 +368,5 @@ function openCardModal(card, isReversed) {
 function closeModal() {
   modal.classList.add("hidden");
 }
+
+runOpeningSequence();

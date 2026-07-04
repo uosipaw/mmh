@@ -9,7 +9,29 @@
   <link rel="preload" href="./fonts/My Happy Ending - TTF.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 </head>
 
-<body>
+<body class="tarot-loading">
+  <div class="opening-sequence" id="opening-sequence" aria-label="Opening tarot animation">
+    <div class="opening-orbit" aria-hidden="true">
+      <span class="opening-sigil">✹</span>
+      <span class="opening-sigil">☾</span>
+      <span class="opening-sigil">♢</span>
+      <span class="opening-sigil">✦</span>
+    </div>
+
+    <div class="opening-deck" aria-hidden="true">
+      <span class="opening-card opening-card-one"></span>
+      <span class="opening-card opening-card-two"></span>
+      <span class="opening-card opening-card-three"></span>
+    </div>
+
+    <div class="opening-copy">
+      <p class="opening-kicker">mdsn mchll presents</p>
+      <h1>tarot reader</h1>
+      <p class="opening-line" id="opening-line">shuffling the bad omens.</p>
+    </div>
+
+    <button class="opening-skip" id="opening-skip" type="button">skip the theatrics</button>
+  </div>
   <header class="app-ui">
     <div class="controls-group">
       <div class="control-item">
@@ -80,7 +102,7 @@
     </div>
   </div>
 
-  <script src="./tarot.js?v=2" defer></script>
+  <script src="./tarot.js" defer></script>
 </body>
 
 </html>
