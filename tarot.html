@@ -9,7 +9,7 @@
   <link rel="preload" href="./fonts/My Happy Ending - TTF.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 </head>
 
-<body class="tarot-loading">
+<body class="tarot-loading view-lobby">
   <div class="opening-sequence" id="opening-sequence" aria-label="Opening tarot animation">
     <div class="opening-orbit" aria-hidden="true">
       <span class="opening-sigil">✹</span>
@@ -32,7 +32,113 @@
 
     <button class="opening-skip" id="opening-skip" type="button">skip the theatrics</button>
   </div>
+
+  <section class="tarot-home view-panel" id="tarot-home" aria-labelledby="tarot-home-title">
+    <div class="tarot-home-inner">
+      <p class="tarot-kicker">choose your nonsense</p>
+
+      <h1 id="tarot-home-title">what are we doing?</h1>
+
+      <p class="tarot-home-subtitle">
+        Pick a door. Some of them are useful. Several are being dramatic.
+      </p>
+
+      <div class="tarot-menu-grid" aria-label="Tarot menu">
+        <button class="tarot-menu-card primary" id="pull-cards-btn" type="button">
+          <span class="menu-icon">✹</span>
+          <span>
+            <strong>pull some cards</strong>
+            <small>pick a spread, shuffle the little cardboard problem committee</small>
+          </span>
+        </button>
+
+        <button class="tarot-menu-card" id="card-guide-btn" type="button">
+          <span class="menu-icon">☾</span>
+          <span>
+            <strong>card guide</strong>
+            <small>look up meanings without pretending you memorized 78 cards</small>
+          </span>
+        </button>
+
+        <button class="tarot-menu-card" id="daily-draw-btn" type="button">
+          <span class="menu-icon">♢</span>
+          <span>
+            <strong>daily draw</strong>
+            <small>one card, one tiny omen, everyone remain calm</small>
+          </span>
+        </button>
+
+        <button class="tarot-menu-card" id="spread-library-btn" type="button">
+          <span class="menu-icon">✦</span>
+          <span>
+            <strong>spread library</strong>
+            <small>choose the shape of the problem</small>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="tarot-guide view-panel" id="tarot-guide" aria-labelledby="tarot-guide-title" hidden>
+    <div class="tarot-view-top">
+      <button class="small-nav-btn" type="button" data-view="home">← menu</button>
+      <div>
+        <p class="tarot-kicker">card guide</p>
+        <h1 id="tarot-guide-title">card meanings</h1>
+      </div>
+    </div>
+
+    <div class="guide-tools">
+      <label>
+        Search cards
+        <input id="guide-search" type="search" placeholder="The Fool, Cups, tower, etc." />
+      </label>
+
+      <label>
+        Filter
+        <select id="guide-filter">
+          <option value="all">All cards</option>
+          <option value="major">Major Arcana</option>
+          <option value="cups">Cups</option>
+          <option value="pentacles">Pentacles</option>
+          <option value="swords">Swords</option>
+          <option value="wands">Wands</option>
+        </select>
+      </label>
+
+      <label>
+        Meaning
+        <select id="guide-orientation">
+          <option value="upright">Upright</option>
+          <option value="reversed">Reversed</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="guide-layout">
+      <div class="guide-list" id="guide-list" role="list"></div>
+
+      <article class="guide-detail" id="guide-detail">
+        <p class="empty-guide-note">Loading the card guide. The spirits are looking for the JSON file.</p>
+      </article>
+    </div>
+
+    <p class="guide-empty" id="guide-empty" hidden>No cards found. Extremely rude of them.</p>
+  </section>
+
+  <section class="spread-library view-panel" id="spread-library" aria-labelledby="spread-library-title" hidden>
+    <div class="tarot-view-top">
+      <button class="small-nav-btn" type="button" data-view="home">← menu</button>
+      <div>
+        <p class="tarot-kicker">spread library</p>
+        <h1 id="spread-library-title">pick a spread</h1>
+      </div>
+    </div>
+
+    <div class="spread-library-grid" id="spread-library-grid"></div>
+  </section>
   <header class="app-ui">
+    <button class="small-nav-btn reader-menu-btn" type="button" data-view="home">← menu</button>
     <div class="controls-group">
       <div class="control-item">
         <label for="deck-select">Deck Design</label>

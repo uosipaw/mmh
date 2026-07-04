@@ -18,6 +18,32 @@ const modalImg = document.getElementById("modal-card-image");
 const modalReversed = document.getElementById("modal-reversed");
 const modalClose = document.getElementById("modal-close");
 
+// --- Post-intro View Elements ---
+const appUi = document.querySelector(".app-ui");
+const readerStage = document.querySelector(".stage");
+
+const tarotHome = document.getElementById("tarot-home");
+const tarotGuide = document.getElementById("tarot-guide");
+const spreadLibraryView = document.getElementById("spread-library");
+
+const pullCardsBtn = document.getElementById("pull-cards-btn");
+const cardGuideBtn = document.getElementById("card-guide-btn");
+const dailyDrawBtn = document.getElementById("daily-draw-btn");
+const spreadLibraryBtn = document.getElementById("spread-library-btn");
+
+const guideSearchInput = document.getElementById("guide-search");
+const guideFilterSelect = document.getElementById("guide-filter");
+const guideOrientationSelect = document.getElementById("guide-orientation");
+const guideList = document.getElementById("guide-list");
+const guideDetail = document.getElementById("guide-detail");
+const guideEmpty = document.getElementById("guide-empty");
+
+const spreadLibraryGrid = document.getElementById("spread-library-grid");
+
+const guideState = {
+  activeCardId: null,
+};
+
 // --- Opening Sequence ---
 const openingSequence = document.getElementById("opening-sequence");
 const openingSkip = document.getElementById("opening-skip");
@@ -136,6 +162,8 @@ fetch("./tarot-cards.json")
     }
 
     root.style.setProperty("--card-back-img", backUrl);
+    renderCardGuide();
+    renderSpreadLibrary();
   })
   .catch((err) => console.error("Error loading deck:", err));
 
@@ -369,4 +397,403 @@ function closeModal() {
   modal.classList.add("hidden");
 }
 
+// --- Post-intro Navigation + Card Guide ---
+
+const viewClasses = ["view-lobby", "view-reader", "view-guide", "view-spreads"];
+
+const majorArcanaIds = new Set([
+  "thefool",
+  "themagician",
+  "thehighpriestess",
+  "theempress",
+  "theemperor",
+  "thehierophant",
+  "thelovers",
+  "thechariot",
+  "strength",
+  "thehermit",
+  "wheeloffortune",
+  "justice",
+  "thehangedman",
+  "death",
+  "temperance",
+  "thedevil",
+  "thetower",
+  "thestar",
+  "themoon",
+  "thesun",
+  "judgement",
+  "theworld",
+]);
+
+const spreadLibraryData = [
+  {
+    title: "daily draw",
+    value: "1",
+    cards: "1 card",
+    note: "A quick check-in. Best for daily guidance, tiny omens, and not turning breakfast into a full investigation.",
+  },
+  {
+    title: "past, present, future",
+    value: "3",
+    cards: "3 cards",
+    note: "A clean little timeline. Useful when something has a before, a now, and an incoming consequence wearing boots.",
+  },
+  {
+    title: "relationship pulse",
+    value: "3",
+    cards: "3 cards",
+    note: "Use the three cards as you, them, and the weather system between you. Very scientific. Obviously.",
+  },
+  {
+    title: "money / career check",
+    value: "3",
+    cards: "3 cards",
+    note: "Use the three cards as pressure, opportunity, and next move. Great for when money is being weird, so, often.",
+  },
+  {
+    title: "decision spread",
+    value: "3",
+    cards: "3 cards",
+    note: "Use the three cards as option one, option two, and what you are refusing to admit matters.",
+  },
+  {
+    title: "celtic cross",
+    value: "celtic",
+    cards: "10 cards",
+    note: "The big one. For when the question has grown legs, opened mail, and started affecting your sleep.",
+  },
+];
+
+function setView(viewName) {
+  const className = {
+    home: "view-lobby",
+    reader: "view-reader",
+    guide: "view-guide",
+    spreads: "view-spreads",
+  }[viewName];
+
+  if (!className) return;
+
+  document.body.classList.remove(...viewClasses);
+  document.body.classList.add(className);
+
+  if (tarotHome) tarotHome.hidden = viewName !== "home";
+  if (tarotGuide) tarotGuide.hidden = viewName !== "guide";
+  if (spreadLibraryView) spreadLibraryView.hidden = viewName !== "spreads";
+
+  if (appUi) appUi.hidden = viewName !== "reader";
+  if (readerStage) readerStage.hidden = viewName !== "reader";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function resetReaderBoard() {
+  document.body.classList.remove("cards-dealt");
+  cardsContainer.innerHTML = "";
+  cardsContainer.className = "spread-container";
+}
+
+function openReader(options = {}) {
+  const { spreadValue = null, dealNow = false, reset = true } = options;
+
+  if (reset) resetReaderBoard();
+
+  if (spreadValue) {
+    spreadSelect.value = spreadValue;
+  }
+
+  setView("reader");
+
+  if (dealNow) {
+    dealWhenDeckIsReady();
+  }
+}
+
+function dealWhenDeckIsReady() {
+  if (tarotDeck.length) {
+    window.setTimeout(() => {
+      startDealAnimation();
+    }, 180);
+    return;
+  }
+
+  let attempts = 0;
+
+  const waitForDeck = window.setInterval(() => {
+    attempts += 1;
+
+    if (tarotDeck.length) {
+      window.clearInterval(waitForDeck);
+      startDealAnimation();
+    }
+
+    if (attempts > 40) {
+      window.clearInterval(waitForDeck);
+    }
+  }, 100);
+}
+
+function openGuide() {
+  setView("guide");
+  renderCardGuide();
+
+  window.setTimeout(() => {
+    guideSearchInput?.focus();
+  }, 120);
+}
+
+function openSpreadLibrary() {
+  setView("spreads");
+  renderSpreadLibrary();
+}
+
+function getCardFamily(card) {
+  const compactId = String(card.id || "")
+    .toLowerCase()
+    .replace(/[^a-z]/g, "");
+  const compactName = String(card.name || "")
+    .toLowerCase()
+    .replace(/[^a-z]/g, "");
+  const haystack = `${compactId} ${compactName}`;
+
+  if (majorArcanaIds.has(compactId)) return "major";
+  if (haystack.includes("cups")) return "cups";
+  if (haystack.includes("pentacles")) return "pentacles";
+  if (haystack.includes("coins")) return "pentacles";
+  if (haystack.includes("swords")) return "swords";
+  if (haystack.includes("wands")) return "wands";
+
+  return "other";
+}
+
+function getFilteredGuideCards() {
+  const searchValue = (guideSearchInput?.value || "").trim().toLowerCase();
+  const filterValue = guideFilterSelect?.value || "all";
+
+  return tarotDeck.filter((card) => {
+    const keywords = (card.keywords || []).join(" ").toLowerCase();
+    const searchableText = `${card.name} ${card.id} ${keywords}`.toLowerCase();
+    const cardFamily = getCardFamily(card);
+
+    const matchesSearch = !searchValue || searchableText.includes(searchValue);
+    const matchesFilter = filterValue === "all" || cardFamily === filterValue;
+
+    return matchesSearch && matchesFilter;
+  });
+}
+
+function renderCardGuide() {
+  if (!guideList || !guideDetail) return;
+
+  guideList.innerHTML = "";
+
+  if (!tarotDeck.length) {
+    guideDetail.innerHTML = `<p class="empty-guide-note">Loading the card guide. The spirits are looking for the JSON file.</p>`;
+    return;
+  }
+
+  const cards = getFilteredGuideCards();
+
+  if (!cards.length) {
+    if (guideEmpty) guideEmpty.hidden = false;
+    guideDetail.innerHTML = `<p class="empty-guide-note">No matching card. Deeply suspicious.</p>`;
+    return;
+  }
+
+  if (guideEmpty) guideEmpty.hidden = true;
+
+  const activeStillExists = cards.some(
+    (card) => card.id === guideState.activeCardId,
+  );
+
+  if (!guideState.activeCardId || !activeStillExists) {
+    guideState.activeCardId = cards[0].id;
+  }
+
+  cards.forEach((card) => {
+    const button = document.createElement("button");
+    const keywords = (card.keywords || []).slice(0, 3).join(" • ");
+
+    button.type = "button";
+    button.className = "guide-card-btn";
+    button.dataset.cardId = card.id;
+
+    if (card.id === guideState.activeCardId) {
+      button.classList.add("active");
+    }
+
+    button.innerHTML = `
+      <strong>${escapeHtml(card.name)}</strong>
+      <span>${escapeHtml(keywords)}</span>
+    `;
+
+    button.addEventListener("click", () => {
+      guideState.activeCardId = card.id;
+      renderCardGuide();
+    });
+
+    guideList.appendChild(button);
+  });
+
+  const activeCard =
+    tarotDeck.find((card) => card.id === guideState.activeCardId) || cards[0];
+  renderGuideDetail(activeCard);
+}
+
+function renderGuideDetail(card) {
+  if (!guideDetail || !card) return;
+
+  const orientation = guideOrientationSelect?.value || "upright";
+  const description =
+    card.description?.[orientation] || "No description available.";
+  const keywords = (card.keywords || []).join(" • ");
+
+  guideDetail.innerHTML = "";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "guide-detail-inner";
+
+  const image = document.createElement("div");
+  image.className = "guide-card-image";
+  image.textContent = card.name;
+
+  const info = document.createElement("div");
+
+  const title = document.createElement("h2");
+  title.textContent = card.name;
+
+  const keywordLine = document.createElement("p");
+  keywordLine.className = "guide-keywords";
+  keywordLine.textContent = `${orientation} • ${keywords}`;
+
+  const descriptionWrapper = document.createElement("div");
+  descriptionWrapper.className = "guide-description";
+
+  description.split(/\n\n+/).forEach((paragraphText) => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = paragraphText;
+    descriptionWrapper.appendChild(paragraph);
+  });
+
+  info.appendChild(title);
+  info.appendChild(keywordLine);
+  info.appendChild(descriptionWrapper);
+
+  wrapper.appendChild(image);
+  wrapper.appendChild(info);
+
+  guideDetail.appendChild(wrapper);
+  setCardGuideImage(image, card);
+}
+
+function setCardGuideImage(element, card) {
+  const imagePaths = getImageUrl(selectedDeck, card.id);
+
+  element.style.backgroundImage = "none";
+
+  const primaryImage = new Image();
+
+  primaryImage.onload = () => {
+    element.textContent = "";
+    element.style.backgroundImage = `url('${imagePaths.primary}')`;
+  };
+
+  primaryImage.onerror = () => {
+    const fallbackImage = new Image();
+
+    fallbackImage.onload = () => {
+      element.textContent = "";
+      element.style.backgroundImage = `url('${imagePaths.fallback}')`;
+    };
+
+    fallbackImage.onerror = () => {
+      element.textContent = card.name;
+    };
+
+    fallbackImage.src = imagePaths.fallback;
+  };
+
+  primaryImage.src = imagePaths.primary;
+}
+
+function renderSpreadLibrary() {
+  if (!spreadLibraryGrid) return;
+
+  spreadLibraryGrid.innerHTML = "";
+
+  spreadLibraryData.forEach((spread) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "spread-card";
+    button.dataset.spreadValue = spread.value;
+
+    button.innerHTML = `
+      <small>${escapeHtml(spread.cards)}</small>
+      <h2>${escapeHtml(spread.title)}</h2>
+      <p>${escapeHtml(spread.note)}</p>
+    `;
+
+    button.addEventListener("click", () => {
+      openReader({
+        spreadValue: spread.value,
+        reset: true,
+      });
+    });
+
+    spreadLibraryGrid.appendChild(button);
+  });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+pullCardsBtn?.addEventListener("click", () => {
+  openReader({
+    reset: true,
+  });
+});
+
+dailyDrawBtn?.addEventListener("click", () => {
+  openReader({
+    spreadValue: "1",
+    dealNow: true,
+    reset: true,
+  });
+});
+
+cardGuideBtn?.addEventListener("click", openGuide);
+spreadLibraryBtn?.addEventListener("click", openSpreadLibrary);
+
+document.querySelectorAll("[data-view='home']").forEach((button) => {
+  button.addEventListener("click", () => {
+    setView("home");
+  });
+});
+
+guideSearchInput?.addEventListener("input", renderCardGuide);
+guideFilterSelect?.addEventListener("change", renderCardGuide);
+guideOrientationSelect?.addEventListener("change", renderCardGuide);
+
+deckSelect.addEventListener("change", () => {
+  const activeCard = tarotDeck.find(
+    (card) => card.id === guideState.activeCardId,
+  );
+
+  if (activeCard && document.body.classList.contains("view-guide")) {
+    renderGuideDetail(activeCard);
+  }
+});
+
+setView("home");
 runOpeningSequence();
