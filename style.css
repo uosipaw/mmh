@@ -57,20 +57,20 @@ img {
 }
 
 .curtain-slide {
-  z-index: 3;
+  z-index: 4;
   top: 0;
-  width: 120%;
+  width: 82%;
   height: 100%;
   object-fit: cover;
 }
 
 .curtain-slide-left {
-  left: -20%;
+  left: -18%;
   object-position: left center;
 }
 
 .curtain-slide-right {
-  right: -20%;
+  right: -18%;
   object-position: right center;
   transform: scaleX(-1);
 }
@@ -78,16 +78,17 @@ img {
 .curtain-up {
   top: 0;
   left: 0;
-  z-index: 6;
+  z-index: 7;
   width: 100%;
-  height: clamp(170px, 30vw, 360px);
+  height: clamp(170px, 31vw, 380px);
   object-fit: fill;
+  object-position: top center;
 }
 
 .curtain-left,
 .curtain-right {
   top: -12%;
-  z-index: 5;
+  z-index: 6;
   width: min(82vw, 920px);
   height: 126%;
   object-fit: fill;
@@ -266,19 +267,30 @@ img {
 }
 
 .single-string {
+  position: relative;
   display: block;
-  width: 1px;
+  width: 18px;
   height: calc(var(--string) + var(--string-overlap, 16px));
   margin-inline: auto;
   transform: translateX(var(--attach, 0px));
   transform-origin: top center;
+  background: transparent;
+}
+
+.single-string::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
   background:
     linear-gradient(180deg,
-      rgba(250, 230, 184, 0.9),
-      rgba(175, 134, 70, 0.82));
+      var(--string-color-top, rgba(250, 230, 184, 0.9)),
+      var(--string-color-bottom, rgba(175, 134, 70, 0.82)));
   box-shadow:
     1px 0 0 rgba(255, 255, 255, 0.2),
-    -1px 0 0 rgba(0, 0, 0, 0.16);
+    -1px 0 0 rgba(0, 0, 0, 0.16),
+    3px 4px 0 rgba(24, 18, 15, 0.42);
+  clip-path: polygon(44% 0, 56% 0, 56% 100%, 44% 100%);
 }
 
 .double-string {
@@ -290,16 +302,27 @@ img {
 .double-string span {
   position: absolute;
   top: 0;
-  width: 1px;
+  width: 18px;
   height: 100%;
+  transform: translateX(-50%);
   transform-origin: top center;
+  background: transparent;
+}
+
+.double-string span::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
   background:
     linear-gradient(180deg,
-      rgba(250, 230, 184, 0.9),
-      rgba(175, 134, 70, 0.82));
+      var(--string-color-top, rgba(250, 230, 184, 0.9)),
+      var(--string-color-bottom, rgba(175, 134, 70, 0.82)));
   box-shadow:
     1px 0 0 rgba(255, 255, 255, 0.2),
-    -1px 0 0 rgba(0, 0, 0, 0.16);
+    -1px 0 0 rgba(0, 0, 0, 0.16),
+    3px 4px 0 rgba(24, 18, 15, 0.42);
+  clip-path: polygon(44% 0, 56% 0, 56% 100%, 44% 100%);
 }
 
 .double-string span:first-child {
@@ -308,6 +331,11 @@ img {
 
 .double-string span:last-child {
   left: var(--right-string);
+}
+
+.hanger.string-wiggle .single-string::before,
+.hanger.string-wiggle .double-string span::before {
+  animation: stringWiggleCurve 620ms cubic-bezier(.2, 1.45, .35, 1);
 }
 
 .swing-arm img {
@@ -324,13 +352,22 @@ img {
 }
 
 .cloud {
-  z-index: 3;
+  z-index: 7;
   --string-overlap: clamp(14px, 2vw, 24px);
+}
+
+.cloud .single-string::before,
+.cloud .double-string span::before {
+  opacity: 0.42;
+  box-shadow:
+    1px 0 0 rgba(255, 255, 255, 0.14),
+    -1px 0 0 rgba(0, 0, 0, 0.08),
+    2px 3px 0 rgba(24, 18, 15, 0.18);
 }
 
 .cloud .swing-arm img {
   filter:
-    drop-shadow(0 12px 14px rgba(0, 0, 0, 0.22)) drop-shadow(0 2px 0 rgba(255, 255, 255, 0.12));
+    drop-shadow(0 16px 18px rgba(0, 0, 0, 0.3)) drop-shadow(0 3px 0 rgba(255, 255, 255, 0.16));
 }
 
 .letter {
@@ -404,6 +441,30 @@ img {
   }
 }
 
+@keyframes stringWiggleCurve {
+
+  0%,
+  100% {
+    clip-path: polygon(44% 0, 56% 0, 56% 100%, 44% 100%);
+  }
+
+  18% {
+    clip-path: polygon(44% 0, 56% 0, 68% 24%, 48% 50%, 64% 76%, 56% 100%, 44% 100%, 52% 76%, 32% 50%, 52% 24%);
+  }
+
+  38% {
+    clip-path: polygon(44% 0, 56% 0, 46% 24%, 66% 50%, 44% 76%, 56% 100%, 44% 100%, 32% 76%, 54% 50%, 34% 24%);
+  }
+
+  58% {
+    clip-path: polygon(44% 0, 56% 0, 62% 28%, 48% 50%, 60% 74%, 56% 100%, 44% 100%, 40% 74%, 52% 50%, 38% 28%);
+  }
+
+  78% {
+    clip-path: polygon(44% 0, 56% 0, 52% 30%, 58% 50%, 52% 72%, 56% 100%, 44% 100%, 48% 72%, 42% 50%, 48% 30%);
+  }
+}
+
 @keyframes curtainButtonDrop {
   0% {
     opacity: 0;
@@ -460,7 +521,7 @@ img {
   }
 
   100% {
-    transform: translateX(-125%);
+    transform: translateX(-135%);
     opacity: 0;
   }
 }
@@ -476,7 +537,7 @@ img {
   }
 
   100% {
-    transform: translateX(125%) scaleX(-1);
+    transform: translateX(135%) scaleX(-1);
     opacity: 0;
   }
 }
@@ -488,7 +549,7 @@ img {
   }
 
   100% {
-    transform: translateY(-92%) scaleY(0.92);
+    transform: translateY(-110%) scaleY(0.92);
     opacity: 0;
   }
 }
@@ -499,7 +560,7 @@ img {
   }
 
   .curtain-up {
-    height: clamp(120px, 38vw, 250px);
+    height: clamp(130px, 40vw, 260px);
   }
 
   .curtain-left,
@@ -528,7 +589,7 @@ img {
     --x: 3% !important;
     --y: -4% !important;
     --w: clamp(105px, 33vw, 155px) !important;
-    --string: clamp(108px, 18svh, 165px) !important;
+    --string: clamp(175px, 28svh, 255px) !important;
   }
 
   .cloud-2 {
@@ -553,38 +614,38 @@ img {
   }
 
   .letter-m {
-    --x: 6% !important;
+    --x: 2% !important;
     --y: -4% !important;
-    --w: clamp(72px, 23vw, 118px) !important;
-    --string: clamp(330px, 50svh, 455px) !important;
+    --w: clamp(74px, 24vw, 120px) !important;
+    --string: clamp(320px, 48svh, 435px) !important;
   }
 
   .letter-d {
-    --x: 20% !important;
+    --x: 24% !important;
     --y: -5% !important;
-    --w: clamp(68px, 21vw, 110px) !important;
-    --string: clamp(315px, 48svh, 435px) !important;
+    --w: clamp(72px, 22vw, 116px) !important;
+    --string: clamp(305px, 46svh, 415px) !important;
   }
 
   .letter-s {
-    --x: 34% !important;
+    --x: 42% !important;
     --y: -3% !important;
-    --w: clamp(70px, 22vw, 114px) !important;
-    --string: clamp(405px, 60svh, 555px) !important;
+    --w: clamp(74px, 23vw, 120px) !important;
+    --string: clamp(360px, 53svh, 490px) !important;
   }
 
   .letter-n {
-    --x: 48% !important;
+    --x: 63% !important;
     --y: -4% !important;
-    --w: clamp(69px, 21vw, 112px) !important;
-    --string: clamp(370px, 55svh, 510px) !important;
+    --w: clamp(73px, 22vw, 118px) !important;
+    --string: clamp(335px, 50svh, 455px) !important;
   }
 
   .sun {
     --x: 52% !important;
     --y: -5% !important;
     --w: clamp(210px, 64vw, 320px) !important;
-    --string: clamp(190px, 31svh, 300px) !important;
+    --string: clamp(145px, 24svh, 240px) !important;
   }
 
   .star {

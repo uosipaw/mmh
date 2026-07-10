@@ -31,17 +31,17 @@ const pieces = hangers.map((hanger, index) => {
   let speed;
 
   if (isCloud) {
-    amplitude = randomBetween(0.8, 1.8);
-    speed = randomBetween(0.00042, 0.00068);
+    amplitude = randomBetween(0.35, 0.9);
+    speed = randomBetween(0.00074, 0.00105);
   } else if (isLetter) {
-    amplitude = randomBetween(1.6, 3.6);
-    speed = randomBetween(0.00068, 0.00105);
+    amplitude = randomBetween(0.75, 1.65);
+    speed = randomBetween(0.00105, 0.00145);
   } else if (isCharm) {
-    amplitude = randomBetween(2.2, 4.4);
-    speed = randomBetween(0.00058, 0.00088);
+    amplitude = randomBetween(1.0, 2.0);
+    speed = randomBetween(0.0009, 0.00125);
   } else {
-    amplitude = randomBetween(1.5, 3);
-    speed = randomBetween(0.0005, 0.0009);
+    amplitude = randomBetween(0.7, 1.4);
+    speed = randomBetween(0.00095, 0.00135);
   }
 
   return {
@@ -59,6 +59,47 @@ const pieces = hangers.map((hanger, index) => {
     drift: index % 2 === 0 ? -1 : 1,
   };
 });
+
+function triggerStringWiggle(hanger) {
+  window.clearTimeout(hanger.stringWiggleTimer);
+  hanger.classList.remove("string-wiggle");
+  void hanger.offsetWidth;
+  hanger.classList.add("string-wiggle");
+  hanger.stringWiggleTimer = window.setTimeout(() => {
+    hanger.classList.remove("string-wiggle");
+  }, 700);
+}
+
+function maybeWiggleStringAt(clientX, clientY, force = false) {
+  const now = performance.now();
+
+  pieces.forEach((piece) => {
+    if (!force && piece.lastStringWiggle && now - piece.lastStringWiggle < 420) {
+      return;
+    }
+
+    const strings = piece.hanger.querySelectorAll(
+      ".single-string, .double-string span",
+    );
+
+    const isNearString = [...strings].some((string) => {
+      const rect = string.getBoundingClientRect();
+      const xPadding = force ? 22 : 14;
+
+      return (
+        clientX >= rect.left - xPadding &&
+        clientX <= rect.right + xPadding &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom
+      );
+    });
+
+    if (!isNearString) return;
+
+    piece.lastStringWiggle = now;
+    triggerStringWiggle(piece.hanger);
+  });
+}
 
 const dropdownSun = document.getElementById("dropdownSun");
 const openingMobile = document.getElementById("openingMobile");
@@ -103,6 +144,7 @@ function handlePointerMove(event) {
   pointer.x = event.clientX;
   pointer.velocityX = pointer.x - pointer.lastX;
   pointer.active = true;
+  maybeWiggleStringAt(event.clientX, event.clientY);
 }
 
 function handleTouchMove(event) {
@@ -114,6 +156,7 @@ function handleTouchMove(event) {
   pointer.x = touch.clientX;
   pointer.velocityX = pointer.x - pointer.lastX;
   pointer.active = true;
+  maybeWiggleStringAt(touch.clientX, touch.clientY);
 }
 
 function handlePointerLeave() {
@@ -123,6 +166,13 @@ function handlePointerLeave() {
 window.addEventListener("pointermove", handlePointerMove, { passive: true });
 window.addEventListener("touchmove", handleTouchMove, { passive: true });
 window.addEventListener("mouseleave", handlePointerLeave, { passive: true });
+window.addEventListener(
+  "pointerdown",
+  (event) => {
+    maybeWiggleStringAt(event.clientX, event.clientY, true);
+  },
+  { passive: true },
+);
 
 window.addEventListener(
   "scroll",
@@ -162,13 +212,13 @@ function animate(time) {
       Math.sin(time * piece.speed + piece.phase) * piece.amplitude;
 
     const pointerForce = pointer.active
-      ? clamp(pointer.velocityX * 0.026 * proximity, -4.5, 4.5)
+      ? clamp(pointer.velocityX * 0.014 * proximity, -2.4, 2.4)
       : 0;
 
-    const scrollForce = clamp(scrollVelocity * 0.018, -3.2, 3.2);
+    const scrollForce = clamp(scrollVelocity * 0.01, -1.7, 1.7);
 
     const responsiveLean =
-      distanceFromViewportCenter * (piece.isCloud ? 0.5 : 0.9) * piece.drift;
+      distanceFromViewportCenter * (piece.isCloud ? 0.28 : 0.48) * piece.drift;
 
     piece.pointerPush += (pointerForce - piece.pointerPush) * 0.06;
     piece.scrollPush += (scrollForce - piece.scrollPush) * 0.04;
