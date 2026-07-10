@@ -1,286 +1,178 @@
-// script.js
+const hangers = [...document.querySelectorAll(".hanger")];
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
 
-const titleText = "mdsn mchll";
-
-const pageGroups = {
-  cute: [
-    {
-      title: "ms paint",
-      href: "paint.html",
-      icon: "✎",
-      note: "draw something dumb",
-      color: "#ff9bd0",
-    },
-    {
-      title: "stickers",
-      href: "stickers.html",
-      icon: "☻",
-      note: "puffy sticker nonsense",
-      color: "#ffe66b",
-    },
-    {
-      title: "balloon dog",
-      href: "balloon-graveyard.html",
-      icon: "犬",
-      note: "cute, for now",
-      color: "#8bd8ff",
-    },
-  ],
-
-  weird: [
-    {
-      title: "dinosaurs",
-      href: "dinosaurs.html",
-      icon: "✦",
-      note: "ancient lizards, modern judgment",
-      color: "#9dffd2",
-    },
-    {
-      title: "animals",
-      href: "animals.html",
-      icon: "◎",
-      note: "scientific-ish creature drawer",
-      color: "#ffb15f",
-    },
-    {
-      title: "quotes",
-      href: "quotes.html",
-      icon: "❝",
-      note: "wisdom, probably fake",
-      color: "#fff2a8",
-    },
-    {
-      title: "trivia",
-      href: "trivia.html",
-      icon: "?",
-      note: "tiny trivia trap",
-      color: "#b895ff",
-    },
-  ],
-
-  myth: [
-    {
-      title: "myth match",
-      href: "myth.html",
-      icon: "☉",
-      note: "matching game for tiny gods",
-      color: "#d7aa35",
-    },
-    {
-      title: "folklore",
-      href: "folklore.html",
-      icon: "♢",
-      note: "stories from the weird drawer",
-      color: "#c9798d",
-    },
-    {
-      title: "creatures",
-      href: "creatures.html",
-      icon: "✺",
-      note: "bugs, beasts, and bad vibes",
-      color: "#8ebf9f",
-    },
-    {
-      title: "symbols",
-      href: "symbols.html",
-      icon: "⌘",
-      note: "dreamy little decoder",
-      color: "#c4a1ff",
-    },
-  ],
-
-  dark: [
-    {
-      title: "tarot reader",
-      href: "tarot.html",
-      icon: "✹",
-      note: "the big one",
-      color: "#ff3fa4",
-    },
-    {
-      title: "oracle drawer",
-      href: "oracle.html",
-      icon: "◌",
-      note: "ask something unserious",
-      color: "#ccff33",
-    },
-    {
-      title: "slot machine",
-      href: "casino.html",
-      icon: "$",
-      note: "spin the thing",
-      color: "#ff4040",
-    },
-    {
-      title: "donate",
-      href: "donate.html",
-      icon: "♡",
-      note: "feed the machine",
-      color: "#ffe66b",
-    },
-    {
-      title: "basement",
-      href: "basement.html",
-      icon: "↓",
-      note: "do not click, obviously",
-      color: "#9dffd2",
-    },
-  ],
+const pointer = {
+  x: window.innerWidth / 2,
+  lastX: window.innerWidth / 2,
+  velocityX: 0,
+  active: false,
 };
 
-const body = document.body;
-const puppetTitle = document.getElementById("puppetTitle");
-const enterButton = document.getElementById("enterButton");
-const sunButton = document.getElementById("sunButton");
-const toast = document.getElementById("toast");
+let lastScrollY = window.scrollY;
+let scrollVelocity = 0;
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  window.clearTimeout(showToast.timer);
-
-  showToast.timer = window.setTimeout(() => {
-    toast.classList.remove("show");
-  }, 1800);
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
 }
 
-function buildHangingTitle() {
-  titleText.split("").forEach((character, index) => {
-    const letter = document.createElement("span");
+function randomBetween(min, max) {
+  return min + Math.random() * (max - min);
+}
 
-    letter.className = "title-letter";
+const pieces = hangers.map((hanger, index) => {
+  const arm = hanger.querySelector(".swing-arm");
+  const isCloud = hanger.classList.contains("cloud");
+  const isLetter = hanger.classList.contains("letter");
+  const isCharm = hanger.classList.contains("charm");
 
-    if (character === " ") {
-      letter.classList.add("space");
-      puppetTitle.appendChild(letter);
-      return;
-    }
+  let amplitude;
+  let speed;
 
-    letter.style.animationDelay = `${index * 80}ms`;
+  if (isCloud) {
+    amplitude = randomBetween(0.8, 1.8);
+    speed = randomBetween(0.00042, 0.00068);
+  } else if (isLetter) {
+    amplitude = randomBetween(1.6, 3.6);
+    speed = randomBetween(0.00068, 0.00105);
+  } else if (isCharm) {
+    amplitude = randomBetween(2.2, 4.4);
+    speed = randomBetween(0.00058, 0.00088);
+  } else {
+    amplitude = randomBetween(1.5, 3);
+    speed = randomBetween(0.0005, 0.0009);
+  }
 
-    letter.innerHTML = `
-      <span class="letter-paper">${character}</span>
-    `;
+  return {
+    hanger,
+    arm,
+    isCloud,
+    isLetter,
+    isCharm,
+    amplitude,
+    speed,
+    phase: Math.random() * Math.PI * 2,
+    pointerPush: 0,
+    scrollPush: 0,
+    settlePush: randomBetween(-0.35, 0.35),
+    drift: index % 2 === 0 ? -1 : 1,
+  };
+});
 
-    puppetTitle.appendChild(letter);
+const dropdownSun = document.getElementById("dropdownSun");
+
+if (dropdownSun) {
+  const sunImage = dropdownSun.querySelector("img");
+  let resetSunTimer;
+
+  dropdownSun.addEventListener("click", () => {
+    if (!sunImage) return;
+
+    window.clearTimeout(resetSunTimer);
+    sunImage.src = sunImage.dataset.angrySrc;
+    dropdownSun.classList.add("is-angry");
+    dropdownSun.setAttribute("aria-pressed", "true");
+    dropdownSun.setAttribute("aria-label", "The sun is angry");
+
+    resetSunTimer = window.setTimeout(() => {
+      sunImage.src = sunImage.dataset.smileSrc;
+      dropdownSun.classList.remove("is-angry");
+      dropdownSun.setAttribute("aria-pressed", "false");
+      dropdownSun.setAttribute("aria-label", "Make the sun angry");
+    }, 380);
   });
 }
 
-function breakOneString() {
-  const letters = [...document.querySelectorAll(".title-letter:not(.space)")];
-  const letterToBreak = letters[6] || letters[letters.length - 1];
-
-  if (!letterToBreak) return;
-
-  letterToBreak.classList.add("broken-right");
-  showToast("one string gave up. fair.");
+function handlePointerMove(event) {
+  pointer.lastX = pointer.x;
+  pointer.x = event.clientX;
+  pointer.velocityX = pointer.x - pointer.lastX;
+  pointer.active = true;
 }
 
-function swayTitle() {
-  const letters = [...document.querySelectorAll(".title-letter:not(.space)")];
+function handleTouchMove(event) {
+  const touch = event.touches[0];
 
-  letters.forEach((letter, index) => {
-    window.setTimeout(() => {
-      letter.classList.remove("sway-now");
-      void letter.offsetWidth;
-      letter.classList.add("sway-now");
-    }, index * 45);
-  });
+  if (!touch) return;
+
+  pointer.lastX = pointer.x;
+  pointer.x = touch.clientX;
+  pointer.velocityX = pointer.x - pointer.lastX;
+  pointer.active = true;
 }
 
-function renderCards() {
-  Object.entries(pageGroups).forEach(([groupName, pages]) => {
-    const container = document.querySelector(`[data-links="${groupName}"]`);
-
-    if (!container) return;
-
-    pages.forEach((page, index) => {
-      const card = document.createElement("a");
-
-      card.className = "page-card";
-      card.href = page.href;
-      card.style.setProperty("--card-accent", page.color);
-      card.style.setProperty("--card-bg", getSoftCardBackground(index));
-      card.style.setProperty("--r", `${getRotation(index)}deg`);
-
-      card.innerHTML = `
-        <span class="card-icon">${page.icon}</span>
-        <div>
-          <h3 class="card-title">${page.title}</h3>
-          <p class="card-note">${page.note}</p>
-        </div>
-      `;
-
-      container.appendChild(card);
-    });
-  });
+function handlePointerLeave() {
+  pointer.active = false;
 }
 
-function getRotation(index) {
-  const rotations = [-1.8, 1.2, -0.7, 1.7, -1.1, 0.9];
-  return rotations[index % rotations.length];
+window.addEventListener("pointermove", handlePointerMove, { passive: true });
+window.addEventListener("touchmove", handleTouchMove, { passive: true });
+window.addEventListener("mouseleave", handlePointerLeave, { passive: true });
+
+window.addEventListener(
+  "scroll",
+  () => {
+    scrollVelocity = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+  },
+  { passive: true },
+);
+
+window.addEventListener(
+  "resize",
+  () => {
+    pointer.x = window.innerWidth / 2;
+    pointer.lastX = pointer.x;
+  },
+  { passive: true },
+);
+
+function animate(time) {
+  if (reducedMotion) return;
+
+  const viewportCenter = window.innerWidth / 2;
+
+  pieces.forEach((piece) => {
+    const rect = piece.hanger.getBoundingClientRect();
+    const itemCenter = rect.left + rect.width / 2;
+
+    const distanceFromPointer = Math.abs(pointer.x - itemCenter);
+    const pointerRange = piece.isCloud ? 420 : 320;
+    const proximity = clamp(1 - distanceFromPointer / pointerRange, 0, 1);
+
+    const distanceFromViewportCenter =
+      viewportCenter === 0 ? 0 : (itemCenter - viewportCenter) / viewportCenter;
+
+    const naturalSwing =
+      Math.sin(time * piece.speed + piece.phase) * piece.amplitude;
+
+    const pointerForce = pointer.active
+      ? clamp(pointer.velocityX * 0.026 * proximity, -4.5, 4.5)
+      : 0;
+
+    const scrollForce = clamp(scrollVelocity * 0.018, -3.2, 3.2);
+
+    const responsiveLean =
+      distanceFromViewportCenter * (piece.isCloud ? 0.5 : 0.9) * piece.drift;
+
+    piece.pointerPush += (pointerForce - piece.pointerPush) * 0.06;
+    piece.scrollPush += (scrollForce - piece.scrollPush) * 0.04;
+
+    const angle =
+      naturalSwing +
+      piece.pointerPush +
+      piece.scrollPush +
+      responsiveLean +
+      piece.settlePush;
+
+    piece.arm.style.transform = `rotate(${angle.toFixed(3)}deg)`;
+  });
+
+  pointer.velocityX *= 0.88;
+  scrollVelocity *= 0.9;
+
+  requestAnimationFrame(animate);
 }
 
-function getSoftCardBackground(index) {
-  const backgrounds = [
-    "#fff3d7",
-    "#ffe1ef",
-    "#d9f5ff",
-    "#e0ffef",
-    "#fff2a8",
-    "#eadcff",
-  ];
-
-  return backgrounds[index % backgrounds.length];
-}
-
-function openIntro() {
-  window.setTimeout(() => {
-    body.classList.add("intro-open");
-  }, 450);
-
-  window.setTimeout(() => {
-    breakOneString();
-  }, 2350);
-
-  window.setTimeout(() => {
-    body.classList.add("intro-ready");
-  }, 2800);
-}
-
-function bindEvents() {
-  puppetTitle.addEventListener("click", () => {
-    swayTitle();
-  });
-
-  puppetTitle.addEventListener("pointerenter", () => {
-    swayTitle();
-  });
-
-  enterButton.addEventListener("click", () => {
-    document.getElementById("landing").scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  });
-
-  sunButton.addEventListener("click", () => {
-    sunButton.classList.remove("annoyed");
-    void sunButton.offsetWidth;
-    sunButton.classList.add("annoyed");
-
-    showToast("do not touch the sun.");
-  });
-
-  document.querySelectorAll(".page-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      card.style.transform = "translateY(4px) scale(0.98)";
-    });
-  });
-}
-
-buildHangingTitle();
-renderCards();
-bindEvents();
-openIntro();
+requestAnimationFrame(animate);

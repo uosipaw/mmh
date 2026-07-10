@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,107 +5,204 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>mdsn mchll</title>
+    <title>MDSN Arts Landing Page</title>
 
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <main>
-        <img class="stage-image panel-image panel-left" src="images/leftpanel.png" alt="" aria-hidden="true" />
+    <main class="landing-page">
+        <section class="opening-mobile" id="openingMobile">
+            <div class="mobile-layer" aria-label="Animated hanging paper mobile">
+                <!-- CLOUDS -->
 
-        <img class="stage-image panel-image panel-right" src="images/rightpanel.png" alt="" aria-hidden="true" />
+                <figure class="hanger cloud cloud-1 double-hung" style="
+            --x: 5%;
+            --y: -3%;
+            --w: clamp(120px, 24vw, 220px);
+            --string: clamp(128px, 18svh, 205px);
+            --left-string: 27%;
+            --right-string: 72%;
+            --tilt: -1.5deg;
+          ">
+                    <span class="pin pin-left"></span>
+                    <span class="pin pin-right"></span>
 
-        <img class="stage-image curtain-top" src="images/curtaintop.png" alt="" aria-hidden="true" />
+                    <div class="swing-arm">
+                        <div class="double-string">
+                            <span></span>
+                            <span></span>
+                        </div>
 
-        <img class="stage-image curtain-image curtain-left" src="images/curtainleft.png" alt="" aria-hidden="true" />
+                        <img src="images/CLOUD1.png" alt="" />
+                    </div>
+                </figure>
 
-        <img class="stage-image curtain-image curtain-right" src="images/curtainright.png" alt="" aria-hidden="true" />
+                <figure class="hanger cloud cloud-2 double-hung" style="
+            --x: 31%;
+            --y: -5%;
+            --w: clamp(175px, 35vw, 325px);
+            --string: clamp(168px, 23svh, 275px);
+            --left-string: 32%;
+            --right-string: 68%;
+            --tilt: 1deg;
+          ">
+                    <span class="pin pin-left"></span>
+                    <span class="pin pin-right"></span>
 
+                    <div class="swing-arm">
+                        <div class="double-string">
+                            <span></span>
+                            <span></span>
+                        </div>
 
-        <div class="stage-frame">
-            <div class="stage-label">a very official production</div>
-        </div>
+                        <img src="images/CLOUD2.png" alt="" />
+                    </div>
+                </figure>
 
-        <div class="hanging-prop cloud cloud-one">
-            <span class="string"></span>
-            <div class="cloud-shape">cloud</div>
-        </div>
+                <figure class="hanger cloud cloud-3 double-hung" style="
+            --x: 63%;
+            --y: -4%;
+            --w: clamp(110px, 22vw, 205px);
+            --string: clamp(215px, 29svh, 340px);
+            --left-string: 30%;
+            --right-string: 70%;
+            --tilt: 1.8deg;
+          ">
+                    <span class="pin pin-left"></span>
+                    <span class="pin pin-right"></span>
 
-        <div class="hanging-prop cloud cloud-two">
-            <span class="string"></span>
-            <div class="cloud-shape">cloud</div>
-        </div>
+                    <div class="swing-arm">
+                        <div class="double-string">
+                            <span></span>
+                            <span></span>
+                        </div>
 
-        <button class="hanging-prop sun" id="sunButton" type="button" aria-label="Tap the sun">
-            <span class="string"></span>
-            <span class="sun-face">
-                <span class="sun-eye"></span>
-                <span class="sun-eye"></span>
-                <span class="sun-mouth"></span>
-            </span>
-        </button>
+                        <img src="images/CLOUD3.png" alt="" />
+                    </div>
+                </figure>
 
-        <div class="hanging-prop balloon-dog" aria-hidden="true">
-            <span class="string"></span>
-            <div class="dog-body">
-                <span></span><span></span><span></span><span></span>
+                <figure class="hanger cloud cloud-4 double-hung" style="
+            --x: 76%;
+            --y: -2%;
+            --w: clamp(145px, 30vw, 275px);
+            --string: clamp(345px, 45svh, 520px);
+            --left-string: 26%;
+            --right-string: 76%;
+            --tilt: -1deg;
+          ">
+                    <span class="pin pin-left"></span>
+                    <span class="pin pin-right"></span>
+
+                    <div class="swing-arm">
+                        <div class="double-string">
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <img src="images/CLOUD4.png" alt="" />
+                    </div>
+                </figure>
+
+                <!-- LETTERS -->
+
+                <figure class="hanger letter letter-m double-hung" style="
+            --x: 8%;
+            --y: -3%;
+            --w: clamp(105px, 19vw, 185px);
+            --string: clamp(330px, 44svh, 535px);
+            --left-string: 28%;
+            --right-string: 72%;
+            --tilt: -4deg;
+          ">
+                    <span class="pin pin-left"></span>
+                    <span class="pin pin-right"></span>
+
+                    <div class="swing-arm">
+                        <div class="double-string">
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <img src="images/MCUTOUT.png" alt="M" />
+                    </div>
+                </figure>
+
+                <figure class="hanger letter letter-d single-hung" style="
+            --x: 19%;
+            --y: -4%;
+            --w: clamp(94px, 17.5vw, 170px);
+            --string: clamp(320px, 42svh, 520px);
+            --attach: 0px;
+            --tilt: 2deg;
+          ">
+                    <span class="pin"></span>
+
+                    <div class="swing-arm">
+                        <span class="single-string"></span>
+
+                        <img src="images/DCUTOUT.png" alt="D" />
+                    </div>
+                </figure>
+
+                <figure class="hanger letter letter-s single-hung" style="
+            --x: 30%;
+            --y: -2%;
+            --w: clamp(100px, 18.5vw, 180px);
+            --string: clamp(400px, 52svh, 625px);
+            --attach: -6px;
+            --tilt: -2.5deg;
+          ">
+                    <span class="pin"></span>
+
+                    <div class="swing-arm">
+                        <span class="single-string"></span>
+
+                        <img src="images/SCUTOUT.png" alt="S" />
+                    </div>
+                </figure>
+
+                <figure class="hanger letter letter-n single-hung" style="
+            --x: 41%;
+            --y: -3%;
+            --w: clamp(98px, 18vw, 175px);
+            --string: clamp(370px, 48svh, 580px);
+            --attach: 5px;
+            --tilt: 3deg;
+          ">
+                    <span class="pin"></span>
+
+                    <div class="swing-arm">
+                        <span class="single-string"></span>
+
+                        <img src="images/NCUTOUT.png" alt="N" />
+                    </div>
+                </figure>
+
+                <button class="hanger sun single-hung" id="dropdownSun" type="button" aria-label="Make the sun angry"
+                    aria-pressed="false" style="
+            --x: 62%;
+            --y: -4%;
+            --w: clamp(250px, 48vw, 450px);
+            --string: clamp(185px, 28svh, 335px);
+            --attach: 0px;
+            --tilt: 2deg;
+          ">
+                    <span class="pin"></span>
+
+                    <span class="swing-arm">
+                        <span class="single-string"></span>
+
+                        <img src="images/SUNSMILE.png" alt="" data-smile-src="images/SUNSMILE.png"
+                            data-angry-src="images/SUNANGRY.png" />
+                    </span>
+                </button>
+
             </div>
-        </div>
-
-        <div class="title-stage">
-            <button class="puppet-title" id="puppetTitle" type="button" aria-label="mdsn mchll"></button>
-            <p class="title-caption">tap the name. it has been through a lot.</p>
-        </div>
-
-        <button class="enter-button" id="enterButton" type="button">
-            pull the curtain
-        </button>
-
-        <div class="paper-arrow" aria-hidden="true">↓</div>
-        </div>
-
-        <section class="landing-shell" id="landing">
-            <section class="scroll-section cute-zone" data-zone="cute">
-                <h2>cute little nonsense</h2>
-                <p>
-                    Balloon animals, stickers, doodles, tiny games, and harmless internet junk.
-                    At least for now.
-                </p>
-                <div class="link-grid" data-links="cute"></div>
-            </section>
-
-            <section class="scroll-section weird-zone" data-zone="weird">
-                <h2>educational, allegedly</h2>
-                <p>
-                    Dinosaurs, animals, trivia, quotes, strange facts, little cabinets,
-                    and things that start getting suspiciously specific.
-                </p>
-                <div class="link-grid" data-links="weird"></div>
-            </section>
-
-            <section class="scroll-section myth-zone" data-zone="myth">
-                <h2>myths, symbols, creatures</h2>
-                <p>
-                    Folklore, matching games, creature files, symbols, omens,
-                    and the part where the paper smiley faces stop blinking normally.
-                </p>
-                <div class="link-grid" data-links="myth"></div>
-            </section>
-
-            <section class="scroll-section dark-zone" data-zone="dark">
-                <h2>the funhouse gets weird</h2>
-                <p>
-                    Tarot, casino lights, donation buttons, fake portals, bad omens,
-                    and the basement door nobody specifically asked for.
-                </p>
-                <div class="link-grid" data-links="dark"></div>
-            </section>
         </section>
     </main>
 
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
 </body>
 
 </html>
