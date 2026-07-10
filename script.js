@@ -61,6 +61,20 @@ const pieces = hangers.map((hanger, index) => {
 });
 
 const dropdownSun = document.getElementById("dropdownSun");
+const openingMobile = document.getElementById("openingMobile");
+const curtainStage = document.getElementById("curtainStage");
+const curtainOpenButton = document.getElementById("curtainOpenButton");
+
+if (curtainStage && curtainOpenButton) {
+  curtainOpenButton.addEventListener("click", () => {
+    curtainStage.classList.add("is-open");
+    curtainOpenButton.disabled = true;
+
+    window.setTimeout(() => {
+      openingMobile?.classList.add("mobile-ready");
+    }, 3400);
+  });
+}
 
 if (dropdownSun) {
   const sunImage = dropdownSun.querySelector("img");
