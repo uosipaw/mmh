@@ -42,6 +42,7 @@ img {
 .opening-mobile {
   position: relative;
   min-height: 100svh;
+  margin-bottom: clamp(4rem, 12svh, 9rem);
   overflow: hidden;
   isolation: isolate;
 }
@@ -97,7 +98,7 @@ img {
 .curtain-right {
   top: -12%;
   z-index: 6;
-  width: min(82vw, 920px);
+  width: min(54vw, 640px);
   height: 126%;
   object-fit: fill;
   filter:
@@ -105,11 +106,11 @@ img {
 }
 
 .curtain-left {
-  left: -24vw;
+  left: clamp(-220px, -14vw, -110px);
 }
 
 .curtain-right {
-  right: -24vw;
+  right: clamp(-220px, -14vw, -110px);
 }
 
 .curtain-open-button {
@@ -225,14 +226,15 @@ img {
   align-items: center;
   justify-content: center;
   height: clamp(72px, 10svh, 104px);
-  margin-top: clamp(-52px, -5svh, -36px);
+  margin-top: 0;
   pointer-events: none;
   --unroll-progress: 0;
   --banner-width: 18%;
-  --roller-offset: 9vw;
+  --banner-left: calc(50% - min(50vw, 490px));
+  --banner-right: calc(var(--banner-left) + var(--banner-render-width));
+  --banner-render-width: 18vw;
   --banner-link-opacity: 0;
   --banner-link-lift: 12px;
-  --banner-scale: 0.04;
   --roller-opacity: 0;
   --roller-rotation: 0deg;
   filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.3));
@@ -246,6 +248,8 @@ img {
   gap: clamp(1rem, 4vw, 3rem);
   width: min(var(--banner-width), 980px);
   height: clamp(42px, 6svh, 64px);
+  margin-left: var(--banner-left);
+  margin-right: auto;
   overflow: hidden;
   border: 2px solid rgba(102, 53, 28, 0.65);
   border-inline-width: 0;
@@ -258,8 +262,7 @@ img {
     0 2px 0 rgba(255, 248, 215, 0.5) inset,
     0 -3px 0 rgba(129, 67, 34, 0.3) inset;
   opacity: clamp(0, var(--unroll-progress), 1);
-  transform: scaleX(var(--banner-scale));
-  transform-origin: center;
+  transform-origin: left center;
 }
 
 .banner-scroll a {
@@ -298,11 +301,11 @@ img {
 }
 
 .banner-roller-left {
-  left: calc(50% - var(--roller-offset) - clamp(8px, 1.5vw, 14px));
+  left: calc(var(--banner-left) - clamp(8px, 1.5vw, 14px));
 }
 
 .banner-roller-right {
-  right: calc(50% - var(--roller-offset) - clamp(8px, 1.5vw, 14px));
+  left: calc(var(--banner-right) - clamp(10px, 1.6vw, 16px));
 }
 
 .scroll-banner-divider.is-ready {
@@ -923,6 +926,7 @@ img {
 @media (max-width: 760px) {
   .opening-mobile {
     min-height: 100svh;
+    margin-bottom: clamp(3rem, 9svh, 5rem);
   }
 
   .curtain-up {
@@ -1020,7 +1024,7 @@ img {
 
   .scroll-banner-divider {
     height: 76px;
-    margin-top: -34px;
+    margin-top: 0;
   }
 
   .banner-scroll {

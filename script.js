@@ -283,8 +283,9 @@ function updateScrollBanner() {
   if (reducedMotion) {
     scrollBannerDivider.style.setProperty("--unroll-progress", "1");
     scrollBannerDivider.style.setProperty("--banner-width", "100%");
-    scrollBannerDivider.style.setProperty("--roller-offset", `${Math.min(window.innerWidth, 980) / 2}px`);
-    scrollBannerDivider.style.setProperty("--banner-scale", "1");
+    scrollBannerDivider.style.setProperty("--banner-render-width", `${Math.min(window.innerWidth, 980).toFixed(1)}px`);
+    scrollBannerDivider.style.setProperty("--banner-left", `${((window.innerWidth - Math.min(window.innerWidth, 980)) / 2).toFixed(1)}px`);
+    scrollBannerDivider.style.setProperty("--banner-right", `${((window.innerWidth + Math.min(window.innerWidth, 980)) / 2).toFixed(1)}px`);
     scrollBannerDivider.style.setProperty("--banner-link-opacity", "1");
     scrollBannerDivider.style.setProperty("--banner-link-lift", "0px");
     scrollBannerDivider.style.setProperty("--roller-opacity", "1");
@@ -298,18 +299,21 @@ function updateScrollBanner() {
   const start = viewportHeight * 0.96;
   const end = viewportHeight * 0.22;
   const progress = clamp((start - rect.top) / (start - end), 0, 1);
-  const bannerWidth = 18 + 82 * progress;
-  const rollerOffset = Math.min(window.innerWidth * (bannerWidth / 100), 980) / 2;
-  const bannerScale = Math.max(0.04, progress);
+  const fullWidth = Math.min(window.innerWidth, 980);
+  const minWidth = Math.max(34, Math.min(window.innerWidth * 0.08, 84));
+  const renderWidth = minWidth + (fullWidth - minWidth) * progress;
+  const bannerLeft = (window.innerWidth - fullWidth) / 2;
+  const bannerRight = bannerLeft + renderWidth;
   const linkOpacity = clamp((progress - 0.48) * 3, 0, 1);
   const linkLift = (1 - progress) * 12;
   const rollerOpacity = clamp(progress * 1.5, 0, 1);
   const rollerRotation = progress * 540;
 
   scrollBannerDivider.style.setProperty("--unroll-progress", progress.toFixed(3));
-  scrollBannerDivider.style.setProperty("--banner-width", `${bannerWidth.toFixed(2)}%`);
-  scrollBannerDivider.style.setProperty("--roller-offset", `${rollerOffset.toFixed(1)}px`);
-  scrollBannerDivider.style.setProperty("--banner-scale", bannerScale.toFixed(3));
+  scrollBannerDivider.style.setProperty("--banner-width", `${renderWidth.toFixed(1)}px`);
+  scrollBannerDivider.style.setProperty("--banner-render-width", `${renderWidth.toFixed(1)}px`);
+  scrollBannerDivider.style.setProperty("--banner-left", `${bannerLeft.toFixed(1)}px`);
+  scrollBannerDivider.style.setProperty("--banner-right", `${bannerRight.toFixed(1)}px`);
   scrollBannerDivider.style.setProperty("--banner-link-opacity", linkOpacity.toFixed(3));
   scrollBannerDivider.style.setProperty("--banner-link-lift", `${linkLift.toFixed(1)}px`);
   scrollBannerDivider.style.setProperty("--roller-opacity", rollerOpacity.toFixed(3));
