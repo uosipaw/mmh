@@ -125,6 +125,7 @@ function maybeWiggleStringAt(clientX, clientY, force = false) {
 }
 
 const dropdownSun = document.getElementById("dropdownSun");
+const dontTouchCallout = document.getElementById("dontTouchCallout");
 const openingMobile = document.getElementById("openingMobile");
 const curtainStage = document.getElementById("curtainStage");
 const curtainOpenButton = document.getElementById("curtainOpenButton");
@@ -143,15 +144,26 @@ if (curtainStage && curtainOpenButton) {
 if (dropdownSun) {
   const sunImage = dropdownSun.querySelector("img");
   let resetSunTimer;
+  let dontTouchTimer;
 
   dropdownSun.addEventListener("click", () => {
     if (!sunImage) return;
 
     window.clearTimeout(resetSunTimer);
+    window.clearTimeout(dontTouchTimer);
     sunImage.src = sunImage.dataset.angrySrc;
     dropdownSun.classList.add("is-angry");
     dropdownSun.setAttribute("aria-pressed", "true");
     dropdownSun.setAttribute("aria-label", "The sun is angry");
+
+    if (dontTouchCallout) {
+      dontTouchCallout.classList.remove("is-showing");
+      void dontTouchCallout.offsetWidth;
+      dontTouchCallout.classList.add("is-showing");
+      dontTouchTimer = window.setTimeout(() => {
+        dontTouchCallout.classList.remove("is-showing");
+      }, 1800);
+    }
 
     resetSunTimer = window.setTimeout(() => {
       sunImage.src = sunImage.dataset.smileSrc;

@@ -191,6 +191,24 @@ img {
   pointer-events: none;
 }
 
+.dont-touch-callout {
+  position: fixed;
+  left: 0;
+  bottom: clamp(18px, 4svh, 44px);
+  z-index: 18;
+  width: clamp(150px, 24vw, 280px);
+  max-width: 48vw;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-115%) rotate(-4deg);
+  filter: drop-shadow(0 12px 15px rgba(0, 0, 0, 0.32));
+  will-change: transform, opacity;
+}
+
+.dont-touch-callout.is-showing {
+  animation: dontTouchSlide 1800ms cubic-bezier(.18, .89, .32, 1.05) both;
+}
+
 .hanger {
   position: absolute;
   left: var(--x);
@@ -515,6 +533,24 @@ img {
   100% {
     opacity: 0;
     transform: translateX(-50%) translateY(38px) rotate(24deg);
+  }
+}
+
+@keyframes dontTouchSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-115%) rotate(-4deg);
+  }
+
+  18%,
+  68% {
+    opacity: 1;
+    transform: translateX(clamp(10px, 3vw, 34px)) rotate(1deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-115%) rotate(-7deg);
   }
 }
 
