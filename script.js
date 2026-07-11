@@ -73,6 +73,29 @@ function triggerStringWiggle(hanger) {
 function maybeWiggleStringAt(clientX, clientY, force = false) {
   const now = performance.now();
 
+  if (curtainOpenButton && !curtainOpenButton.disabled) {
+    const buttonString = curtainOpenButton.querySelector(".curtain-button-string");
+
+    if (buttonString) {
+      const rect = buttonString.getBoundingClientRect();
+      const xPadding = force ? 22 : 14;
+      const canWiggleButtonString =
+        force ||
+        !curtainOpenButton.lastStringWiggle ||
+        now - curtainOpenButton.lastStringWiggle >= 420;
+      const isNearButtonString =
+        clientX >= rect.left - xPadding &&
+        clientX <= rect.right + xPadding &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom;
+
+      if (canWiggleButtonString && isNearButtonString) {
+        curtainOpenButton.lastStringWiggle = now;
+        triggerStringWiggle(curtainOpenButton);
+      }
+    }
+  }
+
   pieces.forEach((piece) => {
     if (!force && piece.lastStringWiggle && now - piece.lastStringWiggle < 420) {
       return;
