@@ -12,6 +12,9 @@ const pointer = {
 
 let lastScrollY = window.scrollY;
 let scrollVelocity = 0;
+let paintScrollStarted = window.scrollY > 8;
+const openingRevealDelay = 2900;
+const openingUnlockDelay = 4700;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -129,6 +132,20 @@ const dontTouchCallout = document.getElementById("dontTouchCallout");
 const openingMobile = document.getElementById("openingMobile");
 const curtainStage = document.getElementById("curtainStage");
 const curtainOpenButton = document.getElementById("curtainOpenButton");
+const scrollBannerDivider = document.getElementById("scrollBannerDivider");
+const landingLinks = [...document.querySelectorAll(".landing-link")];
+const paintSplotches = [...document.querySelectorAll(".paint-splotch")];
+let openingUnlockTimer;
+
+function releaseOpeningScrollLock() {
+  document.body.classList.remove("opening-scroll-locked");
+  window.clearTimeout(openingUnlockTimer);
+}
+
+if (curtainStage && curtainOpenButton && !reducedMotion && window.scrollY < 8) {
+  document.body.classList.add("opening-scroll-locked");
+  openingUnlockTimer = window.setTimeout(releaseOpeningScrollLock, 8000);
+}
 
 if (curtainStage && curtainOpenButton) {
   curtainOpenButton.addEventListener("click", () => {
@@ -137,7 +154,11 @@ if (curtainStage && curtainOpenButton) {
 
     window.setTimeout(() => {
       openingMobile?.classList.add("mobile-ready");
-    }, 3400);
+    }, openingRevealDelay);
+
+    window.setTimeout(() => {
+      releaseOpeningScrollLock();
+    }, openingUnlockDelay);
   });
 }
 
@@ -145,10 +166,12 @@ if (dropdownSun) {
   const sunImage = dropdownSun.querySelector("img");
   let resetSunTimer;
   let dontTouchTimer;
+  let sunTapCount = 0;
 
   dropdownSun.addEventListener("click", () => {
     if (!sunImage) return;
 
+    sunTapCount += 1;
     window.clearTimeout(resetSunTimer);
     window.clearTimeout(dontTouchTimer);
     sunImage.src = sunImage.dataset.angrySrc;
@@ -156,7 +179,7 @@ if (dropdownSun) {
     dropdownSun.setAttribute("aria-pressed", "true");
     dropdownSun.setAttribute("aria-label", "The sun is angry");
 
-    if (dontTouchCallout) {
+    if (dontTouchCallout && sunTapCount >= 2) {
       dontTouchCallout.classList.remove("is-showing");
       void dontTouchCallout.offsetWidth;
       dontTouchCallout.classList.add("is-showing");
@@ -173,6 +196,128 @@ if (dropdownSun) {
     }, 380);
   });
 }
+
+if (landingLinks.length) {
+  landingLinks.forEach((link) => {
+    if (!link.classList.contains("is-placeholder")) return;
+
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+    });
+  });
+
+  if ("IntersectionObserver" in window && !reducedMotion) {
+    const linkObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          linkObserver.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.18,
+      },
+    );
+
+    landingLinks.forEach((link, index) => {
+      link.style.transitionDelay = `${(index % 3) * 90}ms`;
+      linkObserver.observe(link);
+    });
+  } else {
+    landingLinks.forEach((link) => link.classList.add("is-visible"));
+  }
+}
+
+function updatePaintSplotches() {
+  if (!paintSplotches.length || reducedMotion) return;
+
+  if (!paintScrollStarted) {
+    paintSplotches.forEach((splotch) => {
+      splotch.style.opacity = "0";
+      splotch.style.setProperty("--splotch-offset-x", "0px");
+      splotch.style.setProperty("--splotch-offset-y", "0px");
+      splotch.style.setProperty("--splotch-scale", "0.18");
+      splotch.style.setProperty("--droplet-scale", "0.25");
+      splotch.style.setProperty("--droplet-opacity", "0");
+    });
+    return;
+  }
+
+  const viewportHeight = window.innerHeight || 1;
+
+  paintSplotches.forEach((splotch) => {
+    const rect = splotch.getBoundingClientRect();
+    const rawReveal = clamp(
+      1 - Math.abs(rect.top + rect.height * 0.35 - viewportHeight * 0.62) / viewportHeight,
+      0,
+      1,
+    );
+    const reveal = rawReveal * rawReveal * (3 - 2 * rawReveal);
+    const throwX = Number.parseFloat(getComputedStyle(splotch).getPropertyValue("--throw-x")) || 0;
+    const throwY = Number.parseFloat(getComputedStyle(splotch).getPropertyValue("--throw-y")) || 0;
+    const travel = 1 - reveal;
+    const opacity = rawReveal > 0.02 ? Math.min(rawReveal * 1.35, 0.9) : 0;
+    const scale = 0.18 + reveal * 0.9;
+    const dropletScale = 0.25 + reveal * 0.9;
+    const dropletOpacity = Math.min(reveal * 1.45, 0.86);
+
+    splotch.style.opacity = opacity.toFixed(3);
+    splotch.style.setProperty("--splotch-offset-x", `${(throwX * travel).toFixed(1)}px`);
+    splotch.style.setProperty("--splotch-offset-y", `${(throwY * travel).toFixed(1)}px`);
+    splotch.style.setProperty("--splotch-scale", scale.toFixed(3));
+    splotch.style.setProperty("--droplet-scale", dropletScale.toFixed(3));
+    splotch.style.setProperty("--droplet-opacity", dropletOpacity.toFixed(3));
+  });
+}
+
+if (paintSplotches.length && !reducedMotion && paintScrollStarted) {
+  updatePaintSplotches();
+}
+
+function updateScrollBanner() {
+  if (!scrollBannerDivider) return;
+
+  if (reducedMotion) {
+    scrollBannerDivider.style.setProperty("--unroll-progress", "1");
+    scrollBannerDivider.style.setProperty("--banner-width", "100%");
+    scrollBannerDivider.style.setProperty("--roller-offset", `${Math.min(window.innerWidth, 980) / 2}px`);
+    scrollBannerDivider.style.setProperty("--banner-scale", "1");
+    scrollBannerDivider.style.setProperty("--banner-link-opacity", "1");
+    scrollBannerDivider.style.setProperty("--banner-link-lift", "0px");
+    scrollBannerDivider.style.setProperty("--roller-opacity", "1");
+    scrollBannerDivider.style.setProperty("--roller-rotation", "0deg");
+    scrollBannerDivider.classList.add("is-ready");
+    return;
+  }
+
+  const viewportHeight = window.innerHeight || 1;
+  const rect = scrollBannerDivider.getBoundingClientRect();
+  const start = viewportHeight * 0.96;
+  const end = viewportHeight * 0.22;
+  const progress = clamp((start - rect.top) / (start - end), 0, 1);
+  const bannerWidth = 18 + 82 * progress;
+  const rollerOffset = Math.min(window.innerWidth * (bannerWidth / 100), 980) / 2;
+  const bannerScale = Math.max(0.04, progress);
+  const linkOpacity = clamp((progress - 0.48) * 3, 0, 1);
+  const linkLift = (1 - progress) * 12;
+  const rollerOpacity = clamp(progress * 1.5, 0, 1);
+  const rollerRotation = progress * 540;
+
+  scrollBannerDivider.style.setProperty("--unroll-progress", progress.toFixed(3));
+  scrollBannerDivider.style.setProperty("--banner-width", `${bannerWidth.toFixed(2)}%`);
+  scrollBannerDivider.style.setProperty("--roller-offset", `${rollerOffset.toFixed(1)}px`);
+  scrollBannerDivider.style.setProperty("--banner-scale", bannerScale.toFixed(3));
+  scrollBannerDivider.style.setProperty("--banner-link-opacity", linkOpacity.toFixed(3));
+  scrollBannerDivider.style.setProperty("--banner-link-lift", `${linkLift.toFixed(1)}px`);
+  scrollBannerDivider.style.setProperty("--roller-opacity", rollerOpacity.toFixed(3));
+  scrollBannerDivider.style.setProperty("--roller-rotation", `${rollerRotation.toFixed(1)}deg`);
+  scrollBannerDivider.classList.toggle("is-ready", progress > 0.86);
+}
+
+updateScrollBanner();
 
 function handlePointerMove(event) {
   pointer.lastX = pointer.x;
@@ -214,6 +359,11 @@ window.addEventListener(
   () => {
     scrollVelocity = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
+    if (window.scrollY > 8) {
+      paintScrollStarted = true;
+    }
+    updatePaintSplotches();
+    updateScrollBanner();
   },
   { passive: true },
 );
@@ -223,6 +373,8 @@ window.addEventListener(
   () => {
     pointer.x = window.innerWidth / 2;
     pointer.lastX = pointer.x;
+    updatePaintSplotches();
+    updateScrollBanner();
   },
   { passive: true },
 );
