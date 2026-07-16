@@ -1,0 +1,38 @@
+/*
+ * Card-back artwork fit rules.
+ * Loaded after tarot.css so every dealt card and the deck pile use the
+ * complete source image instead of rendering it at its natural pixel size.
+ */
+
+:root {
+  --tarot-card-back-fit: contain;
+  --tarot-card-back-position: center;
+  --tarot-card-back-color: #f7f3e9;
+}
+
+.deck-pile,
+.card-face.front {
+  background-color: var(--tarot-card-back-color);
+  background-image: var(--card-back-img);
+  background-repeat: no-repeat;
+  background-position: var(--tarot-card-back-position);
+  background-size: var(--tarot-card-back-fit);
+  background-origin: padding-box;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+.deck-pile {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Keep the card artwork crisp and centered on small iPhone screens. */
+@media (max-width: 768px) {
+  .deck-pile,
+  .card-face.front {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
