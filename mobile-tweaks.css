@@ -1,0 +1,22 @@
+/* Mobile-only scale refinements for the hanging hero artwork. */
+@media (max-width: 760px) {
+  .letter-m {
+    --w: clamp(64px, 20vw, 98px) !important;
+  }
+
+  .letter-d {
+    --w: clamp(62px, 18.5vw, 92px) !important;
+  }
+
+  .letter-s {
+    --w: clamp(65px, 19.5vw, 98px) !important;
+  }
+
+  .letter-n {
+    --w: clamp(63px, 19vw, 95px) !important;
+  }
+
+  .sun {
+    --w: clamp(165px, 48vw, 235px) !important;
+  }
+}
