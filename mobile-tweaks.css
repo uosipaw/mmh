@@ -1,5 +1,9 @@
 /* Mobile-only scale refinements for the hanging hero artwork. */
 @media (max-width: 760px) {
+  .cloud-4 {
+    display: none !important;
+  }
+
   .letter-m {
     --w: clamp(64px, 20vw, 98px) !important;
   }
