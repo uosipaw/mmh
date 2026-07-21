@@ -1,4 +1,6 @@
-/* Mobile-only scale refinements for the hanging hero artwork. */
+/* Responsive scale refinements for the hanging hero artwork. */
+
+/* Phones */
 @media (max-width: 760px) {
   .cloud-4 {
     display: none !important;
@@ -22,5 +24,122 @@
 
   .sun {
     --w: clamp(165px, 48vw, 235px) !important;
+  }
+}
+
+/* Tablets and ordinary desktop windows */
+@media (min-width: 761px) {
+  .cloud-1 {
+    --x: 5% !important;
+    --w: clamp(135px, 12vw, 190px) !important;
+    --string: clamp(130px, 17svh, 195px) !important;
+  }
+
+  .cloud-2 {
+    --x: 30% !important;
+    --w: clamp(205px, 18vw, 290px) !important;
+    --string: clamp(155px, 21svh, 245px) !important;
+  }
+
+  .cloud-3 {
+    --x: 58% !important;
+    --w: clamp(125px, 11vw, 180px) !important;
+    --string: clamp(190px, 25svh, 295px) !important;
+  }
+
+  .letter-m {
+    --x: 8% !important;
+    --w: clamp(105px, 10vw, 155px) !important;
+    --string: clamp(310px, 42svh, 485px) !important;
+  }
+
+  .letter-d {
+    --x: 22% !important;
+    --w: clamp(100px, 9.5vw, 150px) !important;
+    --string: clamp(295px, 40svh, 465px) !important;
+  }
+
+  .letter-s {
+    --x: 36% !important;
+    --w: clamp(105px, 9.8vw, 155px) !important;
+    --string: clamp(355px, 48svh, 555px) !important;
+  }
+
+  .letter-n {
+    --x: 49% !important;
+    --w: clamp(103px, 9.6vw, 152px) !important;
+    --string: clamp(330px, 45svh, 515px) !important;
+  }
+
+  .sun {
+    --x: 63% !important;
+    --w: clamp(275px, 28vw, 360px) !important;
+    --string: clamp(165px, 23svh, 265px) !important;
+  }
+}
+
+/* Wide desktop screens: spread the pieces instead of enlarging them. */
+@media (min-width: 1200px) {
+  .cloud-1 {
+    --x: 6% !important;
+    --w: clamp(150px, 10vw, 200px) !important;
+  }
+
+  .cloud-2 {
+    --x: 32% !important;
+    --w: clamp(230px, 15vw, 300px) !important;
+  }
+
+  .cloud-3 {
+    --x: 59% !important;
+    --w: clamp(140px, 9.5vw, 190px) !important;
+  }
+
+  .letter-m {
+    --x: 10% !important;
+    --w: clamp(120px, 7.8vw, 165px) !important;
+  }
+
+  .letter-d {
+    --x: 23% !important;
+    --w: clamp(115px, 7.5vw, 160px) !important;
+  }
+
+  .letter-s {
+    --x: 36% !important;
+    --w: clamp(120px, 7.7vw, 165px) !important;
+  }
+
+  .letter-n {
+    --x: 49% !important;
+    --w: clamp(118px, 7.6vw, 162px) !important;
+  }
+
+  .sun {
+    --x: 68% !important;
+    --w: clamp(310px, 20vw, 380px) !important;
+  }
+}
+
+/* Very wide monitors keep the desktop composition centered and airy. */
+@media (min-width: 1700px) {
+  .letter-m {
+    --x: 11% !important;
+  }
+
+  .letter-d {
+    --x: 24% !important;
+  }
+
+  .letter-s {
+    --x: 37% !important;
+  }
+
+  .letter-n {
+    --x: 50% !important;
+  }
+
+  .sun {
+    --x: 70% !important;
   }
 }
