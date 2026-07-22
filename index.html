@@ -9,6 +9,174 @@
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mobile-tweaks.css" />
+
+    <style>
+        /*
+         * Bottom-edge paper-puppet callouts.
+         * This block intentionally loads after the external stylesheets so it
+         * replaces the old left-to-right "don't touch" slide animation.
+         */
+        .dont-touch-callout,
+        .keep-scrolling-callout {
+            position: fixed;
+            z-index: 18;
+            bottom: -12px;
+            width: clamp(155px, 25vw, 285px);
+            max-width: 52vw;
+            pointer-events: none;
+            opacity: 0;
+            filter: drop-shadow(0 13px 16px rgba(0, 0, 0, 0.34));
+            transform-origin: 50% 115%;
+            will-change: transform, opacity;
+        }
+
+        .dont-touch-callout {
+            left: clamp(4px, 2vw, 26px);
+            transform: translateY(125%) rotate(-7deg) scale(0.86);
+        }
+
+        .keep-scrolling-callout {
+            right: clamp(4px, 2vw, 26px);
+            display: grid;
+            place-items: end center;
+            transform: translateY(125%) rotate(6deg) scale(0.86);
+        }
+
+        .keep-scrolling-callout img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .keep-scrolling-callout .popup-fallback {
+            display: none;
+            max-width: 100%;
+            padding: 0.65em 0.8em 0.58em;
+            border: 3px solid #2e1c16;
+            border-radius: 48% 42% 45% 38% / 34% 44% 35% 46%;
+            color: #2e1c16;
+            background:
+                repeating-linear-gradient(
+                    -4deg,
+                    rgba(125, 76, 36, 0.06) 0 2px,
+                    transparent 2px 7px
+                ),
+                #f4d894;
+            box-shadow:
+                0 3px 0 rgba(255, 248, 213, 0.58) inset,
+                5px 8px 0 rgba(46, 28, 22, 0.23);
+            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            font-size: clamp(1rem, 3.3vw, 2rem);
+            line-height: 0.92;
+            letter-spacing: 0.035em;
+            text-align: center;
+            text-transform: uppercase;
+            transform: rotate(-2deg);
+        }
+
+        .keep-scrolling-callout.use-fallback .popup-fallback {
+            display: block;
+        }
+
+        .keep-scrolling-callout.use-fallback img {
+            display: none;
+        }
+
+        .dont-touch-callout.is-showing {
+            animation: puppetPopLeft 1900ms cubic-bezier(.17, .82, .26, 1.08) both;
+        }
+
+        .keep-scrolling-callout.is-showing {
+            animation: puppetPopRight 2600ms cubic-bezier(.17, .82, .26, 1.08) both;
+        }
+
+        @keyframes puppetPopLeft {
+            0% {
+                opacity: 0;
+                transform: translateY(125%) rotate(-8deg) scale(0.84);
+            }
+
+            18% {
+                opacity: 1;
+                transform: translateY(-13%) rotate(4deg) scale(1.04);
+            }
+
+            28% {
+                transform: translateY(1%) rotate(-2deg) scale(0.99);
+            }
+
+            40%,
+            70% {
+                opacity: 1;
+                transform: translateY(-2%) rotate(1deg) scale(1);
+            }
+
+            80% {
+                transform: translateY(-8%) rotate(-4deg) scale(1.01);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(130%) rotate(8deg) scale(0.88);
+            }
+        }
+
+        @keyframes puppetPopRight {
+            0% {
+                opacity: 0;
+                transform: translateY(125%) rotate(8deg) scale(0.84);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translateY(-15%) rotate(-5deg) scale(1.05);
+            }
+
+            25% {
+                transform: translateY(2%) rotate(3deg) scale(0.98);
+            }
+
+            36%,
+            72% {
+                opacity: 1;
+                transform: translateY(-2%) rotate(-1deg) scale(1);
+            }
+
+            82% {
+                transform: translateY(-9%) rotate(5deg) scale(1.01);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(130%) rotate(-8deg) scale(0.88);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .dont-touch-callout,
+            .keep-scrolling-callout {
+                width: clamp(140px, 43vw, 215px);
+                max-width: 54vw;
+            }
+
+            .dont-touch-callout {
+                left: -2px;
+            }
+
+            .keep-scrolling-callout {
+                right: -2px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .dont-touch-callout.is-showing,
+            .keep-scrolling-callout.is-showing {
+                animation-duration: 1ms !important;
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -210,6 +378,11 @@
             </div>
 
             <img class="dont-touch-callout" id="dontTouchCallout" src="images/donttouch.png" alt="" aria-hidden="true" />
+
+            <div class="keep-scrolling-callout" id="keepScrollingCallout" aria-hidden="true">
+                <img src="images/keepscrolling.png" alt="" />
+                <span class="popup-fallback">Keep scrolling</span>
+            </div>
         </section>
 
         <nav class="scroll-banner-divider" id="scrollBannerDivider" aria-label="Page sections">
@@ -269,6 +442,94 @@
     </main>
 
     <script src="script.js"></script>
+
+    <script>
+        (() => {
+            const keepScrollingCallout = document.getElementById("keepScrollingCallout");
+            const keepScrollingImage = keepScrollingCallout?.querySelector("img");
+            const curtainOpenButton = document.getElementById("curtainOpenButton");
+            const openingMobile = document.getElementById("openingMobile");
+
+            if (!keepScrollingCallout || !keepScrollingImage) return;
+
+            const candidateSources = [
+                "images/keepscrolling.png",
+                "images/keep-scrolling.png",
+                "images/keep scrolling.png",
+                "images/KEEP-SCROLLING.png",
+                "images/KEEP SCROLLING.png"
+            ];
+
+            let sourceIndex = 0;
+            let hasShown = false;
+            let showTimer;
+            let hideTimer;
+
+            function tryNextSource() {
+                sourceIndex += 1;
+
+                if (sourceIndex < candidateSources.length) {
+                    keepScrollingImage.src = candidateSources[sourceIndex];
+                    return;
+                }
+
+                keepScrollingCallout.classList.add("use-fallback");
+            }
+
+            keepScrollingImage.addEventListener("error", tryNextSource);
+
+            if (
+                keepScrollingImage.complete &&
+                keepScrollingImage.naturalWidth === 0
+            ) {
+                tryNextSource();
+            }
+
+            function showKeepScrolling(delay = 0) {
+                if (hasShown) return;
+
+                hasShown = true;
+                window.clearTimeout(showTimer);
+                window.clearTimeout(hideTimer);
+
+                showTimer = window.setTimeout(() => {
+                    keepScrollingCallout.classList.remove("is-showing");
+                    void keepScrollingCallout.offsetWidth;
+                    keepScrollingCallout.classList.add("is-showing");
+
+                    hideTimer = window.setTimeout(() => {
+                        keepScrollingCallout.classList.remove("is-showing");
+                    }, 2700);
+                }, delay);
+            }
+
+            if (curtainOpenButton) {
+                curtainOpenButton.addEventListener(
+                    "click",
+                    () => showKeepScrolling(4850),
+                    { once: true }
+                );
+            }
+
+            if (
+                window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+                window.scrollY > 8 ||
+                openingMobile?.classList.contains("mobile-ready")
+            ) {
+                showKeepScrolling(700);
+            }
+
+            window.addEventListener(
+                "scroll",
+                () => {
+                    if (!hasShown && window.scrollY > 8) {
+                        showKeepScrolling(250);
+                    }
+                },
+                { passive: true }
+            );
+        })();
+    </script>
 </body>
 
 </html>
