@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {cleanReading,canUseShare,paidSession,responseText} from './domain.ts';
+const input={spread:'One card',deck:'Botanical',date:'2026-09-29',cards:[{id:'major-0',reversed:false}],positions:['Today'],question:'PRIVATE QUESTION',notes:'PRIVATE NOTES'};
+assert.deepEqual(Object.keys(cleanReading(input)).sort(),['cards','date','deck','positions','spread']);
+for(const id of ['major-22','wands-0','cups-15','fake'])assert.throws(()=>cleanReading({...input,cards:[{id,reversed:false}]}));
+assert.throws(()=>cleanReading({...input,positions:[]}));
+assert.throws(()=>cleanReading({...input,cards:Array(11).fill(input.cards[0]),positions:Array(11).fill('x')}));
+assert.equal(canUseShare({owner_id:'a',recipient_id:'b',allow_ai:true},'c',true),false);
+assert.equal(canUseShare({owner_id:'a',recipient_id:'b',allow_ai:false},'b',true),false);
+assert.equal(canUseShare({owner_id:'a',recipient_id:null,allow_ai:true},'b',true),true);
+const order={id:'order',owner_id:'owner',stripe_session:'session',amount:500,currency:'usd'};
+const session={id:'session',mode:'payment',status:'complete',payment_status:'paid',client_reference_id:'order',metadata:{owner_id:'owner'},amount_total:500,currency:'usd',payment_intent:{status:'succeeded',latest_charge:{refunded:false,disputed:false,amount_refunded:0}}};
+assert.equal(paidSession(session,order),true);
+for(const patch of [{id:'other'},{payment_status:'unpaid'},{amount_total:1},{currency:'eur'},{client_reference_id:'other'},{metadata:{owner_id:'attacker'}},{payment_intent:{status:'succeeded',latest_charge:{refunded:true}}}])assert.ok(!paidSession({...session,...patch},order));
+assert.equal(responseText({output:[{type:'reasoning'},{content:[{type:'output_text',text:'Reflection'}]}]}),'Reflection');
+console.log('PASS: snapshot privacy, input bounds, cross-account AI permission, paid/owner/amount/session/refund checks, response extraction');

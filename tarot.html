@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://esm.sh; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://esm.sh https://*.supabase.co wss://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com">
 <meta name="theme-color" content="#452e42"><meta name="description" content="A quiet place for daily tarot, your own spreads, and a personal reading journal.">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Tarot Studio — Your daily ritual</title>
@@ -12,7 +13,7 @@
 <header class="site-header"><a class="wordmark" href="#today" data-action="navigate" data-value="today" aria-label="Tarot Studio home"><span aria-hidden="true">✧</span> Tarot Studio</a><a class="header-note home-link" href="./index.html">← Back to MDSN</a><button class="deck-shortcut" data-action="navigate" data-value="decks" aria-label="Choose a deck theme"><span class="small-star" aria-hidden="true">✦</span><span id="deck-label">Botanical</span></button></header>
 <nav id="navigation" aria-label="Main navigation"></nav>
 <main id="app" tabindex="-1"><p class="loading">Opening your studio…</p></main>
-<footer class="site-footer">Your cards. Your perspective. <span>Written guidance, without AI.</span></footer>
+<footer class="site-footer">Your cards. Your perspective. <span>Free written guidance. Optional paid AI reflections.</span></footer>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <dialog id="modal" aria-labelledby="modal-title"></dialog>
 <script type="module" src="./tarot-studio/app.js"></script>

@@ -1,0 +1,1 @@
+{"private":true,"type":"module","scripts":{"test":"node rls.mjs && node ui.mjs && node ../supabase/functions/tarot-api/domain.test.ts"},"devDependencies":{"@electric-sql/pglite":"0.5.8","happy-dom":"20.14.5"}}

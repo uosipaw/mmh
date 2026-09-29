@@ -1,0 +1,3 @@
+[functions.tarot-api]
+# JWT is validated with Auth.getUser inside the function (supports new signing keys).
+verify_jwt = false

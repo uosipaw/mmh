@@ -1,0 +1,24 @@
+import {PGlite} from '@electric-sql/pglite';
+import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const db=new PGlite();
+await db.exec(`create role anon; create role authenticated; create role service_role bypassrls; create schema auth; create table auth.users(id uuid primary key); create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$; grant usage on schema auth to anon,authenticated; grant execute on function auth.uid() to anon,authenticated;`);
+await db.exec(readFileSync('../supabase/migrations/202609290001_tarot.sql','utf8'));
+const A='00000000-0000-0000-0000-000000000001',B='00000000-0000-0000-0000-000000000002',C='00000000-0000-0000-0000-000000000003';
+await db.exec(`insert into auth.users values('${A}'),('${B}'),('${C}');`);
+async function as(uid,role='authenticated'){await db.exec(`reset role; set role ${role}; set request.jwt.claim.sub='${uid||''}';`);}
+await as(A);await db.exec(`insert into public.tarot_profiles(id,username) values('${A}','alice'); insert into public.tarot_readings(owner_id,local_id,payload) values('${A}','local','{"notes":"secret"}');`);
+const rid=(await db.query('select * from public.tarot_readings')).rows[0].id;
+await as(B);assert.equal((await db.query('select * from public.tarot_readings')).rows.length,0);assert.equal((await db.query('select * from public.tarot_profiles')).rows.length,0);
+await assert.rejects(db.exec(`insert into public.tarot_profiles(id,username) values('${A}','hacker')`));
+await assert.rejects(db.exec(`insert into public.tarot_readings(owner_id,local_id,payload) values('${A}','bad','{}')`));
+await assert.rejects(db.exec(`insert into public.tarot_orders(owner_id,kind,input,amount,currency) values('${B}','interpretation','{}',1,'usd')`));
+await assert.rejects(db.exec(`insert into public.tarot_shares(owner_id,reading_id,payload) values('${B}','${rid}','{}')`));
+await as('', 'service_role');await db.exec(`insert into public.tarot_shares(owner_id,reading_id,recipient_id,payload) values('${A}','${rid}','${B}','{}'); insert into public.tarot_orders(owner_id,kind,input,amount,currency) values('${A}','interpretation','{}',500,'usd');`);
+await as(B);assert.equal((await db.query('select * from public.tarot_shares')).rows.length,1);assert.equal((await db.query('select * from public.tarot_orders')).rows.length,0);await db.exec('delete from public.tarot_shares');assert.equal((await db.query('select * from public.tarot_shares')).rows.length,1);
+await as(C);assert.equal((await db.query('select * from public.tarot_shares')).rows.length,0);
+await as('', 'anon');assert.equal((await db.query('select * from public.tarot_shares')).rows.length,0);
+await as(A);await db.exec('delete from public.tarot_shares');await as(B);assert.equal((await db.query('select * from public.tarot_shares')).rows.length,0);
+await as('', 'service_role');await db.exec(`insert into public.tarot_shares(owner_id,reading_id,payload) values('${A}','${rid}','{}');`);
+await as('', 'anon');assert.equal((await db.query('select * from public.tarot_shares')).rows.length,1);
+console.log('PASS: SQL migration and access policies: owner isolation, forbidden forged payments/shares, recipient-only access, revocation and public snapshots');await db.close();
