@@ -3,7 +3,7 @@ import Stripe from 'npm:stripe@22.6.0';
 import {cleanReading,canUseShare,paidSession,responseText} from './domain.ts';
 const env=(key:string)=>Deno.env.get(key)||'';
 const db=createClient(env('SUPABASE_URL'),env('SUPABASE_SERVICE_ROLE_KEY'),{auth:{persistSession:false}});
-const origin=env('APP_ORIGIN');
+const origin=env('APP_ORIGIN')||'https://mdsnmchll.com';
 const stripe=()=>new Stripe(env('STRIPE_RESTRICTED_KEY'),{apiVersion:'2026-08-26.dahlia',httpClient:Stripe.createFetchHttpClient()});
 function checked(r:any){if(r.error)throw Error('Database operation failed');return r.data;}
 const headers={'Access-Control-Allow-Origin':origin,'Access-Control-Allow-Headers':'authorization,apikey,content-type,x-client-info','Access-Control-Allow-Methods':'POST,OPTIONS','Vary':'Origin','Cache-Control':'no-store'};

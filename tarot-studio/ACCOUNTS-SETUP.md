@@ -1,6 +1,6 @@
 # Tarot accounts and paid AI setup
 
-The GitHub Pages app remains usable without any backend configuration. `config.js` is intentionally empty until a Supabase project is provisioned. No payments can be collected until the server is explicitly enabled. The Stripe and Supabase ChatGPT connections do not supply runtime credentials to the website.
+The GitHub Pages app remains usable without any backend configuration. `config.js` includes the provisioned project’s public connection details, with `accountsEnabled: false` until email sign-in is verified. No payments can be collected until the server is explicitly enabled. The Stripe and Supabase ChatGPT connections do not supply runtime credentials to the website.
 
 ## What is implemented
 
@@ -45,3 +45,15 @@ Local tests (Node 24): `cd tests`, `npm install`, then `npm test`. The database 
 - Questions/notes are private cloud data; they are not sent to AI in this version. Account deletion and data-export self-service are not implemented; operators can fulfill requests through Supabase.
 - The page includes a scoped meta CSP for GitHub Pages. If moving hosts, also serve CSP as a response header. The account SDK is version-pinned and loaded from esm.sh; no Stripe.js or card form is embedded.
 - No secrets belong in source. Rotate any accidentally exposed keys immediately. Keep sandbox and production credentials separate.
+
+## Provisioning status — October 3, 2026
+
+- Supabase project: `ftbkssxmlaytufbqvgih`, name `tarot-studio`, organization `uosipaw`, US East 1. Project creation quoted $0/month.
+- Database migration applied. All four tables have RLS enabled; Supabase security advisors returned no findings.
+- Edge Function `tarot-api` deployed, version 1. It validates user bearer tokens itself; its webhook validates Stripe signatures.
+- Stripe account: `acct_1Rj0PMCxr9VLhZci`. Products/prices are TEST MODE only.
+- Interpretation: $2.99 USD, `prod_VN97srE2kLFasW`, `price_1UMOpfCxr9VLhZci4eUX1cim`.
+- Comparison: $4.99 USD, `prod_VN97c40OYdz3Pn`, `price_1UMOpjCxr9VLhZciBO0yGY4R`.
+- Remaining: Auth email-code template, site URL, production email delivery; Stripe restricted runtime key and webhook; OpenAI runtime key/model; end-to-end tests; enable accounts and payments separately after verification.
+- Backend HTTP smoke test was blocked by the execution environment’s unavailable network proxy. Deployment status and database policies were verified through Supabase.
+- The available connectors do not expose Auth configuration or Edge Function secret management. Dashboard access is needed to finish those steps.

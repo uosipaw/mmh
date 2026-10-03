@@ -4,7 +4,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const btn=(label,act,id='')=>`<button class="btn secondary" type="button" data-account="${act}" data-id="${esc(id)}">${label}</button>`;
 let client,user,rows=[],shares=[],orders=[],profile,selected=[],bridge,busy=false;
 const dialog=document.createElement('dialog');dialog.id='account-dialog';dialog.setAttribute('aria-labelledby','account-title');document.body.append(dialog);
-const configured=!!config.supabaseUrl&&!!config.publishableKey;
+const configured=config.accountsEnabled===true&&!!config.supabaseUrl&&!!config.publishableKey;
 const check=r=>{if(r.error)throw Error(r.error.message);return r.data;};
 function show(html){dialog.innerHTML=`<div class="account-shell"><div class="row space-between"><h2 id="account-title">Your tarot account</h2>${btn('Close','close')}</div><p id="account-message" role="status"></p>${html}</div>`;if(!dialog.open)dialog.showModal();}
 function message(text){const el=dialog.querySelector('#account-message');if(el)el.textContent=text;}
