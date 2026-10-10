@@ -39,3 +39,18 @@ test('unconfigured shop exposes no owner studio or live payments', async () => {
     assert.equal((await mf.dispatchFetch('https://shop.test/beads/studio')).status,503);
   } finally { await mf.dispose(); }
 });
+
+test('fully configured PayPal credentials do not enable checkout without the order database', async () => {
+  const mf = new Miniflare({
+    modules:true, script, compatibilityDate:'2026-05-22',
+    bindings:{ STORE_READY:'true', SHIPPING_CENTS:'900', TAX_BPS:'0', PAYPAL_MODE:'sandbox', PAYPAL_CLIENT_ID:'test-id', PAYPAL_CLIENT_SECRET:'test-secret' },
+    serviceBindings:{ ASSETS:()=>new Response('static') }
+  });
+  try {
+    const config=await (await mf.dispatchFetch('https://shop.test/beads/api/config')).json();
+    assert.equal(config.pricingReady,true);
+    assert.equal(config.ordersReady,false);
+    assert.equal(config.paypalReady,false);
+    assert.equal(config.clientId,'');
+  } finally { await mf.dispose(); }
+});
