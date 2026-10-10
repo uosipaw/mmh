@@ -20,26 +20,21 @@ Two existing files exceed Cloudflare's 25 MiB asset limit. `/images/mwah.gif` an
 
 ## Order database
 
-Create a Cloudflare D1 database named `mdsn-bead-orders`. Add its actual database ID to `wrangler.jsonc` using this structure (replace the instructional text with the ID Cloudflare returns):
+The `wrangler.jsonc` file now declares a Cloudflare D1 binding named `DB` for the order database. On a successful `npx wrangler deploy`, Wrangler can automatically provision the D1 database; an ID is not required to make the first deployment. For deployments through Cloudflare's Git integration, the generated database ID is not written back into GitHub.
 
-```json
-"d1_databases": [{
-  "binding": "DB",
-  "database_name": "mdsn-bead-orders",
-  "database_id": "COPY THE ACTUAL DATABASE ID HERE",
-  "migrations_dir": "migrations"
-}]
-```
+**One-time setup after the first successful deploy:**
 
-Apply the schema before opening orders:
+1. In Cloudflare, open Workers & Pages → **uosipaw** → Settings → Bindings and locate the D1 binding `DB`. Open the attached D1 database.
+2. In the D1 database's SQL console, execute the statements from `migrations/0001_bead_orders.sql` exactly once. This creates the order table and indexes.
+3. Open `/beads/api/config` at the deployed hostname and confirm `ordersReady` is `true`. Without the table, order requests and PayPal remain disabled.
+
+Alternatively, copy the database's actual ID into the `DB` entry in `wrangler.jsonc` and run:
 
 ```sh
 npx wrangler d1 migrations apply mdsn-bead-orders --remote
 ```
 
-Alternatively, run `migrations/0001_bead_orders.sql` in the new database's SQL console. The Cloudflare database is separate from the database in the original ChatGPT Site. Any existing orders must be exported and imported separately; this branch does not copy them.
-
-The order form disables submissions until `DB` is bound. Its public API is `/beads/api/config`, `/beads/api/orders`, and `/beads/api/capture`.
+The Cloudflare database is separate from the original ChatGPT Site database. Existing orders must be exported and imported separately; connecting D1 does not migrate them. The public endpoints are `/beads/api/config`, `/beads/api/orders`, and `/beads/api/capture`.
 
 ## Owner order studio
 
