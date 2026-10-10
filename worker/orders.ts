@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     const existing = await env.DB.prepare("SELECT * FROM bead_orders WHERE id = ?").bind(data.requestId).first<any>();
     if (existing && existing.session !== session) return response({ error: "Please start a fresh order." }, 409);
     if (!existing && (recent?.n || 0) >= 12) return response({ error: "Please wait before placing more requests." }, 429);
-    const breakdown = totals(priceFor(data.product, data.length)!, data.quantity, data.delivery, config.shipping, config.taxBps);
+    const breakdown = totals(priceFor(data.product, data.length, data.extras)!, data.quantity, data.delivery, config.shipping, config.taxBps);
     if (!existing) {
       const details = { ...data, productName: products.find(p => p.id === data.product)!.name, paletteName: palettes.find(p => p.id === data.palette)!.name, ...breakdown, pricingApproved: config.pricingReady };
       await env.DB.prepare("INSERT INTO bead_orders (id, session, created_at, status, details, total) VALUES (?, ?, ?, ?, ?, ?)").bind(data.requestId, session, new Date().toISOString(), data.action === "request" ? "awaiting_quote" : "awaiting_payment", JSON.stringify(details), breakdown.total).run();
