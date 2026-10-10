@@ -18,5 +18,11 @@
   "vars": {
     "STORE_READY": "false",
     "PAYPAL_MODE": "sandbox"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mdsn-bead-orders"
+    }
+  ]
 }
