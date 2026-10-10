@@ -1,6 +1,6 @@
 # MDSN Arts: Cloudflare migration
 
-This branch preserves the existing website and adds the bead form at `/beads/`. The code is prepared for the Cloudflare Worker named `uosipaw`. Do not change the live domain until the temporary deployment has been tested.
+This branch preserves the existing website and adds the bead form at `/beads/`. The code is prepared for the Cloudflare Worker named `beads`. Do not change the live domain until the temporary deployment has been tested.
 
 ## Build connection
 
@@ -24,7 +24,7 @@ The `wrangler.jsonc` file now declares a Cloudflare D1 binding named `DB` for th
 
 **One-time setup after the first successful deploy:**
 
-1. In Cloudflare, open Workers & Pages → **uosipaw** → Settings → Bindings and locate the D1 binding `DB`. Open the attached D1 database.
+1. In Cloudflare, open Workers & Pages → **beads** → Settings → Bindings and locate the D1 binding `DB`. Open the attached D1 database.
 2. In the D1 database's SQL console, execute the statements from `migrations/0001_bead_orders.sql` exactly once. This creates the order table and indexes.
 3. Open `/beads/api/config` at the deployed hostname and confirm `ordersReady` is `true`. Without the table, order requests and PayPal remain disabled.
 
