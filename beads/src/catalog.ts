@@ -5,15 +5,16 @@ export const products = [
   { id: "suncatcher", name: "Sun Catchers", short: "Five strands to catch the light.", detail: "5 beaded strands • approximately 8 inches per hanging • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
   { id: "strand", name: "Strands by the Inch", short: "Just one, or a whole bunch.", detail: "One handmade strand • $0.75 per inch", icon: "strand", prices: Object.fromEntries(Array.from({length:77},(_,i)=>{const n=i+8;return [String(n),n*75];})) },
   { id: "garland", name: "Garland + Table Runners", short: "Three strands, one lovely garland.", detail: "3 strands joined at both ends • 48–60 inches • $0.50 per inch per strand", icon: "garland", prices: Object.fromEntries(Array.from({length:13},(_,i)=>{const n=i+48;return [String(n),n*150];})) },
-  { id: "plant", name: "Plant Charms", short: "A little something for your plants.", detail: "Custom handmade plant charm • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
-  { id: "rearview", name: "Rearview Hangers", short: "A little sparkle for the ride.", detail: "Custom rearview mirror hanger • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
-  { id: "phone", name: "Phone Charms", short: "Your phone, but more you.", detail: "Handmade dangling phone charm", icon: "phone", prices: { "8": 1399 } },
-  { id: "hair", name: "Hair Accessories", short: "Wear a little sparkle.", detail: "Hanging clip-in beaded hair extension", icon: "hair", prices: { "18": 1899 } },
-  { id: "wristlet", name: "Wristlets", short: "A little color to carry.", detail: "Handmade wristlet accessory", icon: "wristlet", prices: { "8": 1399 } },
-  { id: "fan", name: "Fan Hangers", short: "A little charm in motion.", detail: "Custom hanging fan accessory • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
-  { id: "keychain", name: "Keychains", short: "A tiny piece of happy.", detail: "3 mini bead strands", icon: "key", prices: { "6": 999 } },
-  { id: "ornament", name: "Ornaments", short: "Little keepsakes with personality.", detail: "Custom handmade ornament • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
-  { id: "lanyard", name: "Lanyards", short: "Everyday things, a little brighter.", detail: "Custom handmade lanyard • pricing confirmed before payment", icon: "key", prices: { "18": 0 } },
+  { id: "plant", name: "Plant Charms", short: "A little something for your plants.", detail: "1 handmade beaded strand • 5 inches • a playful accent for your favorite greenery", icon: "sun", prices: { "5": 999 } },
+  { id: "rearview", name: "Rearview Hangers", short: "A little sparkle for the ride.", detail: "2 handmade beaded strands • choose 3–5 inches • hangs from a rearview mirror", icon: "sun", prices: { "3": 1699, "4": 1699, "5": 1699 } },
+  { id: "phone", name: "Phone Charms", short: "Your phone, but more you.", detail: "1 looped beaded strand • 8 inches total (4 inches on each side)", icon: "phone", prices: { "8": 1399 } },
+  { id: "hair", name: "Hair Accessories", short: "Wear a little sparkle.", detail: "1 hanging clip-in beaded hair extension • choose 6–12 inches", icon: "hair", prices: { "6": 1499, "7": 1499, "8": 1499, "9": 1899, "10": 1899, "11": 1899, "12": 1899 } },
+  { id: "wristlet", name: "Wristlets", short: "A little color to carry.", detail: "1–2 beaded strands • approximately 9 inches • wrist-sized loop", icon: "wristlet", prices: { "9": 1699 } },
+  { id: "fan", name: "Fan Hangers", short: "A little charm in motion.", detail: "1 handmade beaded strand • 8 inches • decorative fan hanger", icon: "sun", prices: { "8": 1299 } },
+  { id: "keychain", name: "Keychains", short: "A tiny piece of happy.", detail: "3 mini handmade beaded strands • 5 inches each", icon: "key", prices: { "5": 1199 } },
+  { id: "ornament", name: "Ornaments", short: "Little keepsakes with personality.", detail: "1 handmade beaded ornament • 1 strand • 3 inches", icon: "sun", prices: { "3": 599 } },
+  { id: "ornament-set", name: "Ornaments — Set of 10", short: "Ten little keepsakes, one happy set.", detail: "10 handmade beaded ornaments • 1 strand each • 3 inches per ornament", icon: "sun", prices: { "3": 3999 } },
+  { id: "lanyard", name: "Lanyards", short: "Everyday things, a little brighter.", detail: "1 looped handmade beaded strand • 34 inches total", icon: "key", prices: { "34": 2499 } },
 ] as const;
 export const palettes = [
   { id: "honey", name: "Honey glow", colors: ["#dba540", "#9c5626", "#e8d4ac", "#eddcb4"], description: "Amber, caramel & warm clear glass" },
@@ -28,10 +29,10 @@ export function priceFor(productId: string, length: string, extras: {ribbons?:bo
   const product = products.find(p => p.id === productId);
   const base = product ? (product.prices as Record<string, number>)[length] : undefined;
   if (base === undefined) return undefined;
-  return base + (productId === "curtain" ? (extras.ribbons ? 500 : 0) + (extras.threads ? 500 : 0) + (extras.charms ? 1000 : 0) : 0);
+  return base + (["curtain", "portiere", "valance"].includes(productId) ? (extras.ribbons ? 500 : 0) + (extras.threads ? 500 : 0) + (extras.charms ? 1000 : 0) : 0);
 }
 export const FREE_SHIPPING_THRESHOLD_CENTS = 25000;
-export const shippingRates: Record<string, number> = { curtain:1795, portiere:1795, valance:995, plant:595, rearview:695, fan:695, ornament:595, lanyard:695, garland:995, strand:795, suncatcher:695, wristlet:695, keychain:595, phone:595, hair:595 };
+export const shippingRates: Record<string, number> = { curtain:1795, portiere:1795, valance:995, plant:595, rearview:695, fan:695, ornament:595, "ornament-set":695, lanyard:695, garland:995, strand:795, suncatcher:695, wristlet:695, keychain:595, phone:595, hair:595 };
 export function totals(unit: number, quantity: number, delivery: string, shipping: number, taxBps: number, productId = "") {
   const subtotal = unit * quantity;
   const deliveryFee = delivery === "shipping" && subtotal < FREE_SHIPPING_THRESHOLD_CENTS ? (shippingRates[productId] ?? shipping) : 0;
