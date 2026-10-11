@@ -200,3 +200,7 @@ img{max-width:100%;user-select:none;-webkit-user-drag:none}
  .stage-link{width:clamp(95px,24dvh,130px)}
  .stage-links{bottom:calc(var(--frame-bottom) - 3dvh);gap:20px}
 }
+@media(min-width:761px) and (orientation:portrait){
+ .letter-s{--string:60dvh!important}
+ .letter-n{--string:58dvh!important}
+}
