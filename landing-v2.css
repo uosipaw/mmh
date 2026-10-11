@@ -204,3 +204,8 @@ img{max-width:100%;user-select:none;-webkit-user-drag:none}
  .letter-s{--string:60dvh!important}
  .letter-n{--string:58dvh!important}
 }
+
+/* Actual Mountains of Christmas lettering over blank paper placards. */
+@font-face{font-family:'Mountains of Christmas';src:url('fonts/mountains-of-christmas-latin.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+.stage-link{container-type:inline-size}
+.stage-link span{position:absolute;top:28%;left:50%;transform:translate(-50%,-50%);width:62%;height:auto;overflow:visible;clip-path:none;white-space:nowrap;text-align:center;font-family:'Mountains of Christmas',Georgia,serif;font-style:normal;font-weight:400;font-size:25cqw;line-height:1.1;letter-spacing:0;color:#50311f;text-shadow:0 1px 0 #fff2;pointer-events:none}
