@@ -90,9 +90,9 @@ img{max-width:100%;user-select:none;-webkit-user-drag:none}
 }
 
 /* Layered paper proscenium; all details remain inside the viewport. */
-.opening-mobile{--frame-inset:clamp(6px,1.5vw,18px);--frame-side:clamp(44px,14vw,180px);--frame-top:clamp(48px,13vw,110px);--frame-bottom:clamp(40px,10vw,90px)}
+.opening-mobile{--frame-inset:0px;--frame-side:clamp(44px,14vw,180px);--frame-top:clamp(48px,13vw,110px);--frame-bottom:clamp(40px,10vw,90px)}
 .theater-frame{z-index:22;inset:var(--frame-inset)}
-.paper-proscenium{position:absolute;inset:0;border-style:solid;border-color:transparent;border-width:var(--frame-top) var(--frame-side) var(--frame-bottom);border-image-source:url('images/paper-theater-v3.webp');border-image-slice:150 230 130 230;border-image-repeat:stretch;filter:drop-shadow(0 2px 2px #54424c20)}
+.paper-proscenium{position:absolute;inset:0;border-style:solid;border-color:transparent;border-width:var(--frame-top) var(--frame-side) var(--frame-bottom);border-image-source:url('images/paper-theater-v3.webp');border-image-slice:150 230 130 230;border-image-repeat:stretch;border-image-outset:clamp(8px,1.5vw,18px);filter:drop-shadow(0 2px 2px #54424c20)}
 .stage-sign{position:absolute;top:calc(var(--frame-inset) + var(--frame-top) + 24px);left:50%;transform:translateX(-50%);z-index:12;width:max-content;max-width:70%;text-align:center;pointer-events:none;opacity:0;transition:opacity 900ms ease 450ms}
 .stage-sign h1{margin:0;color:#63455e;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(19px,1.7vw,27px);letter-spacing:.18em;text-transform:uppercase;text-shadow:0 1px 0 #fff9}
 .stage-sign p{margin:8px 0 0;color:#7d6479;font-size:clamp(8px,.7vw,10px);font-weight:500;letter-spacing:.15em;text-transform:uppercase}
