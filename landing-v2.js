@@ -3,6 +3,13 @@
   const curtain = document.getElementById('curtainStage');
   const enter = document.getElementById('curtainOpenButton');
   const layer = document.querySelector('.mobile-layer');
+  const navigation = document.querySelector('.stage-links');
+  let navigationTimer;
+  function revealNavigation() {
+    clearTimeout(navigationTimer);
+    navigation.inert = false;
+    navigation.classList.add('is-ready');
+  }
   const sun = document.getElementById('dropdownSun');
   const callout = document.getElementById('dontTouchCallout');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -28,6 +35,8 @@
     opened = true;
     scene.classList.add('mobile-ready');
     layer.inert = false;
+    if (motion.matches) revealNavigation();
+    else navigationTimer = setTimeout(revealNavigation, 2850);
     enter.disabled = true;
     curtain.classList.add('is-open');
     if (motion.matches) finishOpening();
@@ -107,6 +116,7 @@
       cancelAnimationFrame(frame); frame = undefined;
       pieces.forEach(piece => piece.arm.style.removeProperty('transform'));
       if (!opened) openStage(); else finishOpening();
+      revealNavigation();
     } else if (!document.hidden && frame === undefined) frame = requestAnimationFrame(animate);
   }
   motion.addEventListener('change',resume);

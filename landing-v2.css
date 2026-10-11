@@ -131,3 +131,31 @@ img{max-width:100%;user-select:none;-webkit-user-drag:none}
  .sun{--w:43dvh!important}
 }
 @media(prefers-reduced-motion:reduce){.stage-sign{opacity:1;transition:none}}
+
+/* Handheld paper navigation signs, raised inside the stage opening. */
+.stage-links{position:absolute;left:50%;bottom:calc(var(--frame-bottom) + 24px);z-index:13;display:flex;gap:clamp(18px,4vw,54px);justify-content:center;transform:translateX(-50%);visibility:hidden;pointer-events:none;max-width:calc(100% - 2 * var(--frame-side) - 20px)}
+.stage-link{position:relative;display:flex;align-items:center;justify-content:center;min-height:56px;width:clamp(100px,14vw,164px);padding:12px 18px;border:1px solid #b69c71;color:#60472e;background:linear-gradient(#f7e9c6d9,#e9d4acd9),url('images/paper-lavender-v2.webp') center/cover;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(20px,2vw,28px);text-decoration:none;box-shadow:inset 0 0 0 4px #fff5,2px 5px 7px #46314730;border-radius:2px 5px 3px 2px;transform:translateY(90px) rotate(var(--sign-tilt));opacity:0;transition:transform 700ms cubic-bezier(.2,.8,.25,1.15),opacity 500ms ease;isolation:isolate}
+.stage-link::before{content:'';position:absolute;top:calc(100% - 2px);left:calc(50% - 6px);width:12px;height:24px;z-index:-1;background:repeating-linear-gradient(92deg,#ab7b45 0 2px,#d6b183 3px 6px,#bb925f 7px 9px);border:1px solid #ab8159;box-shadow:2px 3px 3px #46314720}
+.stage-link-tarot{--sign-tilt:-5deg;transition-delay:1900ms}
+.stage-link-beads{--sign-tilt:4deg;transition-delay:2100ms;background:linear-gradient(#eddcc6df,#dbc4a9df),url('images/paper-lavender-v2.webp') center/cover}
+.mobile-ready .stage-links{visibility:visible}
+.mobile-ready .stage-link{transform:translateY(0) rotate(var(--sign-tilt));opacity:1}
+.stage-links.is-ready{pointer-events:auto}
+.stage-links.is-ready .stage-link{transition:transform 180ms ease,box-shadow 180ms ease}
+.stage-links.is-ready .stage-link:hover,.stage-links.is-ready .stage-link:focus-visible{transform:translateY(-4px) rotate(0deg);box-shadow:inset 0 0 0 4px #fff5,2px 8px 10px #46314740}
+.stage-link:focus-visible{outline:3px solid #745a85;outline-offset:6px}
+.stage-link:active{transform:translateY(1px) rotate(0deg)!important}
+@media(max-width:760px) and (orientation:portrait){.letter-s{--string:64dvh!important}.stage-links{gap:22px}.stage-link{width:104px;min-height:52px;padding:10px 16px;font-size:22px}.dont-touch-callout{bottom:calc(var(--frame-bottom) + 100px)}}
+@media(max-height:550px) and (orientation:landscape){.stage-links{gap:24px;bottom:calc(var(--frame-bottom) + 20px)}.stage-link{width:116px;min-height:44px;padding:8px 16px;font-size:20px}.dont-touch-callout{left:auto;right:calc(var(--frame-side) + 8px);bottom:calc(var(--frame-bottom) + 18px)}}
+/* Enter sign settles into a swing; clicking snaps its thread and drops it. */
+.curtain-open-button{animation:enterDrop 900ms cubic-bezier(.18,.89,.32,1.18) 180ms both,enterSwing 3400ms ease-in-out 1080ms infinite;transform-origin:50% -120px}
+.curtain-open-button img{transition:scale 150ms ease}
+.curtain-open-button:hover img,.curtain-open-button:focus-visible img{scale:1.035}
+.curtain-open-button:active img{scale:.96}
+.curtain-stage.is-open .curtain-open-button{animation:enterFall 700ms cubic-bezier(.45,0,.88,.3) forwards;opacity:1}
+.curtain-stage.is-open .curtain-button-string{animation:enterThreadBreak 360ms ease-in forwards}
+@keyframes enterDrop{0%{opacity:0;transform:translateX(-50%) translateY(-140px) rotate(-3deg)}68%{opacity:1;transform:translateX(-50%) translateY(10px) rotate(2deg)}100%{opacity:1;transform:translateX(-50%) rotate(0)}}
+@keyframes enterSwing{0%,100%{transform:translateX(-50%) rotate(-3deg)}50%{transform:translateX(-50%) rotate(3deg)}}
+@keyframes enterFall{0%{opacity:1;transform:translateX(-50%) rotate(0)}28%{transform:translateX(-48%) translateY(18px) rotate(8deg)}100%{opacity:0;transform:translateX(-35%) translateY(115dvh) rotate(34deg)}}
+@keyframes enterThreadBreak{0%{opacity:1;transform:translateX(-50%) rotate(0)}100%{opacity:0;transform:translateX(-50%) translateY(38px) rotate(24deg)}}
+@media(prefers-reduced-motion:reduce){.mobile-ready .stage-link{opacity:1;transform:rotate(var(--sign-tilt));transition:none}}
