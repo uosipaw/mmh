@@ -56,7 +56,7 @@
       callout.classList.remove('is-showing');
       void callout.offsetWidth;
       callout.classList.add('is-showing');
-      popupTimer = setTimeout(() => callout.classList.remove('is-showing'), 1900);
+      popupTimer = setTimeout(() => callout.classList.remove('is-showing'), 2600);
     }
     sunTimer = setTimeout(() => {
       img.src = img.dataset.smileSrc;
