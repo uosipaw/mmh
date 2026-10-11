@@ -14,6 +14,7 @@ export const orderSchema = z.object({
   requestId: z.string().uuid(), action: z.enum(["request", "pay"]),
 }).superRefine((v, ctx) => {
   if (priceFor(v.product, v.length, v.extras) === undefined) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Please select a valid length.", path: ["length"] });
+  if (v.action === "pay" && priceFor(v.product, v.length, v.extras) === 0) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "This custom item needs a quote before payment.", path: ["product"] });
   if (v.palette === "custom" && v.notes.length < 3) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Tell us your custom colors in the notes.", path: ["notes"] });
   if (v.delivery === "shipping" && (!v.address || !v.city || !/^[A-Z]{2}$/.test(v.state) || !/^\d{5}(-\d{4})?$/.test(v.zip))) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Please enter a complete US shipping address.", path: ["address"] });
 });
