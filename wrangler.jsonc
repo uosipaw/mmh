@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "beads",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-05-22",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": [
+      "/beads/api/*",
+      "/beads/studio*",
+      "/images/mwah.gif",
+      "/images/Your paragraph text.zip"
+    ]
+  },
+  "vars": {
+    "STORE_READY": "false",
+    "PAYPAL_MODE": "sandbox"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mdsn-bead-orders"
+    }
+  ]
+}

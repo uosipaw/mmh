@@ -26,3 +26,12 @@ node_modules/
 # Build output
 dist/
 build/
+
+# Cloudflare local runtime and credentials
+.wrangler/
+.worker-test/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+
