@@ -23,9 +23,11 @@ export function priceFor(productId: string, length: string, extras: {ribbons?:bo
   if (base === undefined) return undefined;
   return base + (productId === "curtain" ? (extras.ribbons ? 500 : 0) + (extras.threads ? 500 : 0) + (extras.charms ? 1000 : 0) : 0);
 }
-export function totals(unit: number, quantity: number, delivery: string, shipping: number, taxBps: number) {
+export const FREE_SHIPPING_THRESHOLD_CENTS = 25000;
+export const shippingRates: Record<string, number> = { curtain:1795, garland:995, strand:795, suncatcher:695, wristlet:695, keychain:595, phone:595, hair:595 };
+export function totals(unit: number, quantity: number, delivery: string, shipping: number, taxBps: number, productId = "") {
   const subtotal = unit * quantity;
-  const deliveryFee = delivery === "shipping" ? shipping : 0;
+  const deliveryFee = delivery === "shipping" && subtotal < FREE_SHIPPING_THRESHOLD_CENTS ? (shippingRates[productId] ?? shipping) : 0;
   const tax = Math.round((subtotal + deliveryFee) * taxBps / 10000);
   return { subtotal, shipping: deliveryFee, tax, total: subtotal + deliveryFee + tax };
 }
