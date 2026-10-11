@@ -87,3 +87,40 @@ img{max-width:100%;user-select:none;-webkit-user-drag:none}
  .sun{pointer-events:auto}
  .swing-arm{transform:none!important;will-change:auto}
 }
+
+/* Layered paper proscenium; all details remain inside the viewport. */
+.theater-frame{z-index:22}
+.paper-proscenium{display:block;position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:fill;filter:drop-shadow(0 2px 2px #54424c20)}
+.stage-sign{position:absolute;top:12.5%;left:50%;transform:translateX(-50%);z-index:12;width:max-content;max-width:70%;text-align:center;pointer-events:none;opacity:0;transition:opacity 900ms ease 450ms}
+.stage-sign h1{margin:0;color:#63455e;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(19px,1.7vw,27px);letter-spacing:.18em;text-transform:uppercase;text-shadow:0 1px 0 #fff9}
+.stage-sign p{margin:8px 0 0;color:#7d6479;font-size:clamp(8px,.7vw,10px);font-weight:500;letter-spacing:.15em;text-transform:uppercase}
+.mobile-ready .stage-sign{opacity:1}
+.opening-mobile::after{box-shadow:inset 0 0 6vw #715a7120}
+.swing-arm img{filter:drop-shadow(1px 2px 0 #755a6318) drop-shadow(0 7px 6px #4e365b25)}
+.single-string::before,.double-string span::before{background:linear-gradient(180deg,#eadbcb,var(--string-color-bottom,#b88e54));opacity:.82}
+.cloud-1{--x:13%!important}
+.letter-m{--x:14%!important}
+.letter-d{--x:27%!important}
+.letter-s{--x:40%!important}
+.letter-n{--x:53%!important}
+.sun{--x:66%!important;--w:min(21vw,330px)!important}
+@media(max-width:760px) and (orientation:portrait){
+ .stage-sign{top:13%;max-width:76%}
+ .stage-sign h1{font-size:18px;letter-spacing:.14em}
+ .stage-sign p{font-size:7px;letter-spacing:.1em;margin-top:6px}
+ .cloud-1{--x:14%!important;--w:24vw!important}
+ .cloud-2{--x:37%!important;--w:31vw!important;--string:21dvh!important}
+ .cloud-3{--x:68%!important;--w:19vw!important}
+ .letter-m{--x:14%!important;--w:18vw!important}
+ .letter-d{--x:33%!important;--w:16vw!important}
+ .letter-s{--x:50%!important;--w:17vw!important}
+ .letter-n{--x:68%!important;--w:17vw!important}
+ .sun{--x:47%!important;--w:39vw!important;--string:30dvh!important}
+}
+@media(max-height:550px) and (orientation:landscape){
+ .stage-sign{top:13%}
+ .stage-sign h1{font-size:15px}
+ .stage-sign p{display:none}
+ .sun{--w:43dvh!important}
+}
+@media(prefers-reduced-motion:reduce){.stage-sign{opacity:1;transition:none}}
