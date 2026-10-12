@@ -16,8 +16,10 @@
     ]
   },
   "vars": {
-    "STORE_READY": "false",
-    "PAYPAL_MODE": "sandbox"
+    "STORE_READY": "true",
+    "PAYPAL_MODE": "live",
+    "SHIPPING_CENTS": "900",
+    "TAX_BPS": "700"
   },
   "d1_databases": [
     {
