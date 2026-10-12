@@ -141,3 +141,9 @@ input::placeholder,textarea::placeholder{font-family:var(--font-detail);font-siz
 @media(max-width:650px){.palette-feature-visual{min-height:196px}.palette-single-gem{width:196px;height:196px}.palette-choice-gem{width:52px;height:52px}}
 
 .artist-bio h2{font-size:29px;margin:0 0 15px}
+
+/* A transparent bead strand separates the order form from the maker story. */
+.bead-divider{width:calc(100% - 72px);max-width:950px;aspect-ratio:6/1;margin:48px auto 0;pointer-events:none}
+.bead-divider img{display:block;width:100%;height:100%;object-fit:cover;filter:drop-shadow(0 3px 2px #60435316)}
+.bead-divider+.about-maker{margin-top:28px}
+@media(max-width:650px){.bead-divider{width:calc(100% - 32px);margin-top:32px}.bead-divider+.about-maker{margin-top:24px}}
