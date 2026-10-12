@@ -12,7 +12,7 @@ test('order storage, session isolation, payment gating and private studio', asyn
     const send = (path, body, cookie = '', origin = 'https://shop.test') => mf.dispatchFetch('https://shop.test/beads/api/' + path, { method:'POST', headers: { 'Content-Type':'application/json', Origin:origin, Cookie:cookie }, body:JSON.stringify(body) });
     const config = await (await mf.dispatchFetch('https://shop.test/beads/api/config')).json();
     assert.equal(config.paypalReady, false); assert.equal(config.clientId, ''); assert.equal(config.ordersReady, true);
-    const order = { requestId:crypto.randomUUID(),action:'request',product:'curtain',length:'24',palette:'honey',style:'varied',quantity:1,delivery:'pickup',notes:'<script>evil</script>',name:'Test Customer',email:'test@example.com',phone:'',address:'',city:'',state:'',zip:'',accepted:true,website:'',total:1 };
+    const order = { requestId:crypto.randomUUID(),action:'request',product:'curtain',length:'24',palette:'aries',style:'varied',quantity:1,delivery:'pickup',notes:'<script>evil</script>',name:'Test Customer',email:'test@example.com',phone:'',address:'',city:'',state:'',zip:'',accepted:true,website:'',total:1 };
     assert.equal((await send('orders',order,'','https://other.test')).status,403);
     assert.equal((await send('orders',{...order,length:'999'})).status,400);
     const saved = await send('orders',order); assert.equal(saved.status,200);
