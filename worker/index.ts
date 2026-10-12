@@ -4,18 +4,24 @@ import { POST as orders } from './orders';
 import { POST as capture } from './capture';
 import { studio } from './studio';
 import { response } from './shop';
+import { notifyOwners } from './notifications';
 const largeAssets: Record<string, string> = {
   '/images/mwah.gif': 'images/mwah.gif',
   '/images/Your paragraph text.zip': 'images/Your paragraph text.zip',
 };
 export default {
-  async fetch(request: Request): Promise<Response> {
+  scheduled(_event: unknown, _env: unknown, ctx: ExecutionContext) { ctx.waitUntil(notifyOwners()); },
+  async fetch(request: Request, _env: unknown, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     let path: string;
     try { path = decodeURIComponent(url.pathname); } catch { return response({ error: 'Invalid URL.' }, 400); }
     if (path === '/beads/api/config') return request.method === 'GET' ? config() : method('GET');
-    if (path === '/beads/api/orders') return request.method === 'POST' ? orders(request) : method('POST');
-    if (path === '/beads/api/capture') return request.method === 'POST' ? capture(request) : method('POST');
+    if (path === '/beads/api/orders' || path === '/beads/api/capture') {
+      if (request.method !== 'POST') return method('POST');
+      const result = await (path.endsWith('/orders') ? orders(request) : capture(request));
+      if (result.ok) ctx.waitUntil(notifyOwners());
+      return result;
+    }
     if (path.startsWith('/beads/api/')) return response({ error: 'Not found.' }, 404);
     if (path === '/beads/studio' || path === '/beads/studio/export') return request.method === 'GET' ? studio(request) : method('GET');
     if (path.startsWith('/beads/studio')) return response({ error: 'Not found.' }, 404);

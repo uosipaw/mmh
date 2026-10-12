@@ -19,12 +19,18 @@
     "STORE_READY": "true",
     "PAYPAL_MODE": "live",
     "SHIPPING_CENTS": "900",
-    "TAX_BPS": "700"
+    "TAX_BPS": "700",
+    "NOTIFICATIONS_START_AT": "2026-10-12T01:51:14.132Z"
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "mdsn-bead-orders"
     }
-  ]
+  ],
+  "triggers": {
+    "crons": [
+      "*/5 * * * *"
+    ]
+  }
 }
