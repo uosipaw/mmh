@@ -56,7 +56,7 @@ The configuration must have these values set deliberately:
 
 Set the nonsecret configuration values in `wrangler.jsonc` under `vars` so redeploys preserve them. Never put PayPal's Secret or the studio password in the repository or browser code. Payment stays disabled while required configuration is missing. Order requests do not collect money. Email confirmations are not automatic.
 
-Pricing currently mirrors the original bead form: curtains $100/$155/$275/$325 at 12/24/48/55 inches; mini suncatchers $24; keychains $16; phone charms $20. These remain draft prices until approved. Tax is a configured flat rate, not a jurisdiction-aware tax service.
+The current catalog is defined in `beads/src/catalog.ts`. Curtains have 20 strands and cost $0.45 per inch per strand for lengths of 19–48 inches; a 24-inch curtain is $216 before shipping and tax. Portières, valances, and other products have their own rates and lengths. Suncatchers currently require a quote before payment. Confirm the catalog, per-product shipping rates, tax configuration, and terms before setting `STORE_READY` to `true`. Tax is a configured flat rate, not a jurisdiction-aware tax service.
 
 ## Domain cutover
 
@@ -74,3 +74,4 @@ After Cloudflare DNS is active, add the tested Worker as the custom domain's ori
 - Existing homepage: `index.html`
 
 Validation covers successful request persistence, repeated requests, server-side prices, session ownership, rejected cross-origin submissions, invalid options, disabled payments, studio authorization and escaped customer text. Live PayPal calls and a full visual browser check require the deployment and account setup.
+

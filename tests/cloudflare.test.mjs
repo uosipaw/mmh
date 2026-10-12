@@ -18,8 +18,8 @@ test('order storage, session isolation, payment gating and private studio', asyn
     const saved = await send('orders',order); assert.equal(saved.status,200);
     const cookie = saved.headers.get('set-cookie').split(';')[0];
     assert.match(saved.headers.get('set-cookie'),/HttpOnly; Secure; SameSite=Lax/);
-    const data = await saved.json(); assert.equal(data.status,'awaiting_quote'); assert.equal(data.total,15500);
-    const retry = await send('orders',{...order,quantity:3},cookie); assert.equal(retry.status,200); assert.equal((await retry.json()).total,15500);
+    const data = await saved.json(); assert.equal(data.status,'awaiting_quote'); assert.equal(data.total,21600);
+    const retry = await send('orders',{...order,quantity:3},cookie); assert.equal(retry.status,200); assert.equal((await retry.json()).total,21600);
     assert.equal((await send('orders',order)).status,409);
     assert.equal((await send('orders',{...order,requestId:crypto.randomUUID(),action:'pay'},cookie)).status,503);
     assert.equal((await send('capture',{id:order.requestId},cookie)).status,503);
@@ -69,3 +69,4 @@ test('provisioned but unmigrated D1 does not accept orders or payments', async (
     assert.equal(config.clientId,'');
   } finally { await mf.dispose(); }
 });
+

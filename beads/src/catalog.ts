@@ -2,10 +2,10 @@ export const products = [
   { id: "portiere", name: "Portières", short: "Long strands for dramatic spaces.", detail: "20 handmade strands • 50–72 inches • $0.35 per inch per strand", icon: "curtain", prices: Object.fromEntries(Array.from({length:23},(_,i)=>{const n=i+50;return [String(n),n*20*35];})) },
   { id: "curtain", name: "Curtains", short: "For windows and walls.", detail: "20 handmade strands • 19–48 inches • $0.45 per inch per strand", icon: "curtain", prices: Object.fromEntries(Array.from({length:30},(_,i)=>{const n=i+19;return [String(n),n*20*45];})) },
   { id: "valance", name: "Valances", short: "A little light up top.", detail: "20 handmade strands • 12–18 inches • $0.50 per inch per strand", icon: "curtain", prices: Object.fromEntries(Array.from({length:7},(_,i)=>{const n=i+12;return [String(n),n*20*50];})) },
-  { id: "suncatcher", name: "Sun Catchers", short: "Maximalism, miniaturized.", detail: "5 beaded strands • approximately 8 inches per hanging • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
+  { id: "suncatcher", name: "Suncatchers", short: "Maximalism, miniaturized.", detail: "5 beaded strands • approximately 8 inches per hanging • pricing confirmed before payment", icon: "sun", prices: { "8": 0 } },
   { id: "strand", name: "Strands by the Inch", short: "Just one, or a whole bunch.", detail: "One handmade strand • $0.75 per inch", icon: "strand", prices: Object.fromEntries(Array.from({length:77},(_,i)=>{const n=i+8;return [String(n),n*75];})) },
   { id: "garland", name: "Garland + Table Runners", short: "Three strands, one lovely garland.", detail: "3 strands joined at both ends • 48–60 inches • $0.50 per inch per strand", icon: "garland", prices: Object.fromEntries(Array.from({length:13},(_,i)=>{const n=i+48;return [String(n),n*150];})) },
-  { id: "plant", name: "Plant Charms", short: "A little something for your plants.", detail: "1 handmade beaded strand • 5 inches • a playful accent for your favorite greenery", icon: "sun", prices: { "5": 999 } },
+  { id: "plant", name: "Plant Charms", short: "A little something for your plants.", detail: "1 handmade beaded strand • 5 inches • decorative plant charm", icon: "sun", prices: { "5": 999 } },
   { id: "rearview", name: "Rearview Hangers", short: "A little sparkle for the ride.", detail: "2 handmade beaded strands • choose 3–5 inches • hangs from a rearview mirror", icon: "sun", prices: { "3": 1699, "4": 1699, "5": 1699 } },
   { id: "phone", name: "Phone Charms", short: "Your phone, but more you.", detail: "1 looped beaded strand • 8 inches total (4 inches on each side)", icon: "phone", prices: { "8": 1399 } },
   { id: "hair", name: "Hair Accessories", short: "Wear a little sparkle.", detail: "1 hanging clip-in beaded hair extension • choose 6–12 inches", icon: "hair", prices: { "6": 1499, "7": 1499, "8": 1499, "9": 1899, "10": 1899, "11": 1899, "12": 1899 } },
@@ -39,3 +39,4 @@ export function totals(unit: number, quantity: number, delivery: string, shippin
   const tax = Math.round((subtotal + deliveryFee) * taxBps / 10000);
   return { subtotal, shipping: deliveryFee, tax, total: subtotal + deliveryFee + tax };
 }
+
