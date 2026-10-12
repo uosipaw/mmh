@@ -5,6 +5,10 @@ import { products, palettes, money, priceFor, totals, type ProductId } from "./c
 type Config = { ordersReady: boolean; paypalReady: boolean; pricingReady: boolean; clientId: string; mode: string; shipping: number; taxBps: number; terms: string };
 type Receipt = { id: string; status: string; total: number; details: any };
 const icons: Record<string, typeof Sparkles> = { curtain: Sparkles, strand: Sparkles, garland: Sparkles, suncatcher: Sun, keychain: KeyRound, wristlet: KeyRound, phone: Smartphone, hair: Sparkles };
+const gemStyle = (color: string) => ({
+  "--gem-color": color,
+  "--gem-brightness": String(.45 + Math.max(...(color.match(/[0-9a-f]{2}/gi) || ["80"]).map(value => parseInt(value, 16))) / 255 * .65),
+}) as React.CSSProperties;
 declare global { interface Window { paypal?: any } }
 export default function OrderPage() {
   const [product, setProduct] = useState<ProductId>("curtain");
@@ -112,20 +116,18 @@ export default function OrderPage() {
             <div className="palette-feature" aria-live="polite" aria-atomic="true">
               <h4>{selectedPalette.name}</h4>
               <div className="palette-feature-visual" role="img" aria-label={selectedPalette.name + " palette: " + selectedPalette.description}>
-                <div className="palette-feature-paper" style={{background: `linear-gradient(135deg, ${selectedPalette.colors[0]}55, ${selectedPalette.colors[1]}55 48%, ${selectedPalette.colors[3]}77)`}}>
-                  {selectedPalette.colors.map((color, i) => <span className={"palette-feature-bead palette-feature-bead-" + i} key={i} style={{backgroundColor:color}} />)}
-                </div>
+                <span className="palette-single-gem" style={gemStyle(selectedPalette.colors[0])}>
+                  <img src="/beads/gems/palette-crystal-v1.webp" alt="" width="224" height="224"/>
+                </span>
               </div>
-              <div className="palette-feature-swatches" aria-label="Palette colors">
-                {selectedPalette.colors.map((color, i) => <span key={i} className="palette-feature-dot" style={{backgroundColor:color}} />)}
-              </div>
+
               <p className="palette-feature-description">{selectedPalette.description}</p>
             </div>
             {paletteGroup !== "custom" && <><p className="palette-choose-label">Choose a {paletteGroup === "zodiac" ? "zodiac" : "celestial"} palette</p>
               <div className="palette-choice-list" role="group" aria-label="Available palettes">
                 {palettes.filter(p => p.group === paletteGroup).map(p =>
                   <button key={p.id} type="button" className={palette === p.id ? "palette-choice selected" : "palette-choice"} aria-pressed={palette === p.id} onClick={() => setPalette(p.id)}>
-                    <span className="palette-choice-colors" aria-hidden="true">{p.colors.map((color,i)=><i key={i} style={{backgroundColor:color}}/>)}</span>
+                    <span className="palette-single-gem palette-choice-gem" style={gemStyle(p.colors[0])} aria-hidden="true"><img src="/beads/gems/palette-crystal-v1.webp" alt="" width="56" height="56" loading="lazy"/></span>
                     <span>{p.name}</span>{palette === p.id && <Check size={15} aria-hidden="true"/>}
                   </button>
                 )}

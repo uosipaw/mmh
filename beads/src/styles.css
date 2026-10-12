@@ -131,3 +131,11 @@ input::placeholder,textarea::placeholder{font-family:var(--font-detail);font-siz
 .faq-answer{padding:0 22px 22px;max-width:850px}
 @media(max-width:900px){.header .nav{gap:18px}.about-maker,.shop-faq{margin-left:23px;margin-right:23px}.about-maker{gap:28px;padding:28px}}
 @media(max-width:650px){.about-maker,.shop-faq{margin:34px 16px 0}.about-maker{grid-template-columns:1fr;gap:12px;padding:26px 20px}.about-heading h2,.shop-faq h2{font-size:33px}.about-sun{width:42px;height:42px;margin-top:0}.about-copy p,.faq-answer p{font-size:16px}.faq-list summary{font-size:16px;padding:17px 18px}.faq-answer{padding:0 18px 20px}.shop-faq{padding-top:0}}
+
+/* One gemstone represents each palette. */
+.palette-single-gem{display:block;position:relative;width:224px;height:224px;margin:auto;background:var(--gem-color);isolation:isolate;-webkit-mask:url('/beads/gems/palette-crystal-v1.webp') center/contain no-repeat;mask:url('/beads/gems/palette-crystal-v1.webp') center/contain no-repeat}
+.palette-single-gem img{display:block;width:100%;height:100%;object-fit:contain;mix-blend-mode:luminosity;opacity:.9;filter:grayscale(1) brightness(var(--gem-brightness,1))}
+.palette-feature-visual{min-height:224px;margin-bottom:12px}
+.palette-choice-gem{width:56px;height:56px;margin:0}
+.palette-choice{gap:6px;padding-top:9px}
+@media(max-width:650px){.palette-feature-visual{min-height:196px}.palette-single-gem{width:196px;height:196px}.palette-choice-gem{width:52px;height:52px}}
