@@ -127,7 +127,7 @@ export default function OrderPage() {
               <div className="palette-choice-list" role="group" aria-label="Available palettes">
                 {palettes.filter(p => p.group === paletteGroup).map(p =>
                   <button key={p.id} type="button" className={palette === p.id ? "palette-choice selected" : "palette-choice"} aria-pressed={palette === p.id} onClick={() => setPalette(p.id)}>
-                    <span className="palette-single-gem palette-choice-gem" style={gemStyle(p.colors[0])} aria-hidden="true"><img src="/beads/gems/palette-crystal-v1.webp" alt="" width="56" height="56" loading="lazy"/></span>
+                    <span className="palette-choice-colors" aria-hidden="true">{p.colors.map((color,i)=><i key={i} style={{backgroundColor:color}}/>)}</span>
                     <span>{p.name}</span>{palette === p.id && <Check size={15} aria-hidden="true"/>}
                   </button>
                 )}
